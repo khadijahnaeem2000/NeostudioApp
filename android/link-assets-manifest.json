@@ -1,0 +1,45 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/AGENCY-Regular.ttf",
+      "sha1": "a91fce5cdd94d1f308c1d447ee612aded030eea0"
+    },
+    {
+      "path": "assets/fonts/AGENCYR-Regular.TTF",
+      "sha1": "a91fce5cdd94d1f308c1d447ee612aded030eea0"
+    },
+    {
+      "path": "assets/fonts/FontsFreeNetProximaNovaSoftW03-Regular.otf",
+      "sha1": "7f4227717834d73a069bb944a06502f0c2a2653f"
+    },
+    {
+      "path": "assets/fonts/PROXIMANova-Bold.otf",
+      "sha1": "8ec828f81e8008d022e35828a877bfd51ff5883e"
+    },
+    {
+      "path": "assets/fonts/PROXIMANova-Regular.otf",
+      "sha1": "7f4227717834d73a069bb944a06502f0c2a2653f"
+    },
+    {
+      "path": "assets/fonts/Proxima-Regular.otf",
+      "sha1": "28d04eb938c05b5158a69a709682d4f0517a59ab"
+    },
+    {
+      "path": "assets/fonts/ProximaNovaSoftW03-Bold.ttf",
+      "sha1": "8cb20e1504b37211b17e5e4d73dd57e223f339dd"
+    },
+    {
+      "path": "assets/fonts/ROUNDElegance-Regular.ttf",
+      "sha1": "dc24d4b30862123db8e5c9fce48850b4d0ea5b21"
+    },
+    {
+      "path": "assets/fonts/RoundedElegance-Regular.ttf",
+      "sha1": "dc24d4b30862123db8e5c9fce48850b4d0ea5b21"
+    },
+    {
+      "path": "assets/fonts/pnsb.otf",
+      "sha1": "8ec828f81e8008d022e35828a877bfd51ff5883e"
+    }
+  ]
+}

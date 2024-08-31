@@ -1,0 +1,72 @@
+{
+  "project_info": {
+    "project_number": "1058215598914",
+    "firebase_url": "https://neoestudio-7af6a-default-rtdb.firebaseio.com",
+    "project_id": "neoestudio-7af6a",
+    "storage_bucket": "neoestudio-7af6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058215598914:android:813e765223771c9b63c6db",
+        "android_client_info": {
+          "package_name": "com.neostudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058215598914-a99u24c1bielot2uvheghuq79gd074f0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neostudio",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1058215598914-jnbij41n3sttd56bm1od8gj772qdjla0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neostudio",
+            "certificate_hash": "c9778bf06541be8661f4f32bafed9e51c8c229e0"
+          }
+        },
+        {
+          "client_id": "1058215598914-oc36lal5roru66oi7eh8r6f0r0lg8e0v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neostudio",
+            "certificate_hash": "bd5730a6c8490da9c4881bf0ff929ed0eba9c182"
+          }
+        },
+        {
+          "client_id": "1058215598914-8hrhll0vrokh5mvncfgi83uaqvqvj1t8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaVrvvQoj1ofbYetFcb0uX1144B0G-12I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058215598914-8hrhll0vrokh5mvncfgi83uaqvqvj1t8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1058215598914-qdves3f48q5bed91u075qjui4r71gp50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.neostudio",
+                "app_store_id": "1531939360"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
