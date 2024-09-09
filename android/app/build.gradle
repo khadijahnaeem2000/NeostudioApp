@@ -84,8 +84,8 @@ android {
         applicationId "com.neostudio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 90
-        versionName "1.4.4"
+        versionCode 93
+        versionName "1.4.5"
         missingDimensionStrategy 'store', 'play' 
     }
     signingConfigs {

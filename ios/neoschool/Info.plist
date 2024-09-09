@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>neoschool</string>
+	<string>Neostudio</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,19 +26,78 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<false/>
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>https://neoestudio.net</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1058215598914-qdves3f48q5bed91u075qjui4r71gp50</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app would like to take images from camera.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This sample uses the microphone to record your speech and convert it to text.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app would like to save images to your device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app would like to save images to your device.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontsFreeNetProximaNovaSoftW03-Regular.otf</string>
+		<string>pnsb.otf</string>
+		<string>Proxima-Regular.otf</string>
+		<string>ProximaNovaSoftW03-Bold.ttf</string>
+		<string>RoundedElegance-Regular.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Fontisto.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>AGENCY-Regular.ttf</string>
+		<string>PROXIMANova-Bold.otf</string>
+		<string>PROXIMANova-Regular.otf</string>
+		<string>ROUNDElegance-Regular.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>arm64</string>
+		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -47,17 +106,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>FontsFreeNetProximaNovaSoftW03-Regular.otf</string>
-		<string>PROXIMANova-Bold.otf</string>
-		<string>PROXIMANova-Regular.otf</string>
-		<string>Proxima-Regular.otf</string>
-		<string>pnsb.otf</string>
-		<string>AGENCY-Regular.ttf</string>
-		<string>ProximaNovaSoftW03-Bold.ttf</string>
-		<string>ROUNDElegance-Regular.ttf</string>
-		<string>RoundedElegance-Regular.ttf</string>
-	</array>
 </dict>
 </plist>
