@@ -1365,7 +1365,7 @@ PODS:
     - Yoga
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-netinfo (11.3.2):
+  - react-native-netinfo (9.5.0):
     - React-Core
   - react-native-network-info (5.2.1):
     - React
@@ -1760,7 +1760,7 @@ PODS:
     - React-Core
   - RNAudio (4.3.0):
     - React
-  - RNCAsyncStorage (2.0.0):
+  - RNCAsyncStorage (1.24.0):
     - React-Core
   - RNCClipboard (1.14.1):
     - React-Core
@@ -1770,7 +1770,7 @@ PODS:
     - React-Core
   - RNCPushNotificationIOS (1.11.0):
     - React-Core
-  - RNDeviceInfo (11.1.0):
+  - RNDeviceInfo (9.0.2):
     - React-Core
   - RNFastImage (8.6.3):
     - React-Core
@@ -2371,7 +2371,7 @@ SPEC CHECKSUMS:
   react-native-blob-util: 39a20f2ef11556d958dc4beb0aa07d1ef2690745
   react-native-document-picker: 7343222102ece8aec51390717f47ad7119c7921f
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-netinfo: 076df4f9b07f6670acf4ce9a75aac8d34c2e2ccc
+  react-native-netinfo: 48c5f79a84fbc3ba1d28a8b0d04adeda72885fa8
   react-native-network-info: d1290ffc0bd0709e11436f5b8d7f605dcc5c4530
   react-native-orientation-locker: 5819fd23ca89cbac0d736fb4314745f62716d517
   react-native-otp-verify: b524a7f44b691644bea08376d6a4782a2df57e09
@@ -2415,12 +2415,12 @@ SPEC CHECKSUMS:
   ReactCommon: 6ef348087d250257c44c0204461c03f036650e9b
   RNAppleAuthentication: e99eaf3c4c01ad8ecb6125dd6f0cfd98871685b5
   RNAudio: cae2991f2dccb75163f260b60da8051717b959fa
-  RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6
+  RNCAsyncStorage: ec53e44dc3e75b44aa2a9f37618a49c3bc080a7a
   RNCClipboard: 0a720adef5ec193aa0e3de24c3977222c7e52a37
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNCPicker: 0173dedc74776227ec6dcc61bb85cd9f07bbb2ac
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
-  RNDeviceInfo: b899ce37a403a4dea52b7cb85e16e49c04a5b88e
+  RNDeviceInfo: 1e3f62b9ec32f7754fac60bd06b8f8a27124e7f0
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFBApp: e4439717c23252458da2b41b81b4b475c86f90c4
   RNFBCrashlytics: 94e1f78e2a9aa9e02edbfb0d3f1f0921ce00094b

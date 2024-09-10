@@ -24,6 +24,7 @@
 		919106E6B518464089C24C54 /* PROXIMANova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC4ADF5CCF4A42F1A3EB6F91 /* PROXIMANova-Bold.otf */; };
 		931370C840C14B04A0879A1B /* ROUNDElegance-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */; };
 		CA6525F969B743D4B0A4826E /* ProximaNovaSoftW03-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF8308196848461986CBDD20 /* ProximaNovaSoftW03-Bold.ttf */; };
+		F9285F382C8FD61B008C1559 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9285F372C8FD61B008C1559 /* GoogleService-Info.plist */; };
 		FFCEEA6A48F44E97BC32E8F2 /* PROXIMANova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */; };
 /* End PBXBuildFile section */
 
@@ -49,24 +50,26 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = neoschool/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = neoschool/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-neoschool-neoschoolTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neoschool-neoschoolTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36493A0CB1BB9CF65F8B60CB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = neoschool/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		36493A0CB1BB9CF65F8B60CB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = neoschool/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-neoschool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool.debug.xcconfig"; path = "Target Support Files/Pods-neoschool/Pods-neoschool.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-neoschool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool.release.xcconfig"; path = "Target Support Files/Pods-neoschool/Pods-neoschool.release.xcconfig"; sourceTree = "<group>"; };
-		5715859BFBF04149B0541744 /* AGENCYR-Regular.TTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AGENCYR-Regular.TTF"; path = "../assets/fonts/AGENCYR-Regular.TTF"; sourceTree = "<group>"; };
-		5842D9771D584EBDBBF4DE9C /* FontsFreeNetProximaNovaSoftW03-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FontsFreeNetProximaNovaSoftW03-Regular.otf"; path = "../assets/fonts/FontsFreeNetProximaNovaSoftW03-Regular.otf"; sourceTree = "<group>"; };
+		5715859BFBF04149B0541744 /* AGENCYR-Regular.TTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AGENCYR-Regular.TTF"; path = "../assets/fonts/AGENCYR-Regular.TTF"; sourceTree = "<group>"; };
+		5842D9771D584EBDBBF4DE9C /* FontsFreeNetProximaNovaSoftW03-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FontsFreeNetProximaNovaSoftW03-Regular.otf"; path = "../assets/fonts/FontsFreeNetProximaNovaSoftW03-Regular.otf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-neoschool-neoschoolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool-neoschoolTests.debug.xcconfig"; path = "Target Support Files/Pods-neoschool-neoschoolTests/Pods-neoschool-neoschoolTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-neoschool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neoschool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = neoschool/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Regular.otf"; path = "../assets/fonts/PROXIMANova-Regular.otf"; sourceTree = "<group>"; };
+		894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Regular.otf"; path = "../assets/fonts/PROXIMANova-Regular.otf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-neoschool-neoschoolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool-neoschoolTests.release.xcconfig"; path = "Target Support Files/Pods-neoschool-neoschoolTests/Pods-neoschool-neoschoolTests.release.xcconfig"; sourceTree = "<group>"; };
-		A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ROUNDElegance-Regular.ttf"; path = "../assets/fonts/ROUNDElegance-Regular.ttf"; sourceTree = "<group>"; };
-		BC4ADF5CCF4A42F1A3EB6F91 /* PROXIMANova-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Bold.otf"; path = "../assets/fonts/PROXIMANova-Bold.otf"; sourceTree = "<group>"; };
-		C65F273CDF054E9C9169DEAB /* Proxima-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Proxima-Regular.otf"; path = "../assets/fonts/Proxima-Regular.otf"; sourceTree = "<group>"; };
-		C791040624CE471C8176CA9C /* RoundedElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RoundedElegance-Regular.ttf"; path = "../assets/fonts/RoundedElegance-Regular.ttf"; sourceTree = "<group>"; };
-		D6BE469AF7AE4366A04FC83F /* pnsb.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = pnsb.otf; path = ../assets/fonts/pnsb.otf; sourceTree = "<group>"; };
-		DFE68231110A4D73B53F3AB7 /* AGENCY-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AGENCY-Regular.ttf"; path = "../assets/fonts/AGENCY-Regular.ttf"; sourceTree = "<group>"; };
+		A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ROUNDElegance-Regular.ttf"; path = "../assets/fonts/ROUNDElegance-Regular.ttf"; sourceTree = "<group>"; };
+		BC4ADF5CCF4A42F1A3EB6F91 /* PROXIMANova-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Bold.otf"; path = "../assets/fonts/PROXIMANova-Bold.otf"; sourceTree = "<group>"; };
+		C65F273CDF054E9C9169DEAB /* Proxima-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Proxima-Regular.otf"; path = "../assets/fonts/Proxima-Regular.otf"; sourceTree = "<group>"; };
+		C791040624CE471C8176CA9C /* RoundedElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RoundedElegance-Regular.ttf"; path = "../assets/fonts/RoundedElegance-Regular.ttf"; sourceTree = "<group>"; };
+		D6BE469AF7AE4366A04FC83F /* pnsb.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = pnsb.otf; path = ../assets/fonts/pnsb.otf; sourceTree = "<group>"; };
+		DFE68231110A4D73B53F3AB7 /* AGENCY-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AGENCY-Regular.ttf"; path = "../assets/fonts/AGENCY-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FF8308196848461986CBDD20 /* ProximaNovaSoftW03-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNovaSoftW03-Bold.ttf"; path = "../assets/fonts/ProximaNovaSoftW03-Bold.ttf"; sourceTree = "<group>"; };
+		F9285F372C8FD61B008C1559 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F9285F392C8FD7A7008C1559 /* neoschool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = neoschool.entitlements; path = neoschool/neoschool.entitlements; sourceTree = "<group>"; };
+		FF8308196848461986CBDD20 /* ProximaNovaSoftW03-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNovaSoftW03-Bold.ttf"; path = "../assets/fonts/ProximaNovaSoftW03-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 		13B07FAE1A68108700A75B9A /* neoschool */ = {
 			isa = PBXGroup;
 			children = (
+				F9285F392C8FD7A7008C1559 /* neoschool.entitlements */,
+				F9285F372C8FD61B008C1559 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -178,7 +183,6 @@
 				5715859BFBF04149B0541744 /* AGENCYR-Regular.TTF */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -300,6 +304,7 @@
 				931370C840C14B04A0879A1B /* ROUNDElegance-Regular.ttf in Resources */,
 				71668664448748CD83CA6754 /* RoundedElegance-Regular.ttf in Resources */,
 				5C6ECD3C640F49EFAC1E996B /* AGENCYR-Regular.TTF in Resources */,
+				F9285F382C8FD61B008C1559 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = neoschool/neoschool.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = neoschool/Info.plist;
@@ -576,6 +582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = neoschool/neoschool.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = neoschool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -668,10 +675,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -744,10 +748,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
