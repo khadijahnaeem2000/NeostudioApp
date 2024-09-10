@@ -30,6 +30,7 @@ import TrackPlayer, {
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import { playListData } from './play-listdata';
+import { SetupService } from '../../trackservice';
 
 class AudioDetail extends React.Component {
   constructor(props) {
@@ -46,12 +47,20 @@ class AudioDetail extends React.Component {
     this.setup();
   }
 
+
   setup = async () => {
+    const buffer = 0.5;
+    await SetupService()
     await TrackPlayer.updateOptions({
       android: {
         appKilledPlaybackBehavior:
           AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
       },
+      playBuffer: buffer,
+      minBuffer: buffer * 2,
+      maxBuffer: buffer * 2,
+      waitForBuffer: true,
+
       // This flag is now deprecated. Please use the above to define playback mode.
       // stoppingAppPausesPlayback: true,
       capabilities: [
@@ -96,9 +105,9 @@ class AudioDetail extends React.Component {
 
   componentDidMount() {
     this.onTrackChange = TrackPlayer.addEventListener(
-      'playback-track-changed',
+      'playback-active-track-changed',
       async data => {
-        const track = await TrackPlayer.getTrack(data.nextTrack);
+        const track = await TrackPlayer.getActiveTrack(data?.nextTrack);
         this.setState({ title: track?.title || "" });
       },
     );
@@ -123,13 +132,20 @@ class AudioDetail extends React.Component {
 
   setPlayer = async index => {
     const { audio, login } = this.props.user;
+    let array = [...audio?.data]
+    const updatedArray = array?.map(item => {
+      return {
+        ...item,
+        url: item.url.replace("/audio/", "/audios/")
+      };
+    });
     await TrackPlayer.reset();
     await TrackPlayer.seekTo(0);
-    var temArray = audio.data.slice(index);
+    var temArray = updatedArray?.slice(index);
     await TrackPlayer.add(temArray);
     await TrackPlayer.play();
-    await TrackPlayer.addEventListener('playback-track-changed', event => {
-      this.getTitle(event.nextTrack);
+    await TrackPlayer.addEventListener('playback-active-track-changed', event => {
+      this.getTitle(event?.track?.id);
     });
     TrackPlayer.addEventListener('playback-queue-ended', async () => {
       //TrackPlayer.reset()
@@ -157,6 +173,8 @@ class AudioDetail extends React.Component {
     // TrackPlayer.addEventListener('remote-jump-backward', () => {
     //     jumpPlayback(15); // seek backward 15 seconds
     // });
+    TrackPlayer.addEventListener('playback-error', error => {
+    });
   };
   onPlayButton = async () => {
     const { login } = this.props.user;
@@ -185,7 +203,6 @@ class AudioDetail extends React.Component {
       if (audio?.data?.[i]?.id == id) {
         this.setState({ title: audio?.data?.[i]?.title });
       } else {
-        console.log('not found');
       }
     }
   };
@@ -197,7 +214,6 @@ class AudioDetail extends React.Component {
   render() {
     const { audio, AuthLoading, login } = this.props.user;
     const id = this.props.route.params.position || "1"
-    console.log('My folder id is =>', id);
     const { title } = this.state;
     return (
       <FastImage
@@ -246,7 +262,7 @@ class AudioDetail extends React.Component {
                             currentIndex: index,
                           },
                           () => {
-                            TrackPlayer.play();
+                            TrackPlayer.getPlayWhenReady();
                             this.props.postAudioState(login.data.id, 'start');
                           },
                         );

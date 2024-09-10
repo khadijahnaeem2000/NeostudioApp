@@ -118,11 +118,11 @@ class Home extends Component {
       isOpen: login.data.emailSubscription === null ? true : false,
     });
     if (Platform.OS === 'android') {
-      console.log("login.data.androidVersion" ,login.data.androidVersion , version)
       if (login.data.androidVersion !== version) {
         this.setState({ verSionPopUp: true });
       }
     } else {
+      console.log("login.data.iosVersion" ,login.data.iosVersion)
       if (login.data.iosVersion !== iosVerion) {
         this.setState({ verSionPopUp: true });
       }

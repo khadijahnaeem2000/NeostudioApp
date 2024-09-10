@@ -271,7 +271,6 @@ class MainApp extends React.Component {
   render() {
     const Stack = createNativeStackNavigator();
     const { login } = this.props.user;
-    console.log("timerrrrr" , this.state.timer)
     return (
       <NavigationContainer ref={navigationRef} >
         <Stack.Navigator

@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import TrackPlayer, {
   AppKilledPlaybackBehavior,
   Capability,
@@ -10,12 +11,16 @@ export const SetupService = async (): Promise<boolean> => {
     await TrackPlayer.getActiveTrack();
     isSetup = true;
   } catch {
-    await TrackPlayer.setupPlayer({
+    const iosOptions = { iosCategory: 'playback', iosCategoryMode: 'default', iosCategoryOptions: ['allowBluetooth', 'allowAirPlay', 'duckOthers'] }
+    let options = {
       minBuffer: 200,
       maxBuffer: 600,
       playBuffer: 100,
       maxCacheSize: 1000,
-    }).then(() => {
+    }
+    if (Platform.OS === 'ios') options = { ...options, ...iosOptions }
+
+    await TrackPlayer.setupPlayer(options).then(() => {
       console.log('ready to be used');
     });
     await TrackPlayer.updateOptions({
