@@ -178,7 +178,7 @@ class Review extends Component {
     const type = this.props.route.params.type || 'exam'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
 
-    console.log("Review screeen me heehhehehehhe" ,reviewAll?.data)
+    console.log("Review screeen me heehhehehehhe" ,reviewAll)
 
     const { myOption } = this.state;
     return (

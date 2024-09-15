@@ -149,6 +149,7 @@ export const userSlice = createSlice({
             state.examStartData = action.payload.examStartData
         },
         setReviewExam: (state, action) => {
+            console.log("Action Paylaod me ayayyaa", action.payload.reviewAll)
             state.reviewAll = action.payload.reviewAll
         },
         setPersonalityExam: (state, action) => {

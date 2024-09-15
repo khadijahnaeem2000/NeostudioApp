@@ -97,7 +97,6 @@ class ReviewTest extends PureComponent {
   render() {
     const {reviewList, AuthLoading} = this.props.user;
     const {testData} = this.state;
-    console.log("review mwhwhwhw")
     return (
       <FastImage
         source={require('../../Images/bg.png')}

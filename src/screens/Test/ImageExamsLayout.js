@@ -24,6 +24,7 @@ import DeviceInfo from 'react-native-device-info';
 import ScrollView2 from 'rn-faded-scrollview';
 import { styles } from './styles';
 import { fonts } from '../../utils';
+import { HtmlTextView } from "react-native-html-text-view";
 
 const { width } = Dimensions.get('window');
 
@@ -87,7 +88,6 @@ export default class PaperLayout extends React.Component {
             marginRight: widthPercentageToDP(3),
             marginTop: widthPercentageToDP(-0.5),
           }}>
-
           <HTML
             contentWidth={useWindowDimensions().width}
             source={{ html: question }}
@@ -246,6 +246,11 @@ export default class PaperLayout extends React.Component {
                   <HTML
                     contentWidth={useWindowDimensions().width}
                     source={{ html: option1 }}
+                    tagsStyles={{
+                      a: {
+                        textDecorationLine: "none"
+                      }
+                    }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),

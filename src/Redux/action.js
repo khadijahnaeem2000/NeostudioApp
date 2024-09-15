@@ -794,6 +794,7 @@ export const getStartExamData = (
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
+          dispatch(setAuthLoading(false));
         }
       })
       .catch(error => {
@@ -827,6 +828,7 @@ export const pauseExams = (id, pauseTime, stdID, type) => {
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
+          dispatch(setAuthLoading(false));
         }
       })
       .catch(error => {
@@ -864,6 +866,7 @@ export const endAllExams = (id, endTime, isPsico, type, isRepasoImage) => {
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
+          dispatch(setAuthLoading(false));
         }
       })
       .catch(error => {
@@ -891,11 +894,12 @@ export const reviewAllExams = (recordId, value) => {
       .then(json => {
         dispatch(setAuthLoading(false));
         if (json.status === 'Successfull') {
-          setReviewExam({ reviewAll: json, })
+          dispatch(setReviewExam({ reviewAll: json, }))
           dispatch(getReviewDrawer(recordId));
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
+          dispatch(setAuthLoading(false))
         }
       })
       .catch(error => {
@@ -926,7 +930,6 @@ export const getPersonalityTestList = (id, type) => {
           dispatch(setPersonalityExam({ personalityList: json, }))
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
-          dispatch(setAuthDialog(true))
         }
       })
       .catch(error => {

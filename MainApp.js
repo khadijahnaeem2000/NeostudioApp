@@ -232,7 +232,6 @@ class MainApp extends React.Component {
   getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
     if (fcmToken) {
-      console.log('Your Firebase Token is:', fcmToken);
       this.props.saveToken(fcmToken);
     } else {
       console.log('Failed', 'No token received');
@@ -242,7 +241,6 @@ class MainApp extends React.Component {
   async onRegister(data) {
     const { login } = this.props.user;
     const response = await addRegister({ ...data, id: login?.data?.id });
-    console.log('Responseeee', response);
     if (response?.status === 'Successful') {
       this.setState({ showModal: false });
     }
