@@ -8,16 +8,16 @@ const TestScreen = ({ navigation, route }) => {
   const { id, isImage, isRepasoImage, type, fromReview } = route.params
 
   useEffect(() => {
-      const locked = Orientation.isLocked();
-      if (!locked) {
-        Orientation.lockToPortrait();
-      }
+    const locked = Orientation.isLocked();
+    if (!locked) {
+      Orientation.lockToPortrait();
+    }
   }, []);
 
   useEffect(() => {
     setTimeout(() => {
       Orientation.unlockAllOrientations(),
-        props.navigation.navigate('Review', {
+        navigation.navigate('Review', {
           id: id,
           isImage: isImage,
           type: type,

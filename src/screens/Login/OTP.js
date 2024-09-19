@@ -134,7 +134,7 @@ const OTP = ({ navigation, route }) => {
           style={[styles.heading, {
             marginTop: heightPercentageToDP(1)
           }]} >
-          ¡30 DÍAS GRATIS!
+          ¡48 HORAS GRATIS!
         </Text>
         <Text
           style={[styles.heading, {

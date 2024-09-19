@@ -138,13 +138,7 @@ class Home extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     const { login } = this.props.user;
-    NetInfo.fetch().then(({ isConnected, isInternetReachable, type }) => {
-      if (isConnected) {
-        setTimeout(() => {
-          this.props.setAuthLoading(false)
-        }, 7000);
-      }
-    });
+   
     if (Platform.OS === 'ios') {
       initConnection()
         .catch(error => {
@@ -166,6 +160,13 @@ class Home extends Component {
         });
     }
     this.focusListener = navigation.addListener('focus', () => {
+      NetInfo.fetch().then(({ isConnected, isInternetReachable, type }) => {
+        if (isConnected) {
+          setTimeout(() => {
+            this.props.setAuthLoading(false)
+          }, 5000);
+        }
+      });
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
@@ -508,7 +509,6 @@ class Home extends Component {
     } = this.props.user;
     const { verSionPopUp, avatarPopUp, selectImage, isFcous, rating, isConfirm } =
       this.state;
-    console.log("AuthLoadingAuthLoading", AuthLoading)
 
     return (
       <FastImage

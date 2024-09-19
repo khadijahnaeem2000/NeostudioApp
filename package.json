@@ -1,7 +1,7 @@
 {
   "name": "neoschool",
   "version": "1.4.4",
-  "iosVerion": "1.3.3",
+  "iosVerion": "1.3.6",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

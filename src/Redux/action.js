@@ -357,7 +357,9 @@ export const verifyMobileOTP = (userId, otp, data) => {
       .then(json => {
         dispatch(setAuthLoading(false));
         if (json.status == 200) {
+          console.log("dataa dataa", data)
           dispatch(setLoginData({ login: data }))
+          dispatch(getCurrentUser(data?.data?.id))
           dispatch(getRankAvatarImages());
           resetNavigationStack('HomeScreen', {
             isSubscribe: 'ok',

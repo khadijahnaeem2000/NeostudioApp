@@ -6,6 +6,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
 import {
   heightPercentageToDP,
@@ -31,7 +32,7 @@ class ModalBox extends React.Component {
           activeOpacity={1}
           onPressOut={closeBox}>
           <TouchableWithoutFeedback>
-            <FastImage
+            <ImageBackground
               source={require('../../screens/Home/assets/email_box.png')}
               resizeMode={FastImage.resizeMode.stretch}
               style={[
@@ -63,7 +64,7 @@ class ModalBox extends React.Component {
                   />
                 </TouchableOpacity>
               </View>
-            </FastImage>
+            </ImageBackground>
           </TouchableWithoutFeedback>
         </TouchableOpacity>
       </Modal>

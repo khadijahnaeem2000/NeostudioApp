@@ -89,7 +89,7 @@ export default class PaperLayout extends React.Component {
             marginTop: widthPercentageToDP(-0.5),
           }}>
           <HTML
-            contentWidth={useWindowDimensions().width}
+            contentWidth={Dimensions.get("screen").width}
             source={{ html: question }}
             classesStyles={{
               regular: {
@@ -244,7 +244,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option1 }}
                     tagsStyles={{
                       a: {
@@ -329,7 +329,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option2 }}
                     tagsStyles={{
                       a: {
@@ -414,7 +414,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option3 }}
                     tagsStyles={{
                       a: {
@@ -499,7 +499,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option4 }}
                     tagsStyles={{
                       a: {
@@ -537,7 +537,7 @@ export default class PaperLayout extends React.Component {
                   marginBottom: widthPercentageToDP(10),
                 }}>
                 <HTML
-                  contentWidth={useWindowDimensions().width}
+                  contentWidth={Dimensions.get("screen").width}
                   source={{ html: description }}
                   classesStyles={{
                     regular: {

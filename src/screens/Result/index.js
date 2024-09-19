@@ -206,16 +206,17 @@ class ResultClass extends Component {
             <View style={styles.buttonView}>
               <TouchableOpacity
                 style={styles.buttonImage}
-                onPress={() => (
+                onPress={() => {
                   this.test2(),
-                  this.props.navigation.navigate('TestScreen', {
+                  Orientation.unlockAllOrientations(),
+                  this.props.navigation.navigate('Review', {
                     id: examID,
                     isImage: isPsico,
                     type: type,
                     fromReview: true,
                     isRepasoImage: isRepasoImage,
-                  })
-                )}>
+                  });
+                }}>
                 <FastImage
                   source={require('../../Images/Revisar.png')}
                   resizeMode={FastImage.resizeMode.contain}
