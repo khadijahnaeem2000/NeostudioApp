@@ -8,7 +8,6 @@ import {fonts} from '../../utils';
 
 export const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
     zIndex: 1000,
     width: '100%',
     height: '100%',

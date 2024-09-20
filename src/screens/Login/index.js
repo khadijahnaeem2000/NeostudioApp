@@ -322,7 +322,7 @@ class Login extends React.Component {
 
                 {!this.state.switchBtn &&
                   <Text style={styles.heading}  >
-                    {"CURSO DE INGRESO A GUARDIA CIVIL\n30 DÍAS GRATIS"}
+                    {"CURSO DE INGRESO A GUARDIA CIVIL\n48 HORAS GRATIS"}
                   </Text>
                 }
 

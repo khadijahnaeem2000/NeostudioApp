@@ -607,8 +607,6 @@ class ExamScreen extends React.Component {
           {/* </View> */}
         </View>
 
-
-
         {AuthLoading && (
           <ActivityIndicator size="large" color="#000" style={styles.loading} />
         )}

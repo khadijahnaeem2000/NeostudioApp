@@ -63,6 +63,9 @@ import {
   getPurchaseHistory,
 } from 'react-native-iap';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { setAuthLoading } from '../../Redux/slices/user-slice';
+import NetInfo from '@react-native-community/netinfo';
+
 
 class Home extends Component {
   constructor(props) {
@@ -92,21 +95,24 @@ class Home extends Component {
   };
   refreshAppData = async () => {
     const { login, token } = this.props.user;
-    if (login.data.IsBlocked === 'False' || !login?.data?.IsBlocked) {
-      if (Platform.OS === 'ios') {
-        this.fetchReceipt();
+    try {
+      if (login.data.IsBlocked === 'False' || !login?.data?.IsBlocked) {
+        if (Platform.OS === 'ios') {
+          this.fetchReceipt();
+        }
+        this.props.clearStates(),
+          await Promise.all([
+            updateRank(login?.data?.id),
+            this.props.updateLoginTime(login?.data?.id),
+            this.props.updateUserProfile(login?.data?.id),
+            this.props.saveUserToken(login?.data?.id, token),
+            this.props.getCurrentUser(login?.data?.id, login.data.type),
+            saveUserRankPoint('Yes', 'No', 'normal_points', login?.data?.id),
+          ]);
+      } else {
+        this.props.logout();
       }
-      this.props.clearStates(),
-        await Promise.all([
-          updateRank(login?.data?.id),
-          this.props.updateLoginTime(login?.data?.id),
-          this.props.updateUserProfile(login?.data?.id),
-          this.props.saveUserToken(login?.data?.id, token),
-          this.props.getCurrentUser(login?.data?.id, login.data.type),
-          saveUserRankPoint('Yes', 'No', 'normal_points', login?.data?.id),
-        ]);
-    } else {
-      this.props.logout();
+    } catch (error) {
     }
   };
   handleModalOpen = () => {
@@ -122,6 +128,7 @@ class Home extends Component {
         this.setState({ verSionPopUp: true });
       }
     } else {
+      console.log("login.data.iosVersion", login.data.iosVersion, iosVerion)
       if (login.data.iosVersion !== iosVerion) {
         this.setState({ verSionPopUp: true });
       }
@@ -131,6 +138,7 @@ class Home extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     const { login } = this.props.user;
+   
     if (Platform.OS === 'ios') {
       initConnection()
         .catch(error => {
@@ -152,6 +160,13 @@ class Home extends Component {
         });
     }
     this.focusListener = navigation.addListener('focus', () => {
+      NetInfo.fetch().then(({ isConnected, isInternetReachable, type }) => {
+        if (isConnected) {
+          setTimeout(() => {
+            this.props.setAuthLoading(false)
+          }, 5000);
+        }
+      });
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
@@ -394,7 +409,6 @@ class Home extends Component {
     try {
       const isGoogleSignin = await GoogleSignin.hasPreviousSignIn()
       const googleuser = await GoogleSignin.getCurrentUser()
-      console.log("SAdasdsadasdasdas", isGoogleSignin, googleuser)
       if (isGoogleSignin) {
         await GoogleSignin.revokeAccess()
         await GoogleSignin.signOut()
@@ -405,6 +419,7 @@ class Home extends Component {
     this.props.logout();
   };
   fetchVideoData = async () => {
+    ``
     const { login } = this.props.user;
     this.setState({ isLoading: true });
     await getUserTikTokVideos('Alumno');
@@ -1110,4 +1125,5 @@ export default connect(mapStateToProps, {
   updateUserProfile,
   updateLoginTime,
   resetAllExams,
+  setAuthLoading
 })(Home);

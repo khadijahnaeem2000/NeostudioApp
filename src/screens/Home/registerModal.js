@@ -107,7 +107,7 @@ const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
               color: "#fff",
               fontSize: widthPercentageToDP(4),
             }}>
-            {'iYA PUEDES DISFRUTAR DE TU\nPRUEBA DE 30 DÍAS GRATIS!'}
+            {'iYA PUEDES DISFRUTAR DE TU\nPRUEBA DE 48 HORAS GRATIS!'}
           </Text>
           <ScrollView
             keyboardShouldPersistTaps={"handled"}
@@ -250,7 +250,7 @@ const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
               activeOpacity={0.6}
               onPress={onPressSubmit}
               style={styles.btn}>
-              <Text style={{ color: "#fff" }} >AMPLIAR A 30 días Gratis</Text>
+              <Text style={{ color: "#fff" }} >AMPLIAR A 48 HORAS Gratis</Text>
             </TouchableOpacity>
 
             <View style={{ height: 20 }} />

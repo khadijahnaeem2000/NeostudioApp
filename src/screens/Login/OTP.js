@@ -109,7 +109,7 @@ const OTP = ({ navigation, route }) => {
         style={{
           position: "absolute",
           zIndex: 100,
-          top: 12,
+          top:  Platform.OS === 'ios' ? 40: 12,
           left: 20,
           height: 40,
           width: 40,
@@ -134,7 +134,7 @@ const OTP = ({ navigation, route }) => {
           style={[styles.heading, {
             marginTop: heightPercentageToDP(1)
           }]} >
-          ¡30 DÍAS GRATIS!
+          ¡48 HORAS GRATIS!
         </Text>
         <Text
           style={[styles.heading, {

@@ -24,6 +24,7 @@ import DeviceInfo from 'react-native-device-info';
 import ScrollView2 from 'rn-faded-scrollview';
 import { styles } from './styles';
 import { fonts } from '../../utils';
+import { HtmlTextView } from "react-native-html-text-view";
 
 const { width } = Dimensions.get('window');
 
@@ -87,9 +88,8 @@ export default class PaperLayout extends React.Component {
             marginRight: widthPercentageToDP(3),
             marginTop: widthPercentageToDP(-0.5),
           }}>
-
           <HTML
-            contentWidth={useWindowDimensions().width}
+            contentWidth={Dimensions.get("screen").width}
             source={{ html: question }}
             classesStyles={{
               regular: {
@@ -244,8 +244,13 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option1 }}
+                    tagsStyles={{
+                      a: {
+                        textDecorationLine: "none"
+                      }
+                    }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),
@@ -324,7 +329,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option2 }}
                     tagsStyles={{
                       a: {
@@ -409,7 +414,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option3 }}
                     tagsStyles={{
                       a: {
@@ -494,7 +499,7 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                    contentWidth={useWindowDimensions().width}
+                    contentWidth={Dimensions.get("screen").width}
                     source={{ html: option4 }}
                     tagsStyles={{
                       a: {
@@ -532,7 +537,7 @@ export default class PaperLayout extends React.Component {
                   marginBottom: widthPercentageToDP(10),
                 }}>
                 <HTML
-                  contentWidth={useWindowDimensions().width}
+                  contentWidth={Dimensions.get("screen").width}
                   source={{ html: description }}
                   classesStyles={{
                     regular: {

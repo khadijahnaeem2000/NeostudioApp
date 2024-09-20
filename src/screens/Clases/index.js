@@ -1,17 +1,12 @@
-import React, { PureComponent } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  FlatList,
-  Platform,
-} from 'react-native';
-import { connect } from 'react-redux';
-import { styles } from './styles';
-import Header from '../../Component/Header';
-import Directory from '../../Component/Directory';
-import { getTopics } from '../../Redux/action';
-import FastImage from 'react-native-fast-image';
-import Orientation from 'react-native-orientation-locker';
+import React, { PureComponent } from "react";
+import { View, ActivityIndicator, FlatList, Platform } from "react-native";
+import { connect } from "react-redux";
+import { styles } from "./styles";
+import Header from "../../Component/Header";
+import Directory from "../../Component/Directory";
+import { getTopics } from "../../Redux/action";
+import FastImage from "react-native-fast-image";
+import Orientation from "react-native-orientation-locker";
 
 class VideoClass extends PureComponent {
   constructor(props) {
@@ -26,31 +21,33 @@ class VideoClass extends PureComponent {
   getAllTopics = () => {
     const { login } = this.props.user;
     this.setState({ loading: true });
-    fetch('https://neoestudio.net/api/getClassTopics', {
-      method: 'POST',
+    fetch("https://neoestudio.net/api/getClassTopics", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         studentType: login.data.type,
         studentId: login?.data?.id,
       }),
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         this.setState({ loading: false });
         this.setState({ response: json });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ loading: false });
       });
   };
 
   componentDidMount() {
-    this.focusListener = this.props.navigation.addListener('focus', () => {
+    this.focusListener = this.props.navigation.addListener("focus", () => {
       const locked = Orientation.isLocked();
       if (!locked) {
+        Orientation.lockToPortrait();
+      } else {
         Orientation.lockToPortrait();
       }
     });
@@ -61,15 +58,16 @@ class VideoClass extends PureComponent {
     const { loading, response } = this.state;
     return (
       <FastImage
-        source={require('../../Images/bg.png')}
+        source={require("../../Images/bg.png")}
         resizeMode={FastImage.resizeMode.stretch}
-        style={styles.container}>
+        style={styles.container}
+      >
         <FastImage
           style={styles.logo}
           source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
+            Platform.OS === "android"
+              ? require("../../Images/veoestudio.png")
+              : require("../../Images/ios_logo.png")
           }
           resizeMode={FastImage.resizeMode.contain}
         />
@@ -84,24 +82,24 @@ class VideoClass extends PureComponent {
           ) : (
             <FlatList
               data={response}
-              keyExtractor={item => 'unique' + item.id}
+              keyExtractor={(item) => "unique" + item.id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ flexGrow: 1 }}
               initialNumToRender={8}
               renderItem={({ item, index }) => {
                 return (
                   <Directory
-                    key={'unique' + index}
-                    img={require('../../Images/directory.png')}
+                    key={"unique" + index}
+                    img={require("../../Images/directory.png")}
                     title={item.name}
                     status={item.status}
                     isActive={item.isActive}
                     count={item.count}
                     clickHandler={() => {
                       Orientation.unlockAllOrientations();
-                      this.props.navigation.navigate('VideoDetail2', {
+                      this.props.navigation.navigate("VideoDetail2", {
                         topicId: item.id,
-                        type: 'video',
+                        type: "video",
                       });
                     }}
                   />
@@ -118,7 +116,7 @@ class VideoClass extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 export default connect(mapStateToProps, { getTopics })(VideoClass);

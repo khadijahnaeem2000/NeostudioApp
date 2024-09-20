@@ -7,6 +7,7 @@ import {
   Modal,
   Text,
   Alert,
+  Platform,
 } from 'react-native';
 import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
@@ -244,7 +245,7 @@ const Programs = ({ navigation }) => {
                     onSwipeableWillOpen={() => console.log("onSwipeableWillOpen")}
                     onSwipeableRightOpen={() => console.log('Swiped right')}
                     renderLeftActions={() => <LeftItem />}
-                    friction={2}
+                    friction={ Platform.OS ==='ios'  ? 1: 2}
 
                     leftThreshold={30}
                   //onSwipeableOpen={closeRow(index)}

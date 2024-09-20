@@ -12,9 +12,9 @@ import {
   FlatList,
   Platform,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {styles} from './styles';
-import {getPdfFiles} from '../../Redux/action';
+import { connect } from 'react-redux';
+import { styles } from './styles';
+import { getPdfFiles } from '../../Redux/action';
 import Header from '../../Component/Header';
 import Player from '../../Component/Player';
 import Orientation from 'react-native-orientation-locker';
@@ -37,7 +37,7 @@ class VideoDetail extends React.Component {
     this.getData();
   }
   getData = () => {
-    const {login} = this.props.user;
+    const { login } = this.props.user;
     const position = this.props.route.params.position || 1
     this.props.getPdfFiles(position, login?.data?.id);
   };
@@ -47,7 +47,7 @@ class VideoDetail extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
@@ -63,7 +63,7 @@ class VideoDetail extends React.Component {
   };
 
   render() {
-    const {pdf, AuthLoading, login} = this.props.user;
+    const { pdf, AuthLoading, login } = this.props.user;
 
     return (
       <FastImage
@@ -90,7 +90,7 @@ class VideoDetail extends React.Component {
         {!pdf ? (
           <View />
         ) : (
-          <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <View style={styles.VideoView}>
               {/* <ScrollView
                                 contentContainerStyle={{ flexGrow: 1 }}
@@ -122,8 +122,8 @@ class VideoDetail extends React.Component {
                   data={pdf.files}
                   keyExtractor={item => 'unique' + item.id}
                   showsVerticalScrollIndicator={false}
-                  contentContainerStyle={{flexGrow: 1}}
-                  renderItem={({item, index}) => {
+                  contentContainerStyle={{ flexGrow: 1 }}
+                  renderItem={({ item, index }) => {
                     return (
                       <Player
                         key={'unique' + index}
@@ -136,7 +136,7 @@ class VideoDetail extends React.Component {
                             //     url: item.url,
                             //     id: login?.data?.id
                             // })
-                            this.setState({isOpen: true, pdfFile: item.file})
+                            this.setState({ isOpen: true, pdfFile: item.file })
                           //console.log(item)
                         }
                       />
@@ -164,11 +164,11 @@ class VideoDetail extends React.Component {
             <TouchableOpacity
               style={styles.modalMain}
               activeOpacity={1}
-              onPressOut={() => this.setState({isOpen: false})}>
+              onPressOut={() => this.setState({ isOpen: false })}>
               <TouchableWithoutFeedback>
-                <FastImage
+                <ImageBackground
                   source={require('../Home/assets/email_box.png')}
-                  resizeMode={FastImage.resizeMode.stretch}
+                  resizeMode={"stretch"}
                   style={[
                     styles.quesBox,
                     {
@@ -191,7 +191,7 @@ class VideoDetail extends React.Component {
                       style={styles.confirmBtn}
                       onPress={() => (
                         Orientation.unlockAllOrientations(),
-                        this.setState({isOpen: false}),
+                        this.setState({ isOpen: false }),
                         this.props.navigation.navigate('PdfView', {
                           url: this.state.pdfFile,
                         })
@@ -206,7 +206,7 @@ class VideoDetail extends React.Component {
                       style={styles.confirmBtn}
                       onPress={() => (
                         Orientation.unlockAllOrientations(),
-                        this.setState({isOpen: false}),
+                        this.setState({ isOpen: false }),
                         this.props.navigation.navigate('PdfView2', {
                           url: this.state.pdfFile,
                         })
@@ -218,7 +218,7 @@ class VideoDetail extends React.Component {
                       />
                     </TouchableOpacity>
                   </View>
-                </FastImage>
+                </ImageBackground>
               </TouchableWithoutFeedback>
             </TouchableOpacity>
           </Modal>
@@ -230,4 +230,4 @@ class VideoDetail extends React.Component {
 const mapStateToProps = state => ({
   user: state.user,
 });
-export default connect(mapStateToProps, {getPdfFiles})(VideoDetail);
+export default connect(mapStateToProps, { getPdfFiles })(VideoDetail);
