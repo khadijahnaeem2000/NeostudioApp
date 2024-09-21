@@ -16,7 +16,7 @@ export default class App extends React.Component {
       SplashScreen.hide();
     }, 2000);
 
-    // SetupService()
+    SetupService()
 
   }
   render() {

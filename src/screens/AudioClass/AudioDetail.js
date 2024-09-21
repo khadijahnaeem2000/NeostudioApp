@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BackHandler,
-  ScrollView,
   View,
   TouchableOpacity,
   Text,
   ActivityIndicator,
-  StatusBar,
   AppState,
   FlatList,
   Platform,
@@ -23,14 +21,11 @@ import Header from '../../Component/Header';
 import Player from '../../Component/Player';
 import AudioProgress from '../../Component/audprogress';
 import TrackPlayer, {
-  usePlaybackState,
   AppKilledPlaybackBehavior,
   Capability,
 } from 'react-native-track-player';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
-import { playListData } from './play-listdata';
-import { SetupService } from '../../trackservice';
 
 class AudioDetail extends React.Component {
   constructor(props) {
@@ -50,7 +45,6 @@ class AudioDetail extends React.Component {
 
   setup = async () => {
     const buffer = 0.5;
-    await SetupService()
     await TrackPlayer.updateOptions({
       android: {
         appKilledPlaybackBehavior:

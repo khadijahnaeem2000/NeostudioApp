@@ -20,7 +20,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { navigate, navigationRef } from './src/utils/naviagtion_service';
 import AuthNavigation from './src/AuthNavigation';
 import MainNavigation from './src/MainNavigation';
-import { SetupService } from './src/trackservice';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 class MainApp extends React.Component {
