@@ -96,6 +96,8 @@ class ReviewTest extends PureComponent {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
+      }  else {
+        Orientation.lockToPortrait();
       }
     });
   }

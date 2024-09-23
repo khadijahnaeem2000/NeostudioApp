@@ -36,6 +36,8 @@ class Survey extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
+      }  else {
+        Orientation.lockToPortrait();
       }
     });
   }

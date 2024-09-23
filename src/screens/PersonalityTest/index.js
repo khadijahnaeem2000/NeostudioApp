@@ -123,6 +123,8 @@ class Personality extends Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
+      }  else {
+        Orientation.lockToPortrait();
       }
     });
   }
