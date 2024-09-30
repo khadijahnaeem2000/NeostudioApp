@@ -47,6 +47,8 @@ class ResultClass extends Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToLandscape();
+      } else {
+        Orientation.lockToLandscape();
       }
     });
   }
@@ -55,7 +57,7 @@ class ResultClass extends Component {
   };
   test2 = () => {
     Orientation.unlockAllOrientations();
-    Orientation.lockToPortrait();
+    // Orientation.lockToPortrait();
   };
 
   render() {
@@ -207,8 +209,8 @@ class ResultClass extends Component {
               <TouchableOpacity
                 style={styles.buttonImage}
                 onPress={() => {
-                  this.test2(),
-                  Orientation.unlockAllOrientations(),
+                  // this.test2(),
+                  Orientation.unlockAllOrientations();
                   this.props.navigation.navigate('Review', {
                     id: examID,
                     isImage: isPsico,
@@ -230,10 +232,9 @@ class ResultClass extends Component {
                 ]}
                 onPress={() => {
                   if (type === 'exam') {
-                    this.test(),
-                      this.props.navigation.navigate('HomeScreen', {
-                        isRefresh: 'true',
-                      });
+                    this.props.navigation.goBack();
+                    this.props.navigation.goBack();
+                    Orientation.lockToPortrait();
                   } else if (type === 'reviewExam') {
                     this.test(), this.props.navigation.navigate('ReviewTest');
                   } else if (type === 'personality') {

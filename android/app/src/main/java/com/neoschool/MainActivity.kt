@@ -16,7 +16,7 @@ class MainActivity : ReactActivity() {
      * rendering of the component.
      */
     override fun getMainComponentName(): String {
-        return "neostudio"
+        return "neoschool"
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

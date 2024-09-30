@@ -132,9 +132,13 @@ class ExamScreen extends React.Component {
 
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      this.LoadMoreRandomData();
+      this.setState({ testData: [] }, () => { 
+        this.LoadMoreRandomData();
+      });
       const locked = Orientation.isLocked();
       if (!locked) {
+        Orientation.lockToPortrait();
+      }  else {
         Orientation.lockToPortrait();
       }
     });

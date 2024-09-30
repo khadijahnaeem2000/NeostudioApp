@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from "react";
 import {
   Text,
   View,
@@ -6,27 +6,28 @@ import {
   Dimensions,
   TouchableHighlight,
   Platform,
-} from 'react-native';
-import styled from 'styled-components/native';
-import Video from 'react-native-video';
-const {width, height} = Dimensions.get('window');
+} from "react-native";
+import styled from "styled-components/native";
+import Video from "react-native-video";
+const { width, height } = Dimensions.get("window");
 export default class BackgroundVideo extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Video
           source={
-            Platform.OS === 'android'
-              ? require('../../Images/Video/bgVideo.mp4')
-              : require('../../Images/Video/bgVideoIos.mp4')
+            Platform.OS === "android"
+              ? require("../../Images/Video/bgVideo.mp4")
+              : require("../../Images/Video/bgVideoIos.mp4")
           }
           style={styles.backgroundVideo}
           muted={false}
           repeat={true}
-          resizeMode={'stretch'}
+          resizeMode={"stretch"}
           rate={1.0}
           paused={this.props.paused}
-          ignoreSilentSwitch={'obey'}
+          ignoreSilentSwitch={"obey"}
+          onError={(error) => console.log("error", error)}
         />
         {this.props.children}
       </View>
@@ -37,10 +38,10 @@ export default class BackgroundVideo extends React.Component {
 const styles = StyleSheet.create({
   backgroundVideo: {
     height: height,
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
-    alignItems: 'stretch',
+    alignItems: "stretch",
     bottom: 0,
     right: 0,
   },

@@ -144,6 +144,8 @@ const Programs = ({ navigation }) => {
     );
   };
 
+  console.log("isis scrrene meheh")
+
   return (
     <View
       style={[styles.container, { backgroundColor: '#f2f3f3' }]}
