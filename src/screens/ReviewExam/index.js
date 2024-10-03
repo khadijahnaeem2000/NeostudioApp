@@ -105,6 +105,8 @@ class Review extends Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToLandscape();
+      }else{
+        Orientation.lockToLandscape()
       }
     });
   }

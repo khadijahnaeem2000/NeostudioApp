@@ -24,6 +24,7 @@ var login = 'loginStudent',
   uploadFile = 'uploadFile',
   getAllExams = 'getAllExam',
   startExam = 'startExam',
+  startExamWihtoutHtml = 'startExamwithouthtml',
   social_login = 'loginwithGoogleOrAppleId',
   pauseAnswer = 'pauseAnswer',
   endExam = 'endExam',
@@ -165,7 +166,7 @@ export const clearStates = () => {
     dispatch(onClearState());
   };
 };
-export const userLogin = (type, param1, param2, reason) => {
+export const userLogin = (type, param1, param2, reason, onBlock) => {
   if (type === 'false') {
     return dispatch => {
       dispatch(setAuthLoading(true))
@@ -189,7 +190,7 @@ export const userLogin = (type, param1, param2, reason) => {
             if (!json.is_verified || json.is_verified === 'No') {
               navigate("OTP", { data: json, type })
             } else if (json?.data?.IsBlocked === 'True') {
-              alert("Tu cuenta está bloqueada.")
+              onBlock()
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -227,7 +228,7 @@ export const userLogin = (type, param1, param2, reason) => {
             if (!json.is_verified || json.is_verified === 'no') {
               navigate("MobileVerification", { data: json, type: true })
             } else if (json?.data?.IsBlocked === 'True') {
-              alert("Tu cuenta está bloqueada.")
+              onBlock()
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -269,7 +270,7 @@ export const userLogin = (type, param1, param2, reason) => {
           dispatch(setAuthLoading(false));
           if (json.status === 'Sucessfull') {
             if (json?.data?.IsBlocked === 'True') {
-              alert("Tu cuenta está bloqueada.")
+              onBlock()
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -771,7 +772,9 @@ export const getStartExamData = (
 ) => {
   return dispatch => {
     dispatch(setAuthLoading(true))
-    fetch(baseUrl + startExam, {
+    // fetch(baseUrl + startExam, {
+     
+    fetch(baseUrl + startExamWihtoutHtml, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

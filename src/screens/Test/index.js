@@ -128,7 +128,10 @@ class Test extends Component {
     );
     this.focusListener = this.props.navigation.addListener('focus', () => {
       const locked = Orientation.isLocked();
+      console.log("lockeddd"  , locked)
       if (!locked) {
+        Orientation.lockToLandscape();
+      }else {
         Orientation.lockToLandscape();
       }
     });
@@ -190,6 +193,8 @@ class Test extends Component {
     const examsID = this.props.route.params.examsId || '1'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
 
+
+// console.log("is screen mee" , examStartData?.data?.[0])
     return (
       <View
       style={{flex:1}}

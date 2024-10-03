@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
-import {widthPercentageToDP, heightPercentageToDP} from '../MakeMeResponsive';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
-import {Badge} from 'react-native-elements';
-import {fonts} from '../../utils';
+import { Badge } from 'react-native-elements';
+import { fonts } from '../../utils';
+import { Vimeo } from 'react-native-vimeo-iframe';
 
 export default class Player extends React.Component {
   render() {
-    const {title, img, clickHandler, isActive, count} = this.props;
+    const { title, img, clickHandler, isActive, count, link } = this.props;
     return (
       <TouchableOpacity
         style={{
@@ -19,6 +20,28 @@ export default class Player extends React.Component {
           marginTop: heightPercentageToDP(3),
         }}
         onPress={clickHandler}>
+
+        <Vimeo
+          videoId={link?.match(/(\d+)$/)[0]}
+          autoplay={false}
+          loop={false}
+          onCustomMenuSelection={() => { }}
+          allowsLinkPreview={false}
+          onReady={() => console.log('Video is ready')}
+          onPause={() => console.log('Video is paused')}
+          onEnded={() => console.log('Video is ended')}
+          onTimeUpdate={() => console.log('Video time updated')}
+          onPlayProgress={data => console.log('Video progress data:', data)}
+          onFinish={() => console.log('Video is finished')}
+          style={{
+            backgroundColor: "red"
+          }}
+          containerStyle={{
+            backgroundColor: "yellow"
+          }}
+        />
+
+
         {isActive ? (
           <View>
             <FastImage

@@ -226,10 +226,32 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  heading:{
-    color:"#fff",
-    fontFamily:fonts.novaBold,
-    fontSize:widthPercentageToDP(4),
-    textAlign:"center"
+  heading: {
+    color: "#fff",
+    fontFamily: fonts.novaBold,
+    fontSize: widthPercentageToDP(5),
+    textAlign: "center"
+  },
+  description: {
+    color: "#fff",
+    fontFamily: fonts.novaBold,
+    fontSize: widthPercentageToDP(4),
+    textAlign: "center",
+    marginTop: heightPercentageToDP(2.5)
+  },
+  btn_row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop:heightPercentageToDP(5),
+    paddingHorizontal:20
+  },
+  btn: {
+    width: "100%",
+    height: 100
+  },
+  btn_image: {
+    width: "100%",
+    height:"100%"
   }
 });

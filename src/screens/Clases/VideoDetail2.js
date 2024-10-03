@@ -113,6 +113,7 @@ class VideoDetail extends PureComponent {
                   img={require("../../Images/video.png")}
                   isActive={item.isActive}
                   title={item.name}
+                  link={item?.vimeolink}
                   clickHandler={() => {
                     if (item?.vimeolink == null) {
                       Alert.alert("Enlace de vídeo no disponible");

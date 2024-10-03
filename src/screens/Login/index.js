@@ -9,7 +9,8 @@ import {
   TouchableWithoutFeedback,
   Alert,
   PermissionsAndroid,
-  Platform
+  Platform,
+  Linking
 } from 'react-native';
 import { connect } from 'react-redux';
 import { userLogin, dispatchFunc, updateOrientation, userAppleLogin } from '../../Redux/action';
@@ -35,13 +36,13 @@ class Login extends React.Component {
     super(props);
     this.state = {
       switchBtn: false,
-      email: '',
+      email: 'Alex.1',
       emailError: '',
-      telephone: '',
+      telephone: 'Alex.1',
       telephoneError: '',
-      userName: '',
+      userName: 'Alex.1',
       userNameError: '',
-      password: '',
+      password: 'karamelo1996',
       passwordError: '',
       isOpen: false,
       ipAddress: '',
@@ -51,6 +52,7 @@ class Login extends React.Component {
       formattedValue: '',
       phoneNo: '',
       isChecked: false,
+      isBlock: false
     };
     this.getIPAddress();
     this.phoneInput = null;
@@ -60,16 +62,16 @@ class Login extends React.Component {
 
   componentDidMount() {
     this.handleNotificationPermission()
-    //RNRestart.Restart();
     this.focusListener = this.props.navigation.addListener('focus', () => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
   }
+
 
   setModalVisible(visible) {
     this.setState({ isOpen: visible });
@@ -84,24 +86,13 @@ class Login extends React.Component {
       ipaddress: null,
       appleID: null,
       email: email
-    });
-
-    // this.props.SocialLoginUser(givenName, familyName, email);
-    // console.log("🚀 ~ Login ~ socialLoginApi= ~ result:", result)
-    // if (result?.status == 'Sucessfull') {
-    //   if (result?.is_verified == 'no') {
-
-    //   }
-    // }
+    }, '', '', () => this.setState({ isBlock: true }));
   };
 
   googleSignInHandler = async () => {
-    // await GoogleSignin.signOut()
-    // await GoogleSignin.revokeAccess()
     try {
       const isGoogleSignin = await GoogleSignin.hasPreviousSignIn()
       const googleuser = await GoogleSignin.getCurrentUser()
-      console.log("SAdasdsadasdasdas", isGoogleSignin, googleuser)
       if (isGoogleSignin) {
         await GoogleSignin.revokeAccess()
         await GoogleSignin.signOut()
@@ -211,13 +202,8 @@ class Login extends React.Component {
       if (validator.isEmpty(this.state.password)) {
         return Alert.alert('', 'se requiere contraseña');
       }
-      //   if (!this.state.isChecked) {
-      //     return Alert.alert(
-      //       '',
-      //       'Por favor acepte el enlace de política de privacidad',
-      //     );
-      //   }
-      this.props.userLogin('true', this.state.userName, this.state.password);
+    
+      this.props.userLogin('true', this.state.userName, this.state.password, '', () => this.setState({ isBlock: true }));
     } else {
       const checkValid = this.phoneInput.isValidNumber(this.state.phoneNo);
       if (!validator.isEmail(this.state.email)) {
@@ -235,15 +221,13 @@ class Login extends React.Component {
           'Por favor acepte el enlace de política de privacidad',
         );
       }
-      // if (!this.state.myReason) {
-      //     return Alert.alert('', "Por favor seleccione la razón primero")
-      // }
-      //console.log('My number =>', this.state.phoneNo)
+    
       this.props.userLogin(
         'false',
         this.state.phoneNo,
         this.state.email,
         this.state.myReason,
+        () => this.setState({ isBlock: true })
       );
     }
   };
@@ -303,349 +287,222 @@ class Login extends React.Component {
 
   render() {
     const { login, AuthLoading } = this.props.user;
-    const { isLoading, reasons, myReason, phoneNo, formattedValue } = this.state;
+    const { isLoading, reasons, myReason, phoneNo, formattedValue, isBlock } = this.state;
     const { isDialogOpen, errorMessage } = this.props.dialog;
+
     return (
       <BackgroudVideo
-      // source={require('./assets/bg2.jpg')}
-      // style={styles.container}
-      // resizeMode={FastImage.resizeMode.stretch}
       >
         <View style={styles.loginView}>
-          {/* <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}> */}
           <View
-            style={{ marginTop: heightPercentageToDP(30), alignSelf: 'center' }}>
-            <View
-              style={{ width: widthPercentageToDP(100), alignItems: 'center' }}>
-              <View style={styles.version}>
-                {/* <Text style={styles.versionText}>
-                                        {"Versión:"}
-                                    </Text> */}
+            style={{ marginTop: heightPercentageToDP(isBlock ? 27 : 30), alignSelf: 'center' }}>
 
-                {!this.state.switchBtn &&
+
+            {
+              isBlock ?
+                <>
                   <Text style={styles.heading}  >
-                    {"CURSO DE INGRESO A GUARDIA CIVIL\n48 HORAS GRATIS"}
+                    {"Tu cuenta está bloqueada."}
                   </Text>
-                }
 
+                  <Text style={styles.description}  >
+                    {"Realiza el pago para \no envíanos un Whatsapp"}
+                  </Text>
 
-                <TouchableOpacity
-                  onPress={() =>
-                    this.state.switchBtn
-                      ? this.setState({
-                        switchBtn: false,
-                        email: '',
-                        telephone: '',
-                      })
-                      : this.setState({
-                        switchBtn: true,
-                        userName: '',
-                        password: '',
-                      })
-                  }
-                  style={{
-                    alignSelf: 'center',
-                    // backgroundColor:'red',
-                    marginRight: widthPercentageToDP(9),
-                    marginTop: this.state.switchBtn ? heightPercentageToDP(5) : heightPercentageToDP(5)
-                  }}>
-                  <FastImage
-                    source={
-                      this.state.switchBtn
-                        ? require('./assets/switch_on.png')
-                        : require('./assets/switch_off.png')
-                    }
-                    resizeMode={FastImage.resizeMode.contain}
-                    style={styles.switch}>
-                    <Text
-                      style={[
-                        styles.switchText,
-                        {
-                          marginRight: this.state.switchBtn ? 30 : 0,
-                          marginLeft: !this.state.switchBtn ? 20 : 0,
-                          marginTop: !this.state.switchBtn ? 0 : 5,
-                        },
-                      ]}>
-                      {this.state.switchBtn ? 'Alumnos' : 'Prueba'}
-                    </Text>
-                  </FastImage>
-                </TouchableOpacity>
-                {/* <TouchableOpacity
-                                    onPress={() => this.setState({ isOpen: true })}>
-                                    <Text style={styles.quesText}>
-                                        {"?"}
-                                    </Text>
-                                </TouchableOpacity> */}
-              </View>
-            </View>
-            {this.state.switchBtn ? (
-              <View
-                style={{
-                  width: widthPercentageToDP(100),
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <FastImage
-                  style={styles.loginSection}
-                  source={require('../../Images/txt_box.png')}
-                  resizeMode={FastImage.resizeMode.stretch}>
-                  <FastImage
-                    source={require('./assets/user.png')}
-                    resizeMode={FastImage.resizeMode.contain}
-                    style={styles.user}
-                  />
+                  <View   style={{height:heightPercentageToDP(3)}}  />
 
-                  <TextInput
-                    placeholder="Nombre de usuario"
-                    placeholderTextColor="#707070"
-                    onChangeText={this.onchangeUserName}
-                    keyboardType="email-address"
-                    value={this.state.userName}
-                    //containerStyle={styles.input}
-                    errorMessage={this.state.userNameError}
-                    //inputContainerStyle={styles.inputConatiner}
-                    //inputStyle={styles.inputStyles}
-                    //placeholderStyle={styles.placeHolderStyles}
-                    textAlign={'center'}
-                    style={styles.input}
-                  />
-                </FastImage>
-                <FastImage
-                  style={[
-                    styles.loginSection,
-                    { marginTop: heightPercentageToDP(-1) },
-                  ]}
-                  source={require('../../Images/txt_box.png')}
-                  resizeMode={FastImage.resizeMode.stretch}>
-                  <FastImage
-                    source={require('./assets/password.png')}
-                    resizeMode={FastImage.resizeMode.contain}
-                    style={styles.password}
-                  />
-
-                  <TextInput
-                    placeholder="Contraseña"
-                    placeholderTextColor="#707070"
-                    onChangeText={this.onchangePassword}
-                    secureTextEntry={true}
-                    value={this.state.password}
-                    //containerStyle={styles.input}
-                    errorMessage={this.state.passwordError}
-                    //inputContainerStyle={styles.inputConatiner}
-                    //placeholderStyle={styles.placeHolderStyles}
-                    //inputStyle={styles.inputStyles}
-                    textAlign={'center'}
-                    style={styles.input}
-                  />
-                </FastImage>
-              </View>
-            ) : (
-              <>
-                <TouchableOpacity
-                  style={styles.btnStyle}
-                  onPress={this.googleSignInHandler}>
-                  <FastImage
-                    source={
-                      require('./assets/Iniciar_con_Google_Icon.png')
-                    }
-                    resizeMode={FastImage.resizeMode.contain}
-                    style={styles.button}
-                  />
-                </TouchableOpacity>
-                {
-                  Platform.OS === 'ios' &&
                   <TouchableOpacity
+                    onPress={() => Linking.openURL("https://buy.stripe.com/14k14iamu7VocJq9AV")}
                     style={styles.btnStyle}
-                    onPress={this.appleSignInHandler}>
+                  >
                     <FastImage
                       source={
-                        require('./assets/Iniciar_con_Apple_Icon.png')
+                        require('./assets/stripe_btn.png')
                       }
                       resizeMode={FastImage.resizeMode.contain}
                       style={styles.button}
                     />
                   </TouchableOpacity>
-                }
-              </>
-              // <View
-              //   style={{ width: widthPercentageToDP(100), alignItems: 'center' }}>
-              //   <FastImage
-              //     style={styles.loginSection}
-              //     source={require('../../Images/txt_box.png')}
-              //     resizeMode={FastImage.resizeMode.stretch}>
-              //     <FastImage
-              //       source={require('./assets/email.png')}
-              //       resizeMode={FastImage.resizeMode.contain}
-              //       style={styles.email}
-              //     />
+                  <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => Linking.openURL('https://api.whatsapp.com/send/?phone=34621251720&text&type=phone_number&app_absent=0')}>
+                    <FastImage
+                      source={
+                        require('./assets/whatsapp_btn.png')
+                      }
+                      resizeMode={FastImage.resizeMode.contain}
+                      style={styles.button}
+                    />
+                  </TouchableOpacity>
 
-              //     <TextInput
-              //       placeholder="Email"
-              //       placeholderTextColor="#707070"
-              //       onChangeText={this.onchangeEmail}
-              //       keyboardType="email-address"
-              //       value={this.state.email}
-              //       //containerStyle={styles.input}
-              //       errorMessage={this.state.emailError}
-              //       //inputContainerStyle={styles.inputConatiner}
-              //       //placeholderStyle={styles.placeHolderStyles}
-              //       //inputStyle={styles.inputStyles}
-              //       textAlign={'center'}
-              //       style={styles.input}
-              //     />
-              //   </FastImage>
-              //   <FastImage
-              //     style={styles.loginSection2}
-              //     source={require('../../Images/txt_box.png')}
-              //     resizeMode={FastImage.resizeMode.stretch}>
-              //     <PhoneInput
-              //       ref={ref => (this.phoneInput = ref)}
-              //       disableArrowIcon={true}
-              //       countryPickerProps={{
-              //         visible: false,
-              //       }}
-              //       containerStyle={{
-              //         backgroundColor: 'transparent',
-              //         width: widthPercentageToDP(90),
-              //         height: heightPercentageToDP(7),
-              //       }}
-              //       textInputStyle={{
-              //         width: widthPercentageToDP(80),
-              //         height: heightPercentageToDP(7),
-              //         color: '#000',
-              //         fontSize: widthPercentageToDP(4.5),
-              //         fontFamily: fonts.novaBold,
-              //         //fontFamily: "Nexa-Light",
-              //       }}
-              //       textContainerStyle={{
-              //         backgroundColor: 'transparent',
-              //         color: '#707070',
-              //         width: widthPercentageToDP(70),
-              //         height: heightPercentageToDP(7),
-              //         fontSize: widthPercentageToDP(4.5),
-              //         fontFamily: fonts.novaBold,
-              //       }}
-              //       codeTextStyle={{
-              //         color: '#707070',
-              //         fontSize: widthPercentageToDP(4.5),
-              //         fontFamily: fonts.novaBold,
-              //       }}
-              //       textInputProps={{
-              //         placeholderTextColor: '#707070',
-              //       }}
-              //       defaultValue={phoneNo}
-              //       defaultCode="ES"
-              //       layout="first"
-              //       onChangeText={text => {
-              //         this.setState({ phoneNo: text });
-              //         //setPhoneNo(text);
-              //       }}
-              //       onChangeFormattedText={text => {
-              //         this.setState({ formattedValue: text });
-              //         //setFormattedValue(text);
-              //       }}
-              //       withDarkTheme={false}
-              //       withShadow
-              //       //autoFocus
-              //       placeholder={'Teléfono móvil'}
-              //       flagButtonStyle={{
-              //         marginLeft: widthPercentageToDP(4),
-              //       }}
-              //       countryPickerButtonStyle={{
-              //         //backgroundColor:"red",
-              //         width: widthPercentageToDP(12),
-              //         height: heightPercentageToDP(6.5),
-              //         alignItems: 'center',
-              //       }}
-              //     />
-              //     {/* <FastImage
-              //                               source={require('./assets/telephone.png')}
-              //                               resizeMode={FastImage.resizeMode.contain}
-              //                               style={styles.telphone}
-              //                           />
 
-              //                           <TextInput
-              //                               placeholder="Teléfono"
-              //                               placeholderTextColor="#707070"
-              //                               //placeholderStyle={styles.placeHolderStyles}
-              //                               onChangeText={this.onchangeTelephone}
-              //                               keyboardType="number-pad"
-              //                               value={this.state.telephone}
-              //                               //containerStyle={styles.input}
-              //                               errorMessage={this.state.telephoneError}
-              //                               //inputContainerStyle={styles.inputConatiner}
-              //                               //style={styles.input}
-              //                               //inputStyle={styles.inputStyles}
-              //                               textAlign={'center'}
-              //                               style={styles.input}
-              //                           /> */}
-              //   </FastImage>
-              //   {/* <FastImage
-              //                           style={styles.loginSection2}
-              //                           source={require('./assets/inpur_bg.png')}
-              //                           resizeMode={FastImage.resizeMode.stretch}
-              //                       >
-              //                           <RNPickerSelect
-              //                               useNativeAndroidPickerStyle={false}
-              //                               placeholder={{
-              //                                   label: 'Seleccione su situación actual:',
-              //                                   value: null,
-              //                                   color: "#000"
-              //                               }}
-              //                               value={myReason}
-              //                               style={pickerStyle}
-              //                               onValueChange={(value) => {
-              //                                   this.setState({ myReason: value })
-              //                                   //console.log(value)
-              //                               }}
-              //                               items={!reasons || !reasons.length ? [] : reasons}
-              //                           />
+                  <TouchableOpacity style={{
+                    alignSelf: "center",
+                    marginTop: 30,
+                    height: 40,
+                    justifyContent: "center"
+                  }}
+                    activeOpacity={0.6}
+                    onPress={() => this.setState({ isBlock: false })}
+                  >
+                    <Text style={{
+                      color: "white",
+                      fontFamily: fonts.novaBold,
 
-              //                       </FastImage> */}
-              // </View>
-            )}
-            {/* {!this.state.switchBtn && (
-              <View style={styles.linkView}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState({ isChecked: !this.state.isChecked })
-                  }>
-                  <FastImage
-                    source={require('../../Images/empty_box.png')}
-                    resizeMode={FastImage.resizeMode.contain}
-                    style={styles.emptyCheck}>
-                    {this.state.isChecked && (
+                      fontSize: widthPercentageToDP(5),
+                      textAlign: "center",
+                      textDecorationLine: "underline"
+                    }} >Reintentar</Text>
+                  </TouchableOpacity>
+                </>
+                :
+                <>
+                  <View
+                    style={{ width: widthPercentageToDP(100), alignItems: 'center' }}>
+                    <View style={styles.version}>
+
+                      {!this.state.switchBtn &&
+                        <Text style={styles.heading}  >
+                          {"CURSO DE INGRESO A GUARDIA CIVIL\n48 HORAS GRATIS"}
+                        </Text>
+                      }
+
+
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.state.switchBtn
+                            ? this.setState({
+                              switchBtn: false,
+                              email: '',
+                              telephone: '',
+                            })
+                            : this.setState({
+                              switchBtn: true,
+                              userName: '',
+                              password: '',
+                            })
+                        }
+                        style={{
+                          alignSelf: 'center',
+                          // backgroundColor:'red',
+                          marginRight: widthPercentageToDP(9),
+                          marginTop: this.state.switchBtn ? heightPercentageToDP(5) : heightPercentageToDP(5)
+                        }}>
+                        <FastImage
+                          source={
+                            this.state.switchBtn
+                              ? require('./assets/switch_on.png')
+                              : require('./assets/switch_off.png')
+                          }
+                          resizeMode={FastImage.resizeMode.contain}
+                          style={styles.switch}>
+                          <Text
+                            style={[
+                              styles.switchText,
+                              {
+                                marginRight: this.state.switchBtn ? 30 : 0,
+                                marginLeft: !this.state.switchBtn ? 20 : 0,
+                                marginTop: !this.state.switchBtn ? 0 : 5,
+                              },
+                            ]}>
+                            {this.state.switchBtn ? 'Alumnos' : 'Prueba'}
+                          </Text>
+                        </FastImage>
+                      </TouchableOpacity>
+
+                    </View>
+                  </View>
+                  {this.state.switchBtn ? (
+                    <View
+                      style={{
+                        width: widthPercentageToDP(100),
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
                       <FastImage
-                        source={require('../../Images/Check.png')}
-                        resizeMode={FastImage.resizeMode.contain}
-                        style={styles.emptyCheck}
-                      />
-                    )}
-                  </FastImage>
-                </TouchableOpacity>
-                <Text style={[styles.linkTest, { marginLeft: 5 }]}>
-                  {'Acepto las '}
-                  <Text
-                    onPress={() =>
-                      Linking.openURL(
-                        'https://neoestudio.net/inicio/terminos-y-condiciones/',
-                      )
-                    }
-                    style={[
-                      styles.linkTest,
-                      { textDecorationLine: 'underline' },
-                    ]}>
-                    {'terminos de uso '}
-                  </Text>
-                  <Text style={styles.linkTest}>
-                    {'y solicito recibir información'}
-                  </Text>
-                </Text>
-              </View>
-            )} */}
+                        style={styles.loginSection}
+                        source={require('../../Images/txt_box.png')}
+                        resizeMode={FastImage.resizeMode.stretch}>
+                        <FastImage
+                          source={require('./assets/user.png')}
+                          resizeMode={FastImage.resizeMode.contain}
+                          style={styles.user}
+                        />
+
+                        <TextInput
+                          placeholder="Nombre de usuario"
+                          placeholderTextColor="#707070"
+                          onChangeText={this.onchangeUserName}
+                          keyboardType="email-address"
+                          value={this.state.userName}
+                          //containerStyle={styles.input}
+                          errorMessage={this.state.userNameError}
+                          //inputContainerStyle={styles.inputConatiner}
+                          //inputStyle={styles.inputStyles}
+                          //placeholderStyle={styles.placeHolderStyles}
+                          textAlign={'center'}
+                          style={styles.input}
+                        />
+                      </FastImage>
+                      <FastImage
+                        style={[
+                          styles.loginSection,
+                          { marginTop: heightPercentageToDP(-1) },
+                        ]}
+                        source={require('../../Images/txt_box.png')}
+                        resizeMode={FastImage.resizeMode.stretch}>
+                        <FastImage
+                          source={require('./assets/password.png')}
+                          resizeMode={FastImage.resizeMode.contain}
+                          style={styles.password}
+                        />
+
+                        <TextInput
+                          placeholder="Contraseña"
+                          placeholderTextColor="#707070"
+                          onChangeText={this.onchangePassword}
+                          secureTextEntry={true}
+                          value={this.state.password}
+                          errorMessage={this.state.passwordError}
+                          textAlign={'center'}
+                          style={styles.input}
+                        />
+                      </FastImage>
+                    </View>
+                  ) : (
+                    <>
+                      <TouchableOpacity
+                        style={styles.btnStyle}
+                        onPress={this.googleSignInHandler}>
+                        <FastImage
+                          source={
+                            require('./assets/Iniciar_con_Google_Icon.png')
+                          }
+                          resizeMode={FastImage.resizeMode.contain}
+                          style={styles.button}
+                        />
+                      </TouchableOpacity>
+                      {
+                        Platform.OS === 'ios' &&
+                        <TouchableOpacity
+                          style={styles.btnStyle}
+                          onPress={this.appleSignInHandler}>
+                          <FastImage
+                            source={
+                              require('./assets/Iniciar_con_Apple_Icon.png')
+                            }
+                            resizeMode={FastImage.resizeMode.contain}
+                            style={styles.button}
+                          />
+                        </TouchableOpacity>
+                      }
+                    </>
+                  )}
+                </>
+            }
 
 
-            {this.state.switchBtn && <TouchableOpacity
+            {this.state.switchBtn && !isBlock && <TouchableOpacity
               style={styles.btnStyle}
               onPress={() => {
                 this.loginHandler();
@@ -663,7 +520,6 @@ class Login extends React.Component {
             }
 
           </View>
-          {/* </KeyboardAwareScrollView> */}
           {AuthLoading && (
             <ActivityIndicator
               size="large"

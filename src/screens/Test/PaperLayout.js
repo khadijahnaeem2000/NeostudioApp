@@ -36,6 +36,7 @@ export default class PaperLayout extends React.Component {
       description,
       allowdescription,
     } = this.props;
+
     return (
       <View
         style={{
@@ -61,7 +62,10 @@ export default class PaperLayout extends React.Component {
                 marginRight: widthPercentageToDP(3),
                 marginTop: widthPercentageToDP(-1),
               }}>
-              <HTML
+              <Text
+                style={{ marginTop: 20, fontSize: widthPercentageToDP(2), color: "#000", marginLeft:20}}
+              >{question.replace(/&nbsp;/g, '')}</Text>
+              {/* <HTML
                 contentWidth={Dimensions.get('screen').width}
                 source={{ html: question.replace(/&nbsp;/g, '') }}
                 classesStyles={{
@@ -98,10 +102,10 @@ export default class PaperLayout extends React.Component {
                   tap: {
                     fontSize: DeviceInfo.isTablet()
                       ? widthPercentageToDP(2)
-                      : widthPercentageToDP(1.5),
+                      : widthPercentageToDP(1.8),
                   },
                 }}
-              />
+              /> */}
             </View>
 
             <TouchableOpacity
@@ -169,7 +173,10 @@ export default class PaperLayout extends React.Component {
                   marginLeft: widthPercentageToDP(0.5),
                   marginRight: widthPercentageToDP(5),
                 }}>
-                <HTML
+                <Text
+                  style={{ marginTop: 20, fontSize: widthPercentageToDP(1.8), color: "#000", }}
+                >{option1.replace(/&nbsp;/g, '')}</Text>
+                {/* <HTML
                   contentWidth={Dimensions.get('screen').width}
                   source={{ html: option1.replace(/&nbsp;/g, '') }}
                   classesStyles={{
@@ -206,10 +213,10 @@ export default class PaperLayout extends React.Component {
                     tap: {
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
-                        : widthPercentageToDP(1.5),
+                        : widthPercentageToDP(1.8),
                     },
                   }}
-                />
+                /> */}
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -277,7 +284,8 @@ export default class PaperLayout extends React.Component {
                   marginLeft: widthPercentageToDP(0.5),
                   marginRight: widthPercentageToDP(5),
                 }}>
-                <HTML
+                <Text style={{ marginTop: 20, fontSize: widthPercentageToDP(1.8), color: "#000" }} >{option2.replace(/&nbsp;/g, '')}</Text>
+                {/* <HTML
                   contentWidth={Dimensions.get('screen').width}
                   source={{ html: option2.replace(/&nbsp;/g, '') }}
                   classesStyles={{
@@ -314,10 +322,10 @@ export default class PaperLayout extends React.Component {
                     tap: {
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
-                        : widthPercentageToDP(1.5),
+                        : widthPercentageToDP(1.8),
                     },
                   }}
-                />
+                /> */}
               </View>
             </TouchableOpacity>
             {option3 !== '' && (
@@ -386,7 +394,10 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                     marginRight: widthPercentageToDP(5),
                   }}>
-                  <HTML
+                  <Text
+                    style={{ marginTop: 20, fontSize: widthPercentageToDP(1.8), color: "#000", }}
+                  >{option3.replace(/&nbsp;/g, '')}</Text>
+                  {/* <HTML
                     contentWidth={Dimensions.get('screen').width}
                     source={{ html: option3.replace(/&nbsp;/g, '') }}
                     classesStyles={{
@@ -423,10 +434,10 @@ export default class PaperLayout extends React.Component {
                       tap: {
                         fontSize: DeviceInfo.isTablet()
                           ? widthPercentageToDP(2)
-                          : widthPercentageToDP(1.5),
+                          : widthPercentageToDP(1.8),
                       },
                     }}
-                  />
+                  /> */}
                 </View>
               </TouchableOpacity>
             )}
@@ -496,7 +507,10 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                     marginRight: widthPercentageToDP(5),
                   }}>
-                  <HTML
+                  <Text
+                    style={{ marginTop: 20, fontSize: widthPercentageToDP(1.8), color: "#000", }}
+                  >{option4.replace(/&nbsp;/g, '')}</Text>
+                  {/* <HTML
                     contentWidth={Dimensions.get('screen').width}
                     source={{ html: option4.replace(/&nbsp;/g, '') }}
                     classesStyles={{
@@ -533,10 +547,10 @@ export default class PaperLayout extends React.Component {
                       tap: {
                         fontSize: DeviceInfo.isTablet()
                           ? widthPercentageToDP(2)
-                          : widthPercentageToDP(1.5),
+                          : widthPercentageToDP(1.8),
                       },
                     }}
-                  />
+                  /> */}
                 </View>
               </TouchableOpacity>
             )}
@@ -549,7 +563,10 @@ export default class PaperLayout extends React.Component {
                     ? widthPercentageToDP(1)
                     : widthPercentageToDP(-1),
                 }}>
-                <HTML
+                <Text
+                  style={{ marginTop: 20, fontSize: widthPercentageToDP(1.8), color: "#000", }}
+                >{description}</Text>
+                {/* <HTML
                   contentWidth={Dimensions.get('screen').width}
                   source={{ html: description }}
                   classesStyles={{
@@ -585,10 +602,10 @@ export default class PaperLayout extends React.Component {
                     tap: {
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
-                        : widthPercentageToDP(1.5),
+                        : widthPercentageToDP(1.8),
                     },
                   }}
-                />
+                /> */}
               </View>
             )}
           </ScrollView2>
