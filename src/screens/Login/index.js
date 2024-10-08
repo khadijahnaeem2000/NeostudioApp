@@ -52,7 +52,8 @@ class Login extends React.Component {
       formattedValue: '',
       phoneNo: '',
       isChecked: false,
-      isBlock: false
+      isBlock: false,
+      payLink: null
     };
     this.getIPAddress();
     this.phoneInput = null;
@@ -86,7 +87,9 @@ class Login extends React.Component {
       ipaddress: null,
       appleID: null,
       email: email
-    }, '', '', () => this.setState({ isBlock: true }));
+    }, '', '', val => {
+      this.setState({ isBlock: true, payLink: val?.paylink })
+    });
   };
 
   googleSignInHandler = async () => {
@@ -98,7 +101,6 @@ class Login extends React.Component {
         await GoogleSignin.signOut()
       }
     } catch (error) {
-      console.log("errorrr", error)
     }
 
 
@@ -112,8 +114,6 @@ class Login extends React.Component {
       });
       await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
       const { user } = await GoogleSignin.signIn();
-      console.log("🚀 ~ Login ~ googleSignInHandler= ~ userInfo:", user)
-      // console.log('my data is ==>', userInfo);
       this.setState({ isLoading: false })
       this.socialLoginApi(
         user?.givenName,
@@ -122,7 +122,6 @@ class Login extends React.Component {
       );
     } catch (error) {
       this.setState({ isLoading: false })
-      console.log(error);
     }
   };
   appleSignInHandler = async () => {
@@ -147,11 +146,13 @@ class Login extends React.Component {
           data?.fullName?.givenName,
           data?.email,
           data?.user,
+          val => {
+            this.setState({ isBlock: true, payLink: val?.paylink })
+          }
         );
       }
 
     } catch (error) {
-      console.log(error);
       this.setState({ isLoading: false })
     }
   };
@@ -202,8 +203,10 @@ class Login extends React.Component {
       if (validator.isEmpty(this.state.password)) {
         return Alert.alert('', 'se requiere contraseña');
       }
-    
-      this.props.userLogin('true', this.state.userName, this.state.password, '', () => this.setState({ isBlock: true }));
+
+      this.props.userLogin('true', this.state.userName, this.state.password, '', val => {
+        this.setState({ isBlock: true, payLink: val?.paylink })
+      });
     } else {
       const checkValid = this.phoneInput.isValidNumber(this.state.phoneNo);
       if (!validator.isEmail(this.state.email)) {
@@ -221,13 +224,15 @@ class Login extends React.Component {
           'Por favor acepte el enlace de política de privacidad',
         );
       }
-    
+
       this.props.userLogin(
         'false',
         this.state.phoneNo,
         this.state.email,
         this.state.myReason,
-        () => this.setState({ isBlock: true })
+        (val) => {
+          this.setState({ isBlock: true, payLink: val?.paylink })
+        }
       );
     }
   };
@@ -251,7 +256,6 @@ class Login extends React.Component {
   };
   getIPAddress = async () => {
     await NetworkInfo.getIPAddress().then(ipAddress => {
-      console.log(ipAddress);
       this.setState({ ipAddress: ipAddress });
     });
   };
@@ -276,7 +280,6 @@ class Login extends React.Component {
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('GRANTED');
         } else {
         }
       } catch (err) {
@@ -287,7 +290,7 @@ class Login extends React.Component {
 
   render() {
     const { login, AuthLoading } = this.props.user;
-    const { isLoading, reasons, myReason, phoneNo, formattedValue, isBlock } = this.state;
+    const { isLoading, reasons, myReason, phoneNo, formattedValue, isBlock, payLink } = this.state;
     const { isDialogOpen, errorMessage } = this.props.dialog;
 
     return (
@@ -309,10 +312,10 @@ class Login extends React.Component {
                     {"Realiza el pago para \no envíanos un Whatsapp"}
                   </Text>
 
-                  <View   style={{height:heightPercentageToDP(3)}}  />
+                  <View style={{ height: heightPercentageToDP(3) }} />
 
                   <TouchableOpacity
-                    onPress={() => Linking.openURL("https://buy.stripe.com/14k14iamu7VocJq9AV")}
+                    onPress={() => Linking.openURL(payLink)}
                     style={styles.btnStyle}
                   >
                     <FastImage
@@ -343,12 +346,13 @@ class Login extends React.Component {
                     justifyContent: "center"
                   }}
                     activeOpacity={0.6}
-                    onPress={() => this.setState({ isBlock: false })}
+                    onPress={val => {
+                      this.setState({ isBlock: false })
+                    }}
                   >
                     <Text style={{
                       color: "white",
                       fontFamily: fonts.novaBold,
-
                       fontSize: widthPercentageToDP(5),
                       textAlign: "center",
                       textDecorationLine: "underline"
@@ -540,7 +544,6 @@ class Login extends React.Component {
               visible={this.state.modalVisible}
               supportedOrientations={['portrait', 'landscape']}
               onRequestClose={() => {
-                console.log('alert close');
               }}>
               <TouchableOpacity
                 style={styles.modalMain}

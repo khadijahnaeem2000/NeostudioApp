@@ -6,9 +6,9 @@ import {
   ActivityIndicator,
   Platform,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {getAllNews} from '../../Redux/action';
-import {styles} from './styles';
+import { connect } from 'react-redux';
+import { getAllNews } from '../../Redux/action';
+import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
 import Header from '../../Component/Header';
 import NEWS from './NewsItem';
@@ -24,7 +24,7 @@ class News extends React.Component {
   }
 
   getData = () => {
-    const {login} = this.props.user;
+    const { login } = this.props.user;
     this.props.getAllNews(login?.data?.id, DeviceInfo.isTablet() ? 'yes' : null);
   };
 
@@ -33,14 +33,14 @@ class News extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
   }
 
   render() {
-    const {newsItem, AuthLoading} = this.props.user;
+    const { newsItem, AuthLoading } = this.props.user;
     console.log(newsItem);
     return (
       <FastImage
@@ -63,11 +63,9 @@ class News extends React.Component {
         />
 
         <View style={styles.directoryView}>
-          <ScrollView contentContainerStyle={{flexGrow: 1}}>
-            {!newsItem ? (
-              <View />
-            ) : (
-              newsItem.data.map((item, index) => {
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            {
+              newsItem?.data?.map((item, index) => {
                 return (
                   <NEWS
                     key={'unique' + index}
@@ -77,7 +75,9 @@ class News extends React.Component {
                   />
                 );
               })
-            )}
+            }
+
+            <View style={{ height: 20 }} />
           </ScrollView>
         </View>
         {AuthLoading && (
@@ -91,4 +91,4 @@ class News extends React.Component {
 const mapStateToProps = state => ({
   user: state.user,
 });
-export default connect(mapStateToProps, {getAllNews})(News);
+export default connect(mapStateToProps, { getAllNews })(News);

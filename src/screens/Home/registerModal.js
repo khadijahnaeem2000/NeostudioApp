@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { fonts } from '../../utils';
 import {
@@ -18,7 +18,7 @@ import {
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 
-const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
+const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
 
   const directionRef = useRef(null)
   const localidadRef = useRef(null)
@@ -37,6 +37,21 @@ const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
   const [showSizes, setShowSizes] = useState(false);
   const [showColors, setShowColors] = useState(false);
   const [error, setError] = useState(null);
+
+
+  useEffect(() => {
+    if (data) {
+      setDirection(data?.domi || null)
+      setLocalidad(data?.localidad || null)
+      setPostal(data?.postal || null)
+      setDni(data?.dni || null)
+      setInstagram(instagram || null)
+      setColor(data?.color || null)
+      setShirtsize(data?.shirtsize || null)
+    }
+
+  }, [data])
+
 
   const onPressSubmit = () => {
     if (!direction || direction?.trim()?.length < 1) {
@@ -107,7 +122,7 @@ const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
               color: "#fff",
               fontSize: widthPercentageToDP(4),
             }}>
-            {'iYA PUEDES DISFRUTAR DE TU\nPRUEBA DE 48 HORAS GRATIS!'}
+            {data ? '¿Quieres modificar tus datos personals?' : 'iYA PUEDES DISFRUTAR DE TU\nPRUEBA DE 48 HORAS GRATIS!'}
           </Text>
           <ScrollView
             keyboardShouldPersistTaps={"handled"}
@@ -250,7 +265,7 @@ const RegisterModal = ({ visible, onPressClose, onPressButton }) => {
               activeOpacity={0.6}
               onPress={onPressSubmit}
               style={styles.btn}>
-              <Text style={{ color: "#fff" }} >AMPLIAR A 48 HORAS Gratis</Text>
+              <Text style={{ color: "#fff" }} >{data ? "GUARDAR" : "AMPLIAR A 48 HORAS Gratis"}</Text>
             </TouchableOpacity>
 
             <View style={{ height: 20 }} />

@@ -19,12 +19,15 @@ import {
   resetAllExams,
   updateUserBaremo,
   getCurrentUser,
-  notificationToggle
+  notificationToggle,
+  addRegister,
+  getRegisterData
 } from '../../Redux/action';
 import { useSelector, useDispatch } from 'react-redux';
 import ToggleSwitch from 'toggle-switch-react-native';
 import BaremoUpdate from '../../Component/BaremoModal';
 import { onLogoutUser } from '../../Redux/slices/user-slice';
+import RegisterModal from '../Home/registerModal';
 
 const Settings = props => {
   const dispatch = useDispatch();
@@ -33,11 +36,24 @@ const Settings = props => {
   const [isNoti, setNoti] = useState(false);
   const [baremoTxt, setBaremo] = useState(0);
   const [baremoModal, showBaremo] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [registerPopupData, setRegisterPopupData] = useState(null);
 
   const login = useSelector(state => state.user.login);
   const AuthLoading = useSelector(state => state.user.AuthLoading);
   const toggle = useSelector(state => state.user.toggle);
   const text = 'User has been deleted !';
+
+  const getRegisterPopupData = async () => {
+    const data = await getRegisterData(login?.data?.id)
+    console.log("dataaaa", data)
+    setRegisterPopupData(data?.data)
+  }
+
+  useEffect(() => {
+    getRegisterPopupData()
+  }, [])
+
 
   const apiCall = async () => {
     setpop(false);
@@ -75,7 +91,13 @@ const Settings = props => {
     }
   };
 
-  console.log(toggle);
+  const onRegister = async (val) => {
+    console.log("valaaa", val)
+    const response = await addRegister({ ...val, id: login?.data?.id });
+    if (response?.status === 'Successful') {
+      setShowModal(false)
+    }
+  }
 
   return (
     <FastImage
@@ -163,6 +185,23 @@ const Settings = props => {
             </FastImage>
           </TouchableOpacity>
         </View>
+        <View style={[styles.rowView, { marginTop: 0 }]}>
+          <Text style={styles.itemTitle}>{'Datos registro'}</Text>
+          <TouchableOpacity onPress={() => setShowModal(true)} style={styles.btn}>
+            <FastImage
+              source={require('../../Images/button.png')}
+              resizeMode={'contain'}
+              style={styles.imgBtn}>
+              <Text
+                style={[
+                  styles.itemTitle,
+                  { color: 'white', fontSize: widthPercentageToDP(3.5) },
+                ]}>
+                {'Modificar'}
+              </Text>
+            </FastImage>
+          </TouchableOpacity>
+        </View>
         {/* <Text style={styles.mainTitle}>{'Gestiona tu cuenta'}</Text> */}
         <View style={[styles.rowView, { marginTop: 0 }]}>
           <Text style={styles.itemTitle}>{'Borrar usuario'}</Text>
@@ -223,6 +262,15 @@ const Settings = props => {
           showBaremo(false);
         }}
         myText={"Escribe los puntos de\n\baremo y pulsa \"Enviar\". "}
+      />
+
+      <RegisterModal
+        visible={showModal}
+        onPressClose={() => {
+          setShowModal(false)
+        }}
+        onPressButton={val => onRegister(val)}
+        data={registerPopupData}
       />
     </FastImage>
   );
