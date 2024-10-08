@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     // width: '100%',
     // height: '15%',
     // marginLeft: widthPercentageToDP(2),
-    //backgroundColor: 'red',
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -41,7 +40,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logo: {
-    width: widthPercentageToDP(55),
+    width: widthPercentageToDP(50),
     height: widthPercentageToDP(13),
   },
   logo2: {
@@ -87,8 +86,8 @@ export const styles = StyleSheet.create({
     marginRight: widthPercentageToDP(2),
   },
   btnImage: {
-    width: widthPercentageToDP(10),
-    height: widthPercentageToDP(10),
+    width: widthPercentageToDP(8),
+    height: widthPercentageToDP(8),
     marginLeft: widthPercentageToDP(1),
   },
   loading: {

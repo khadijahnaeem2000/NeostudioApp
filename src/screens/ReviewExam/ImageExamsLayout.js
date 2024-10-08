@@ -181,7 +181,7 @@ export default class PaperLayout extends React.Component {
                 // position:"absolute",
                 // top: "1%",
                 marginTop: widthPercentageToDP(1),
-                bottom: '3%',
+                bottom: '2%',
               }}>
               <TouchableOpacity
                 style={{
@@ -457,7 +457,7 @@ export default class PaperLayout extends React.Component {
                 marginTop: widthPercentageToDP(0),
                 marginLeft: widthPercentageToDP(0),
                 marginRight: widthPercentageToDP(5),
-                marginBottom: widthPercentageToDP(10),
+                // marginBottom: widthPercentageToDP(10),
               }}>
               <HTML
                  contentWidth={Dimensions.get('screen').width}
@@ -498,6 +498,8 @@ export default class PaperLayout extends React.Component {
                   },
                 }}
               />
+
+              <View  style={{height:100}} /> 
             </View>
           </ScrollView2>
         </View>

@@ -105,7 +105,7 @@ class Review extends Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToLandscape();
-      }else{
+      } else {
         Orientation.lockToLandscape()
       }
     });
@@ -137,7 +137,7 @@ class Review extends Component {
     const examsID = this.props.route.params.id || "1"
     const type = this.props.route.params.type || 'exam'
 
-    console.log("typetypetype" ,type)
+    console.log("typetypetype", type)
 
     this.props.endReviewExam(examsID);
     if (type === 'exam') {
@@ -186,7 +186,7 @@ class Review extends Component {
     const type = this.props.route.params.type || 'exam'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
 
-    console.log("Review screeen me heehhehehehhe",type)
+    console.log("Review screeen me heehhehehehhe", type)
 
     const { myOption } = this.state;
     return (
@@ -217,9 +217,7 @@ class Review extends Component {
                 style={styles.btnImage}
               />
             </TouchableOpacity>
-            <View style={styles.btnImage} />
           </View>
-          <View style={styles.timerView}></View>
           <FastImage
             style={styles.logo}
             resizeMode={FastImage.resizeMode.contain}
@@ -450,14 +448,12 @@ class Review extends Component {
                               );
                           }}
                         />
-
                   }
                 </>
               ))
               :
               <View style={{
                 flex: 1,
-
                 justifyContent: "center",
                 alignItems: "center"
               }}  >
