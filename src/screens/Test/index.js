@@ -194,7 +194,7 @@ class Test extends Component {
     const isRepasoImage = this.props.route.params.isRepasoImage || false
 
 
-// console.log("is screen mee" , examStartData?.data?.[0])
+console.log("is screen mee" , examStartData?.data?.[0])
     return (
       <View
       style={{flex:1}}
@@ -290,7 +290,7 @@ class Test extends Component {
                     'Check your internet connection and finish the Exam',
                   );
               }}
-              digitStyle={{ backgroundColor: '#ffff' }}
+              digitStyle={{ backgroundColor: 'transparent' }}
               digitTxtStyle={{
                 color: '#0a52cb',
                 marginBottom: 5,
