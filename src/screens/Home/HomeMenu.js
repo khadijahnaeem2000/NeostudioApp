@@ -35,6 +35,9 @@ export default class HomeMenu extends React.Component {
       rankPhoto,
       rankName,
       isShow,
+      name,
+      meetingStatus,
+      isDirecto
     } = this.props;
 
     if (myIndex == 0) {
@@ -94,7 +97,7 @@ export default class HomeMenu extends React.Component {
                 {!rankName ? 'Aspirante' : rankName}
               </Text>
               <Text style={styles.smallTxt2}>
-                {!username ? '' : username.slice(0, 8)}
+                {!username ? name : username.slice(0, 8)}
               </Text>
             </View>
             <View style={{ alignItems: 'center' }}>
@@ -173,30 +176,61 @@ export default class HomeMenu extends React.Component {
             }}
             onPress={clickHandler}>
             {status ? (
-              newsCount === 0 ? (
-                <FastImage
-                  source={img}
-                  resizeMode={FastImage.resizeMode.stretch}
-                  style={[styles.imgStyle, myStyle]}
-                />
-              ) : (
-                <View>
-                  <FastImage
-                    source={img}
-                    resizeMode={FastImage.resizeMode.stretch}
-                    style={[styles.imgStyle, myStyle]}
-                  />
-                  <Badge
-                    status="error"
-                    value={newsCount}
-                    containerStyle={{
-                      position: 'absolute',
-                      top: 20,
-                      right: 20,
-                    }}
-                  />
-                </View>
-              )
+              <>
+                {
+                  (isDirecto && meetingStatus?.status) ?
+                    <View style={{ backgroundColor: "greeen" }} >
+                      <FastImage
+                        source={img}
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={[styles.imgStyle, myStyle, isDirecto && {
+                          // borderWidth: 3,
+                          // borderColor: "red",
+                          // borderRadius: 120,
+                          // width: widthPercentageToDP(28),
+                          // height: widthPercentageToDP(30),
+                        }]}
+                      />
+                      <View style={{
+                        width: widthPercentageToDP(26),
+                        height: widthPercentageToDP(26),
+                        borderRadius: 100,
+                        borderColor: "red",
+                        borderWidth: 4,
+                        position: "absolute",
+                        top: 5,
+                        right: 0,
+                        left: 15,
+                        bottom: 0
+                      }} />
+                    </View>
+                    :
+                    newsCount === 0 ? (
+                      <FastImage
+                        source={img}
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={[styles.imgStyle, myStyle]}
+                      />
+                    ) : (
+                      <View>
+                        <FastImage
+                          source={img}
+                          resizeMode={FastImage.resizeMode.stretch}
+                          style={[styles.imgStyle, myStyle]}
+                        />
+                        <Badge
+                          status="error"
+                          value={newsCount}
+                          containerStyle={{
+                            position: 'absolute',
+                            top: 20,
+                            right: 20,
+                          }}
+                        />
+                      </View>
+                    )
+                }
+              </>
             ) : isChat ? (
               chatCount === 0 ? (
                 <FastImage
@@ -253,6 +287,7 @@ export default class HomeMenu extends React.Component {
                 resizeMode={FastImage.resizeMode.stretch}
                 style={[styles.imgStyle, myStyle]}
               />
+
             )}
             <Text
               style={{

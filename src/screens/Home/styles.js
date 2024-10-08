@@ -31,13 +31,10 @@ export const styles = StyleSheet.create({
   },
   modalMain: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  innerModal2: {
-    width: widthPercentageToDP(90),
-    height: heightPercentageToDP(45),
+    width: widthPercentageToDP(100),
+    height: heightPercentageToDP(100),
   },
   quesBox: {
     width: widthPercentageToDP(90),
@@ -120,19 +117,13 @@ export const styles = StyleSheet.create({
   },
   modalMain2: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     //backgroundColor:"red"
   },
-  innerModal2: {
-    width: '100%',
-    height: '100%',
-    marginBottom: widthPercentageToDP(10),
-    marginLeft: widthPercentageToDP(5),
-    marginRight: widthPercentageToDP(5),
-  },
   navigation: {
+    position:"absolute",
+    top:0,
+    bottom:0,
+    left:0,
     width: widthPercentageToDP(100),
     height: heightPercentageToDP(100),
   },
