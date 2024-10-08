@@ -96,7 +96,9 @@ var login = 'loginStudent',
   updatebaremo = 'updatebaremo',
   deleteuser = 'deleteuser',
   checkregistration = 'TelephoneVerification?userid=',
-  registerwith30days = 'Registerwith30days';
+  registerwith30days = 'Registerwith30days',
+  registerData = 'Registerdata',
+  meetingStatus = 'Checkmeetingstatus'
 
 export const saveActivityId = (value, name) => {
   return dispatch => {
@@ -190,7 +192,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             if (!json.is_verified || json.is_verified === 'No') {
               navigate("OTP", { data: json, type })
             } else if (json?.data?.IsBlocked === 'True') {
-              onBlock()
+              onBlock(json)
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -228,7 +230,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             if (!json.is_verified || json.is_verified === 'no') {
               navigate("MobileVerification", { data: json, type: true })
             } else if (json?.data?.IsBlocked === 'True') {
-              onBlock()
+              onBlock(json)
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -270,7 +272,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
           dispatch(setAuthLoading(false));
           if (json.status === 'Sucessfull') {
             if (json?.data?.IsBlocked === 'True') {
-              onBlock()
+              onBlock(json)
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
@@ -294,7 +296,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
     };
   }
 };
-export const userAppleLogin = (firstname, email, appleid) => {
+export const userAppleLogin = (firstname, email, appleid, onBlock) => {
   return dispatch => {
     dispatch(setAuthLoading(true))
     fetch(baseUrl + loginWithApple, {
@@ -313,7 +315,9 @@ export const userAppleLogin = (firstname, email, appleid) => {
       .then(json => {
         dispatch(setAuthLoading(false));
         if (json.status === 'Sucessfull') {
-          if (!json.is_verified || json.is_verified === 'no') {
+          if (json?.data?.IsBlocked === 'True') {
+            onBlock(json)
+          } else if (!json.is_verified || json.is_verified === 'no') {
             navigate('MobileVerification', {
               data: json,
               type: true,
@@ -773,7 +777,7 @@ export const getStartExamData = (
   return dispatch => {
     dispatch(setAuthLoading(true))
     // fetch(baseUrl + startExam, {
-     
+
     fetch(baseUrl + startExamWihtoutHtml, {
       method: 'POST',
       headers: {
@@ -866,6 +870,7 @@ export const endAllExams = (id, endTime, isPsico, type, isRepasoImage) => {
             examID: id,
             image: isPsico,
             type: type,
+            endTime,
             isRepasoImage: isRepasoImage,
           });
         } else {
@@ -2975,6 +2980,48 @@ export const addRegister = async data => {
         Accept: 'application/json',
       },
       body: JSON.stringify(data),
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        Alert.alert(error);
+      });
+  } catch (error) {
+  }
+  return api;
+};
+export const getRegisterData = async id => {
+  let api;
+  try {
+    api = await fetch(baseUrl + registerData + "/" + id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        Alert.alert(error);
+      });
+  } catch (error) {
+  }
+  return api;
+};
+export const checkMeetingStatus = async () => {
+  let api;
+  try {
+    api = await fetch(baseUrl + meetingStatus, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
     })
       .then(res => res.json())
       .then(data => {

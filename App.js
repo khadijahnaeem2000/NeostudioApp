@@ -7,6 +7,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import RemotePushController from './src/services/RemotePushController';
 import store, { persistor } from './src/Redux/store';
 import { SetupService } from './src/trackservice';
+import { notificationListener } from './src/services/notification_service';
+import ResultPopup from './src/Component/ResultPopup';
 //======================================================
 export default class App extends React.Component {
 
@@ -18,14 +20,16 @@ export default class App extends React.Component {
 
     SetupService()
 
+
   }
   render() {
     return (
       <View style={{ flex: 1 }}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <MAINAPP />
             <RemotePushController />
+            <MAINAPP />
+            <ResultPopup />
           </PersistGate>
         </Provider>
       </View>

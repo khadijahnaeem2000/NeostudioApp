@@ -34,6 +34,7 @@ import {
   resetAllExams,
   checkPackageExpired,
   getUserTikTokVideos,
+  checkMeetingStatus
 } from "../../Redux/action";
 import { styles } from "./styles";
 import HomeMenu from "./HomeMenu";
@@ -52,8 +53,6 @@ import {
 import VersionPop from "../../Component/VerPopUp";
 import AvatarBox from "./Avatar";
 import ImagePicker from "react-native-image-crop-picker";
-import CountDown from "react-native-countdown-component";
-import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 import Stars from "./stars";
 import ModalBox from "../../Component/Modal";
@@ -62,6 +61,7 @@ import { initConnection, getPurchaseHistory } from "react-native-iap";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { setAuthLoading } from "../../Redux/slices/user-slice";
 import NetInfo from "@react-native-community/netinfo";
+import { requestUserPermission } from "../../services/notification_service";
 
 class Home extends Component {
   constructor(props) {
@@ -84,6 +84,7 @@ class Home extends Component {
       userFeeback: "",
       isConfirm: false,
       timer: { hour: 0, minutes: 0 },
+      meetingStatus: null,
     };
     this.intervalId = null;
   }
@@ -92,7 +93,10 @@ class Home extends Component {
     Orientation.unlockAllOrientations();
   };
   refreshAppData = async () => {
-    const { login, token } = this.props.user;
+    const { login, } = this.props.user;
+    const token = await requestUserPermission()
+    console.log("tokennnn", token)
+
     try {
       if (login.data.IsBlocked === "False" || !login?.data?.IsBlocked) {
         if (Platform.OS === "ios") {
@@ -110,7 +114,7 @@ class Home extends Component {
       } else {
         this.props.logout();
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   handleModalOpen = () => {
     this.setState({ modalVisible: !this.state.modalVisible });
@@ -136,6 +140,8 @@ class Home extends Component {
     const { navigation } = this.props;
     const { login } = this.props.user;
 
+    this.refreshAppData()
+
     if (Platform.OS === "ios") {
       initConnection()
         .catch((error) => {
@@ -156,7 +162,9 @@ class Home extends Component {
             });
         });
     }
-    this.focusListener = navigation.addListener("focus", () => {
+    this.focusListener = navigation.addListener("focus", async () => {
+      const status = await checkMeetingStatus()
+      this.setState({ meetingStatus: status })
       this._onChangeTime();
       this.intervalId = setInterval(this._onChangeTime, 60 * 1000); // Update every minute
       NetInfo.fetch().then(({ isConnected, isInternetReachable, type }) => {
@@ -190,7 +198,7 @@ class Home extends Component {
   }
   fetchReceipt = () => {
     initConnection()
-      .catch((error) => {})
+      .catch((error) => { })
       .then(() => {
         getPurchaseHistory()
           .then((res) => {
@@ -199,7 +207,7 @@ class Home extends Component {
               this.validate(receipt);
             }
           })
-          .catch(() => {});
+          .catch(() => { });
       });
   };
   validate = async (receipt) => {
@@ -263,33 +271,33 @@ class Home extends Component {
         return AuthLoading
           ? false
           : !login.package
-          ? !activityId
-            ? (this.test(), this.props.navigation.navigate("Actividad"))
-            : (this.test(), this.props.navigation.navigate("Activity"))
-          : login.data.type === "Alumno" && login.package.course === "Gold"
-          ? this.setState({ popUp: true })
-          : !activityId
-          ? (this.test(), this.props.navigation.navigate("Actividad"))
-          : (this.test(), this.props.navigation.navigate("Activity"));
+            ? !activityId
+              ? (this.test(), this.props.navigation.navigate("Actividad"))
+              : (this.test(), this.props.navigation.navigate("Activity"))
+            : login.data.type === "Alumno" && login.package.course === "Gold"
+              ? this.setState({ popUp: true })
+              : !activityId
+                ? (this.test(), this.props.navigation.navigate("Actividad"))
+                : (this.test(), this.props.navigation.navigate("Activity"));
       case 2:
         return AuthLoading ? false : (this.test(), this.fetchVideoData());
       case 3:
         return AuthLoading
           ? false
           : Linking.openURL(
-              "https://webversion.neoestudio.net/directo?id=" + login?.data?.id
-            );
+            "https://webversion.neoestudio.net/directo?id=" + login?.data?.id
+          );
       case 4:
         //return this.handleClick();
         return AuthLoading
           ? false
           : //: crashlytics().crash();
-            (this.test(), this.props.navigation.navigate("Objectives"));
+          (this.test(), this.props.navigation.navigate("Objectives"));
       case 5:
         return AuthLoading
           ? false
           : //: this.props.navigation.navigate('Calender')
-            (this.test(), this.props.navigation.navigate("News"));
+          (this.test(), this.props.navigation.navigate("News"));
       case 6:
         return AuthLoading
           ? false
@@ -299,7 +307,7 @@ class Home extends Component {
           AuthLoading
             ? false
             : //: this.props.getExames(login?.data?.id, true, login.data.type)
-              this.test(),
+            this.test(),
           updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id),
           this.props.navigation.navigate("ExamFile", {
             isRefresh: "false",
@@ -309,50 +317,50 @@ class Home extends Component {
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.navigation.navigate("PDF"))
-          : login.data.type === "Alumno" && login.package.course === "Silver"
-          ? this.setState({ popUp: true })
-          : //this.props.navigation.navigate('PDF')
-            (this.test(), this.props.navigation.navigate("PDF"));
+            ? (this.test(), this.props.navigation.navigate("PDF"))
+            : login.data.type === "Alumno" && login.package.course === "Silver"
+              ? this.setState({ popUp: true })
+              : //this.props.navigation.navigate('PDF')
+              (this.test(), this.props.navigation.navigate("PDF"));
       case 9:
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.navigation.navigate("AudioClass"))
-          : login.data.type === "Alumno" && login.package.course === "Silver"
-          ? this.setState({ popUp: true })
-          : (this.test(), this.props.navigation.navigate("AudioClass"));
+            ? (this.test(), this.props.navigation.navigate("AudioClass"))
+            : login.data.type === "Alumno" && login.package.course === "Silver"
+              ? this.setState({ popUp: true })
+              : (this.test(), this.props.navigation.navigate("AudioClass"));
       case 10:
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.navigation.navigate("VideoClass"))
-          : login.data.type === "Alumno" && login.package.course === "Silver"
-          ? this.setState({ popUp: true })
-          : (this.test(), this.props.navigation.navigate("VideoClass"));
+            ? (this.test(), this.props.navigation.navigate("VideoClass"))
+            : login.data.type === "Alumno" && login.package.course === "Silver"
+              ? this.setState({ popUp: true })
+              : (this.test(), this.props.navigation.navigate("VideoClass"));
       case 11:
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.navigation.navigate("Clases"))
-          : login.data.type === "Alumno" && login.package.course === "Gold"
-          ? this.setState({ popUp: true })
-          : (this.test(), this.props.navigation.navigate("Clases"));
+            ? (this.test(), this.props.navigation.navigate("Clases"))
+            : login.data.type === "Alumno" && login.package.course === "Gold"
+              ? this.setState({ popUp: true })
+              : (this.test(), this.props.navigation.navigate("Clases"));
       case 12:
         return AuthLoading ? false : null;
       case 13:
         return AuthLoading
           ? false
           : //: null
-            (this.test(), this.props.navigation.navigate("ActiveBattle"));
+          (this.test(), this.props.navigation.navigate("ActiveBattle"));
       case 14:
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.navigation.navigate("FAQ"))
-          : login.data.type === "Alumno" && login.package.course === "Silver"
-          ? this.setState({ popUp: true })
-          : (this.test(), this.props.navigation.navigate("FAQ"));
+            ? (this.test(), this.props.navigation.navigate("FAQ"))
+            : login.data.type === "Alumno" && login.package.course === "Silver"
+              ? this.setState({ popUp: true })
+              : (this.test(), this.props.navigation.navigate("FAQ"));
       case 15:
         return AuthLoading
           ? false
@@ -371,10 +379,10 @@ class Home extends Component {
         return AuthLoading
           ? false
           : !login.package
-          ? (this.test(), this.props.getAllChats(true, login?.data?.id))
-          : login.data.type === "Alumno" && login.package.course === "Gold"
-          ? this.setState({ popUp: true })
-          : (this.test(), this.props.getAllChats(true, login?.data?.id));
+            ? (this.test(), this.props.getAllChats(true, login?.data?.id))
+            : login.data.type === "Alumno" && login.package.course === "Gold"
+              ? this.setState({ popUp: true })
+              : (this.test(), this.props.getAllChats(true, login?.data?.id));
       case 19:
         return AuthLoading
           ? false
@@ -389,8 +397,8 @@ class Home extends Component {
         return AuthLoading
           ? false
           : Platform.OS === "android"
-          ? this.openLink()
-          : this.props.navigation.navigate("Payment");
+            ? this.openLink()
+            : this.props.navigation.navigate("Payment");
       case 23:
         return AuthLoading
           ? false
@@ -443,7 +451,7 @@ class Home extends Component {
         };
         this._handlePostImage(type, data);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   _handlePostImage = async (type, image) => {
     const { login } = this.props.user;
@@ -514,6 +522,7 @@ class Home extends Component {
       rating,
       isConfirm,
       timer,
+      meetingStatus
     } = this.state;
 
     return (
@@ -598,7 +607,7 @@ class Home extends Component {
                   fontWeight: "normal",
                 }}
               >
-                {`${timer?.hour} : ${timer?.minutes}`}
+                {`${timer?.hour}h : ${timer?.minutes}m`}
               </Text>
             </View>
           )}
@@ -612,6 +621,7 @@ class Home extends Component {
                   status={item.status}
                   isChat={item.isChat}
                   isShow={item.isShow}
+                  meetingStatus={meetingStatus}
                   myIndex={index}
                   avatarClick={() => {
                     this.setState({ avatarPopUp: true });
@@ -625,6 +635,8 @@ class Home extends Component {
                     this.props.navigation.navigate("Profile");
                   }}
                   username={login.data.userName}
+                  name={login.data.name}
+                  isDirecto={item?.text === 'Directo'}
                   experience={parseFloat(login?.time).toFixed(2)}
                   aptos={login.data.aptos}
                   puntos={login.data.points}
@@ -659,7 +671,7 @@ class Home extends Component {
           <Modal
             transparent={true}
             visible={this.state.isOpen}
-            onRequestClose={() => {}}
+            onRequestClose={() => { }}
           >
             <View style={styles.modalMain2}>
               <FastImage
@@ -696,7 +708,7 @@ class Home extends Component {
           <Modal
             transparent={true}
             visible={this.state.popUp}
-            onRequestClose={() => {}}
+            onRequestClose={() => { }}
           >
             <View style={styles.modalMain2}>
               <FastImage
@@ -730,117 +742,116 @@ class Home extends Component {
         <Modal
           transparent={true}
           visible={this.state.modalVisible === "modalVisible"}
-          onRequestClose={() => {}}
+          onRequestClose={() => { }}
         >
           <View style={styles.modalMain}>
-            <View style={styles.innerModal2}>
-              <FastImage
-                source={require("../../Images/navigationSlider.png")}
-                resizeMode={FastImage.resizeMode.stretch}
-                style={styles.navigation}
-              >
-                <View style={styles.topModal}>
-                  <Text style={styles.topTitle}>
-                    {!reviewRanking.username
-                      ? login.data.email
-                      : reviewRanking.username}
-                  </Text>
-                  <View style={styles.navigationHeader}>
-                    <TouchableOpacity
-                      //style = {styles.}
-                      onPress={() => {
-                        this.setState({ modalVisible: "isConfirm" });
-                      }}
-                    >
-                      <FastImage
-                        style={styles.loaderStyle}
-                        resizeMode={FastImage.resizeMode.contain}
-                        source={require("../../Images/loader.png")}
-                      />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      //style = {styles.}
-                      onPress={() => this.setState({ modalVisible: "" })}
-                    >
-                      <Icon2 name="close" color="#ffff" size={30} />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={styles.modalTitle}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      alignItems: "center",
+            <FastImage
+              source={require("../../Images/navigationSlider.png")}
+              resizeMode={FastImage.resizeMode.stretch}
+              style={styles.navigation}
+            />
+            <ScrollView showsVerticalScrollIndicator={false} >
+              <View style={styles.topModal}>
+                <Text style={styles.topTitle}>
+                  {!reviewRanking.username
+                    ? login.data.email
+                    : reviewRanking.username}
+                </Text>
+                <View style={styles.navigationHeader}>
+                  <TouchableOpacity
+                    //style = {styles.}
+                    onPress={() => {
+                      this.setState({ modalVisible: "isConfirm" });
                     }}
                   >
-                    <View style={styles.modalTileView}>
-                      <Text style={styles.ModalTitleText}>{"Usuario:"}</Text>
-                      <Text style={styles.ModalTitleText}>{"Baremo:"}</Text>
-                      <Text style={styles.ModalTitleText}>
-                        {"Nº alumnos ranking:"}
-                      </Text>
-                    </View>
-                    <View style={styles.modalTitleDetail}>
-                      <Text style={styles.ModalTitleText3}>
-                        {login.data.studentCode}
-                      </Text>
-                      <Text style={styles.ModalTitleText3}>
-                        {login.data.baremo}
-                      </Text>
-                      <Text style={styles.ModalTitleText3}>
-                        {reviewRanking.numberOfStudents}
-                      </Text>
-                    </View>
+                    <FastImage
+                      style={styles.loaderStyle}
+                      resizeMode={FastImage.resizeMode.contain}
+                      source={require("../../Images/loader.png")}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    //style = {styles.}
+                    onPress={() => this.setState({ modalVisible: "" })}
+                  >
+                    <Icon2 name="close" color="#ffff" size={30} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={styles.modalTitle}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}
+                >
+                  <View style={styles.modalTileView}>
+                    <Text style={styles.ModalTitleText}>{"Usuario:"}</Text>
+                    <Text style={styles.ModalTitleText}>{"Baremo:"}</Text>
+                    <Text style={styles.ModalTitleText}>
+                      {"Nº alumnos ranking:"}
+                    </Text>
+                  </View>
+                  <View style={styles.modalTitleDetail}>
+                    <Text style={styles.ModalTitleText3}>
+                      {login.data.studentCode}
+                    </Text>
+                    <Text style={styles.ModalTitleText3}>
+                      {login.data.baremo}
+                    </Text>
+                    <Text style={styles.ModalTitleText3}>
+                      {reviewRanking.numberOfStudents}
+                    </Text>
                   </View>
                 </View>
-                <View style={styles.mainModalVie}>
-                  <ScrollView
-                    contentContainerStyle={{ flexGrow: 1, marginTop: 6 }}
-                  >
-                    {!reviewRanking ? (
-                      <View />
-                    ) : (
-                      reviewRanking.data.courses.map((item, index) => {
-                        return (
-                          <Ranking
-                            key={"unique" + index}
-                            subject={item.rankName}
-                            //subject={"Rank. Tema 1 - Derecho penal con baremo"}
-                            getPoints={item.points}
-                            //totalPoints={item.totalPoints}
-                            minLength={
-                              item.percentage === null
-                                ? "null"
-                                : Math.round(item.percentage) > 100
-                                ? 100
-                                : Math.round(item.percentage)
-                            }
-                            maxLength={
-                              item.percentage === null
-                                ? 100
-                                : 100 - Math.round(item.percentage)
-                            }
-                            obtainPercentage={
-                              item.percentage === null
-                                ? "null"
-                                : Math.round(item.percentage)
-                            }
-                            drawer={true}
-                            isHome={true}
-                          />
-                        );
-                      })
-                    )}
-                    <Text style={styles.versionText}>
-                      {"versión: "}
-                      {Platform.OS === "android" ? version : iosVerion}
-                    </Text>
-                    {/* <View style={styles.jump} /> */}
-                  </ScrollView>
-                </View>
-              </FastImage>
-            </View>
+              </View>
+              <View style={styles.mainModalVie}>
+
+                {!reviewRanking ? (
+                  <View />
+                ) : (
+                  reviewRanking.data.courses.map((item, index) => {
+                    return (
+                      <Ranking
+                        key={"unique" + index}
+                        subject={item.rankName}
+                        //subject={"Rank. Tema 1 - Derecho penal con baremo"}
+                        getPoints={item.points}
+                        //totalPoints={item.totalPoints}
+                        minLength={
+                          item.percentage === null
+                            ? "null"
+                            : Math.round(item.percentage) > 100
+                              ? 100
+                              : Math.round(item.percentage)
+                        }
+                        maxLength={
+                          item.percentage === null
+                            ? 100
+                            : 100 - Math.round(item.percentage)
+                        }
+                        obtainPercentage={
+                          item.percentage === null
+                            ? "null"
+                            : Math.round(item.percentage)
+                        }
+                        drawer={true}
+                        isHome={true}
+                      />
+                    );
+                  })
+                )}
+                <Text style={styles.versionText}>
+                  {"versión: "}
+                  {Platform.OS === "android" ? version : iosVerion}
+                </Text>
+                {/* <View style={styles.jump} /> */}
+
+              </View>
+              <View style={{ height: 20, }} />
+            </ScrollView>
+            {/* </FastImage> */}
           </View>
           {AuthLoading && (
             <ActivityIndicator
@@ -897,7 +908,7 @@ class Home extends Component {
             transparent={true}
             animationType="slide"
             visible={selectImage}
-            onRequestClose={() => {}}
+            onRequestClose={() => { }}
           >
             <View style={{ flex: 1, backgroundColor: "#f3f3f3" }}>
               <View
@@ -977,7 +988,7 @@ class Home extends Component {
             transparent={true}
             visible={isFcous}
             animationType="fade"
-            onRequestClose={() => {}}
+            onRequestClose={() => { }}
           >
             <View style={myStyles.modalMain2}>
               <View

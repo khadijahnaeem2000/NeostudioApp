@@ -67,6 +67,7 @@ class ResultClass extends Component {
     const isPsico = this.props.route.params.image || 'false'
     const type = this.props.route.params.type || 'exam'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
+    const endTime = this.props.route.params.endTime || "false"
 
 
     return (

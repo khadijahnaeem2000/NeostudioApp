@@ -5,10 +5,12 @@ import FastImage from 'react-native-fast-image';
 import { Badge } from 'react-native-elements';
 import { fonts } from '../../utils';
 import { Vimeo } from 'react-native-vimeo-iframe';
+import VideoPlayer from 'react-native-video-controls';
 
 export default class Player extends React.Component {
   render() {
     const { title, img, clickHandler, isActive, count, link } = this.props;
+    console.log("linkkk" , link)
     return (
       <TouchableOpacity
         style={{
@@ -21,7 +23,7 @@ export default class Player extends React.Component {
         }}
         onPress={clickHandler}>
 
-        <Vimeo
+        {/* <Vimeo
           videoId={link?.match(/(\d+)$/)[0]}
           autoplay={false}
           loop={false}
@@ -34,12 +36,13 @@ export default class Player extends React.Component {
           onPlayProgress={data => console.log('Video progress data:', data)}
           onFinish={() => console.log('Video is finished')}
           style={{
-            backgroundColor: "red"
+            height:200
           }}
           containerStyle={{
-            backgroundColor: "yellow"
+            backgroundColor: "yellow",
           }}
-        />
+          
+        /> */}
 
 
         {isActive ? (

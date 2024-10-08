@@ -21,6 +21,7 @@ import { navigate, navigationRef } from './src/utils/naviagtion_service';
 import AuthNavigation from './src/AuthNavigation';
 import MainNavigation from './src/MainNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { notificationListener } from './src/services/notification_service';
 
 class MainApp extends React.Component {
   state = {
@@ -38,151 +39,154 @@ class MainApp extends React.Component {
   };
 
   async componentDidMount() {
-    this.appStateSubscription = AppState.addEventListener(
-      'change',
-      this._handleAppStateChange,
-    );
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    notificationListener()
+    // notificationListener()
+    // this.appStateSubscription = AppState.addEventListener(
+    //   'change',
+    //   this._handleAppStateChange,
+    // );
+    // const authStatus = await messaging().requestPermission();
+    // const enabled =
+    //   authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    //   authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-    if (enabled) {
-      this.getFcmToken();
-    }
-    messaging().onMessage(async remoteMessage => {
-    });
-    messaging().setBackgroundMessageHandler(async remoteMessage => {
-      if (remoteMessage?.data?.isweb === 'True') {
-        Linking.openURL(remoteMessage?.data?.weburl);
-      } else {
-        if (remoteMessage?.data?.screen === 'Actividades') {
-          {
-            this.test(), navigate('Actividad');
-          }
-        } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
-          {
-            this.test(), this.fetchVideoData();
-          }
-        } else if (remoteMessage?.data?.screen === 'Clases') {
-          this.test(), navigate('Clases');
-        } else if (remoteMessage?.data?.screen === 'Exámenes') {
-          this.test(),
-            navigate('ExamFile', {
-              isRefresh: 'false',
-            });
-        } else if (remoteMessage?.data?.screen === 'Temario') {
-          this.test(), navigate('PDF');
-        } else if (remoteMessage?.data?.screen === 'Videos') {
-          this.test(), navigate('VideoClass');
-        } else if (remoteMessage?.data?.screen === 'Ranking global') {
-          this.test(), navigate('GlobalRanking');
-        } else if (remoteMessage?.data?.screen === 'Audiolibro') {
-          this.test(), navigate('AudioClass');
-        } else if (remoteMessage?.data?.screen === 'Repaso') {
-          this.test(), navigate('ReviewTest');
-        } else if (remoteMessage?.data?.screen === 'Entervista') {
-          this.test(), navigate('Personality');
-        } else if (remoteMessage?.data?.screen === 'Descargas') {
-          this.test(), navigate('DownUpload');
-        } else {
-          console.log('no screen found');
-        }
-      }
-    });
-    messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log(
-        'Notification caused app to open from background state:',
-        remoteMessage,
-      );
-      if (remoteMessage?.data?.isweb === 'True') {
-        Linking.openURL(remoteMessage?.data?.weburl);
-      } else {
-        if (remoteMessage?.data?.screen === 'Actividades') {
-          {
-            this.test(), navigate('Actividad');
-          }
-        } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
-          {
-            this.test(), this.fetchVideoData();
-          }
-        } else if (remoteMessage?.data?.screen === 'Clases') {
-          this.test(), navigate('Clases');
-        } else if (remoteMessage?.data?.screen === 'Exámenes') {
-          this.test(),
-            navigate('ExamFile', {
-              isRefresh: 'false',
-            });
-        } else if (remoteMessage?.data?.screen === 'Temario') {
-          this.test(), navigate('PDF');
-        } else if (remoteMessage?.data?.screen === 'Videos') {
-          this.test(), navigate('VideoClass');
-        } else if (remoteMessage?.data?.screen === 'Ranking global') {
-          this.test(), navigate('GlobalRanking');
-        } else if (remoteMessage?.data?.screen === 'Audiolibro') {
-          this.test(), navigate('AudioClass');
-        } else if (remoteMessage?.data?.screen === 'Repaso') {
-          this.test(), navigate('ReviewTest');
-        } else if (remoteMessage?.data?.screen === 'Entervista') {
-          this.test(), navigate('Personality');
-        } else if (remoteMessage?.data?.screen === 'Descargas') {
-          this.test(), navigate('DownUpload');
-        } else {
-          console.log('no screen found');
-        }
-      }
-    });
-    // Check whether an initial notification is available
-    messaging()
-      .getInitialNotification()
-      .then(remoteMessage => {
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage,
-        );
-        if (remoteMessage) {
-          console.log(
-            'Notification caused app to open from quit state:',
-            remoteMessage,
-          );
-          if (remoteMessage?.data?.isweb === 'True') {
-            Linking.openURL(remoteMessage?.data?.weburl);
-          } else {
-            if (remoteMessage?.data?.screen === 'Actividades') {
-              {
-                this.test(), navigate('Actividad');
-              }
-            } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
-              {
-                this.test(), this.fetchVideoData();
-              }
-            } else if (remoteMessage?.data?.screen === 'Clases') {
-              this.test(), navigate('Clases');
-            } else if (remoteMessage?.data?.screen === 'Exámenes') {
-              this.test(),
-                navigate('ExamFile', {
-                  isRefresh: 'false',
-                });
-            } else if (remoteMessage?.data?.screen === 'Temario') {
-              this.test(), navigate('PDF');
-            } else if (remoteMessage?.data?.screen === 'Videos') {
-              this.test(), navigate('VideoClass');
-            } else if (remoteMessage?.data?.screen === 'Ranking global') {
-              this.test(), navigate('GlobalRanking');
-            } else if (remoteMessage?.data?.screen === 'Audiolibro') {
-              this.test(), navigate('AudioClass');
-            } else if (remoteMessage?.data?.screen === 'Repaso') {
-              this.test(), navigate('ReviewTest');
-            } else if (remoteMessage?.data?.screen === 'Entervista') {
-              this.test(), navigate('Personality');
-            } else if (remoteMessage?.data?.screen === 'Descargas') {
-              this.test(), navigate('DownUpload');
-            } else {
-              console.log('no screen found');
-            }
-          }
-        }
-      });
+    // if (enabled) {
+    //   this.getFcmToken();
+    // }
+    // messaging().onMessage(async remoteMessage => {
+    //   console.log("remote MEssgeeeee" , remoteMessage?.notification)
+    // });
+    // messaging().setBackgroundMessageHandler(async remoteMessage => {
+    //   if (remoteMessage?.data?.isweb === 'True') {
+    //     Linking.openURL(remoteMessage?.data?.weburl);
+    //   } else {
+    //     if (remoteMessage?.data?.screen === 'Actividades') {
+    //       {
+    //         this.test(), navigate('Actividad');
+    //       }
+    //     } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
+    //       {
+    //         this.test(), this.fetchVideoData();
+    //       }
+    //     } else if (remoteMessage?.data?.screen === 'Clases') {
+    //       this.test(), navigate('Clases');
+    //     } else if (remoteMessage?.data?.screen === 'Exámenes') {
+    //       this.test(),
+    //         navigate('ExamFile', {
+    //           isRefresh: 'false',
+    //         });
+    //     } else if (remoteMessage?.data?.screen === 'Temario') {
+    //       this.test(), navigate('PDF');
+    //     } else if (remoteMessage?.data?.screen === 'Videos') {
+    //       this.test(), navigate('VideoClass');
+    //     } else if (remoteMessage?.data?.screen === 'Ranking global') {
+    //       this.test(), navigate('GlobalRanking');
+    //     } else if (remoteMessage?.data?.screen === 'Audiolibro') {
+    //       this.test(), navigate('AudioClass');
+    //     } else if (remoteMessage?.data?.screen === 'Repaso') {
+    //       this.test(), navigate('ReviewTest');
+    //     } else if (remoteMessage?.data?.screen === 'Entervista') {
+    //       this.test(), navigate('Personality');
+    //     } else if (remoteMessage?.data?.screen === 'Descargas') {
+    //       this.test(), navigate('DownUpload');
+    //     } else {
+    //       console.log('no screen found');
+    //     }
+    //   }
+    // });
+    // messaging().onNotificationOpenedApp(remoteMessage => {
+    //   console.log(
+    //     'Notification caused app to open from background state:',
+    //     remoteMessage,
+    //   );
+    //   if (remoteMessage?.data?.isweb === 'True') {
+    //     Linking.openURL(remoteMessage?.data?.weburl);
+    //   } else {
+    //     if (remoteMessage?.data?.screen === 'Actividades') {
+    //       {
+    //         this.test(), navigate('Actividad');
+    //       }
+    //     } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
+    //       {
+    //         this.test(), this.fetchVideoData();
+    //       }
+    //     } else if (remoteMessage?.data?.screen === 'Clases') {
+    //       this.test(), navigate('Clases');
+    //     } else if (remoteMessage?.data?.screen === 'Exámenes') {
+    //       this.test(),
+    //         navigate('ExamFile', {
+    //           isRefresh: 'false',
+    //         });
+    //     } else if (remoteMessage?.data?.screen === 'Temario') {
+    //       this.test(), navigate('PDF');
+    //     } else if (remoteMessage?.data?.screen === 'Videos') {
+    //       this.test(), navigate('VideoClass');
+    //     } else if (remoteMessage?.data?.screen === 'Ranking global') {
+    //       this.test(), navigate('GlobalRanking');
+    //     } else if (remoteMessage?.data?.screen === 'Audiolibro') {
+    //       this.test(), navigate('AudioClass');
+    //     } else if (remoteMessage?.data?.screen === 'Repaso') {
+    //       this.test(), navigate('ReviewTest');
+    //     } else if (remoteMessage?.data?.screen === 'Entervista') {
+    //       this.test(), navigate('Personality');
+    //     } else if (remoteMessage?.data?.screen === 'Descargas') {
+    //       this.test(), navigate('DownUpload');
+    //     } else {
+    //       console.log('no screen found');
+    //     }
+    //   }
+    // });
+    // // Check whether an initial notification is available
+    // messaging()
+    //   .getInitialNotification()
+    //   .then(remoteMessage => {
+    //     console.log(
+    //       'Notification caused app to open from quit state:',
+    //       remoteMessage,
+    //     );
+    //     if (remoteMessage) {
+    //       console.log(
+    //         'Notification caused app to open from quit state:',
+    //         remoteMessage,
+    //       );
+    //       if (remoteMessage?.data?.isweb === 'True') {
+    //         Linking.openURL(remoteMessage?.data?.weburl);
+    //       } else {
+    //         if (remoteMessage?.data?.screen === 'Actividades') {
+    //           {
+    //             this.test(), navigate('Actividad');
+    //           }
+    //         } else if (remoteMessage?.data?.screen === 'Entrenamiento') {
+    //           {
+    //             this.test(), this.fetchVideoData();
+    //           }
+    //         } else if (remoteMessage?.data?.screen === 'Clases') {
+    //           this.test(), navigate('Clases');
+    //         } else if (remoteMessage?.data?.screen === 'Exámenes') {
+    //           this.test(),
+    //             navigate('ExamFile', {
+    //               isRefresh: 'false',
+    //             });
+    //         } else if (remoteMessage?.data?.screen === 'Temario') {
+    //           this.test(), navigate('PDF');
+    //         } else if (remoteMessage?.data?.screen === 'Videos') {
+    //           this.test(), navigate('VideoClass');
+    //         } else if (remoteMessage?.data?.screen === 'Ranking global') {
+    //           this.test(), navigate('GlobalRanking');
+    //         } else if (remoteMessage?.data?.screen === 'Audiolibro') {
+    //           this.test(), navigate('AudioClass');
+    //         } else if (remoteMessage?.data?.screen === 'Repaso') {
+    //           this.test(), navigate('ReviewTest');
+    //         } else if (remoteMessage?.data?.screen === 'Entervista') {
+    //           this.test(), navigate('Personality');
+    //         } else if (remoteMessage?.data?.screen === 'Descargas') {
+    //           this.test(), navigate('DownUpload');
+    //         } else {
+    //           console.log('no screen found');
+    //         }
+    //       }
+    //     }
+    //   });
   }
 
   clearTimer = () => {

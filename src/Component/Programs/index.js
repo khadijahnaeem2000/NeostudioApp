@@ -30,7 +30,7 @@ const Programs = (props) => {
                         style={styles.imgBtn}
                     >
                         <Text style={styles.btnText}>
-                            {"Seleccionar s"}
+                            {"Seleccionar"}
                         </Text>
                     </FastImage>
                 </TouchableOpacity>
