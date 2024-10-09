@@ -25,7 +25,7 @@
 		931370C840C14B04A0879A1B /* ROUNDElegance-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */; };
 		CA6525F969B743D4B0A4826E /* ProximaNovaSoftW03-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF8308196848461986CBDD20 /* ProximaNovaSoftW03-Bold.ttf */; };
 		F9285F382C8FD61B008C1559 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9285F372C8FD61B008C1559 /* GoogleService-Info.plist */; };
-		FFCEEA6A48F44E97BC32E8F2 /* PROXIMANova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */; };
+		153FF49B67FD4BF19413CA65 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C8E8CE1AC5214FAE81912E8C /* ProximaNova-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,6 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-neoschool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neoschool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		758C67032C906116001D6630 /* neoschool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = neoschool.entitlements; path = neoschool/neoschool.entitlements; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = neoschool/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Regular.otf"; path = "../assets/fonts/PROXIMANova-Regular.otf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-neoschool-neoschoolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool-neoschoolTests.release.xcconfig"; path = "Target Support Files/Pods-neoschool-neoschoolTests/Pods-neoschool-neoschoolTests.release.xcconfig"; sourceTree = "<group>"; };
 		A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ROUNDElegance-Regular.ttf"; path = "../assets/fonts/ROUNDElegance-Regular.ttf"; sourceTree = "<group>"; };
 		BC4ADF5CCF4A42F1A3EB6F91 /* PROXIMANova-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PROXIMANova-Bold.otf"; path = "../assets/fonts/PROXIMANova-Bold.otf"; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F9285F372C8FD61B008C1559 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF8308196848461986CBDD20 /* ProximaNovaSoftW03-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNovaSoftW03-Bold.ttf"; path = "../assets/fonts/ProximaNovaSoftW03-Bold.ttf"; sourceTree = "<group>"; };
+		C8E8CE1AC5214FAE81912E8C /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; name = "ProximaNova-Regular.otf"; path = "../assets/fonts/ProximaNova-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +181,6 @@
 			children = (
 				5842D9771D584EBDBBF4DE9C /* FontsFreeNetProximaNovaSoftW03-Regular.otf */,
 				BC4ADF5CCF4A42F1A3EB6F91 /* PROXIMANova-Bold.otf */,
-				894894A8A7FE46DBAF04A592 /* PROXIMANova-Regular.otf */,
 				C65F273CDF054E9C9169DEAB /* Proxima-Regular.otf */,
 				D6BE469AF7AE4366A04FC83F /* pnsb.otf */,
 				DFE68231110A4D73B53F3AB7 /* AGENCY-Regular.ttf */,
@@ -189,6 +188,7 @@
 				A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */,
 				C791040624CE471C8176CA9C /* RoundedElegance-Regular.ttf */,
 				5715859BFBF04149B0541744 /* AGENCYR-Regular.TTF */,
+				C8E8CE1AC5214FAE81912E8C /* ProximaNova-Regular.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -304,7 +304,6 @@
 				5502772FC9DC636845F59A98 /* PrivacyInfo.xcprivacy in Resources */,
 				1915260F66264864829ED42A /* FontsFreeNetProximaNovaSoftW03-Regular.otf in Resources */,
 				919106E6B518464089C24C54 /* PROXIMANova-Bold.otf in Resources */,
-				FFCEEA6A48F44E97BC32E8F2 /* PROXIMANova-Regular.otf in Resources */,
 				7B8709D7CC694CA18CE995C6 /* Proxima-Regular.otf in Resources */,
 				2EC329BD18A747218B3D2C65 /* pnsb.otf in Resources */,
 				45F97BA869EB4803AB629A46 /* AGENCY-Regular.ttf in Resources */,
@@ -313,6 +312,7 @@
 				71668664448748CD83CA6754 /* RoundedElegance-Regular.ttf in Resources */,
 				5C6ECD3C640F49EFAC1E996B /* AGENCYR-Regular.TTF in Resources */,
 				F9285F382C8FD61B008C1559 /* GoogleService-Info.plist in Resources */,
+				153FF49B67FD4BF19413CA65 /* ProximaNova-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

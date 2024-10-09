@@ -53,7 +53,14 @@ export default class PaperLayout extends React.Component {
               'rgba(255,255,255, 0.9)',
             ]}
             fadeSize={20}>
-            <Text style={styles.question} >{question.replace(/&nbsp;/g, '')}</Text>
+            <Text style={{
+              marginTop: 20,
+              fontSize: widthPercentageToDP(2),
+              fontFamily: fonts.novaBold,
+              color: "#000",
+              marginLeft: 20,
+              marginRight: widthPercentageToDP(3),
+            }} >{question.replace(/&nbsp;/g, '')}</Text>
 
 
             <TouchableOpacity
@@ -62,26 +69,38 @@ export default class PaperLayout extends React.Component {
               onPress={clickHandler1}>
               {allowdescription === 'False' && isOption1 === 'answer1' ? (
                 <Image
-                  style={styles.arrow_image}
+                  style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3.5),
+                  }}
                   resizeMode="stretch"
                   source={require('../../Images/arrow.png')}
                 />
               ) : allowdescription === 'True' ? (
                 isCorrect === 'a' || isCorrect === 'a y b' ? (
                   <Image
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/correct.png')}
                   />
                 ) : allowdescription === 'True' && isOption1 === 'answer1' ? (
                   <Image
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/cross.png')}
                   />
                 ) : (
                   <View
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                   />
                 )
               ) : (
@@ -93,7 +112,12 @@ export default class PaperLayout extends React.Component {
                   }}
                 />
               )}
-              <Text style={styles.answer}  >{option1.replace(/&nbsp;/g, '')}</Text>
+              <Text style={{
+                fontFamily: fonts.novaRegular,
+                fontSize: widthPercentageToDP(1.7),
+                color: "#000",
+                marginRight: widthPercentageToDP(5),
+              }}  >{option1.replace(/&nbsp;/g, '')}</Text>
 
             </TouchableOpacity>
             <TouchableOpacity
@@ -102,33 +126,53 @@ export default class PaperLayout extends React.Component {
               onPress={clickHandler2}>
               {allowdescription === 'False' && isOption1 === 'answer2' ? (
                 <Image
-                  style={styles.arrow_image}
+                  style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3.5),
+                  }}
                   resizeMode="stretch"
                   source={require('../../Images/arrow.png')}
                 />
               ) : allowdescription === 'True' ? (
                 isCorrect === 'b' || isCorrect === 'a y b' ? (
                   <Image
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/correct.png')}
                   />
                 ) : allowdescription === 'True' && isOption1 === 'answer2' ? (
                   <Image
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/cross.png')}
                   />
                 ) : (
                   <View
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                   />
                 )
               ) : (
-                <View style={styles.correct_image} />
+                <View style={{
+                  width: widthPercentageToDP(4),
+                  height: widthPercentageToDP(3),
+                }} />
               )}
 
-              <Text style={styles.answer} >{option2.replace(/&nbsp;/g, '')}</Text>
+              <Text style={{
+                fontFamily: fonts.novaRegular,
+                fontSize: widthPercentageToDP(1.7),
+                color: "#000",
+                marginRight: widthPercentageToDP(5),
+              }} >{option2.replace(/&nbsp;/g, '')}</Text>
 
             </TouchableOpacity>
             {option3 !== '' && (
@@ -138,35 +182,55 @@ export default class PaperLayout extends React.Component {
                 onPress={clickHandler3}>
                 {allowdescription === 'False' && isOption1 === 'answer3' ? (
                   <Image
-                    style={styles.arrow_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3.5),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/arrow.png')}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'c' || isCorrect === 'c y d' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/correct.png')}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer3' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
                     <View
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                     />
                   )
                 ) : (
                   <View
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                   />
                 )}
 
-                <Text style={styles.answer}  >{option3.replace(/&nbsp;/g, '')}</Text>
+                <Text style={{
+                  fontFamily: fonts.novaRegular,
+                  fontSize: widthPercentageToDP(1.7),
+                  color: "#000",
+                  marginRight: widthPercentageToDP(5),
+                }}  >{option3.replace(/&nbsp;/g, '')}</Text>
 
               </TouchableOpacity>
             )}
@@ -177,41 +241,68 @@ export default class PaperLayout extends React.Component {
                 onPress={clickHandler4}>
                 {allowdescription === 'False' && isOption1 === 'answer4' ? (
                   <Image
-                    style={styles.arrow_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3.5),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/arrow.png')}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'd' || isCorrect === 'c y d' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/correct.png')}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer4' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
                     <View
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                     />
                   )
                 ) : (
                   <View
-                    style={styles.correct_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }}
                   />
                 )}
 
-                <Text style={styles.answer}    >{option4.replace(/&nbsp;/g, '')}</Text>
+                <Text style={{
+                  fontFamily: fonts.novaRegular,
+                  fontSize: widthPercentageToDP(1.7),
+                  color: "#000",
+                  marginRight: widthPercentageToDP(5),
+                }}    >{option4.replace(/&nbsp;/g, '')}</Text>
 
               </TouchableOpacity>
             )}
             {allowdescription === 'True' && (
 
-              <Text style={styles.description}  >{description}</Text>
+              <Text style={{
+                fontFamily: fonts.novaRegular,
+                fontSize: widthPercentageToDP(1.8),
+                color: "#000",
+                marginLeft: 20,
+                marginRight: widthPercentageToDP(5),
+                marginTop: widthPercentageToDP(1),
+              }}  >{description}</Text>
             )}
 
             <View style={{ height: 20 }} />
@@ -243,7 +334,7 @@ const styles = StyleSheet.create({
   },
   answer: {
     fontFamily: fonts.novaRegular,
-    fontSize: widthPercentageToDP(1.8),
+    fontSize: widthPercentageToDP(1.7),
     color: "#000",
     marginRight: widthPercentageToDP(5),
   },

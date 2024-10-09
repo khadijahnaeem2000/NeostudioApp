@@ -70,13 +70,13 @@
 		<string>Zocial.ttf</string>
 		<string>FontsFreeNetProximaNovaSoftW03-Regular.otf</string>
 		<string>PROXIMANova-Bold.otf</string>
-		<string>PROXIMANova-Regular.otf</string>
 		<string>Proxima-Regular.otf</string>
 		<string>pnsb.otf</string>
 		<string>AGENCY-Regular.ttf</string>
 		<string>ProximaNovaSoftW03-Bold.ttf</string>
 		<string>ROUNDElegance-Regular.ttf</string>
 		<string>RoundedElegance-Regular.ttf</string>
+		<string>ProximaNova-Regular.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

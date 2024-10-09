@@ -28,7 +28,7 @@ const ResultPopup = () => {
                 <View style={{
                     backgroundColor: "#fff",
                     borderRadius: 20,
-                    width: "55%",
+                    width: "75%",
                     padding: 20,
                     flexDirection: "row",
                     alignItems: "center",

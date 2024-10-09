@@ -89,7 +89,14 @@ export default class PaperLayout extends React.Component {
             marginRight: widthPercentageToDP(3),
             marginTop: widthPercentageToDP(-0.5),
           }}>
-          <Text style={styles.question} >{question}</Text>
+          <Text style={{
+            marginTop: 20,
+            fontSize: widthPercentageToDP(2),
+            fontFamily: fonts.novaBold,
+            color: "#000",
+            marginLeft: 20,
+            marginRight: widthPercentageToDP(3),
+          }} >{question}</Text>
           {/* <HTML
             contentWidth={Dimensions.get("screen").width}
             source={{ html: question }}
@@ -214,21 +221,34 @@ export default class PaperLayout extends React.Component {
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer1' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
-                    <View style={styles.correct_image} />
+                    <View style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }} />
                   )
                 ) : (
-                  <View style={styles.correct_image} />
+                  <View style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3),
+                  }} />
                 )}
                 <View
                   style={{
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
-                  <Text style={styles.answer}  >{option1}</Text>
+                  <Text style={{
+                    fontFamily: fonts.novaRegular,
+                    fontSize: widthPercentageToDP(1.8),
+                    color: "#000",
+                  }}  >{option1}</Text>
 
                 </View>
               </TouchableOpacity>
@@ -238,34 +258,53 @@ export default class PaperLayout extends React.Component {
                 onPress={clickHandler2}>
                 {allowdescription === 'False' && isOption1 === 'answer2' ? (
                   <Image
-                    style={styles.arrow_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3.5),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/arrow.png')}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'b' || isCorrect === 'a y b' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/correct.png')}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer2' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
-                    <View style={styles.correct_image} />
+                    <View style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }} />
                   )
                 ) : (
-                  <View style={styles.correct_image} />
+                  <View style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3),
+                  }} />
                 )}
                 <View
                   style={{
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
-                  <Text style={styles.answer}  >{option2}</Text>
+                  <Text style={{
+                    fontFamily: fonts.novaRegular,
+                    fontSize: widthPercentageToDP(1.8),
+                    color: "#000",
+                  }}  >{option2}</Text>
 
                 </View>
               </TouchableOpacity>
@@ -275,34 +314,53 @@ export default class PaperLayout extends React.Component {
                 onPress={clickHandler3}>
                 {allowdescription === 'False' && isOption1 === 'answer3' ? (
                   <Image
-                    style={styles.arrow_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3.5),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/arrow.png')}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'c' || isCorrect === 'c y d' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/correct.png')}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer3' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
-                    <View style={styles.correct_image} />
+                    <View style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }} />
                   )
                 ) : (
-                  <View style={styles.correct_image} />
+                  <View style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3),
+                  }} />
                 )}
                 <View
                   style={{
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
-                  <Text style={styles.answer}  >{option3}</Text>
+                  <Text style={{
+                    fontFamily: fonts.novaRegular,
+                    fontSize: widthPercentageToDP(1.8),
+                    color: "#000",
+                  }}  >{option3}</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -311,34 +369,53 @@ export default class PaperLayout extends React.Component {
                 onPress={clickHandler4}>
                 {allowdescription === 'False' && isOption1 === 'answer4' ? (
                   <Image
-                    style={styles.arrow_image}
+                    style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3.5),
+                    }}
                     resizeMode="stretch"
                     source={require('../../Images/arrow.png')}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'd' || isCorrect === 'c y d' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/correct.png')}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer4' ? (
                     <Image
-                      style={styles.correct_image}
+                      style={{
+                        width: widthPercentageToDP(4),
+                        height: widthPercentageToDP(3),
+                      }}
                       resizeMode="stretch"
                       source={require('../../Images/cross.png')}
                     />
                   ) : (
-                    <View style={styles.correct_image} />
+                    <View style={{
+                      width: widthPercentageToDP(4),
+                      height: widthPercentageToDP(3),
+                    }} />
                   )
                 ) : (
-                  <View style={styles.correct_image} />
+                  <View style={{
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(3),
+                  }} />
                 )}
                 <View
                   style={{
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
-                  <Text style={styles.answer}  >{option4}</Text>
+                  <Text style={{
+                    fontFamily: fonts.novaRegular,
+                    fontSize: widthPercentageToDP(1.8),
+                    color: "#000",
+                  }}  >{option4}</Text>
 
                 </View>
               </TouchableOpacity>
@@ -351,8 +428,14 @@ export default class PaperLayout extends React.Component {
                   marginRight: widthPercentageToDP(5),
                   marginBottom: widthPercentageToDP(10),
                 }}>
-                <Text style={styles.description}  >{description}</Text>
-
+                <Text style={{
+                  fontFamily: fonts.novaRegular,
+                  fontSize: widthPercentageToDP(1.8),
+                  color: "#000",
+                  marginLeft: 20,
+                  marginRight: widthPercentageToDP(5),
+                  marginTop: widthPercentageToDP(1),
+                }}  >{description}</Text>
               </View>
             )}
           </ScrollView2>

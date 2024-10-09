@@ -41,7 +41,6 @@ class News extends React.Component {
 
   render() {
     const { newsItem, AuthLoading } = this.props.user;
-    console.log(newsItem);
     return (
       <FastImage
         style={styles.container}
