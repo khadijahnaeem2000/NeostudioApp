@@ -1,4 +1,4 @@
-import {Platform, StyleSheet} from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
     height: heightPercentageToDP(9),
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: Platform.OS === 'android' ? 0: heightPercentageToDP(5)
+    marginTop: Platform.OS === 'android' ? 0 : heightPercentageToDP(5)
   },
   menu: {
     position: 'absolute',
@@ -120,10 +120,10 @@ export const styles = StyleSheet.create({
     //backgroundColor:"red"
   },
   navigation: {
-    position:"absolute",
-    top:0,
-    bottom:0,
-    left:0,
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
     width: widthPercentageToDP(100),
     height: heightPercentageToDP(100),
   },
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     position: 'absolute',
     right: '5%',
-    zIndex:3
+    zIndex: 3
   },
   loaderStyle: {
     width: widthPercentageToDP(8),
@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
     marginTop: heightPercentageToDP(1),
     marginBottom: widthPercentageToDP(4),
   },
-  jump: {marginBottom: heightPercentageToDP(30)},
+  jump: { marginBottom: heightPercentageToDP(30) },
   topJump: {
     height: heightPercentageToDP(4),
   },
@@ -225,5 +225,20 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.novaBold,
     color: '#000',
     marginLeft: widthPercentageToDP(1),
+  },
+  btnStyle: {
+    marginTop: heightPercentageToDP(2),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: widthPercentageToDP(90),
+    height: widthPercentageToDP(20),
+    alignSelf: 'center',
+    //backgroundColor:"yellow"
+    //marginTop: heightPercentageToDP(4),
+  },
+  button: {
+    width: '100%',
+    height: '100%',
+    //marginTop: heightPercentageToDP(5)
   },
 });

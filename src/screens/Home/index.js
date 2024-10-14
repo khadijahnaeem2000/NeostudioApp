@@ -1085,16 +1085,65 @@ class Home extends Component {
             this.toggleBox();
           }}
         />
-        {/* {
+        {
           login?.data?.type === 'Prueba' &&
           <Modal transparent visible={true}  >
-            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", paddingHorizontal: 20 }} >
-              <View style={{ backgroundColor: "white", height: Dimensions.get("screen").height / 2, borderRadius: 20 }} >
-                <Text style={{ color: 'black' }}  > Logout </Text>
+            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", }} >
+              <View style={{ backgroundColor: "white", borderRadius: 20, width: "90%", alignSelf: "center", overflow: "hidden" }} >
+                <Text style={{ color: 'black', fontFamily: fonts.novaBold, fontSize: widthPercentageToDP(7), textAlign: "center", paddingTop: 20 }}  > PRUEBA </Text>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    console.log("ASdasdsada" ,login?.data?.paylink)
+                    Linking.openURL(login?.data?.paylink)
+                  }}
+                  style={styles.btnStyle}
+                >
+                  <FastImage
+                    source={
+                      require('./assets/stripe_btn.png')
+                    }
+                    resizeMode={FastImage.resizeMode.contain}
+                    style={styles.button}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.btnStyle}
+                  onPress={() => Linking.openURL('https://api.whatsapp.com/send/?phone=34621251720&text&type=phone_number&app_absent=0')}>
+                  <FastImage
+                    source={
+                      require('./assets/whatsapp_btn.png')
+                    }
+                    resizeMode={FastImage.resizeMode.contain}
+                    style={styles.button}
+                  />
+                </TouchableOpacity>
+
+                <LinearGradient
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  colors={["#006176", "#00a7cb"]}
+                  style={{ marginTop: 20 }}>
+
+                  <TouchableOpacity
+                    onPress={() => (this.test(), this.logoutApi())}
+                    style={{
+                      width: "100%",
+                      height: 50,
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    <Text style={styles.btnText}>
+                      {"SALIR"}
+                    </Text>
+                  </TouchableOpacity>
+
+                </LinearGradient>
               </View>
             </View>
           </Modal>
-        } */}
+        }
       </FastImage>
     );
   }
