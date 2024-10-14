@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text, View } from 'react-native'
+import { Modal, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowPopup } from '../../Redux/slices/popup-slice'
@@ -8,6 +8,7 @@ import { fonts } from '../../utils'
 
 const ResultPopup = () => {
     const dispatch = useDispatch()
+    const { height, width } = useWindowDimensions()
 
     const { show_popup, popup_content } = useSelector(state => state.popup)
 
@@ -29,9 +30,9 @@ const ResultPopup = () => {
                 <View style={{
                     backgroundColor: "#fff",
                     borderRadius: 12,
-                    width: "75%",
+                    width: width > height ? "75%" : "95%",
                     paddingHorizontal: 20,
-                    paddingVertical:6,
+                    paddingVertical: 6,
                     flexDirection: "row",
                     alignItems: "center",
                     alignSelf: "center",
@@ -59,11 +60,11 @@ const ResultPopup = () => {
                                 {popup_content?.title}
                             </Text>
                             <Text
-                            style={{
-                                color: "black",
-                                fontSize: 16,
-                                fontFamily: fonts.novaRegular,
-                            }}
+                                style={{
+                                    color: "black",
+                                    fontSize: 16,
+                                    fontFamily: fonts.novaRegular,
+                                }}
                             >
                                 {" ha aprobado "}
                             </Text>
@@ -73,7 +74,7 @@ const ResultPopup = () => {
                                 fontFamily: fonts.novaBold,
                             }} >
 
-                               {popup_content?.data?.examname}
+                                {popup_content?.data?.examname}
                             </Text>
                             <Text style={{
                                 color: "black",
@@ -81,7 +82,7 @@ const ResultPopup = () => {
                                 fontFamily: fonts.novaRegular,
                             }} >
 
-                               {" con "}
+                                {" con "}
                             </Text>
                             <Text style={{
                                 color: "black",
@@ -89,7 +90,7 @@ const ResultPopup = () => {
                                 fontFamily: fonts.novaBold,
                             }} >
 
-                               {popup_content?.data?.score}
+                                {popup_content?.data?.score}
                             </Text>
                             <Text style={{
                                 color: "black",
@@ -97,7 +98,7 @@ const ResultPopup = () => {
                                 fontFamily: fonts.novaRegular,
                             }} >
 
-                               {" puntos. "}
+                                {" puntos. "}
                             </Text>
                             <Text style={{
                                 color: "black",
@@ -105,7 +106,7 @@ const ResultPopup = () => {
                                 fontFamily: fonts.novaRegular,
                             }} >
 
-                               {"¡Enhorabuena!"}
+                                {"¡Enhorabuena!"}
                             </Text>
 
                         </Text>
