@@ -144,7 +144,7 @@ const OTP = ({ navigation, route }) => {
         </Text>
 
         <OTPInputView
-          style={{ width: '100%', height: heightPercentageToDP(10), alignSelf: 'center' }}
+          style={{ width: '100%', height: heightPercentageToDP(10), alignSelf: 'center', justifyContent: "space-around", paddingHorizontal: 12 }}
           pinCount={4}
           placeholderTextColor='#fff'
           code={code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   // },
 
   underlineStyleBase: {
-    width: widthPercentageToDP(13),
+    width: widthPercentageToDP(16),
     height: heightPercentageToDP(7),
     borderWidth: widthPercentageToDP(0.2),
     borderColor: '#659ece',
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   },
 
   underlineStyleHighLighted: {
-    width: widthPercentageToDP(13),
+    width: widthPercentageToDP(16),
     height: heightPercentageToDP(7),
     borderWidth: widthPercentageToDP(0.2),
     borderColor: '#659ece',
