@@ -193,8 +193,6 @@ class Test extends Component {
     const examsID = this.props.route.params.examsId || '1'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
 
-
-console.log("is screen mee" , examStartData?.data?.[0])
     return (
       <View
       style={{flex:1}}

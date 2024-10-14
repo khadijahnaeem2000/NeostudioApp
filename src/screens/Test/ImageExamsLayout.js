@@ -428,14 +428,47 @@ export default class PaperLayout extends React.Component {
                   marginRight: widthPercentageToDP(5),
                   marginBottom: widthPercentageToDP(10),
                 }}>
-                <Text style={{
-                  fontFamily: fonts.novaRegular,
-                  fontSize: widthPercentageToDP(1.8),
-                  color: "#000",
-                  marginLeft: 20,
-                  marginRight: widthPercentageToDP(5),
-                  marginTop: widthPercentageToDP(1),
-                }}  >{description}</Text>
+                 <HTML
+                  contentWidth={Dimensions.get('screen').width}
+                  source={{ html: description }}
+                  classesStyles={{
+                    regular: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaRegular,
+                      color: '#000',
+                    },
+                    bold: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaBold,
+                      fontWeight: 'normal',
+                      color: '#000',
+                    },
+                    round: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.elegance,
+                      color: '#000',
+                    },
+                  }}
+                  tagsStyles={{
+                    a: {
+                      textDecorationLine: "none"
+                    },
+                    p: {
+                      padding: 6,
+                      //textAlign: "justify"
+                    },
+                    span: {
+                      //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
+                      flexDirection: 'row',
+                    },
+                    tap: {
+                      fontSize: DeviceInfo.isTablet()
+                        ? widthPercentageToDP(2)
+                        : widthPercentageToDP(1.5),
+                    },
+                  }}
+                />
+
               </View>
             )}
           </ScrollView2>

@@ -12,6 +12,7 @@ import {
   Alert,
   TextInput,
   Platform,
+  Dimensions,
 } from "react-native";
 import { connect } from "react-redux";
 import {
@@ -524,6 +525,8 @@ class Home extends Component {
       timer,
       meetingStatus
     } = this.state;
+
+    console.log("login", login?.data?.type)
 
     return (
       <FastImage
@@ -1082,6 +1085,16 @@ class Home extends Component {
             this.toggleBox();
           }}
         />
+        {/* {
+          login?.data?.type === 'Prueba' &&
+          <Modal transparent visible={true}  >
+            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", paddingHorizontal: 20 }} >
+              <View style={{ backgroundColor: "white", height: Dimensions.get("screen").height / 2, borderRadius: 20 }} >
+                <Text style={{ color: 'black' }}  > Logout </Text>
+              </View>
+            </View>
+          </Modal>
+        } */}
       </FastImage>
     );
   }

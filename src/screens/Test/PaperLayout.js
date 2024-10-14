@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import {
   heightPercentageToDP,
@@ -13,6 +14,7 @@ import {
 import DeviceInfo from 'react-native-device-info';
 import ScrollView2 from 'rn-faded-scrollview';
 import { fonts } from '../../utils';
+import HTML from 'react-native-render-html';
 
 export default class PaperLayout extends React.Component {
   render() {
@@ -294,15 +296,66 @@ export default class PaperLayout extends React.Component {
               </TouchableOpacity>
             )}
             {allowdescription === 'True' && (
+              <View style={{
+                  marginLeft: 20,
+                  marginRight: widthPercentageToDP(5),
+                  // marginTop: widthPercentageToDP(1),
+              }} >
 
-              <Text style={{
-                fontFamily: fonts.novaRegular,
-                fontSize: widthPercentageToDP(1.8),
-                color: "#000",
-                marginLeft: 20,
-                marginRight: widthPercentageToDP(5),
-                marginTop: widthPercentageToDP(1),
-              }}  >{description}</Text>
+                <HTML
+                  contentWidth={Dimensions.get('screen').width}
+                  source={{ html: description }}
+                  classesStyles={{
+                    regular: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaRegular,
+                      color: '#000',
+                    },
+                    bold: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaBold,
+                      fontWeight: 'normal',
+                      color: '#000',
+                    },
+                    round: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.elegance,
+                      color: '#000',
+                    },
+                  }}
+                  tagsStyles={{
+                    a: {
+                      textDecorationLine: "none",
+                      fontFamily:fonts.novaRegular
+                    },
+                    p: {
+                      padding: 6,
+                      fontFamily:fonts.novaRegular
+                      //textAlign: "justify"
+                    },
+                    span: {
+                      //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
+                      flexDirection: 'row',
+                      fontFamily:fonts.novaRegular
+                    },
+                    tap: {
+                      fontFamily:fonts.novaRegular,
+                      fontSize: DeviceInfo.isTablet()
+                        ? widthPercentageToDP(2)
+                        : widthPercentageToDP(1.5),
+                    },
+                  }}
+                />
+
+              </View>
+              // <Text style={{
+              //   fontFamily: fonts.novaRegular,
+              //   fontSize: widthPercentageToDP(1.8),
+              //   color: "#000",
+              //   marginLeft: 20,
+              //   marginRight: widthPercentageToDP(5),
+              //   marginTop: widthPercentageToDP(1),
+              // }}  >{description}</Text>
             )}
 
             <View style={{ height: 20 }} />

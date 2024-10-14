@@ -45,7 +45,7 @@ const OTP = ({ navigation, route }) => {
 
   const getOTPApi = async () => {
     setLoading(true);
-    const result = await getOTPMobile(data.data.id, data.data.telephone);
+    const result = await getOTPMobile(data?.data?.id, data?.data?.telephone);
     await setLoading(false);
   };
 
@@ -109,7 +109,7 @@ const OTP = ({ navigation, route }) => {
         style={{
           position: "absolute",
           zIndex: 100,
-          top:  Platform.OS === 'ios' ? 40: 12,
+          top: Platform.OS === 'ios' ? 40 : 12,
           left: 20,
           height: 40,
           width: 40,
@@ -145,7 +145,7 @@ const OTP = ({ navigation, route }) => {
 
         <OTPInputView
           style={{ width: '100%', height: heightPercentageToDP(10), alignSelf: 'center' }}
-          pinCount={6}
+          pinCount={4}
           placeholderTextColor='#fff'
           code={code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
           onCodeChanged={code => setCode(code)}
@@ -161,7 +161,7 @@ const OTP = ({ navigation, route }) => {
           <TouchableOpacity
             style={styles.btnStyle}
             onPress={() => {
-              dispatch(verifyMobileOTP(data.data.id, code, data));
+              dispatch(verifyMobileOTP(data?.data?.id, code, data));
             }}>
             <FastImage
               source={require('../../Images/button.png')}

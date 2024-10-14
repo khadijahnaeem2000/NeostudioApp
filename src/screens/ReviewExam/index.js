@@ -48,8 +48,6 @@ class Review extends Component {
       Test: true,
       currentPage: 0,
       animationsAreEnabled: true,
-      width: 0,
-      height: 0,
       page: 0,
       appState: AppState.currentState,
       timer: '0',
@@ -111,6 +109,7 @@ class Review extends Component {
     });
   }
   componentWillUnmount() {
+    this.test()
     this.unsubscribeNetInfo();
     StatusBar.setHidden(false);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
@@ -191,16 +190,16 @@ class Review extends Component {
     const { myOption } = this.state;
     return (
       <View
-        style={styles.container}
-        onLayout={e => {
-          this._onLayout(e);
-        }}>
+        style={styles.container}  >
         <View style={styles.topView}>
-          <View style={styles.playPauseView}>
+          <View style={[styles.playPauseView]}>
             <TouchableOpacity
               style={[
-                styles.btnImage,
-                { justifyContent: 'center', alignItems: 'center' },
+                {
+                  width: 40,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
               ]}
               onPress={() => {
                 this.setState({ modalVisible: 'modalVisible' });
@@ -496,113 +495,83 @@ class Review extends Component {
             <View style={styles.innerModal2}>
               <FastImage
                 source={require('../../Images/navigationSlider.png')}
-                resizeMode={FastImage.resizeMode.stretch}
+                resizeMode={FastImage.resizeMode.cover}
                 style={styles.navigation}>
-                <View style={styles.topModal}>
-                  <View style={styles.navigationHeader}>
-                    <TouchableOpacity
-                      //style = {styles.}
-                      onPress={() => this.setState({ modalVisible: '' })}>
-                      <Icon2 name="close" color="#ffff" size={30} />
-                    </TouchableOpacity>
-                  </View>
-                </View>
+                <TouchableOpacity
+                  style={styles.navigationHeader}
+                  onPress={() => this.setState({ modalVisible: '' })}>
+                  <Icon2 name="close" color="#ffff" size={30} />
+                </TouchableOpacity>
                 {!reviewDrawer ? (
                   <View />
                 ) : (
                   <View style={styles.mainModalView}>
-                    <View style={styles.timeView}>
-                      <Text style={styles.timeText}>{'Tiempo:'}</Text>
-                      <Text
-                        style={[
-                          styles.timeValue,
-                          {
-                            marginLeft: widthPercentageToDP(11.5),
-                          },
-                        ]}>
-                        {reviewDrawer.time}
-                      </Text>
-                      <Text style={styles.mnTime}>{'min'}</Text>
-                    </View>
-                    <View
-                      style={[
-                        styles.timeView,
-                        {
-                          marginTop: widthPercentageToDP(5),
-                        },
-                      ]}>
-                      <Text style={styles.timeText}>{'Nº Preguntas:'}</Text>
-                      <Text
-                        style={[
-                          styles.timeValue,
-                          {
-                            marginLeft: widthPercentageToDP(6.5),
-                          },
-                        ]}>
-                        {reviewDrawer.totalQuestions}
-                      </Text>
-                    </View>
-                    <View style={styles.timeView}>
-                      <Text style={styles.timeText}>{'Aciertos:'}</Text>
-                      <View style={styles.midView}>
-                        <Text style={styles.timeValue6}>
-                          {reviewDrawer.correctCount}
-                        </Text>
-                        <Text style={styles.timeValue2}>
-                          {reviewDrawer.correctScore}
-                        </Text>
-                        <Text style={styles.mnTime}>{'pts'}</Text>
-                      </View>
-                    </View>
-                    <View style={styles.timeView}>
-                      <Text style={styles.timeText}>{'Fallos:'}</Text>
-                      <View style={styles.midView}>
-                        <Text style={styles.timeValue4}>
-                          {reviewDrawer.wrongCount}
-                        </Text>
-                        <Text style={styles.timeValue2}>
-                          {reviewDrawer.wrongScore}
-                        </Text>
-                        <Text style={styles.mnTime}>{'pts'}</Text>
-                      </View>
-                    </View>
-                    <View style={styles.timeView}>
-                      <Text style={styles.timeText}>{'Nulos:'}</Text>
-                      <View style={styles.midView}>
-                        <Text style={styles.timeValue5}>
-                          {reviewDrawer.nonAttemptedCount}
-                        </Text>
-                        <Text style={styles.timeValue2}>
-                          {reviewDrawer.nonAttemptedScore}
-                        </Text>
-                        <Text style={styles.mnTime}>{'pts'}</Text>
-                      </View>
-                    </View>
-                    <View
-                      style={[
-                        styles.timeView,
-                        {
-                          marginTop: widthPercentageToDP(3),
-                        },
-                      ]}>
-                      <Text style={styles.timeText}>{'Puntuación:'}</Text>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                        }}>
+                    <ScrollView showsVerticalScrollIndicator={false} >
+                      <View style={styles.timeView}>
+                        <Text style={styles.timeText}>{'Tiempo:'}</Text>
                         <Text
-                          style={[
-                            styles.timeValue2,
-                            {
-                              marginLeft: widthPercentageToDP(8),
-                            },
-                          ]}>
+                          style={styles.timeValue}>
+                          {reviewDrawer.time}
+                        </Text>
+                        <Text style={styles.mnTime}>{'min'}</Text>
+                      </View>
+                      <View
+                        style={[styles.timeView, { marginTop: 20 }]}>
+                        <Text style={styles.timeText}>{'Nº Preguntas:'}</Text>
+                        <Text
+                          style={styles.timeValue}>
+                          {reviewDrawer.totalQuestions}
+                        </Text>
+                      </View>
+                      <View style={styles.timeView}>
+                        <Text style={styles.timeText}>{'Aciertos:'}</Text>
+                        <View style={styles.midView}>
+                          <Text style={styles.timeValue}>
+                            {reviewDrawer.correctCount}
+                          </Text>
+                          <Text style={styles.timeValue2}>
+                            {reviewDrawer.correctScore}
+                          </Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                        </View>
+                      </View>
+                      <View style={styles.timeView}>
+                        <Text style={styles.timeText}>{'Fallos:'}</Text>
+                        <View style={styles.midView}>
+                          <Text style={styles.timeValue}>
+                            {reviewDrawer.wrongCount}
+                          </Text>
+                          <Text style={styles.timeValue2}>
+                            {reviewDrawer.wrongScore}
+                          </Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                        </View>
+                      </View>
+                      <View style={styles.timeView}>
+                        <Text style={styles.timeText}>{'Nulos:'}</Text>
+                        <View style={styles.midView}>
+                          <Text style={styles.timeValue}>
+                            {reviewDrawer.nonAttemptedCount}
+                          </Text>
+                          <Text style={styles.timeValue2}>
+                            {reviewDrawer.nonAttemptedScore}
+                          </Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                        </View>
+                      </View>
+                      <View
+                        style={[styles.timeView, { marginTop: 20 }]}>
+                        <Text style={styles.timeText}>{'Puntuación:'}</Text>
+                        <Text
+                          style={styles.timeValue}>
                           {reviewDrawer.score}
                         </Text>
                         <Text style={styles.mnTime}>{'pts'}</Text>
                       </View>
-                    </View>
+
+
+                      <View style={{ height: 20 }} />
+                    </ScrollView>
                   </View>
                 )}
               </FastImage>
@@ -626,7 +595,7 @@ class Review extends Component {
                   </Text>
                   <View style={styles.listOptions}>
                     <ScrollView
-                      contentContainerStyle={{ flexGrow: 1 }}
+                      keyboardShouldPersistTaps={"handled"}
                       showsVerticalScrollIndicator={false}>
                       <TouchableOpacity
                         onPress={() => this.setState({ myOption: 1 })}
@@ -759,9 +728,9 @@ class Review extends Component {
                     } else {
                       this.setState({ modalVisible: '' }, () => {
                         updateRejectReason(
-                          this.state.reason,
+                          this.state?.reason,
                           login?.data?.id,
-                          reviewAll.data[this.state.pageSelected].qaId,
+                          reviewAll.data?.[this?.state?.pageSelected]?.qaId,
                           this.state.myOption == 1
                             ? 'option1'
                             : this.state.myOption == 2

@@ -22,6 +22,7 @@ const RemotePushController = props => {
         console.log("notificationsasd", notification)
         let naviType = "";
         naviType = notification.data;
+        console.log("notificaionasdasd" ,notification?.data )
         if (naviType?.type === 'result') {
           const obj = {
             message: notification?.message,

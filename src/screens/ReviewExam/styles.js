@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingHorizontal: 20
   },
   topView: {
     // flexDirection: 'row',
@@ -19,12 +20,11 @@ export const styles = StyleSheet.create({
     // marginLeft: widthPercentageToDP(2),
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginTop: Platform.OS === 'android' ? 0 : widthPercentageToDP(0.5)
+    marginTop: 12
   },
   playPauseView: {
-    width: widthPercentageToDP(30),
     flexDirection: 'row',
   },
   timerView: {
@@ -40,8 +40,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logo: {
-    width: widthPercentageToDP(50),
-    height: widthPercentageToDP(13),
+    width: "35%",
+    height: 60,
   },
   logo2: {
     width: heightPercentageToDP(55),
@@ -82,13 +82,12 @@ export const styles = StyleSheet.create({
     //marginBottom: widthPercentageToDP(1)
     position: 'absolute',
     bottom: '1%',
-    marginLeft: widthPercentageToDP(2),
-    marginRight: widthPercentageToDP(2),
+    marginLeft: 20
   },
   btnImage: {
-    width: widthPercentageToDP(8),
-    height: widthPercentageToDP(8),
-    marginLeft: widthPercentageToDP(1),
+    width: 60,
+    height: 60,
+    marginLeft: 12,
   },
   loading: {
     position: 'absolute',
@@ -163,27 +162,24 @@ export const styles = StyleSheet.create({
     // width: '100%',
     // height: '100%',
     //flex: 1,
-    marginBottom: widthPercentageToDP(10),
-    marginLeft: widthPercentageToDP(5),
-    marginRight: widthPercentageToDP(5),
+    marginBottom: 20,
+    marginLeft: 30,
+    marginRight: 30,
+    width: "100%",
   },
   navigation: {
-    width: widthPercentageToDP(70),
-    height: widthPercentageToDP(100),
+    width: "70%",
+    height: "100%",
+    paddingVertical: 20,
+    paddingHorizontal: 30,
   },
-  topModal: {
-    flexDirection: 'row-reverse',
-    marginTop: heightPercentageToDP(5),
-    marginRight: widthPercentageToDP(10),
-  },
+
   navigationHeader: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    height: 40,
+    width: 40,
+    justifyContent: "center",
     alignItems: 'center',
-    marginRight: widthPercentageToDP(5),
-    // position: "absolute",
-    // right: "4%",
-    // top: "4%"
+    alignSelf: "flex-end"
   },
   loaderStyle: {
     width: widthPercentageToDP(8),
@@ -191,38 +187,40 @@ export const styles = StyleSheet.create({
     marginRight: widthPercentageToDP(3),
   },
   mainModalView: {
-    //flex: 1,
-    marginTop: heightPercentageToDP(2),
-    width: widthPercentageToDP(100),
+    // marginTop: 20
   },
   jump: {
     height: widthPercentageToDP(50),
   },
   timeView: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    //justifyContent:"space-around",
     alignItems: 'center',
   },
   timeText: {
-    fontSize: widthPercentageToDP(4),
+    fontSize: 23,
     fontFamily: fonts.elegance,
     color: '#ffff',
-    //textAlign: "left",
-    marginLeft: widthPercentageToDP(1.5),
+    width: "30%",
   },
   timeValue: {
-    fontSize: widthPercentageToDP(4.5),
+    fontSize: 26,
     fontFamily: fonts.novaBold,
     color: '#ffff',
-    width: widthPercentageToDP(14),
+    marginLeft: 40,
+    width:"20%"
+  },
+  mnTime: {
+    fontSize: 28,
+    fontFamily: fonts.elegance,
+    color: '#ffff',
+    marginLeft: 6
   },
   timeValue2: {
-    fontSize: widthPercentageToDP(4.5),
-    width: widthPercentageToDP(15),
+    fontSize: 26,
     fontFamily: fonts.novaBold,
     color: '#ffff',
-    marginLeft: widthPercentageToDP(4),
+    width:"20%",
+
   },
   timeValue3: {
     width: widthPercentageToDP(5),
@@ -253,31 +251,21 @@ export const styles = StyleSheet.create({
     marginLeft: widthPercentageToDP(5),
   },
   midView: {
-    width: widthPercentageToDP(45),
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    //justifyContent:"space-between",
     alignItems: 'center',
-    marginLeft: widthPercentageToDP(8),
-    //backgroundColor:"red"
   },
-  mnTime: {
-    fontSize: widthPercentageToDP(4.5),
-    fontFamily: fonts.elegance,
-    color: '#ffff',
-    marginLeft: widthPercentageToDP(1),
-  },
+
   rejectView: {
     flex: 1,
     backgroundColor: 'rgba(1,1,1,0.5)',
+    justifyContent: "center"
   },
   rejectContainer: {
-    width: heightPercentageToDP(80),
-    height: widthPercentageToDP(75),
+    width: "70%",
+    height: "90%",
     backgroundColor: '#fff',
-    borderRadius: heightPercentageToDP(2),
+    borderRadius: 20,
     alignSelf: 'center',
-    marginTop: Platform.OS === 'android' ? widthPercentageToDP(3) : widthPercentageToDP(5),
   },
   rejectBottom: {
     width: '100%',
@@ -289,46 +277,42 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderBottomLeftRadius: heightPercentageToDP(2),
-    borderBottomRightRadius: heightPercentageToDP(2),
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
   rejectBtn: {
-    fontSize: heightPercentageToDP(2),
+    fontSize: 13,
     fontFamily: fonts.novaBold,
     color: '#ffff',
   },
   rejectDescription: {
-    fontSize: heightPercentageToDP(2),
+    fontSize: 15,
     fontFamily: fonts.novaBold,
     color: '#000',
-    paddingTop: heightPercentageToDP(1.5),
-    paddingLeft: heightPercentageToDP(5),
+    paddingTop: 20,
+    paddingLeft: 20,
   },
   listOptions: {
-    width: heightPercentageToDP(80),
-    height: widthPercentageToDP(47),
-    //backgroundColor: 'red',
+    width: "90%",
   },
   inputStyle: {
-    width: heightPercentageToDP(65),
-    height: widthPercentageToDP(15),
+    width: "60%",
+    height: 120,
     //marginTop: heightPercentageToDP(1),
     alignSelf: 'center',
-    fontSize: heightPercentageToDP(2),
+    fontSize: 13,
     fontFamily: fonts.novaRegular,
     color: '#000',
-    //backgroundColor: 'red',
   },
   optionsStyle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: heightPercentageToDP(3),
-    marginTop: heightPercentageToDP(0.5),
+    marginTop: 6,
   },
   rejectItems: {
-    fontSize: heightPercentageToDP(2),
+    fontSize: 15,
     fontFamily: fonts.novaRegular,
     color: '#000',
-    marginLeft: heightPercentageToDP(0.4),
+    marginLeft: 6,
   },
 });

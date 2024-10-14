@@ -14,6 +14,7 @@ const ResultPopup = () => {
     const onClose = () => {
         dispatch(setShowPopup(false))
     }
+
     return (
         <Modal visible={show_popup} transparent onRequestClose={onClose} >
             <TouchableOpacity
@@ -27,9 +28,10 @@ const ResultPopup = () => {
                 }} >
                 <View style={{
                     backgroundColor: "#fff",
-                    borderRadius: 20,
+                    borderRadius: 12,
                     width: "75%",
-                    padding: 20,
+                    paddingHorizontal: 20,
+                    paddingVertical:6,
                     flexDirection: "row",
                     alignItems: "center",
                     alignSelf: "center",
@@ -46,14 +48,68 @@ const ResultPopup = () => {
                             width: 60
                         }}
                     />
-                    <Text style={{
-                        color: "black",
-                        fontSize: 16,
-                        fontFamily: fonts.novaBold,
-                        marginLeft: 20
-                    }}>
-                        {`${popup_content?.title} ${popup_content?.message}`}
-                    </Text>
+                    <View style={{ flex: 1, marginLeft: 20 }} >
+                        <Text >
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaBold,
+                            }} >
+
+                                {popup_content?.title}
+                            </Text>
+                            <Text
+                            style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaRegular,
+                            }}
+                            >
+                                {" ha aprobado "}
+                            </Text>
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaBold,
+                            }} >
+
+                               {popup_content?.data?.examname}
+                            </Text>
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaRegular,
+                            }} >
+
+                               {" con "}
+                            </Text>
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaBold,
+                            }} >
+
+                               {popup_content?.data?.score}
+                            </Text>
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaRegular,
+                            }} >
+
+                               {" puntos. "}
+                            </Text>
+                            <Text style={{
+                                color: "black",
+                                fontSize: 16,
+                                fontFamily: fonts.novaRegular,
+                            }} >
+
+                               {"¡Enhorabuena!"}
+                            </Text>
+
+                        </Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         </Modal>
