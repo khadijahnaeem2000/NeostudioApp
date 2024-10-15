@@ -63,6 +63,7 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { setAuthLoading } from "../../Redux/slices/user-slice";
 import NetInfo from "@react-native-community/netinfo";
 import { requestUserPermission } from "../../services/notification_service";
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 class Home extends Component {
   constructor(props) {
@@ -86,6 +87,7 @@ class Home extends Component {
       isConfirm: false,
       timer: { hour: 0, minutes: 0 },
       meetingStatus: null,
+      showPruebaModal: false
     };
     this.intervalId = null;
   }
@@ -96,7 +98,10 @@ class Home extends Component {
   refreshAppData = async () => {
     const { login, } = this.props.user;
     const token = await requestUserPermission()
-    console.log("tokennnn", token)
+
+    if (login?.data?.type === 'Prueba') {
+      this.setState({ showPruebaModal: true })
+    }
 
     try {
       if (login.data.IsBlocked === "False" || !login?.data?.IsBlocked) {
@@ -523,7 +528,8 @@ class Home extends Component {
       rating,
       isConfirm,
       timer,
-      meetingStatus
+      meetingStatus,
+      showPruebaModal
     } = this.state;
 
     console.log("login", login?.data?.type)
@@ -621,13 +627,18 @@ class Home extends Component {
                   key={"unique" + index}
                   img={item.image}
                   text={item.text}
+                  isPrueba={login?.data?.type === 'Prueba'}
                   status={item.status}
                   isChat={item.isChat}
                   isShow={item.isShow}
                   meetingStatus={meetingStatus}
                   myIndex={index}
                   avatarClick={() => {
-                    this.setState({ avatarPopUp: true });
+                    if (login?.data?.type === 'Prueba') {
+                      this.setState({ showPruebaModal: true })
+                    } else {
+                      this.setState({ avatarPopUp: true });
+                    }
                   }}
                   // myStyle={{
                   //   width: index == 0 ? widthPercentageToDP(25) : widthPercentageToDP(33),
@@ -635,7 +646,11 @@ class Home extends Component {
                   //   marginLeft: index == 0 ? widthPercentageToDP(5) : 0
                   // }}
                   profileAction={() => {
-                    this.props.navigation.navigate("Profile");
+                    if (login?.data?.type === 'Prueba') {
+                      this.setState({ showPruebaModal: true })
+                    } else {
+                      this.props.navigation.navigate("Profile");
+                    }
                   }}
                   username={login.data.userName}
                   name={login.data.name}
@@ -660,7 +675,13 @@ class Home extends Component {
                       ? false
                       : allNotifications.data[index]?.count
                   }
-                  clickHandler={() => this.navigationHandler(index)}
+                  clickHandler={() => {
+                    if (login?.data?.type === 'Prueba') {
+                      this.setState({ showPruebaModal: true })
+                    } else {
+                      this.navigationHandler(index)
+                    }
+                  }}
                 />
               );
             })}
@@ -670,7 +691,7 @@ class Home extends Component {
           <ActivityIndicator size="large" color="#000" style={styles.loading} />
         )}
 
-        {this.state.isOpen && (
+        {/* {this.state.isOpen && (
           <Modal
             transparent={true}
             visible={this.state.isOpen}
@@ -685,7 +706,7 @@ class Home extends Component {
                 <View style={styles.textView}>
                   <Text style={styles.text2}>
                     {
-                      "Hola, para poder ofrecerle contenido promocional y acceso a la versión gratuita de Neoestudio necesitamos emplear los datos que ha facilitado. ¿Está de acuerdo?"
+                      "El periodo de 48h de prueba gratuita ha finalizado. Realiza el pago de la suscripción para enviarte el Temario, la camiseta y comenzar el curso o contacta con nosotros."
                     }
                   </Text>
                 </View>
@@ -706,7 +727,7 @@ class Home extends Component {
               </FastImage>
             </View>
           </Modal>
-        )}
+        )} */}
         {this.state.popUp && (
           <Modal
             transparent={true}
@@ -1086,15 +1107,41 @@ class Home extends Component {
           }}
         />
         {
-          login?.data?.type === 'Prueba' &&
+          showPruebaModal &&
           <Modal transparent visible={true}  >
             <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", }} >
               <View style={{ backgroundColor: "white", borderRadius: 20, width: "90%", alignSelf: "center", overflow: "hidden" }} >
-                <Text style={{ color: 'black', fontFamily: fonts.novaBold, fontSize: widthPercentageToDP(7), textAlign: "center", paddingTop: 20 }}  > PRUEBA </Text>
+
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => this.setState({ showPruebaModal: false })}
+                  style={{
+                    height: 35,
+                    width: 35,
+                    justifyContent: 'center',
+                    alignItems: 'flex-end',
+                    alignSelf: 'flex-end',
+                    marginTop: 12,
+                    right: 12,
+                    position: "absolute",
+                  }}>
+                  <AntDesign name="close" color={'black'} size={30} />
+                </TouchableOpacity>
+                <Text style={{
+                  color: 'black',
+                  fontFamily: fonts.novaBold,
+                  fontSize: widthPercentageToDP(5),
+                  textAlign: "center",
+                  marginTop: 40,
+                  width:"80%",
+                  alignSelf:"center"
+                }}  >
+                  El periodo de 48h de prueba gratuita ha finalizado. Realiza el pago de la suscripción para enviarte el Temario, la camiseta y comenzar el curso o contacta con nosotros.
+                </Text>
 
                 <TouchableOpacity
                   onPress={() => {
-                    console.log("ASdasdsada" ,login?.data?.paylink)
+                    console.log("ASdasdsada", login?.data?.paylink)
                     Linking.openURL(login?.data?.paylink)
                   }}
                   style={styles.btnStyle}
@@ -1119,27 +1166,8 @@ class Home extends Component {
                   />
                 </TouchableOpacity>
 
-                <LinearGradient
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  colors={["#006176", "#00a7cb"]}
-                  style={{ marginTop: 20 }}>
 
-                  <TouchableOpacity
-                    onPress={() => (this.test(), this.logoutApi())}
-                    style={{
-                      width: "100%",
-                      height: 50,
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    <Text style={styles.btnText}>
-                      {"SALIR"}
-                    </Text>
-                  </TouchableOpacity>
-
-                </LinearGradient>
+                <View style={{ height: 20 }} />
               </View>
             </View>
           </Modal>

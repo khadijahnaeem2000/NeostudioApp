@@ -37,7 +37,8 @@ const HomeMenu = ({
   isShow,
   name,
   meetingStatus,
-  isDirecto
+  isDirecto,
+  isPrueba
 
 }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -63,12 +64,6 @@ const HomeMenu = ({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'], // Full circle rotation
   });
-
-
-
-
-
-
 
   if (myIndex == 0) {
     return (
@@ -332,7 +327,7 @@ const HomeMenu = ({
           )}
           <Text
             style={{
-              color: '#252525',
+              color: isPrueba ? "#CCCCCC" : '#252525',
               fontSize: widthPercentageToDP(7),
               fontFamily: fonts.elegance,
               marginLeft: widthPercentageToDP(2),
