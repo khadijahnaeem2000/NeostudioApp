@@ -135,7 +135,6 @@ class Home extends Component {
         this.setState({ verSionPopUp: true });
       }
     } else {
-      console.log("login.data.iosVersion", login.data.iosVersion, iosVerion);
       if (login.data.iosVersion !== iosVerion) {
         this.setState({ verSionPopUp: true });
       }
@@ -151,20 +150,16 @@ class Home extends Component {
     if (Platform.OS === "ios") {
       initConnection()
         .catch((error) => {
-          console.log(error);
         })
         .then(() => {
-          console.log("connecting to store ...");
           getPurchaseHistory()
             .then((res) => {
               const receipt = res[res.length - 1].transactionReceipt;
               if (receipt) {
                 this.validate(receipt);
-                //console.log(res)
               }
             })
             .catch((error) => {
-              console.log("iap error", error);
             });
         });
     }
@@ -430,7 +425,6 @@ class Home extends Component {
         await GoogleSignin.signOut();
       }
     } catch (error) {
-      console.log("error in Logout", error);
     }
     this.props.logout();
   };
@@ -477,7 +471,6 @@ class Home extends Component {
   };
   _onChangeTime = () => {
     const { login } = this.props.user;
-    console.log("login?.data?.expiry_date", login?.data?.expiry_date);
     if (login?.data?.expiry_date) {
       const when = new Date(); // Get the current date and time
       const targetDate = new Date(login?.data?.expiry_date); // Parse the target date from the string
@@ -532,7 +525,7 @@ class Home extends Component {
       showPruebaModal
     } = this.state;
 
-    console.log("login", login?.data?.type)
+    console.log("lodgin Data", login?.data)
 
     return (
       <FastImage
@@ -627,7 +620,7 @@ class Home extends Component {
                   key={"unique" + index}
                   img={item.image}
                   text={item.text}
-                  isPrueba={login?.data?.type === 'Prueba'}
+                  isPrueba={item?.id < 24 ? login?.data?.type === 'Prueba' : false}
                   status={item.status}
                   isChat={item.isChat}
                   isShow={item.isShow}
@@ -676,7 +669,7 @@ class Home extends Component {
                       : allNotifications.data[index]?.count
                   }
                   clickHandler={() => {
-                    if (login?.data?.type === 'Prueba') {
+                    if (login?.data?.type === 'Prueba' && item?.id < 24) {
                       this.setState({ showPruebaModal: true })
                     } else {
                       this.navigationHandler(index)
@@ -1129,19 +1122,17 @@ class Home extends Component {
                 </TouchableOpacity>
                 <Text style={{
                   color: 'black',
-                  fontFamily: fonts.novaBold,
+                  fontFamily: fonts.novaRegular,
                   fontSize: widthPercentageToDP(5),
                   textAlign: "center",
                   marginTop: 40,
-                  width:"80%",
-                  alignSelf:"center"
+                  width: "80%",
+                  alignSelf: "center"
                 }}  >
-                  El periodo de 48h de prueba gratuita ha finalizado. Realiza el pago de la suscripción para enviarte el Temario, la camiseta y comenzar el curso o contacta con nosotros.
+                  {login?.data?.PruebaPopUpText}
                 </Text>
-
                 <TouchableOpacity
                   onPress={() => {
-                    console.log("ASdasdsada", login?.data?.paylink)
                     Linking.openURL(login?.data?.paylink)
                   }}
                   style={styles.btnStyle}

@@ -1465,6 +1465,7 @@ export const getReviewDrawer = id => {
   };
 };
 export const getCurrentUser = (id, type) => {
+  console.log("idddd" , id , type)
   return dispatch => {
     dispatch(setAuthLoading(true))
     fetch(baseUrl + user, {
@@ -1479,6 +1480,7 @@ export const getCurrentUser = (id, type) => {
     })
       .then(res => res.json())
       .then(json => {
+        console.log("json.is_delete" ,json )
         dispatch(setAuthLoading(false));
         if (json.status === 'Successfull') {
           dispatch(setLoginData({ login: json }))
@@ -1497,7 +1499,7 @@ export const getCurrentUser = (id, type) => {
             dispatch(setLoginData({ userBlock: json?.is_block }))
             dispatch(setErrorMessage("Tu cuenta ha sido bloqueada automáticamente. Por favor, inicia sesión en la página web y proceda al pago pendiente."))
             dispatch(setAuthDialog(true))
-          } else if (json.is_delete == true) {
+          } else if (json.is_deleted == true) {
             dispatch(setLoginData({ userDelete: json?.is_delete }))
             dispatch(setErrorMessage("Tu cuenta ha sido eliminada por facilitar datos incorrectos. Por favor, inicia sesión de nuevo con datos correctos."))
             dispatch(setAuthDialog(true))
@@ -1507,6 +1509,7 @@ export const getCurrentUser = (id, type) => {
         }
       })
       .catch(error => {
+        console.log("errorrrr", error)
         dispatch(setAuthLoading(false));
       });
   };
