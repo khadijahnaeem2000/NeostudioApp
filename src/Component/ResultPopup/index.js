@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
+import { Modal, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowPopup } from '../../Redux/slices/popup-slice'
@@ -24,7 +24,8 @@ const ResultPopup = () => {
                 style={{
                     flex: 1,
                     paddingHorizontal: 20,
-                    backgroundColor: "rgba(0,0,0,0.1)"
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                    marginTop: (height > width && Platform.OS === 'ios') ? 35 : 0
 
                 }} >
                 <View style={{

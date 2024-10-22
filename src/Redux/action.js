@@ -1465,7 +1465,6 @@ export const getReviewDrawer = id => {
   };
 };
 export const getCurrentUser = (id, type) => {
-  console.log("idddd" , id , type)
   return dispatch => {
     dispatch(setAuthLoading(true))
     fetch(baseUrl + user, {
@@ -1480,7 +1479,6 @@ export const getCurrentUser = (id, type) => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log("json.is_delete" ,json )
         dispatch(setAuthLoading(false));
         if (json.status === 'Successfull') {
           dispatch(setLoginData({ login: json }))

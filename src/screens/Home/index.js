@@ -525,8 +525,6 @@ class Home extends Component {
       showPruebaModal
     } = this.state;
 
-    console.log("lodgin Data", login?.data)
-
     return (
       <FastImage
         style={styles.bg}

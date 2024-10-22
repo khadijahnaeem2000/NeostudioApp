@@ -58,6 +58,7 @@
 		5B7EB9410499542E8C5724F5 /* Pods-neoschool-neoschoolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool-neoschoolTests.debug.xcconfig"; path = "Target Support Files/Pods-neoschool-neoschoolTests/Pods-neoschool-neoschoolTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-neoschool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neoschool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		758C67032C906116001D6630 /* neoschool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = neoschool.entitlements; path = neoschool/neoschool.entitlements; sourceTree = "<group>"; };
+		75B166A02CC7CE5A002D9577 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = neoschool/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-neoschool-neoschoolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neoschool-neoschoolTests.release.xcconfig"; path = "Target Support Files/Pods-neoschool-neoschoolTests/Pods-neoschool-neoschoolTests.release.xcconfig"; sourceTree = "<group>"; };
 		A948C8DAB80043DC9E062D87 /* ROUNDElegance-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ROUNDElegance-Regular.ttf"; path = "../assets/fonts/ROUNDElegance-Regular.ttf"; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				75B166A02CC7CE5A002D9577 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* neoschool */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* neoschoolTests */,

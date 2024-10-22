@@ -1,6 +1,7 @@
 
 import messaging from '@react-native-firebase/messaging';
 import { Platform } from 'react-native';
+import { setPopupContent, setShowPopup } from '../Redux/slices/popup-slice';
 export const getDeviceToken = async () => {
     try {
         if (Platform.OS === 'ios') {
@@ -37,9 +38,20 @@ export const notificationListener = async (dispatch) => {
         }
     });
     messaging().onMessage(async remoteMessage => {
-        console.log("remote MEssgae Notificationsadsad", remoteMessage?.notification)
-        if (remoteMessage?.notification?.body) {
-
+        console.log("remoteMessage?.data", remoteMessage?.data?.type)
+        console.log("remoteMessage?.notification", remoteMessage?.notification)
+        if (remoteMessage?.data?.type === 'result' && Platform.OS === 'ios') {
+            const obj = {
+                message: remoteMessage?.notification?.body,
+                title: remoteMessage?.notification?.title,
+                image: remoteMessage?.data?.image,
+                data: remoteMessage?.data,
+              }
+              dispatch(setShowPopup(true))
+              dispatch(setPopupContent(obj))
+              setTimeout(() => {
+                dispatch(setShowPopup(false))
+              }, 3000);
             // dispatch(setShowNotificationModal(true))
             // dispatch(setNotificationData({
             //     title: remoteMessage?.notification?.title,
