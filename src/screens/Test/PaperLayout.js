@@ -326,17 +326,17 @@ export default class PaperLayout extends React.Component {
                   tagsStyles={{
                     a: {
                       textDecorationLine: "none",
-                      fontFamily:fonts.novaRegular
+                      fontFamily:fonts.novaBold
                     },
                     p: {
                       padding: 6,
-                      fontFamily:fonts.novaRegular
+                      fontFamily:fonts.novaBold
                       //textAlign: "justify"
                     },
                     span: {
                       //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
                       flexDirection: 'row',
-                      fontFamily:fonts.novaRegular
+                      fontFamily:fonts.novaBold
                     },
                     tap: {
                       fontFamily:fonts.novaRegular,
