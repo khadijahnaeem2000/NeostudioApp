@@ -15,7 +15,6 @@ const RemotePushController = props => {
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (value) {
         dispatch(setToken(value.token))
-        console.log('TOKEN:', value);
       },
       // (required) Called when a remote or local notification is opened or received
       onNotification: function (notification) {

@@ -27,9 +27,9 @@ import SmsRetriever from 'react-native-sms-retriever';
 import { fonts } from '../../utils';
 import BackgroundVideo from '../../Component/VideoBackhround';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { goBack } from '../../utils/naviagtion_service';
 import { SvgXml } from 'react-native-svg';
 import back_icon from '../../Images/icons/back_icon';
+import { goBack } from '../../navigation/navigation_service';
 
 const OTP = ({ navigation, route }) => {
   const dispatch = useDispatch();

@@ -8,7 +8,7 @@ import {
   Modal,
   Platform,
 } from 'react-native';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
   getEstudioTemario,
   getRepasoTemario,
@@ -16,12 +16,13 @@ import {
   getObjectiveRanking,
 } from '../../Redux/action';
 import FastImage from 'react-native-fast-image';
-import {styles} from './styles';
+import { styles } from './styles';
 import Icon from 'react-native-vector-icons/dist/Feather';
 import Ranking from '../../Component/Ranking';
 import Orientation from 'react-native-orientation-locker';
 import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Header from '../../Component/Header';
+import { images } from '../../constant';
 
 class Objectives extends React.Component {
   constructor(props) {
@@ -32,10 +33,10 @@ class Objectives extends React.Component {
     this.getData();
   }
   handleModalOpen = () => {
-    this.setState({modalVisible: !this.state.modalVisible});
+    this.setState({ modalVisible: !this.state.modalVisible });
   };
   getData = () => {
-    const {login} = this.props.user;
+    const { login } = this.props.user;
     this.props.getObjectiveStates(login?.data?.id);
   };
 
@@ -44,14 +45,14 @@ class Objectives extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
   }
 
   render() {
-    const {objectiveRanking, login, AuthLoading, objectiveState} =
+    const { objectiveRanking, login, AuthLoading, objectiveState } =
       this.props.user;
     //console.log("my objective", objectiveRanking)
     return (
@@ -76,8 +77,8 @@ class Objectives extends React.Component {
           />
         </View>
         <Text style={styles.screenTitle}>{'Objetivos'}</Text>
-        <View style={{flex: 1}}>
-          <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={{ flex: 1 }}>
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.rankView}>
               <Ranking
                 subject={'Objeivo mín. diario'}
@@ -252,7 +253,7 @@ class Objectives extends React.Component {
             <View style={styles.modalMain}>
               <View style={styles.innerModal}>
                 <FastImage
-                  source={require('../../Images/navigationSlider.png')}
+                  source={images.navigation_slider}
                   resizeMode={FastImage.resizeMode.stretch}
                   style={styles.navigation}>
                   <View style={styles.topModal}>
@@ -273,7 +274,7 @@ class Objectives extends React.Component {
                         <FastImage
                           style={styles.loaderStyle}
                           resizeMode={FastImage.resizeMode.contain}
-                          source={require('../../Images/loader.png')}
+                          source={images.loader}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity

@@ -64,6 +64,7 @@ import { setAuthLoading } from "../../Redux/slices/user-slice";
 import NetInfo from "@react-native-community/netinfo";
 import { requestUserPermission } from "../../services/notification_service";
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { images } from "../../constant";
 
 class Home extends Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class Home extends Component {
   refreshAppData = async () => {
     const { login, } = this.props.user;
     const token = await requestUserPermission()
-
+    console.log("login?.data?.type", login?.data?.type)
     if (login?.data?.type === 'Prueba') {
       this.setState({ showPruebaModal: true })
     }
@@ -471,7 +472,7 @@ class Home extends Component {
   };
   _onChangeTime = () => {
     const { login } = this.props.user;
-    if (login?.data?.expiry_date) {
+    if (login?.data && login?.data?.expiry_date) {
       const when = new Date(); // Get the current date and time
       const targetDate = new Date(login?.data?.expiry_date); // Parse the target date from the string
 
@@ -761,7 +762,7 @@ class Home extends Component {
         >
           <View style={styles.modalMain}>
             <FastImage
-              source={require("../../Images/navigationSlider.png")}
+              source={images.navigation_slider}
               resizeMode={FastImage.resizeMode.stretch}
               style={styles.navigation}
             />
@@ -782,7 +783,7 @@ class Home extends Component {
                     <FastImage
                       style={styles.loaderStyle}
                       resizeMode={FastImage.resizeMode.contain}
-                      source={require("../../Images/loader.png")}
+                      source={images.loader}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -1167,74 +1168,7 @@ class Home extends Component {
 }
 
 const myStyles = StyleSheet.create({
-  modalMain2: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.6)",
-  },
-  quesBox: {
-    width: widthPercentageToDP(90),
-    //flex: 0,
-    borderRadius: widthPercentageToDP(3),
-    alignItems: "center",
-    backgroundColor: "#FAF9F6",
-    borderRadius: widthPercentageToDP(5),
-    shadowColor: "#000000",
-    elevation: 5,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowRadius: 3,
-    shadowOpacity: 0.5,
-  },
-  toptile: {
-    width: "100%",
-    height: "25%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderBottomWidth: widthPercentageToDP(0.1),
-    borderBottomColor: "#000",
-  },
-  toptext: {
-    color: "#000",
-    fontSize: widthPercentageToDP(4.5),
-    fontFamily: fonts.novaBold,
-    ///paddingLeft: widthPercentageToDP(3),
-    marginTop: heightPercentageToDP(1),
-    textAlign: "center",
-  },
-  bottomView: {
-    width: "100%",
-    height: heightPercentageToDP(8),
-    position: "absolute",
-    bottom: "0%",
-    alignItems: "center",
-    justifyContent: "center",
-    //backgroundColor: lightBlue,
-    borderBottomLeftRadius: widthPercentageToDP(5),
-    borderBottomRightRadius: widthPercentageToDP(5),
-  },
-  input: {
-    textAlignVertical: "top",
-    padding: widthPercentageToDP(3),
-    borderWidth: widthPercentageToDP(0.1),
-    borderColor: "#000",
-    marginTop: heightPercentageToDP(1),
-    width: "90%",
-    height: heightPercentageToDP(12),
-    borderRadius: widthPercentageToDP(4),
-    fontSize: widthPercentageToDP(5),
-    color: "#000",
-    fontFamily: fonts.novaBold,
-  },
-  btnTxt: {
-    color: "#ffffff",
-    fontSize: widthPercentageToDP(6),
-    fontFamily: fonts.novaBold,
-  },
+ 
 });
 
 const mapStateToProps = (state) => ({

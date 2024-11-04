@@ -37,7 +37,7 @@ import {
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import Sound from 'react-native-sound';
-import { navigate, resetNavigationStack } from '../../utils/naviagtion_service';
+import { navigate, resetNavigationStack } from '../../navigation/navigation_service';
 
 let sound1, sound2, sound3;
 class Test extends Component {

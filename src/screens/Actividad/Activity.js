@@ -29,8 +29,9 @@ import {
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { fonts } from '../../utils';
-import { navigate } from '../../utils/naviagtion_service';
 import { useFocusEffect } from '@react-navigation/native';
+import { navigate } from '../../navigation/navigation_service';
+import { images } from '../../constant';
 
 const Programs = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -180,7 +181,7 @@ const Programs = ({ navigation }) => {
 
                   height: widthPercentageToDP(10),
                 }}
-                source={require('../../Images/loader.png')}
+                source={images.loader}
                 resizeMode={FastImage.resizeMode.contain}
               />
             </TouchableOpacity>

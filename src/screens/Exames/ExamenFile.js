@@ -29,6 +29,7 @@ import Icon from 'react-native-vector-icons/dist/Feather';
 import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Ranking from '../../Component/Ranking';
 import ModalBox from '../../Component/Modal';
+import { images } from '../../constant';
 
 const url3 = 'https://neoestudio.net/api/getAllExamsOfFolderApp';
 const URL2 = 'https://neoestudio.net/api/getAllExams';
@@ -627,7 +628,7 @@ class ExamScreen extends React.Component {
             <View style={styles.modalMain}>
               <View style={styles.innerModal}>
                 <FastImage
-                  source={require('../../Images/navigationSlider.png')}
+                  source={images.navigation_slider}
                   resizeMode={FastImage.resizeMode.stretch}
                   style={styles.navigation}>
                   <View style={styles.topModal}>
@@ -640,7 +641,7 @@ class ExamScreen extends React.Component {
                         <FastImage
                           style={styles.loaderStyle}
                           resizeMode={FastImage.resizeMode.contain}
-                          source={require('../../Images/loader.png')}
+                          source={images.loader}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity

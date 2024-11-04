@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
-import { navigate, resetNavigationStack } from '../utils/naviagtion_service';
 import { onClearState, onLogoutUser, setActivityId, setAllChats, setAllExams, setAllNotifications, setAudioFile, setAuthLoading, setBattleQuestions, setCalendarDates, setChatCount, setDownloadFiles, setDownloadFolder, setExamStart, setLoginData, setNewsCount, setNewsItems, setNotiToggle, setObjective, setObjectiveRanking, setOrientationCheck, setPdfFile, setPdfFolder, setPersonalityExam, setRankAvatar, setRejectReason, setReviewDrawer, setReviewExam, setReviewExamList, setReviewRanking, setSurveyList, setToast, setToken, setTopics, setUploadFile, setUploadFolder, setVerticalRanking, setVideoFile } from './slices/user-slice';
 import { setAuthDialog, setErrorMessage } from './slices/dialog-slice';
+import { navigate, resetNavigationStack } from '../navigation/navigation_service';
 
 
 export var baseUrl = 'https://neoestudio.net/api/';

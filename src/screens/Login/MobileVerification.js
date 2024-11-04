@@ -17,7 +17,7 @@ import { fonts } from '../../utils';
 import PhoneInput from 'react-native-phone-number-input';
 import BackgroundVideo from '../../Component/VideoBackhround';
 import { getOTPMobile } from '../../Redux/action';
-import { navigate } from '../../utils/naviagtion_service';
+import { navigate } from '../../navigation/navigation_service';
 
 
 const MobileVerification = ({ navigation, route }) => {
@@ -61,7 +61,6 @@ const MobileVerification = ({ navigation, route }) => {
   const onPressVerification = async () => {
     // setLoading(true);
     const result = await getOTPMobile(data?.data?.id, phoneNum);
-    console.log("Resultttt", result)
     if (result?.status === 201) {
       alert(result?.message)
     } else {

@@ -84,8 +84,8 @@ android {
         applicationId "com.neostudio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 97
-        versionName "1.4.9"
+        versionCode 98
+        versionName "1.5.0"
         multiDexEnabled = true
         missingDimensionStrategy 'store', 'play' 
     }

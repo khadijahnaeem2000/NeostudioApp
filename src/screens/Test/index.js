@@ -43,7 +43,7 @@ import {
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import DeviceInfo from 'react-native-device-info';
-import { resetNavigationStack } from '../../utils/naviagtion_service';
+import { resetNavigationStack } from '../../navigation/navigation_service';
 
 class Test extends Component {
   constructor(props) {

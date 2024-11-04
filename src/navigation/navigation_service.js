@@ -19,12 +19,12 @@ export function goBack() {
 }
 
 
-export const resetNavigationStack = async (screen, params) => {
+export const resetNavigationStack = async (screen) => {
     if (navigationRef.isReady()) {
         navigationRef.dispatch(
             CommonActions.reset({
                 index: 1,
-                routes: [{ name: screen, params: params || null }],
+                routes: [{ name: screen }],
             })
         );
     }

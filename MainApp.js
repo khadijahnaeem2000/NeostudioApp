@@ -17,11 +17,10 @@ import messaging from '@react-native-firebase/messaging';
 import Orientation from 'react-native-orientation-locker';
 import RegisterModal from './src/screens/Home/registerModal';
 import { NavigationContainer } from '@react-navigation/native';
-import { navigate, navigationRef } from './src/utils/naviagtion_service';
-import AuthNavigation from './src/AuthNavigation';
-import MainNavigation from './src/MainNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { notificationListener } from './src/services/notification_service';
+import { navigationRef } from './src/navigation/navigation_service';
+import { AuthNavigation, MainNavigation } from './src/navigation';
 
 const MainApp = () => {
   const [appState, setAppState] = useState(AppState.currentState);
@@ -32,7 +31,7 @@ const MainApp = () => {
   const user = useSelector(state => state.user);
   const { login } = user || {};
 
- 
+
   const test = () => {
     Orientation.unlockAllOrientations();
   };
@@ -55,8 +54,6 @@ const MainApp = () => {
     test()
     getFcmToken()
     notificationListener(dispatch);
-    console.log("yahna yayayayayyayay");
-
     startTimer(); // Start the timer on mount
 
     const appStateListener = AppState.addEventListener('change', _handleAppStateChange);
@@ -95,7 +92,7 @@ const MainApp = () => {
 
   const onRegister = async (data) => {
     if (login?.data?.id) {
-      const response = await dispatch(addRegister({ ...data, id: login.data.id }));
+      const response = await addRegister({ ...data, id: login.data.id });
       if (response?.status === 'Successful') {
         setShowModal(false);
       }
@@ -106,9 +103,9 @@ const MainApp = () => {
     if (login) {
       if (nextAppState === 'background') {
         dispatch(updateLogoutTime(login.data.id));
-        dispatch(updateUserRankPoint('Yes', 'No', 'normal_points', login.data.id));
+        updateUserRankPoint('Yes', 'No', 'normal_points', login.data.id);
       } else if (nextAppState === 'active') {
-        dispatch(saveUserRankPoint('Yes', 'No', 'normal_points', login.data.id));
+        saveUserRankPoint('Yes', 'No', 'normal_points', login.data.id);
         dispatch(updateLoginTime(login.data.id));
       }
     }

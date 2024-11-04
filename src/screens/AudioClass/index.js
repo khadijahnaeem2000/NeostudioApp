@@ -11,7 +11,7 @@ import { getTopics, getAudioFiles, getLatestAudioFile } from '../../Redux/action
 import Directory from '../../Component/Directory';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
-import { navigate } from '../../utils/naviagtion_service';
+import { navigate } from '../../navigation/navigation_service';
 
 class AudioClass extends React.Component {
   constructor(props) {

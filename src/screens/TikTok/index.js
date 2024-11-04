@@ -64,7 +64,7 @@ import {
 } from './styles';
 import { widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
-import { goBack } from '../../utils/naviagtion_service';
+import { goBack } from '../../navigation/navigation_service';
 
 const Home = ({ navigation, route }) => {
   const disptach = useDispatch();

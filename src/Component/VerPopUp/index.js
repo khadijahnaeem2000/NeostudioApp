@@ -28,7 +28,7 @@ const DialogBox = (props) => {
                     <LinearGradient
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
-                        colors={["#006176", "#00a7cb"]}
+                        colors={["#03330e", "#415947"]}
                         style={styles.bottomView}>
                         <TouchableOpacity
                             onPress={props.cancelClick}

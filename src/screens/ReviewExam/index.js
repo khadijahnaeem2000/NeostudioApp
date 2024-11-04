@@ -38,6 +38,7 @@ import {
 } from '../../Component/MakeMeResponsive';
 import DeviceInfo from 'react-native-device-info';
 import LinearGradient from 'react-native-linear-gradient';
+import { images } from '../../constant';
 
 class Review extends Component {
   constructor(props) {
@@ -494,7 +495,7 @@ class Review extends Component {
           <View style={styles.modalMain2}>
             <View style={styles.innerModal2}>
               <FastImage
-                source={require('../../Images/navigationSlider.png')}
+                source={images.navigation_slider}
                 resizeMode={FastImage.resizeMode.cover}
                 style={styles.navigation}>
                 <TouchableOpacity
