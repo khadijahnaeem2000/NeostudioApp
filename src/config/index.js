@@ -2,6 +2,7 @@ import { images } from "../constant";
 
 export const playstore_url="https://play.google.com/store/apps/details?id=com.neostudio"
 export const appstore_url="https://apps.apple.com/us/app/neoestudio-guardia-civil-2023/id1531939360"
+export const directo_url="https://webversion.neoestudio.net/directo?id="
 
 export const home_array = [
     {
@@ -89,10 +90,10 @@ export const home_array = [
                 id: 42,
                 image: images.profesorado_image,
                 title: "Resolución de dudas",
-                type: ""
+                type: "stripe_support"
             },
             {
-                id: 42,
+                id: 43,
                 image: images.profesorado_image,
                 title: "Soporte técnico",
                 type: "whatsapp_support"
@@ -167,22 +168,27 @@ export const home_array = [
             {
                 id: 62,
                 image: images.pidelo_image,
-                title: "Página web"
+                title: "Página web",
+                type:"pagina"
             },
             {
                 id: 66,
                 image: images.descargas_image,
-                title: "Descargas"
+                title: "Descargas",
+                type:"descargas"
+
             },
             {
                 id: 65,
                 image: images.entervista_image,
-                title: "Entrevista"
+                title: "Entrevista",
+                type:"entervista"
             },
             {
                 id: 63,
                 image: images.adjustes_image,
-                title: "Ajustes"
+                title: "Ajustes",
+                type:"ajustes"
             },
             {
                 id: 61,

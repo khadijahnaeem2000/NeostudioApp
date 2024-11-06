@@ -1,13 +1,10 @@
 import { View, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import { images } from '../../constant'
 import { styles } from './index.styles'
 import { home_array } from '../../config'
-import { SingleHomeView, TopImageView } from './components'
+import { EmailModal, ExamModal, HomeSliderModal, SingleHomeView, TopImageView } from './components'
 import FastImage from 'react-native-fast-image'
-import { useSelector } from 'react-redux'
-import DialogBox from '../../Component/VerPopUp'
-import { navigate } from '../../navigation/navigation_service'
 import HomePageFunctional from "./index.function"
 
 const HomePage = () => {
@@ -24,7 +21,15 @@ const HomePage = () => {
         showRatingModal,
         showSliderModal,
         showVersionModal,
-        login
+        login,
+        onPressTab,
+        isLoading,
+        showEmailModal,
+        showExamModal,
+        setShowEmailModal,
+        setShowPruebaModal,
+        setShowExamModal,
+        showPruebaModal
     } = HomePageFunctional()
 
 
@@ -93,9 +98,7 @@ const HomePage = () => {
                                     else setSelectedId(item?.id)
                                 }}
                                 isOpen={selectedId === item?.id}
-                                onPress={() => {
-                                    navigate("AI")
-                                }}
+                                onPress={(type) => onPressTab(type)}
                                 title={item?.title}
 
                             />
@@ -110,6 +113,23 @@ const HomePage = () => {
                 closeBox={() => {}}
                 okClick={() => {}}
                 /> */}
+                <EmailModal
+                    onPressClose={() => setShowEmailModal(false)}
+                    visible={showEmailModal}
+                />
+
+
+                {/* <RatingModal /> */}
+
+                <HomeSliderModal
+                    visible={showSliderModal}
+                    onPressClose={() => setShowSliderModal(false)}
+                    onPressConfirm={() => setShowSliderModal(false)}
+                />
+                <ExamModal
+                    onPressClose={() => setShowExamModal(false)}
+                    visible={showExamModal}
+                />
 
             </FastImage>
         </SafeAreaView>

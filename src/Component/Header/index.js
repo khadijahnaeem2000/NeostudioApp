@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, Platform} from 'react-native';
-import {widthPercentageToDP, heightPercentageToDP} from '../MakeMeResponsive';
+import { View, TouchableOpacity, Text, Platform } from 'react-native';
+import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {fonts} from '../../utils';
+import { fonts } from '../../utils';
+import { goBack } from '../../navigation/navigation_service';
 
 export default class Header extends React.Component {
   render() {
-    const {iconName, leftClick, title, isActivity, isPdf} = this.props;
+    const { iconName, leftClick, title, isActivity, isPdf } = this.props;
     return (
       <View
         style={{
@@ -18,17 +19,17 @@ export default class Header extends React.Component {
           marginTop: isPdf
             ? 0
             : isActivity
-            ? heightPercentageToDP(2)
-            : Platform.OS === 'android'
-            ? heightPercentageToDP(5)
-            : heightPercentageToDP(11),
+              ? heightPercentageToDP(2)
+              : Platform.OS === 'android'
+                ? heightPercentageToDP(5)
+                : heightPercentageToDP(11),
         }}>
         <TouchableOpacity
           style={{
             marginLeft: widthPercentageToDP(3),
             alignItems: 'center',
           }}
-          onPress={leftClick}>
+          onPress={leftClick ? () => leftClick() : () => goBack()}>
           <Icon name={iconName} color="#707070" size={widthPercentageToDP(6)} />
         </TouchableOpacity>
         <Text

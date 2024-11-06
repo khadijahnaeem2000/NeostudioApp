@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   ScrollView,
   ActivityIndicator,
-  BackHandler,
   TouchableOpacity,
   Platform,
 } from 'react-native';
@@ -15,6 +14,7 @@ import { getUserPrograms, saveActivityId } from '../../Redux/action';
 import { useSelector, useDispatch } from 'react-redux';
 import Program from '../../Component/Programs';
 import { useFocusEffect } from '@react-navigation/native';
+import { goBack } from '../../navigation/navigation_service';
 
 const Programs = props => {
   const dispatch = useDispatch();
@@ -56,27 +56,12 @@ const Programs = props => {
     }
   };
 
-  function handleBackButtonClick() {
-    props.navigation.goBack()
-    return false;
-  }
-  
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener(
-        'hardwareBackPress',
-        handleBackButtonClick,
-      );
-    };
-  }, []);
-
   useFocusEffect(
     useCallback(() => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     }, [])
@@ -96,7 +81,7 @@ const Programs = props => {
       />
       <Header
         iconName="left"
-        leftClick={() => props.navigation.navigate('HomeScreen')}
+        leftClick={goBack}
         title="Actividades"
       />
       {pageSelected !== 0 && (

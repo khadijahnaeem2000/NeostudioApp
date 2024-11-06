@@ -29,7 +29,7 @@ const SingleHomeView = ({ image, title, array, isOpen, setIsOpen, onPress }) => 
                         activeOpacity={0.6}
                         onPress={() => {
                             setIsOpen()
-                            onPress()
+                            onPress(item?.type)
                         }}
                         style={styles.sub_row}
                     >
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: widthPercentageToDP(2)
     },
     image_view: {
-        height: 120,
-        width: 120,
+        height: 100,
+        width: 100,
         borderRadius: 80,
         shadowColor: "#ffffff",
         shadowOffset: {

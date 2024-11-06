@@ -117,7 +117,6 @@ export const styles = StyleSheet.create({
   },
   modalMain2: {
     flex: 1,
-    //backgroundColor:"red"
   },
   navigation: {
     position: "absolute",

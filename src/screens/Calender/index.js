@@ -82,9 +82,6 @@ import Entypo from 'react-native-vector-icons/Entypo'
 
 const URL = 'https://webversion.neoestudio.net/calendario?id=';
 
-interface State {
-  items?: AgendaSchedule;
-}
 
 class Calender extends React.Component {
   // constructor(props) {
@@ -101,7 +98,7 @@ class Calender extends React.Component {
       selcetedData: {},
     };
   }
-  state: State = {
+  state = {
     items: [],
     newItems: {},
   };
@@ -111,7 +108,7 @@ class Calender extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
       this.getAllDates();
@@ -142,9 +139,7 @@ class Calender extends React.Component {
   };
 
   render() {
-    const scalesPageToFit = Platform.OS === 'android';
-    const { login } = this.props.user;
-    const { items } = this.state;
+    
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <FastImage
@@ -158,7 +153,6 @@ class Calender extends React.Component {
         />
         <Header
           iconName="left"
-          leftClick={() => this.props.navigation.goBack()}
           title={'Calendario'}
         />
         <Agenda
@@ -245,7 +239,7 @@ class Calender extends React.Component {
     );
   }
 
-  loadItems = (day: DateData) => {
+  loadItems = () => {
     // const items = {}
 
     setTimeout(() => {
@@ -295,7 +289,7 @@ class Calender extends React.Component {
     return <View style={stylesNew.dayItem} />;
   };
 
-  renderItem = (reservation: AgendaEntry, isFirst: boolean) => {
+  renderItem = (reservation, isFirst) => {
     console.log('🚀 ~ Calender ~ reservation:', reservation);
     const fontSize = isFirst ? 16 : 14;
     const color = isFirst ? 'black' : '#43515c';
@@ -351,11 +345,11 @@ class Calender extends React.Component {
     );
   };
 
-  rowHasChanged = (r1: AgendaEntry, r2: AgendaEntry) => {
+  rowHasChanged = (r1, r2) => {
     return r1.name !== r2.name;
   };
 
-  timeToString(time: number) {
+  timeToString(time) {
     const date = new Date(moment(time));
     return date.toISOString().split('T')[0];
   }

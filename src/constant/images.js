@@ -36,6 +36,8 @@ import ai_message_background from "../assets/images/ai_message_background.png"
 import input_background_image from "../assets/images/input_background_image.png"
 import navigation_slider from "../assets/images/navigation_slider.png"
 import loader from "../assets/images/loader.png"
+import email_box from "../assets/images/email_box.png"
+import confirm_btn_image from "../assets/images/confirm_btn_image.png"
 
 
 export default {
@@ -76,5 +78,7 @@ export default {
     ai_message_background,
     input_background_image,
     navigation_slider,
-    loader
+    loader,
+    email_box,
+    confirm_btn_image
 };

@@ -7,20 +7,15 @@ import { version, iosVerion } from "../../../../package.json";
 import { images } from '../../../constant';
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
+import Icon2 from "react-native-vector-icons/dist/AntDesign";
 
 
 const HomeSliderModal = ({ visible, onPressClose, onPressConfirm }) => {
 
-
     const {
         login,
         AuthLoading,
-        newsCount,
-        chatCount,
         reviewRanking,
-        allNotifications,
-        RV_Images,
-        token,
     } = useSelector(state => state.user)
 
     return (
