@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const dialogSlice = createSlice({
-    name: 'auth',
+    name: 'dialog',
     initialState,
 
     reducers: {

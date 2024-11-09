@@ -38,6 +38,9 @@ import navigation_slider from "../assets/images/navigation_slider.png"
 import loader from "../assets/images/loader.png"
 import email_box from "../assets/images/email_box.png"
 import confirm_btn_image from "../assets/images/confirm_btn_image.png"
+import folder_background_image from "../assets/images/folder_background_image.png"
+import folder_image from "../assets/images/folder_image.png"
+import video_icon_image from "../assets/images/video_icon_image.png"
 
 
 export default {
@@ -80,5 +83,8 @@ export default {
     navigation_slider,
     loader,
     email_box,
-    confirm_btn_image
+    confirm_btn_image,
+    folder_background_image,
+    folder_image,
+    video_icon_image
 };

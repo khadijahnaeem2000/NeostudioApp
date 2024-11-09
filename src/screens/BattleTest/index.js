@@ -38,6 +38,7 @@ import {
 } from '../../Component/MakeMeResponsive';
 import Sound from 'react-native-sound';
 import { navigate, resetNavigationStack } from '../../navigation/navigation_service';
+import { IMAGE_URL } from '../../config';
 
 let sound1, sound2, sound3;
 class Test extends Component {
@@ -302,7 +303,7 @@ class Test extends Component {
                         <FastImage
                           source={{
                             uri:
-                              'https://neoestudio.net/public/userImage/' +
+                              IMAGE_URL +
                               item.photo,
                           }}
                           resizeMode={FastImage.resizeMode.cover}

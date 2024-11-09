@@ -16,6 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import { heightPercentageToDP } from '../../Component/MakeMeResponsive';
 import { fonts } from '../../utils';
+import { IMAGE_URL } from '../../config';
 //import { data } from '../Test/data'
 
 class ResultClass extends Component {
@@ -301,7 +302,7 @@ class ResultClass extends Component {
 
               <FastImage
                 source={{
-                  uri: 'https://neoestudio.net/public/userImage/' + login?.data?.photo,
+                  uri: IMAGE_URL + login?.data?.photo,
                 }}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={{

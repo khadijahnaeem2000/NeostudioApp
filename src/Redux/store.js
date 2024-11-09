@@ -1,21 +1,21 @@
 import { persistReducer, persistStore } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { dialogReducer, userReducer, popupReducer } from './slices';
+import { dialogReducer, userReducer, popupReducer, classesReducer } from './slices';
 import { combineReducers } from 'redux';
 
 
 const rootReducer = combineReducers({
   user: userReducer,
   dialog: dialogReducer,
-  popup: popupReducer
+  popup: popupReducer,
+  classes: classesReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['user'],
-  blacklist: ['dialog', 'popup']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

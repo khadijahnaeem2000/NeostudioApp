@@ -65,6 +65,7 @@ import {
 import { widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
 import { goBack } from '../../navigation/navigation_service';
+import { IMAGE_URL } from '../../config';
 
 const Home = ({ navigation, route }) => {
   const disptach = useDispatch();
@@ -274,7 +275,7 @@ const Home = ({ navigation, route }) => {
       itemId,
       myComment,
       login.data.photo
-        ? 'https://neoestudio.net/public/userImage/' + login.data.photo
+        ? IMAGE_URL + login.data.photo
         : 'https://neoestudio.net/gamification/1643410651.png',
     );
     await setLoading(false);
@@ -315,7 +316,7 @@ const Home = ({ navigation, route }) => {
   console.log("result", result?.[selectedFolder])
 
   return (
-    <View style={{ flex: 1  , backgroundColor:"#000"}}>
+    <View style={{ flex: 1, backgroundColor: "#000" }}>
       {paused && (
         <FontAwesomeIcon
           style={{

@@ -10,6 +10,7 @@ import { Avatar, Badge } from 'react-native-elements';
 import { fonts } from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
+import { IMAGE_URL } from '../../config';
 
 const HomeMenu = ({
   img,
@@ -84,7 +85,7 @@ const HomeMenu = ({
           ) : (
             <FastImage
               source={{
-                uri: 'https://neoestudio.net/public/userImage/' + userPhoto,
+                uri: IMAGE_URL + userPhoto,
               }}
               resizeMode={FastImage.resizeMode.stretch}
               style={styles.bageImg}

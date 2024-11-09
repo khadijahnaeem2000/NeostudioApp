@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
+import { IMAGE_URL } from '../../config'
 
 
 const NewBattle = (props) => {
@@ -21,7 +22,7 @@ const NewBattle = (props) => {
                         resizeMode={FastImage.resizeMode.cover}
                     />
                     : <FastImage
-                        source={{ uri: "https://neoestudio.net/public/userImage/" + props.userImage }}
+                        source={{ uri: IMAGE_URL + props.userImage }}
                         style={styles.profleImg}
                         resizeMode={FastImage.resizeMode.cover}
                     />

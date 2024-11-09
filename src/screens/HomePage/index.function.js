@@ -134,7 +134,7 @@ export default () => {
         }
 
         if (type === 'classes') {
-            if (!login.package) navigate("Clases")
+            if (!login.package) navigate("Classes")
             else if (login.data.type === "Alumno" && login.package.course === "Gold") setShowEmailModal(true)
         }
 
@@ -157,7 +157,7 @@ export default () => {
 
         if (type === 'repaso') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
-            navigate("ReviewTest")
+            navigate("Repaso")
         }
 
         if (type === 'battle') {
@@ -181,15 +181,15 @@ export default () => {
         }
 
         if (type === 'video') {
-            if (!login.package) navigate("VideoClass")
+            if (!login.package) navigate("Videos")
             else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
-            else navigate("VideoClass")
+            else navigate("Videos")
         }
 
         if (type === 'pdf') {
-            if (!login.package) navigate("PDF")
+            if (!login.package) navigate("Temario")
             else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
-            else navigate("PDF")
+            else navigate("Temario")
         }
 
         if (type === 'home_modal') {

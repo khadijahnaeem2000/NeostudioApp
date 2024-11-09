@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 import { widthPercentageToDP, heightPercentageToDP } from '../../Component/MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
+import { IMAGE_URL } from '../../config'
 
 export default class HomeMenu extends React.Component {
 
@@ -33,7 +34,7 @@ export default class HomeMenu extends React.Component {
                         style={styles.bageImg}
                     />
                     : <FastImage
-                        source={{ uri: 'https://neoestudio.net/public/userImage/' + profileImage }}
+                        source={{ uri: IMAGE_URL + profileImage }}
                         resizeMode={FastImage.resizeMode.stretch}
                         style={styles.bageImg2}
                     />}

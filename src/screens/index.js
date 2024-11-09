@@ -1,2 +1,8 @@
 export { default as HomePage } from "./HomePage"
 export { default as AI } from "./AI"
+export { default as Temario } from "./Temario"
+export { default as Classes } from "./Classes"
+export { default as ClassTopics } from "./ClassTopics"
+export { default as Videos } from "./Videos"
+export { default as Faq } from "./Faq"
+export { default as Repaso } from "./Repaso"
