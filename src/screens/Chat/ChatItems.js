@@ -31,7 +31,6 @@ class ChatItems extends Component {
       '/NeoeStudio_' +
       Math.floor(date.getTime() + date.getSeconds() / 2) +
       ext;
-    console.log(dirs, 'document path');
     RNFetchBlob.config({
       // response data will be saved to this path if it has access right.
       fileCache: true,
@@ -95,7 +94,6 @@ class ChatItems extends Component {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         this.download(url);
       } else {
-        console.log('Camera permission denied');
       }
     } catch (err) {
       //console.warn(err);

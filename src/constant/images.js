@@ -41,6 +41,16 @@ import confirm_btn_image from "../assets/images/confirm_btn_image.png"
 import folder_background_image from "../assets/images/folder_background_image.png"
 import folder_image from "../assets/images/folder_image.png"
 import video_icon_image from "../assets/images/video_icon_image.png"
+import pdf_image from "../assets/images/pdf_image.png"
+import horizontal_btn_image from "../assets/images/horizontal_btn_image.png"
+import vertical_btn_image from "../assets/images/vertical_btn_image.png"
+import audio_icon_image from "../assets/images/audio_icon_image.png"
+import thumb_image from "../assets/images/thumb_image.png"
+import audio_play_image from "../assets/images/audio_play_image.png"
+import audio_pause_image from "../assets/images/audio_pause_image.png"
+import audio_back_image from "../assets/images/audio_back_image.png"
+import audio_forward_image from "../assets/images/audio_forward_image.png"
+import audio_background_image from "../assets/images/audio_background_image.png"
 
 
 export default {
@@ -86,5 +96,15 @@ export default {
     confirm_btn_image,
     folder_background_image,
     folder_image,
-    video_icon_image
+    video_icon_image,
+    pdf_image,
+    vertical_btn_image,
+    horizontal_btn_image,
+    audio_icon_image,
+    thumb_image,
+    audio_back_image,
+    audio_pause_image,
+    audio_play_image,
+    audio_background_image,
+    audio_forward_image
 };

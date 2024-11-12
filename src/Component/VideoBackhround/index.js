@@ -27,7 +27,7 @@ export default class BackgroundVideo extends React.Component {
           rate={1.0}
           paused={this.props.paused}
           ignoreSilentSwitch={"obey"}
-          onError={(error) => console.log("error", error)}
+          onError={(error) => { }}
         />
         {this.props.children}
       </View>

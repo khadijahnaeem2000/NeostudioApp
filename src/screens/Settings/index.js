@@ -46,7 +46,6 @@ const Settings = props => {
 
   const getRegisterPopupData = async () => {
     const data = await getRegisterData(login?.data?.id)
-    console.log("dataaaa", data)
     setRegisterPopupData(data?.data)
   }
 
@@ -92,7 +91,6 @@ const Settings = props => {
   };
 
   const onRegister = async (val) => {
-    console.log("valaaa", val)
     const response = await addRegister({ ...val, id: login?.data?.id });
     if (response?.status === 'Successful') {
       setShowModal(false)
@@ -250,7 +248,6 @@ const Settings = props => {
         isOpen={baremoModal}
         baremoText={text => setBaremo(text)}
         yesClick={() => {
-          //console.log('hii',baremoTxt);
           if (baremoTxt === 0) {
             Alert.alert('', 'Por favor escriba un número baremo válido.');
           } else {

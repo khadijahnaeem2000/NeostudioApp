@@ -78,16 +78,6 @@ class Chat extends React.Component {
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
       });
-      console.log(
-        res.uri,
-        '\n',
-        res.type,
-        '\n',
-        res.name,
-        // mime type
-        // res.name,
-        // res.size
-      );
       this.setState(
         {
           fileUri: res.uri,
@@ -158,7 +148,6 @@ class Chat extends React.Component {
         }
       }, 1000);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -187,7 +176,6 @@ class Chat extends React.Component {
           false,
           'audio/mpeg',
         );
-        //console.log(Constants.AUDIO_PATH)
       },
     );
   };

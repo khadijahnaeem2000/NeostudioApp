@@ -43,13 +43,11 @@ class VideoDetail extends PureComponent {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.setState({ loading: false });
         this.setState({ response: json });
       })
       .catch((error) => {
         this.setState({ loading: false });
-        console.log("exception error is =>", error);
       });
   };
 

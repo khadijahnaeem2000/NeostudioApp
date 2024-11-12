@@ -157,7 +157,7 @@ export default () => {
 
         if (type === 'repaso') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
-            navigate("Repaso")
+            navigate(isIOS ? "ReviewTest" : "Repaso")
         }
 
         if (type === 'battle') {
@@ -175,9 +175,9 @@ export default () => {
         }
 
         if (type === 'audio') {
-            if (!login.package) navigate("AudioClass")
+            if (!login.package) navigate("Audios")
             else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
-            else navigate("AudioClass")
+            else navigate("Audios")
         }
 
         if (type === 'video') {

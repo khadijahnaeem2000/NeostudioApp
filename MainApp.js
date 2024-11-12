@@ -40,7 +40,6 @@ const MainApp = () => {
     if (fcmToken) {
       dispatch(saveToken(fcmToken));
     } else {
-      console.log('Failed', 'No token received');
     }
   };
 

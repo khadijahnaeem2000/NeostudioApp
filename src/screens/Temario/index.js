@@ -8,10 +8,10 @@ import { navigate } from '../../navigation/navigation_service'
 
 const Temario = () => {
     const {
-        AuthLoading,
-        pdfFolders,
         onRefresh,
-        refreshing
+        refreshing,
+        loading,
+        pdf_folders
     } = TemarioFunctional()
 
     return (
@@ -23,15 +23,15 @@ const Temario = () => {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
                 style={{ paddingTop: SIZES.padding }}
-                data={pdfFolders?.folders}
+                data={pdf_folders}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}
-                ListFooterComponent={<SizedBox />}
+                ListFooterComponent={<SizedBox height={SIZES.padding * 2} />}
                 renderItem={({ item, index }) => (
                     <SingleFolderView
                         onPress={() =>
-                            navigate('PdfDetail', {
-                                position: item?.id,
+                            navigate('TemarioDetail', {
+                                id: item?.id,
                                 name: item?.name,
                             })
                         }
@@ -41,7 +41,7 @@ const Temario = () => {
             />
 
 
-            <LoaderModal visible={AuthLoading} />
+            <LoaderModal visible={loading} />
         </Container>
     )
 }

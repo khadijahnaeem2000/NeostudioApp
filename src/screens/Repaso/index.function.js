@@ -2,26 +2,36 @@ import { useFocusEffect } from "@react-navigation/native"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPdfFolder } from "../../Redux/action"
+import { getRepasoFolders } from "../../Redux/actions/repaso-action"
 
 export default () => {
     const dispatch = useDispatch()
 
-    const { login, AuthLoading, pdfFolders } = useSelector(state => state.user)
+    const { login, } = useSelector(state => state.user)
+    const { repaso_folders, loading } = useSelector(state => state.repaso)
 
     const [refreshing, setRefreshing] = useState(false)
 
+    const getRepasoFoldersData = () => {
+        const apiData = {
+            studentType: login.data.type,
+            studentId: login?.data?.id,
+        }
+        dispatch(getRepasoFolders(apiData))
+    }
 
-    useEffect(() => { dispatch(getPdfFolder(login.data.type, login?.data?.id)) }, [])
+
+    useEffect(() => { getRepasoFoldersData() }, [])
 
     const onRefresh = async () => {
         setRefreshing(true)
-        await dispatch(getPdfFolder(login.data.type, login?.data?.id))
+        await getRepasoFoldersData()
         setRefreshing(false)
     }
 
     return {
-        AuthLoading,
-        pdfFolders,
+        loading,
+        repaso_folders,
         refreshing,
         onRefresh
     }

@@ -84,13 +84,10 @@ class Review extends Component {
   };
   componentDidMount() {
     NetInfo.fetch().then(({ isConnected, isInternetReachable, type }) => {
-      // console.log('Is connected?', isConnected);
       this.setState({ netConnected: isConnected });
     });
     this.unsubscribeNetInfo = NetInfo.addEventListener(
       ({ isConnected, isInternetReachable, type }) => {
-        // console.log('Connection type', state.type);
-        // console.log('Is connected?', state.isConnected);
         this.setState({ netConnected: isConnected });
       },
     );

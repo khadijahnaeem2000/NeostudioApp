@@ -101,13 +101,11 @@ const Programs = ({ navigation }) => {
 
   const deleteItem = async (id, index) => {
 
-    console.log("yahna ayayay")
     await deleteApi(id);
     const newData = [...response];
     // const prevIndex = response.findIndex(item => item.activityId === id);
     // newData.splice(prevIndex, 1);
     setResponse(newData?.filter(item => item.activityId !== id));
-    console.log("refsArray.current[index].close();", refsArray.current[index].close())
     refsArray.current[index].close();
     setLoading(false)
   };
@@ -115,14 +113,12 @@ const Programs = ({ navigation }) => {
     try {
       setLoading(true)
       const result = await removeUserActivites(login?.data?.id, id, 'delete');
-      console.log("result", result)
       if (result.status === 'Success') {
         hideToast(true);
 
       }
     } catch (error) {
       setLoading(false)
-      console.log("errorrr", error)
     }
   };
   const loadMoreData = () => {

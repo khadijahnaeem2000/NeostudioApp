@@ -27,7 +27,6 @@ class ReviewTest extends PureComponent {
 
 
   getExamApi = () => {
-    console.log("yahahn a ayayyayaya")
     const { login } = this.props.user;
     this.props.clearStates();
     this.setState({ isLoading: true });

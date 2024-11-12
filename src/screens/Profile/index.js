@@ -46,23 +46,19 @@ const Profile = props => {
     fetch(`https://neoestudio.net/api/getUser?page=` + page)
       .then(res => res.json())
       .then(json => {
-        console.log(JSON.stringify(json));
         setLoading(false);
         if (json.status_code == 200) {
           setRandomUserData([...randomUserData, ...json.user.data]);
         }
       })
       .catch(error => {
-        console.log('response error ===>', error);
       });
   };
   const searchRecord = name => {
     setLoading(true);
-    console.log(name);
     fetch(`https://neoestudio.net/api/findUser/?name=` + name)
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         setLoading(false);
         if (json.status_code == 200) {
           setSearchData(json.user.data);
@@ -70,7 +66,6 @@ const Profile = props => {
       })
       .catch(error => {
         setLoading(false);
-        console.log('response error ===>', error);
       });
   };
   const loadMoreData = () => {

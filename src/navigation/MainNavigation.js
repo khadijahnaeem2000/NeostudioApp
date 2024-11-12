@@ -50,7 +50,7 @@ import TestTwo from '../screens/VideoClass/TestTwo';
 import MobileVerification from '../screens/Login/MobileVerification';
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AI, Classes, ClassTopics, Faq, HomePage, Repaso, Temario, Videos } from '../screens';
+import { AI, AudioDetails, Audios, Classes, ClassTopics, Faq, HomePage, Repaso, Temario, TemarioDetail, VideoDetails, Videos } from '../screens';
 
 
 const MainNavigation = () => {
@@ -66,7 +66,11 @@ const MainNavigation = () => {
         <Stack.Screen name="HomePage" component={HomePage} />
         <Stack.Screen name="AI" component={AI} />
         <Stack.Screen name="Temario" component={Temario} />
+        <Stack.Screen name="TemarioDetail" component={TemarioDetail} />
         <Stack.Screen name="Videos" component={Videos} />
+        <Stack.Screen name="VideoDetails" component={VideoDetails} />
+        <Stack.Screen name="Audios" component={Audios} />
+        <Stack.Screen name="AudioDetails" component={AudioDetails} />
         <Stack.Screen name="Classes" component={Classes} />
         <Stack.Screen name="ClassTopics" component={ClassTopics} />
         <Stack.Screen name="Faq" component={Faq} />

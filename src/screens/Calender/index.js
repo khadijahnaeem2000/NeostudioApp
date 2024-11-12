@@ -290,7 +290,6 @@ class Calender extends React.Component {
   };
 
   renderItem = (reservation, isFirst) => {
-    console.log('🚀 ~ Calender ~ reservation:', reservation);
     const fontSize = isFirst ? 16 : 14;
     const color = isFirst ? 'black' : '#43515c';
 

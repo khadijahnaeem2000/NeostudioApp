@@ -20,10 +20,10 @@ import {
 } from '../../Redux/action';
 import Header from '../../Component/Header';
 import Player from '../../Component/Player';
-import AudioProgress from '../../Component/audprogress';
 import TrackPlayer, { usePlaybackState } from 'react-native-track-player';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
+import { ProgressBar } from '../../Component';
 
 class AudioDetail extends React.Component {
   constructor(props) {
@@ -274,7 +274,7 @@ class AudioDetail extends React.Component {
                   </TouchableOpacity>
                   <Text style={styles.trackText}>{title}</Text>
                 </View>
-                <AudioProgress />
+                <ProgressBar />
               </FastImage>
             )}
           </View>

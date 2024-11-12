@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, Platform } from 'react-native'
-import TrackPlayer, { getDuration } from 'react-native-track-player';
+import { View, Text } from 'react-native'
+import TrackPlayer from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 let handler = require('./handler_s.png');
 import { useProgress } from 'react-native-track-player';
 import { heightPercentageToDP, widthPercentageToDP } from '../MakeMeResponsive';
+import { images } from '../../constant';
 
 const ProgressBar = () => {
     const [isSeeking, setIsSeeking] = useState(false);
@@ -12,8 +13,6 @@ const ProgressBar = () => {
 
     const progress = useProgress();
     const { duration, position, buffered } = progress;
-    // let duration = this.state.duration
-    // let tot = this.formatTime(duration)
 
     function formatTime(position) {
         let cur = position
@@ -45,21 +44,17 @@ const ProgressBar = () => {
                 maximumValue={duration}
                 minimumTrackTintColor="#007EBA"
                 maximumTrackTintColor="#6A6B6F"
-                thumbImage={handler}
+                thumbImage={images.thumb_image}
                 thumbStyle={{
-                    width: widthPercentageToDP(65),
-                    height: heightPercentageToDP(25),
-                    backgroundColor: "transparent"
+                    width: widthPercentageToDP(60),
+                    height: heightPercentageToDP(22),
                 }}
                 value={position}
                 onValueChange={(value) => {
-                    //TrackPlayer.pause();
-                    //setIsSeeking(true);
                     setSeek(value);
                 }}
                 onSlidingComplete={(value) => {
                     TrackPlayer.seekTo(value);
-                    //TrackPlayer.play();
                 }}
             />
         </View>

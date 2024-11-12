@@ -581,7 +581,6 @@ class ExamScreen extends React.Component {
             <TouchableOpacity
               style={styles.bottomBtn}
               onPress={() => {
-                console.log("heelloooo", this.state.examID, "asdasdasdasdasd", recordId, isComplete,)
                 !this.state.examID && !recordId
                   ? (this.props.dispatchExamText(), this.props.dispatchFuncOn())
                   : // : isComplete ?

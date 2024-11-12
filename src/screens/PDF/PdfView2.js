@@ -62,7 +62,6 @@ class PdfView extends React.Component {
   render() {
     const url = this.props.route.params.url || "abc"
     var res = encodeURI(url);
-    console.log(res);
     const { AuthLoading, login } = this.props.user;
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
@@ -83,16 +82,12 @@ class PdfView extends React.Component {
             source={{ uri: res }}
             onLoadComplete={(numberOfPages, filePath) => {
               this.props.pdfState(login?.data?.id, 'start');
-              console.log(`number of pages: ${numberOfPages}`);
             }}
             onPageChanged={(page, numberOfPages) => {
-              console.log(`current page: ${page}`);
             }}
             onError={error => {
-              console.log(error);
             }}
             onPressLink={uri => {
-              console.log(`Link presse: ${uri}`);
             }}
             style={{
               flex: 1,

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, RefreshControl } from 'react-native'
+import { Text, FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
 import { styles } from './index.styles'
@@ -8,8 +8,8 @@ import { navigate } from '../../navigation/navigation_service'
 
 const Videos = () => {
     const {
-        AuthLoading,
-        pdfFolders,
+        loading,
+        videos,
         onRefresh,
         refreshing
     } = VideosFunctional()
@@ -23,25 +23,20 @@ const Videos = () => {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
                 style={{ paddingTop: SIZES.padding }}
-                data={pdfFolders?.folders}
+                data={videos}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}
-                ListFooterComponent={<SizedBox />}
-                renderItem={({ item, index }) => (
+                ListFooterComponent={<SizedBox height={SIZES.padding * 2} />}
+                renderItem={({ item }) => (
                     <SingleFolderView
-                        onPress={() =>
-                            navigate('PdfDetail', {
-                                position: item?.id,
-                                name: item?.name,
-                            })
-                        }
+                        onPress={() => navigate('VideoDetails', { id: item?.id })}
                         title={item?.name}
                     />
                 )}
             />
 
 
-            <LoaderModal visible={AuthLoading} />
+            <LoaderModal visible={loading} />
         </Container>
     )
 }

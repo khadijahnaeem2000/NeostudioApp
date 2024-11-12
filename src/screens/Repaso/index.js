@@ -1,4 +1,4 @@
-import { View, Text, FlatList, RefreshControl } from 'react-native'
+import { Text, FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
 import { styles } from './index.styles'
@@ -8,10 +8,10 @@ import { navigate } from '../../navigation/navigation_service'
 
 const Repaso = () => {
     const {
-        AuthLoading,
-        pdfFolders,
         onRefresh,
-        refreshing
+        refreshing,
+        loading,
+        repaso_folders
     } = RepasoFunctional()
 
     return (
@@ -23,7 +23,7 @@ const Repaso = () => {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
                 style={{ paddingTop: SIZES.padding }}
-                data={pdfFolders?.folders}
+                data={repaso_folders}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}
                 ListFooterComponent={<SizedBox />}
@@ -40,8 +40,7 @@ const Repaso = () => {
                 )}
             />
 
-
-            <LoaderModal visible={AuthLoading} />
+            <LoaderModal visible={loading} />
         </Container>
     )
 }

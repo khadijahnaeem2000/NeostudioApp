@@ -2,3 +2,7 @@ export { default as userReducer } from './user-slice';
 export { default as dialogReducer } from './dialog-slice';
 export { default as popupReducer } from './popup-slice';
 export { default as classesReducer } from './classes-slice';
+export { default as temarioReducer } from './temario-slice';
+export { default as videoReducer } from './video-slice';
+export { default as audioReducer } from './audio-slice';
+export { default as repasoReducer } from './repaso-slice';

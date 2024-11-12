@@ -759,7 +759,6 @@ class VideoPlayer extends Component {
         var initial = Orientation.getInitialOrientation();
         if (initial === 'PORTRAIT') {
             Orientation.lockToLandscapeLeft();
-            console.log("hii")
             //do stuff
         }
         this.initSeekPanResponder();

@@ -69,7 +69,6 @@ class FolderFiles extends React.Component {
       '/NeoeStudio_' +
       Math.floor(date.getTime() + date.getSeconds() / 2) +
       ext;
-    console.log(dirs, 'document path');
     RNFetchBlob.config({
       // response data will be saved to this path if it has access right.
       fileCache: true,
@@ -94,7 +93,6 @@ class FolderFiles extends React.Component {
   }
 
   download(fileUrl) {
-    console.log(fileUrl);
     var date = new Date();
     var url = fileUrl;
     var ext = this.extention(url);
@@ -117,7 +115,6 @@ class FolderFiles extends React.Component {
     config(options)
       .fetch('GET', url)
       .then(res => {
-        //console.log('is download --->', res);
         //Alert.alert("Successfully Downloaded");
         this.setState({ isOpen: false });
         this.props.dispatchText();
@@ -146,7 +143,6 @@ class FolderFiles extends React.Component {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         this.download(url);
       } else {
-        console.log('Camera permission denied');
       }
     } catch (err) {
       //console.warn(err);
@@ -155,7 +151,6 @@ class FolderFiles extends React.Component {
 
   render() {
     const { downloadFiles, AuthLoading } = this.props.user;
-    //console.log(downloadFiles);
     return (
       <FastImage
         source={require('../../Images/bg.png')}

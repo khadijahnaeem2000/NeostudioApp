@@ -84,16 +84,12 @@ class PdfView extends React.Component {
             source={{ uri: res }}
             onLoadComplete={(numberOfPages, filePath) => {
               this.props.pdfState(login?.data?.id, 'start');
-              console.log(`number of pages: ${numberOfPages}`);
             }}
             onPageChanged={(page, numberOfPages) => {
-              console.log(`current page: ${page}`);
             }}
             onError={error => {
-              console.log(error);
             }}
             onPressLink={uri => {
-              console.log(`Link presse: ${uri}`);
             }}
             style={{
               width: '98%',

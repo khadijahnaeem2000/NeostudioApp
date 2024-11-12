@@ -44,7 +44,6 @@ class FAQSDetail extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson);
         this.setState({
           isLoading: false,
           dataSource: responseJson.data,
@@ -59,7 +58,6 @@ class FAQSDetail extends React.Component {
     var initial = Orientation.getInitialOrientation();
     if (initial === 'LANDSCAPE') {
       Orientation.lockToPortrait();
-      console.log('hii');
       //do stuff
     }
   }
@@ -89,7 +87,6 @@ class FAQSDetail extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson);
         this.setState(
           {
             isLoading: false,

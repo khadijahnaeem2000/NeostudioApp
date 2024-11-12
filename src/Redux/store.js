@@ -1,7 +1,7 @@
 import { persistReducer, persistStore } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { dialogReducer, userReducer, popupReducer, classesReducer } from './slices';
+import { dialogReducer, userReducer, popupReducer, classesReducer, temarioReducer, videoReducer, audioReducer, repasoReducer } from './slices';
 import { combineReducers } from 'redux';
 
 
@@ -9,7 +9,11 @@ const rootReducer = combineReducers({
   user: userReducer,
   dialog: dialogReducer,
   popup: popupReducer,
-  classes: classesReducer
+  classes: classesReducer,
+  temario: temarioReducer,
+  video: videoReducer,
+  audio: audioReducer,
+  repaso: repasoReducer,
 });
 
 const persistConfig = {

@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getClasses } from "../../Redux/actions/classes-action"
+import { useFocusEffect } from "@react-navigation/native"
+import Orientation from "react-native-orientation-locker"
 
 export default () => {
     const dispatch = useDispatch()
@@ -18,6 +20,7 @@ export default () => {
         dispatch(getClasses(apiData))
     }
 
+    useFocusEffect(useCallback(() => { Orientation.lockToPortrait() }, []))
 
     useEffect(() => { getClassesData() }, [])
 

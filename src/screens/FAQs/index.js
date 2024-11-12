@@ -47,7 +47,6 @@ class FAQS extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson);
         this.setState({
           isLoading: false,
           dataSource: responseJson.data,
@@ -83,7 +82,6 @@ class FAQS extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson);
         this.setState(
           {
             isLoading: false,

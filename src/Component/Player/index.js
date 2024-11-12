@@ -4,13 +4,10 @@ import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
 import { Badge } from 'react-native-elements';
 import { fonts } from '../../utils';
-import { Vimeo } from 'react-native-vimeo-iframe';
-import VideoPlayer from 'react-native-video-controls';
 
 export default class Player extends React.Component {
   render() {
     const { title, img, clickHandler, isActive, count, link } = this.props;
-    console.log("linkkk" , link)
     return (
       <TouchableOpacity
         style={{
@@ -22,28 +19,6 @@ export default class Player extends React.Component {
           marginTop: heightPercentageToDP(3),
         }}
         onPress={clickHandler}>
-
-        {/* <Vimeo
-          videoId={link?.match(/(\d+)$/)[0]}
-          autoplay={false}
-          loop={false}
-          onCustomMenuSelection={() => { }}
-          allowsLinkPreview={false}
-          onReady={() => console.log('Video is ready')}
-          onPause={() => console.log('Video is paused')}
-          onEnded={() => console.log('Video is ended')}
-          onTimeUpdate={() => console.log('Video time updated')}
-          onPlayProgress={data => console.log('Video progress data:', data)}
-          onFinish={() => console.log('Video is finished')}
-          style={{
-            height:200
-          }}
-          containerStyle={{
-            backgroundColor: "yellow",
-          }}
-          
-        /> */}
-
 
         {isActive ? (
           <View>

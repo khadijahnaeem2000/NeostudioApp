@@ -1,4 +1,4 @@
-import { View, SafeAreaView, Image } from 'react-native'
+import { View, SafeAreaView, Image, StatusBar } from 'react-native'
 import React from 'react'
 import { styles } from './index.styles'
 import { images } from '../../constant'
@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image'
 const Container = ({ children }) => {
     return (
         <SafeAreaView style={styles.main_view} >
+            <StatusBar barStyle={"light-content"} backgroundColor={"rgba(0,0,0,0.9)"} />
             <FastImage style={styles.main_view}
                 source={images.home_background_image} >
 
