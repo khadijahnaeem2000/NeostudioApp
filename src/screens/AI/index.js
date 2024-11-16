@@ -9,6 +9,7 @@ import { goBack } from '../../navigation/navigation_service'
 import AIFunctional from "./index.function"
 import { View } from 'react-native'
 import { SingleMessageView } from './components'
+import FastImage from 'react-native-fast-image'
 
 const AI = () => {
     const { messages } = AIFunctional()
@@ -50,7 +51,11 @@ const AI = () => {
                         activeOpacity={0.6}
                         style={styles.bottom_icon_view}
                     >
-                        <SvgXml height={40} xml={mic_icon} />
+                        {/* <SvgXml height={40} xml={mic_icon} /> */}
+                        <FastImage
+                            source={images.send_btn}
+                            resizeMode={FastImage.resizeMode.contain}
+                        />
                     </TouchableOpacity>
                 </ImageBackground>
 

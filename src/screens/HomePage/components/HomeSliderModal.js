@@ -32,7 +32,9 @@ const HomeSliderModal = ({ visible, onPressClose, onPressConfirm }) => {
                 />
                 <ScrollView showsVerticalScrollIndicator={false} >
                     <View style={styles.topModal}>
-                        <Text style={styles.topTitle}>
+                        <Text
+                            numberOfLines={1}
+                            style={styles.topTitle}>
                             {!reviewRanking?.username
                                 ? login?.data?.email
                                 : reviewRanking?.username}
@@ -175,6 +177,8 @@ const styles = StyleSheet.create({
         fontSize: widthPercentageToDP(5),
         fontFamily: fonts.novaBold,
         color: '#ffff',
+        width: "75%",
+        textAlign: "left"
     },
     navigationHeader: {
         flexDirection: 'row',

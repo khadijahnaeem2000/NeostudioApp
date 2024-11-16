@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     loading: false,
     repaso_folders: null,
+    repaso_exams: null
 
 };
 
@@ -17,11 +18,14 @@ export const repasoSlice = createSlice({
         setRepasoFolders: (state, action) => {
             state.repaso_folders = action.payload
         },
+        setRepasoExams: (state, action) => {
+            state.repaso_exams = action.payload
+        },
 
 
     },
 });
 
-export const { setLoading, setRepasoFolders } = repasoSlice.actions;
+export const { setLoading, setRepasoFolders, setRepasoExams } = repasoSlice.actions;
 
 export default repasoSlice.reducer;

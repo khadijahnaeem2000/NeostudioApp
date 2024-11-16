@@ -22,6 +22,11 @@ const SERVICE_URLS = {
 
     //Repaso Management
     getRepasoFolders: "getAllReviewFolders",
+    getRepasoExams: "getReviewFolderExams",
+
+
+    // Exam Management
+    getAllExams: "getAllExamsOfFolderApp"
 
 };
 
@@ -45,6 +50,10 @@ const getAudioFiles = data => post(SERVICE_URLS.getAudioFiles, data);
 
 //Repaso Management
 const getRepasoFolders = data => post(SERVICE_URLS.getRepasoFolders, data);
+const getRepasoExams = data => post(SERVICE_URLS.getRepasoExams, data);
+
+///Exams Management
+const getAllExams = data => post(SERVICE_URLS.getAllExams, data);
 
 
 
@@ -67,7 +76,11 @@ const apiServices = {
     getAudioFiles,
 
     //Repaso Management
-    getRepasoFolders
+    getRepasoFolders,
+    getRepasoExams,
+
+    //Exam Management
+    getAllExams
 
 
 };

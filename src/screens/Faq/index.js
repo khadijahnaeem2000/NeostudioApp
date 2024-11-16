@@ -22,7 +22,6 @@ const Faq = () => {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
-                style={{ paddingTop: SIZES.padding }}
                 data={pdfFolders?.folders}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}

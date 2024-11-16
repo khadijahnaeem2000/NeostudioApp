@@ -1,7 +1,6 @@
-import { Text, FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
-import { styles } from './index.styles'
 import VideosFunctional from "./index.function"
 import { SIZES } from '../../constant'
 import { navigate } from '../../navigation/navigation_service'
@@ -15,14 +14,11 @@ const Videos = () => {
     } = VideosFunctional()
 
     return (
-        <Container>
-            <Text style={styles.heading} >VÍDEOS</Text>
-
+        <Container title={'VÍDEOS'}>
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
-                style={{ paddingTop: SIZES.padding }}
                 data={videos}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}

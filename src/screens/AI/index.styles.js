@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "flex-end",
-        marginRight: SIZES.padding,
+        marginRight: SIZES.padding2,
     },
     bottom_view: {
         height: 60,

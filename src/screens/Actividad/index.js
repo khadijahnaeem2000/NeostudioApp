@@ -15,8 +15,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import Program from '../../Component/Programs';
 import { useFocusEffect } from '@react-navigation/native';
 import { goBack } from '../../navigation/navigation_service';
+import { Container, LoaderModal, SizedBox } from '../../Component';
+import { Text } from 'react-native-svg';
 
-const Programs = props => {
+const Actividad = props => {
   const dispatch = useDispatch();
   const login = useSelector(state => state.user.login);
   const [isLoading, setLoading] = useState(false);
@@ -68,22 +70,10 @@ const Programs = props => {
   )
 
   return (
-    <FastImage
-      source={require('../../Images/bg.png')}
-      resizeMode={FastImage.resizeMode.stretch}
-      style={styles.container}>
-      <FastImage
-        style={styles.logo}
-        source={Platform.OS === 'android' ?
-          require('../../Images/veoestudio.png')
-          : require('../../Images/ios_logo.png')}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Header
-        iconName="left"
-        leftClick={goBack}
-        title="Actividades"
-      />
+    <Container title="Actividades" >
+
+
+      <Text style={styles.heading} >Actividades</Text>
       {pageSelected !== 0 && (
         <TouchableOpacity
           onPress={() => {
@@ -135,13 +125,13 @@ const Programs = props => {
               description={response[pageSelected].desc}
             />
           )}
+          <SizedBox />
         </ScrollView>
       </View>
-      {isLoading && (
-        <ActivityIndicator size="large" color="#000" style={styles.loading} />
-      )}
-    </FastImage>
+
+      <LoaderModal visible={isLoading} />
+    </Container>
   );
 };
 
-export default Programs;
+export default Actividad;

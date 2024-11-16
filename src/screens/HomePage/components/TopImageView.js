@@ -17,7 +17,7 @@ const TopImageView = ({ image, title, title2 }) => {
                     width: widthPercentageToDP(10),
                 }}
             />
-            <Text style={styles.smallTxt} >{title}</Text>
+            <Text style={styles.smallTxt}  numberOfLines={1} >{title}</Text>
             {
                 title2 &&
                 <Text style={styles.smallTxt2} >{title2}</Text>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     smallTxt: {
         marginTop: heightPercentageToDP(-1),
         color: COLORS.white,
-        fontSize: widthPercentageToDP(2.5),
+        fontSize: heightPercentageToDP(1.1),
         fontFamily: fonts.novaBold,
     },
     smallTxt2: {

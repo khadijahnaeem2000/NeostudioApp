@@ -51,6 +51,16 @@ import audio_pause_image from "../assets/images/audio_pause_image.png"
 import audio_back_image from "../assets/images/audio_back_image.png"
 import audio_forward_image from "../assets/images/audio_forward_image.png"
 import audio_background_image from "../assets/images/audio_background_image.png"
+import incomplete_exam from "../assets/images/incomplete_exam.png"
+import complete_exam from "../assets/images/complete_exam.png"
+import si_btn_image from "../assets/images/si_btn_image.png"
+import no_btn_image from "../assets/images/no_btn_image.png"
+import psico_exam_image from "../assets/images/psico_exam_image.png"
+import orto_exam_image from "../assets/images/orto_exam_image.png"
+import english_exam_image from "../assets/images/english_exam_image.png"
+import cono_exam_image from "../assets/images/cono_exam_image.png"
+import begin_btn_image from "../assets/images/begin_btn_image.png"
+import send_btn from "../assets/images/send_btn.png"
 
 
 export default {
@@ -106,5 +116,15 @@ export default {
     audio_pause_image,
     audio_play_image,
     audio_background_image,
-    audio_forward_image
+    audio_forward_image,
+    incomplete_exam,
+    complete_exam,
+    si_btn_image,
+    no_btn_image,
+    psico_exam_image,
+    english_exam_image,
+    orto_exam_image,
+    cono_exam_image,
+    begin_btn_image,
+    send_btn
 };

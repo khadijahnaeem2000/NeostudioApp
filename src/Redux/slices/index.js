@@ -6,3 +6,4 @@ export { default as temarioReducer } from './temario-slice';
 export { default as videoReducer } from './video-slice';
 export { default as audioReducer } from './audio-slice';
 export { default as repasoReducer } from './repaso-slice';
+export { default as examReducer } from './exam-slice';

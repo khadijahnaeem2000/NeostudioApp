@@ -7,6 +7,7 @@ export const isIOS = Platform.OS === 'ios';
 export const behaviour = isIOS ? 'padding' : "height"
 
 export const COLORS = {
+  text_black_color: "#1E1E1E",
   white: "#ffffff",
   black: "#000000",
   transparent: "transparent",

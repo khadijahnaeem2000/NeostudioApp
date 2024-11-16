@@ -5,7 +5,7 @@ import Slider from '@react-native-community/slider';
 let handler = require('./handler_s.png');
 import { useProgress } from 'react-native-track-player';
 import { heightPercentageToDP, widthPercentageToDP } from '../MakeMeResponsive';
-import { images } from '../../constant';
+import { images, SIZES } from '../../constant';
 
 const ProgressBar = () => {
     const [isSeeking, setIsSeeking] = useState(false);
@@ -46,9 +46,10 @@ const ProgressBar = () => {
                 maximumTrackTintColor="#6A6B6F"
                 thumbImage={images.thumb_image}
                 thumbStyle={{
-                    width: widthPercentageToDP(60),
-                    height: heightPercentageToDP(22),
+                    width: SIZES.padding * 2,
+                    height: SIZES.padding * 2,
                 }}
+
                 value={position}
                 onValueChange={(value) => {
                     setSeek(value);

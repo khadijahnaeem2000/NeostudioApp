@@ -22,14 +22,11 @@ const AudioDetails = ({ route }) => {
     } = AudioDetailsFunctional({ id })
 
     return (
-        <Container>
-            <Text style={styles.heading} >AUDIOLIBRO</Text>
-
+        <Container  title={"AUDIOLIBRO"} >
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
-                style={{ paddingTop: SIZES.padding }}
                 data={audio_files}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}

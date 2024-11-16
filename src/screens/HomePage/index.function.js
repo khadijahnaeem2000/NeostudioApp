@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { isIOS } from "../../constant/theme"
-import { clearStates, getCurrentUser, getUserTikTokVideos, saveUserRankPoint, saveUserToken, updateLoginTime, updateRank, updateUserProfile, updateUserRankPoint } from "../../Redux/action"
+import { clearStates, getCurrentUser, getUserTikTokVideos, logout, saveUserRankPoint, saveUserToken, updateLoginTime, updateRank, updateUserProfile, updateUserRankPoint } from "../../Redux/action"
 import { getPurchaseHistory } from "react-native-iap"
 import { requestUserPermission } from "../../services/notification_service"
 import { useFocusEffect } from "@react-navigation/native"
@@ -125,8 +125,9 @@ export default () => {
         Orientation.unlockAllOrientations();
 
         if (type === 'activities') {
-            if (activityId) navigate("Activity")
-            else navigate('Actividad')
+            // if (activityId) navigate("Activity")
+            // else navigate('Actividad')
+            navigate("Actividad")
         }
 
         if (type === 'calendar') {
@@ -150,18 +151,23 @@ export default () => {
 
         if (type === 'exams') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
-            navigate("ExamFile", {
-                isRefresh: "false",
-            })
+            if (isIOS) {
+                navigate("Exams")
+            } else {
+                navigate("ExamFile", {
+                    isRefresh: "false",
+                })
+
+            }
         }
 
         if (type === 'repaso') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
-            navigate(isIOS ? "ReviewTest" : "Repaso")
+            navigate("Repaso")
         }
 
         if (type === 'battle') {
-            navigate("Personality")
+            navigate("ActiveBattle")
         }
 
         if (type === 'ai') {
@@ -209,19 +215,19 @@ export default () => {
         }
 
         if (type === 'descargas') {
-            navigate("GlobalRanking")
+            navigate("Survey")
         }
 
         if (type === 'entervista') {
-            navigate("GlobalRanking")
+            navigate("Personality")
         }
 
         if (type === 'ajustes') {
-            navigate("GlobalRanking")
+            navigate("Settings")
         }
 
         if (type === 'logout') {
-            navigate("GlobalRanking")
+            dispatch(logout())
         }
     };
 

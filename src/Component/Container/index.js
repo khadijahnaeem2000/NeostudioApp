@@ -1,10 +1,11 @@
-import { View, SafeAreaView, Image, StatusBar } from 'react-native'
+import { View, SafeAreaView, Image, StatusBar, Text } from 'react-native'
 import React from 'react'
 import { styles } from './index.styles'
 import { images } from '../../constant'
 import FastImage from 'react-native-fast-image'
+import { SingleTopView } from '../../screens/Exams/components'
 
-const Container = ({ children }) => {
+const Container = ({ children, HomeView, isHome, isExam, title }) => {
     return (
         <SafeAreaView style={styles.main_view} >
             <StatusBar barStyle={"light-content"} backgroundColor={"rgba(0,0,0,0.9)"} />
@@ -14,7 +15,30 @@ const Container = ({ children }) => {
                 <View style={styles.logo_view} >
                     <Image resizeMode='contain' source={images.logo} style={styles.logo} />
                 </View>
-                {children}
+                <View style={styles.top_view} >
+                    {
+                        isHome ?
+                            <HomeView />
+                            :
+                            isExam ?
+                                <>
+                                    <View style={styles.top_row} >
+                                        <SingleTopView image={images.cono_exam_image} text={"Conocimientos"} />
+                                        <SingleTopView image={images.english_exam_image} text={"Inglés"} />
+                                        <SingleTopView image={images.psico_exam_image} text={"Psicotécnicos"} />
+                                        <SingleTopView image={images.orto_exam_image} text={"Ortografía"} />
+                                    </View>
+                                    <Text style={styles.exam_heading} >{title}</Text>
+                                </>
+                                :
+                                <Text style={styles.heading} >{title}</Text>
+                    }
+                </View>
+
+                <View style={styles.sub_view} >
+                    {children}
+                </View>
+
             </FastImage>
         </SafeAreaView>
     )

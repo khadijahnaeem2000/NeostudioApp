@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     top_row: {
-        flex: 0.24,
+        flex: 1,
         flexDirection: "row",
         alignItems: "center",
     },

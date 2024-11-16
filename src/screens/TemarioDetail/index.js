@@ -1,7 +1,6 @@
-import { View, Text, FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
-import { styles } from './index.styles'
 import TemarioDetailFunctional from "./index.function"
 import { images, SIZES } from '../../constant'
 import { navigate } from '../../navigation/navigation_service'
@@ -20,17 +19,12 @@ const TemarioDetail = ({ route }) => {
         showModal
     } = TemarioDetailFunctional({ id })
 
-    console.log("selectedPdfFile", selectedPdfFile)
-
     return (
-        <Container>
-            <Text style={styles.heading} >TEMARIO</Text>
-
+        <Container title={"TEMARIO"} >
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
-                style={{ paddingTop: SIZES.padding }}
                 data={pdf_files}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}

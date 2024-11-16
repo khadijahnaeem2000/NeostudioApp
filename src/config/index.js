@@ -65,7 +65,7 @@ export const home_array = [
             },
             {
                 id: 32,
-                image: images.repaso_image,
+                image: images.temario_image,
                 title: "Repaso",
                 type: "repaso"
             },

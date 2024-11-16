@@ -1,16 +1,9 @@
 import { StyleSheet } from "react-native";
-import { heightPercentageToDP, widthPercentageToDP } from "../../Component/MakeMeResponsive";
+import { widthPercentageToDP } from "../../Component/MakeMeResponsive";
 import { fonts } from "../../utils";
-import { COLORS, SIZES } from "../../constant";
+import { SIZES } from "../../constant";
 
 export const styles = StyleSheet.create({
-    heading: {
-        fontSize: widthPercentageToDP(11),
-        fontFamily: fonts.novaBold,
-        color: COLORS.white,
-        textAlign: "center",
-        marginTop: heightPercentageToDP(10)
-    },
     audio_view: {
         marginTop: SIZES.padding2,
         width: "100%",

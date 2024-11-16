@@ -75,7 +75,7 @@ class SurveyQuestion extends React.Component {
     const {testArray} = this.state;
     const {login} = this.props.user;
     const tempArray = [];
-    for (var i = 0; i < testArray.length; i++) {
+    for (var i = 0; i < testArray?.length; i++) {
       tempArray.push({
         id: testArray[i].id,
         answer: testArray[i].answer,
@@ -117,7 +117,7 @@ class SurveyQuestion extends React.Component {
           <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
             <Text style={styles.title}>{surveyQuestion.title}</Text>
             <View style={styles.surveyView}>
-              {!testArray.length ? (
+              {!testArray?.length ? (
                 <View />
               ) : (
                 testArray.map((item, index) => {

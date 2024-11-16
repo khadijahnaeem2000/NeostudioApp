@@ -22,16 +22,15 @@ const Repaso = () => {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
-                style={{ paddingTop: SIZES.padding }}
                 data={repaso_folders}
                 keyExtractor={item => item?.id}
                 showsVerticalScrollIndicator={false}
                 ListFooterComponent={<SizedBox />}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
                     <SingleFolderView
                         onPress={() =>
-                            navigate('PdfDetail', {
-                                position: item?.id,
+                            navigate('RepasoDetail', {
+                                id: item?.id,
                                 name: item?.name,
                             })
                         }

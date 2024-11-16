@@ -4,10 +4,10 @@ import FastImage from 'react-native-fast-image'
 import { images } from '../../constant'
 import { styles } from './index.styles'
 
-const SingleFolderView = ({ title, onPress, image }) => {
+const SingleFolderView = ({ title, onPress, image, onLongPress }) => {
     return (
         <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.main_view} source={images.folder_background_image} >
-            <TouchableOpacity style={styles.row} activeOpacity={0.6} onPress={onPress} >
+            <TouchableOpacity onLongPress={onLongPress} style={styles.row} activeOpacity={0.6} onPress={onPress} >
                 <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.image} source={image || images.folder_image} />
                 <Text numberOfLines={2} style={styles.title} >{title}</Text>
             </TouchableOpacity>
