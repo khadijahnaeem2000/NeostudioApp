@@ -52,32 +52,25 @@ import {
   View,
   BackHandler,
   ActivityIndicator,
-  Platform,
   StyleSheet,
   TouchableOpacity,
   Text,
-  Alert,
   Image,
   Modal,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { styles } from './styles';
-import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import {
   Agenda,
-  DateData,
-  AgendaEntry,
-  AgendaSchedule,
 } from 'react-native-calendars';
 import testIDs from './testIDs';
-import { nextDay } from './data';
-import Webview from 'react-native-webview';
-import Header from '../../Component/Header';
-import { baseUrl, getSpecialDates } from '../../Redux/action';
+import { getSpecialDates } from '../../Redux/action';
 import { heightPercentageToDP, widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import moment from 'moment/moment';
 import Entypo from 'react-native-vector-icons/Entypo'
+import { Container } from '../../Component';
+import { COLORS } from '../../constant';
 
 
 const URL = 'https://webversion.neoestudio.net/calendario?id=';
@@ -139,27 +132,16 @@ class Calender extends React.Component {
   };
 
   render() {
-    
+
     return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <FastImage
-          style={styles.logo}
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.stretch}
-        />
-        <Header
-          iconName="left"
-          title={'Calendario'}
-        />
+
+      <Container title={'CALENDARIO'} >
         <Agenda
           testID={testIDs.agenda.CONTAINER}
           items={this.state.newItems}
           ListEmptyComponent={this.renderEmptyComponent}
           loadItemsForMonth={this.loadItems}
+          style={{backgroundColor:COLORS.transparent}}
           displayLoadingIndicator={false}
           renderItem={this.renderItem}
           dayLoading={false}
@@ -235,7 +217,8 @@ class Calender extends React.Component {
             </View>
           </View>
         </Modal>
-      </View>
+
+      </Container>
     );
   }
 
@@ -356,7 +339,7 @@ class Calender extends React.Component {
 
 const stylesNew = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     flex: 1,
     borderRadius: 5,
     padding: 10,

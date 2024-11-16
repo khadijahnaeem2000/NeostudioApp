@@ -125,9 +125,8 @@ export default () => {
         Orientation.unlockAllOrientations();
 
         if (type === 'activities') {
-            // if (activityId) navigate("Activity")
-            // else navigate('Actividad')
-            navigate("Actividad")
+            if (activityId) navigate("Activity")
+            else navigate('Actividad')
         }
 
         if (type === 'calendar') {
