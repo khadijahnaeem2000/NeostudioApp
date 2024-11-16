@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -29,6 +29,7 @@ import BaremoUpdate from '../../Component/BaremoModal';
 import { onLogoutUser } from '../../Redux/slices/user-slice';
 import RegisterModal from '../Home/registerModal';
 import { Container, LoaderModal } from '../../Component';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Settings = props => {
   const dispatch = useDispatch();
@@ -50,9 +51,7 @@ const Settings = props => {
     setRegisterPopupData(data?.data)
   }
 
-  useEffect(() => {
-    getRegisterPopupData()
-  }, [])
+  useFocusEffect(useCallback(() => { getRegisterPopupData() }, []))
 
 
   const apiCall = async () => {
@@ -168,7 +167,10 @@ const Settings = props => {
       </View>
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Datos registro'}</Text>
-        <TouchableOpacity onPress={() => setShowModal(true)} style={styles.btn}>
+        <TouchableOpacity onPress={() => {
+          getRegisterPopupData()
+          setShowModal(true)
+        }} style={styles.btn}>
           <FastImage
             source={require('../../Images/button.png')}
             resizeMode={'contain'}
