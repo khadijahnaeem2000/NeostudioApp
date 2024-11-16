@@ -4,17 +4,13 @@ import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
 import { IMAGE_URL } from '../../config'
+import { COLORS } from '../../constant'
 
 
 const NewBattle = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.profileView}>
-                {/* <FastImage
-                    source={require('../../screens/Home/assets/Photo_or_avatar.png')}
-                    style={styles.profleImg}
-                    resizeMode={FastImage.resizeMode.contain}
-                /> */}
                 {!props.userImage ?
                     <FastImage
                         source={require('../../screens/Home/assets/Photo_or_avatar.png')}
@@ -146,19 +142,19 @@ const styles = StyleSheet.create({
         marginLeft: widthPercentageToDP(6),
         fontSize: widthPercentageToDP(4),
         fontFamily: fonts.elegance,
-        color: "#000"
+        color: COLORS.white
     },
     smallName: {
         marginLeft: widthPercentageToDP(6),
         fontSize: widthPercentageToDP(3.5),
         fontFamily: fonts.elegance,
-        color: "#000"
+        color: COLORS.white
     },
     fileName: {
         marginLeft: widthPercentageToDP(4),
         fontSize: widthPercentageToDP(4),
         fontFamily: fonts.elegance,
-        color: "#000",
+        color: COLORS.white,
         //fontWeight:"normal"
     },
     listView: {

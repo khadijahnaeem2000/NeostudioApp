@@ -16,6 +16,8 @@ import Items from '../../Component/CurrentBattle';
 import { getAllActiveBattle, joinMyBattle } from '../../Redux/action';
 import Orientation from 'react-native-orientation-locker';
 import { useFocusEffect } from '@react-navigation/native';
+import { goBack, navigate } from '../../navigation/navigation_service';
+import { Container, LoaderModal } from '../../Component';
 
 const Battle = props => {
   const dispatch = useDispatch();
@@ -43,85 +45,64 @@ const Battle = props => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
 
     }, []))
 
   return (
-    <FastImage
-      source={require('../../Images/bg.png')}
-      resizeMode={FastImage.resizeMode.stretch}
-      style={styles.container}>
-      <FastImage
-        style={styles.logo}
-        source={Platform.OS === 'android' ?
-          require('../../Images/veoestudio.png')
-          : require('../../Images/ios_logo.png')}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Header
-        iconName="left"
-        leftClick={() => props.navigation.goBack()}
-        title="Tests a la carta"
-      />
+    <Container title={'Tests a la carta'} >
 
-      <View style={styles.batlleView}>
-        {!response || !response.length ? (
-          <View />
-        ) : (
-          <FlatList
-            data={response}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <Items
-                  userImage={item.photo}
-                  key={'unique' + index}
-                  ActiveUsers={item.ActiveUsers}
-                  name={item.username}
-                  FolderDetails={item.FolderDetails}
-                  isActive={true}
-                  clickHandler={() => {
-                    Orientation.unlockAllOrientations();
-                    dispatch(
-                      joinMyBattle(
-                        login?.data?.id,
-                        login.data.type,
-                        item.id,
-                        null,
-                        null,
-                        null,
-                      ),
-                    );
-                  }}
-                />
-              );
-            }}
-          />
+      {!response || !response.length ? (
+        <View />
+      ) : (
+        <FlatList
+          data={response}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item, index }) => {
+            return (
+              <Items
+                userImage={item.photo}
+                key={'unique' + index}
+                ActiveUsers={item.ActiveUsers}
+                name={item.username}
+                FolderDetails={item.FolderDetails}
+                isActive={true}
+                clickHandler={() => {
+                  Orientation.unlockAllOrientations();
+                  dispatch(
+                    joinMyBattle(
+                      login?.data?.id,
+                      login.data.type,
+                      item.id,
+                      null,
+                      null,
+                      null,
+                    ),
+                  );
+                }}
+              />
+            );
+          }}
+        />
+      )}
+
+      <TouchableOpacity
+        onPress={() => (
+          Orientation.unlockAllOrientations(),
+          navigate('CreateBatlle')
         )}
+        style={styles.createBtn}>
+        <FastImage
+          source={require('../../Images/createBattle.png')}
+          resizeMode={FastImage.resizeMode.contain}
+          style={styles.createBtn}
+        />
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => (
-            Orientation.unlockAllOrientations(),
-            props.navigation.navigate('CreateBatlle')
-          )}
-          style={styles.createBtn}>
-          <FastImage
-            source={require('../../Images/createBattle.png')}
-            resizeMode={FastImage.resizeMode.contain}
-            style={styles.createBtn}
-          />
-        </TouchableOpacity>
-      </View>
-      {isLoading && (
-        <ActivityIndicator size="large" color="#000" style={styles.loading} />
-      )}
-      {AuthLoading && (
-        <ActivityIndicator size="large" color="#000" style={styles.loading} />
-      )}
-    </FastImage>
+      <LoaderModal visible={isLoading || AuthLoading} />
+    </Container>
   );
 };
 

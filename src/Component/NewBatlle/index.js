@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
+import { COLORS } from '../../constant'
 
 
 const NewBattle = (props) => {
@@ -63,13 +64,13 @@ const styles = StyleSheet.create({
         marginLeft: widthPercentageToDP(6),
         fontSize: widthPercentageToDP(4.5),
         fontFamily: fonts.novaRegular,
-        color: "#000"
+        color: COLORS.white
     },
     fileName: {
         marginLeft: widthPercentageToDP(4),
         fontSize: widthPercentageToDP(5),
         fontFamily: fonts.novaRegular,
-        color: "#000",
+        color: COLORS.white,
     },
     listView: {
         width: widthPercentageToDP(80),

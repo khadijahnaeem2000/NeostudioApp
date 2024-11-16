@@ -4,43 +4,9 @@ import {
   heightPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import {fonts} from '../../utils';
+import { COLORS } from '../../constant';
 
 export const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  logo: {
-    position: 'absolute',
-    right: '0%',
-    top: Platform.OS === 'android' ? '0%' : '5%',
-    width: widthPercentageToDP(80),
-    height: heightPercentageToDP(9),
-  },
-  directoryView: {
-    flex: 1,
-    width: widthPercentageToDP(100),
-    //height:"100%",
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: heightPercentageToDP(0),
-    //backgroundColor: "yellow"
-  },
-  batlleView: {
-    flex: 1,
-    width: widthPercentageToDP(100),
-    marginTop: heightPercentageToDP(4),
-  },
-  loading: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   btn: {
     width: widthPercentageToDP(80),
     height: widthPercentageToDP(18),
@@ -51,7 +17,7 @@ export const styles = StyleSheet.create({
   btnTxt: {
     fontSize: widthPercentageToDP(6.5),
     fontFamily: fonts.novaBold,
-    color: '#fff',
+    color: COLORS.white,
   },
   createBtn: {
     width: widthPercentageToDP(60),
@@ -96,7 +62,7 @@ export const styles = StyleSheet.create({
     marginLeft: widthPercentageToDP(6),
     fontSize: widthPercentageToDP(5),
     fontFamily: fonts.elegance,
-    color: '#000',
+    color: COLORS.white,
   },
   vectorIcon: {
     width: widthPercentageToDP(6),
@@ -105,12 +71,12 @@ export const styles = StyleSheet.create({
   operator: {
     fontSize: widthPercentageToDP(8),
     fontFamily: fonts.novaBold,
-    color: '#ffffff',
+    color: COLORS.white,
   },
   operatorTxt: {
     fontSize: widthPercentageToDP(4),
     fontFamily: fonts.novaRegular,
-    color: '#000',
+    color: COLORS.white,
   },
   box: {
     width: widthPercentageToDP(10),

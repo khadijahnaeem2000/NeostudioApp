@@ -22,6 +22,8 @@ import ModalBox from './Model';
 import Orientation from 'react-native-orientation-locker';
 import { widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import { useFocusEffect } from '@react-navigation/native';
+import { Container, LoaderModal } from '../../Component';
+import { COLORS } from '../../constant';
 
 const CreateBattle = props => {
   const dispatch = useDispatch();
@@ -225,176 +227,157 @@ const CreateBattle = props => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     }, []))
 
   return (
-    <View style={{ flex: 1 }} >
-      <FastImage
-        source={require('../../Images/bg.png')}
-        resizeMode={FastImage.resizeMode.stretch}
-        style={styles.container}>
-        <FastImage
-          style={styles.logo}
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.contain}
-        />
-        <Header
-          iconName="left"
-          leftClick={() => props.navigation.goBack()}
-          title="Tests a la carta"
-        />
 
-        <View style={styles.batlleView}>
-          <ScrollView >
-            {/* Conocimientos */}
-            <View
+    <Container title={'Tests a la carta'}>
+      <ScrollView showsVerticalScrollIndicator={false} >
+        {/* Conocimientos */}
+        <View
+          style={{
+            flexDirection: 'row-reverse',
+            width: '100%',
+            marginRight: widthPercentageToDP(-2),
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity onPress={() => minusFunc()} style={styles.box2}>
+            <FastImage
+              source={require('../../Images/minus.png')}
+              resizeMode={FastImage.resizeMode.contain}
               style={{
-                flexDirection: 'row-reverse',
                 width: '100%',
-                marginRight: widthPercentageToDP(-2),
+                height: '100%',
+              }}
+            />
+          </TouchableOpacity>
+          <View
+            style={[
+              styles.box,
+              {
+                backgroundColor: 'white',
+                //marginRight: widthPercentageToDP(2),
+              },
+            ]}>
+            <Text style={styles.operatorTxt}>{numOfQues}</Text>
+          </View>
+          <TouchableOpacity onPress={() => plusFunc()} style={styles.box2}>
+            <FastImage
+              source={require('../../Images/plus.png')}
+              resizeMode={FastImage.resizeMode.contain}
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          </TouchableOpacity>
+          <Text
+            style={[
+              styles.folderName,
+              { color: COLORS.white, marginRight: widthPercentageToDP(2) },
+            ]}>
+            {'Preguntas'}
+          </Text>
+        </View>
+        <View style={styles.folderView}>
+          <FastImage
+            source={require('../../Images/empty_box.png')}
+            style={[
+              styles.vectorIcon3,
+              {
+                justifyContent: 'center',
                 alignItems: 'center',
-              }}>
-              <TouchableOpacity onPress={() => minusFunc()} style={styles.box2}>
-                <FastImage
-                  source={require('../../Images/minus.png')}
-                  resizeMode={FastImage.resizeMode.contain}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                  }}
-                />
-              </TouchableOpacity>
-              <View
-                style={[
-                  styles.box,
-                  {
-                    backgroundColor: 'white',
-                    //marginRight: widthPercentageToDP(2),
-                  },
-                ]}>
-                <Text style={styles.operatorTxt}>{numOfQues}</Text>
-              </View>
-              <TouchableOpacity onPress={() => plusFunc()} style={styles.box2}>
-                <FastImage
-                  source={require('../../Images/plus.png')}
-                  resizeMode={FastImage.resizeMode.contain}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                  }}
-                />
-              </TouchableOpacity>
-              <Text
-                style={[
-                  styles.folderName,
-                  { color: 'black', marginRight: widthPercentageToDP(2) },
-                ]}>
-                {'Preguntas'}
-              </Text>
-            </View>
-            <View style={styles.folderView}>
+              },
+            ]}>
+            {myArray1.length > 0 && (
               <FastImage
-                source={require('../../Images/empty_box.png')}
-                style={[
-                  styles.vectorIcon3,
-                  {
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  },
-                ]}>
-                {myArray1.length > 0 && (
-                  <FastImage
-                    source={require('../../Images/Check.png')}
-                    style={styles.vectorIcon}
-                  />
-                )}
-              </FastImage>
-              <Text style={styles.folderName}>{'Conocimientos'}</Text>
-            </View>
-            {!response || !response.Conocimientos.length ? (
-              <View />
-            ) : (
-              response.Conocimientos.map((item, index) => {
-                return (
-                  <Items
-                    key={'unique' + index}
-                    isActive={item.IsActive}
-                    ExamName={item.name}
-                    clickHandler={() => {
-                      updateOne(item.id, item.CourseId);
-                    }}
-                  />
-                );
-              })
+                source={require('../../Images/Check.png')}
+                style={styles.vectorIcon}
+              />
             )}
-            {/* repaso */}
-            <View style={styles.folderView}>
+          </FastImage>
+          <Text style={styles.folderName}>{'Conocimientos'}</Text>
+        </View>
+        {!response || !response.Conocimientos.length ? (
+          <View />
+        ) : (
+          response.Conocimientos.map((item, index) => {
+            return (
+              <Items
+                key={'unique' + index}
+                isActive={item.IsActive}
+                ExamName={item.name}
+                clickHandler={() => {
+                  updateOne(item.id, item.CourseId);
+                }}
+              />
+            );
+          })
+        )}
+        {/* repaso */}
+        <View style={styles.folderView}>
+          <FastImage
+            source={require('../../Images/empty_box.png')}
+            style={[
+              styles.vectorIcon3,
+              {
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+            ]}>
+            {myArray5.length > 0 && (
               <FastImage
-                source={require('../../Images/empty_box.png')}
-                style={[
-                  styles.vectorIcon3,
-                  {
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  },
-                ]}>
-                {myArray5.length > 0 && (
-                  <FastImage
-                    source={require('../../Images/Check.png')}
-                    style={styles.vectorIcon}
-                  />
-                )}
-              </FastImage>
-              <Text style={styles.folderName}>{'Repaso'}</Text>
-            </View>
-            {!response || !response.repaso.length ? (
-              <View />
-            ) : (
-              response.repaso.map((item, index) => {
-                return (
-                  <Items
-                    key={'unique' + index}
-                    isActive={item.IsActive}
-                    ExamName={item.name}
-                    clickHandler={() => {
-                      updateFive(item.id, item.CourseId);
-                    }}
-                  />
-                );
-              })
+                source={require('../../Images/Check.png')}
+                style={styles.vectorIcon}
+              />
             )}
+          </FastImage>
+          <Text style={styles.folderName}>{'Repaso'}</Text>
+        </View>
+        {!response || !response.repaso.length ? (
+          <View />
+        ) : (
+          response.repaso.map((item, index) => {
+            return (
+              <Items
+                key={'unique' + index}
+                isActive={item.IsActive}
+                ExamName={item.name}
+                clickHandler={() => {
+                  updateFive(item.id, item.CourseId);
+                }}
+              />
+            );
+          })
+        )}
 
-            {/* Inglés */}
-            <View style={styles.folderView}>
-              <TouchableOpacity onPress={() => updateTwo()}>
+        {/* Inglés */}
+        <View style={styles.folderView}>
+          <TouchableOpacity onPress={() => updateTwo()}>
+            <FastImage
+              source={require('../../Images/empty_box.png')}
+              style={[
+                styles.vectorIcon3,
+                {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              ]}>
+              {myArray2.length > 0 && (
                 <FastImage
-                  source={require('../../Images/empty_box.png')}
-                  style={[
-                    styles.vectorIcon3,
-                    {
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    },
-                  ]}>
-                  {myArray2.length > 0 && (
-                    <FastImage
-                      source={require('../../Images/Check.png')}
-                      style={styles.vectorIcon}
-                    />
-                  )}
-                </FastImage>
-              </TouchableOpacity>
+                  source={require('../../Images/Check.png')}
+                  style={styles.vectorIcon}
+                />
+              )}
+            </FastImage>
+          </TouchableOpacity>
 
-              <Text style={styles.folderName}>{'Inglés'}</Text>
-            </View>
-            {/* {!response || !response.Inglés.length ?
+          <Text style={styles.folderName}>{'Inglés'}</Text>
+        </View>
+        {/* {!response || !response.Inglés.length ?
                         <View />
                         : response.Inglés.map((item, index) => {
                             return (
@@ -406,30 +389,30 @@ const CreateBattle = props => {
                                 />
                             )
                         })} */}
-            {/* Psicotécnicos */}
-            <View style={styles.folderView}>
-              <TouchableOpacity onPress={() => updateThree()}>
+        {/* Psicotécnicos */}
+        <View style={styles.folderView}>
+          <TouchableOpacity onPress={() => updateThree()}>
+            <FastImage
+              source={require('../../Images/empty_box.png')}
+              style={[
+                styles.vectorIcon3,
+                {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              ]}>
+              {myArray3.length > 0 && (
                 <FastImage
-                  source={require('../../Images/empty_box.png')}
-                  style={[
-                    styles.vectorIcon3,
-                    {
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    },
-                  ]}>
-                  {myArray3.length > 0 && (
-                    <FastImage
-                      source={require('../../Images/Check.png')}
-                      style={styles.vectorIcon}
-                    />
-                  )}
-                </FastImage>
-              </TouchableOpacity>
+                  source={require('../../Images/Check.png')}
+                  style={styles.vectorIcon}
+                />
+              )}
+            </FastImage>
+          </TouchableOpacity>
 
-              <Text style={styles.folderName}>{'Psicotécnicos'}</Text>
-            </View>
-            {/* {!response || !response.Psicotécnicos.length ?
+          <Text style={styles.folderName}>{'Psicotécnicos'}</Text>
+        </View>
+        {/* {!response || !response.Psicotécnicos.length ?
                         <View />
                         : response.Psicotécnicos.map((item, index) => {
                             return (
@@ -441,30 +424,30 @@ const CreateBattle = props => {
                                 />
                             )
                         })} */}
-            {/* Ortografía */}
-            <View style={styles.folderView}>
-              <TouchableOpacity onPress={() => updateFour()}>
+        {/* Ortografía */}
+        <View style={styles.folderView}>
+          <TouchableOpacity onPress={() => updateFour()}>
+            <FastImage
+              source={require('../../Images/empty_box.png')}
+              style={[
+                styles.vectorIcon3,
+                {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              ]}>
+              {myArray4.length > 0 && (
                 <FastImage
-                  source={require('../../Images/empty_box.png')}
-                  style={[
-                    styles.vectorIcon3,
-                    {
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    },
-                  ]}>
-                  {myArray4.length > 0 && (
-                    <FastImage
-                      source={require('../../Images/Check.png')}
-                      style={styles.vectorIcon}
-                    />
-                  )}
-                </FastImage>
-              </TouchableOpacity>
+                  source={require('../../Images/Check.png')}
+                  style={styles.vectorIcon}
+                />
+              )}
+            </FastImage>
+          </TouchableOpacity>
 
-              <Text style={styles.folderName}>{'Ortografía'}</Text>
-            </View>
-            {/* {!response || !response.Ortografía.length ?
+          <Text style={styles.folderName}>{'Ortografía'}</Text>
+        </View>
+        {/* {!response || !response.Ortografía.length ?
                         <View />
                         : response.Ortografía.map((item, index) => {
                             return (
@@ -476,36 +459,34 @@ const CreateBattle = props => {
                                 />
                             )
                         })} */}
-          </ScrollView>
-          <TouchableOpacity
-            onPress={() => setIsOpen(true)}
-            style={styles.createBtn}>
-            <FastImage
-              source={require('../../Images/createBattle.png')}
-              resizeMode={FastImage.resizeMode.contain}
-              style={styles.createBtn}
-            />
-          </TouchableOpacity>
-        </View>
-        {isLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
-      </FastImage>
-      {isOpen && (
-        <ModalBox
-          isOpen={isOpen}
-          closeBox={() => setIsOpen(false)}
-          yesClick={() => {
-            setIsOpen(false);
-            startBattleApi(true);
-          }}
-          noClick={() => {
-            setIsOpen(false);
-            startBattleApi(false);
-          }}
+      </ScrollView>
+      <TouchableOpacity
+        onPress={() => setIsOpen(true)}
+        style={styles.createBtn}>
+        <FastImage
+          source={require('../../Images/createBattle.png')}
+          resizeMode={FastImage.resizeMode.contain}
+          style={styles.createBtn}
         />
-      )}
-    </View>
+      </TouchableOpacity>
+
+
+      <LoaderModal visible={isLoading} />
+
+      <ModalBox
+        isOpen={isOpen}
+        closeBox={() => setIsOpen(false)}
+        yesClick={() => {
+          setIsOpen(false);
+          startBattleApi(true);
+        }}
+        noClick={() => {
+          setIsOpen(false);
+          startBattleApi(false);
+        }}
+      />
+    </Container>
+
   );
 };
 
