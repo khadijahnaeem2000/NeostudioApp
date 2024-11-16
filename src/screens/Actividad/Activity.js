@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
-  ActivityIndicator,
   FlatList,
   TouchableOpacity,
   Modal,
@@ -21,7 +20,6 @@ import {
 } from '../../Redux/action';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector, useDispatch } from 'react-redux';
-import Activities from '../../Component/Activity';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -31,9 +29,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { fonts } from '../../utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { navigate } from '../../navigation/navigation_service';
-import { images } from '../../constant';
+import {  images } from '../../constant';
+import { Container, LoaderModal, SingleFolderView } from '../../Component';
 
-const Programs = ({ navigation }) => {
+const Programs = () => {
   const dispatch = useDispatch();
   const listRef = useRef()
   const refsArray = useRef([]);
@@ -143,12 +142,120 @@ const Programs = ({ navigation }) => {
 
   console.log("isis scrrene meheh")
 
-  return (
-    <View
-      style={[styles.container, { backgroundColor: '#f2f3f3' }]}
-    >
-      <GestureHandlerRootView>
+  const getImage = (type, name) => {
+    let image;
+    type === 'video' ?
+      image = images?.video_icon_image
+      : type === 'pdf' ?
+        image = images?.pdf_image
+        : type === 'audio' ?
+          image = images?.audio_icon_image
+          : type === 'review' ?
+            image = images?.complete_exam
+            : type === 'exam' ?
+              name?.includes('Orto') ?
+                image = images?.orto_exam_image
+                : name?.includes('Inglés') ?
+                  image = images?.english_exam_image
+                  : name?.includes('Psico') ?
+                    image = images?.psico_exam_image
+                    : name?.includes('Gramática') ?
+                      image = images?.orto_exam_image
+                      : image = images?.cono_exam_image
+              : type === 'personality' ?
+                image = images?.complete_exam
+                : image = images?.complete_exam
 
+
+    return image
+
+
+  }
+
+  const onPressTab = (item) => {
+    if (item.type === 'pdf') {
+      Orientation.unlockAllOrientations();
+      updateCompleteActivites(login?.data?.id, item.activityId);
+      setPage(1);
+      navigate('PdfView', {
+        url: item.file,
+      });
+    } else if (item.type === 'video') {
+      if (item?.vimeolink == null) {
+        Alert.alert('Enlace de vídeo no disponible')
+      } else {
+        Orientation.unlockAllOrientations();
+        updateCompleteActivites(login?.data?.id, item.activityId);
+        setPage(1);
+        navigate('TestVideo', {
+          url: 'https://neoestudio.net/' + item.material,
+          vimeoLink: item?.vimeolink,
+          id: login?.data?.id,
+        });
+      }
+    } else if (item.type === 'audio') {
+      Orientation.unlockAllOrientations();
+      updateCompleteActivites(login?.data?.id, item.activityId);
+      setPage(1);
+      let data = [];
+      data.push({
+        artist: !item.name ? item.title : item.name,
+        artwork: 'http://neoestudio.net/neostudio/Logo.png',
+        id: 0,
+        isActive: false,
+        title: !item.name ? item.title : item.name,
+        url: 'http://neoestudio.net/' + item.material,
+      });
+      navigate('AudioActivity', {
+        data: data,
+      });
+    } else {
+      Orientation.unlockAllOrientations();
+      updateCompleteActivites(login?.data?.id, item.activityId);
+      setPage(1);
+      if (item.type === 'exam') {
+        if (item.studentStatus === 'Habilitado') {
+          navigate('Test', {
+            examsId: item.id,
+            totalTime: item.examDuration,
+            isPsico: item.name?.includes('Psico')
+              ? true
+              : false,
+            type: 'all',
+            isReshedule: 'no',
+          });
+        } else if (item.studentExamStatus === 'end') {
+          navigate('Review', {
+            id: item.studentExamRecordId,
+            isImage: item.name?.includes('Psico')
+              ? true
+              : false,
+            type: 'all',
+          });
+        }
+      } else if (item.type === 'review') {
+        if (item.studentStatus === 'Habilitado') {
+          navigate('Test', {
+            examsId: item.id,
+            totalTime: item.examDuration,
+            isPsico: false,
+            type: 'all',
+            isReshedule: 'no',
+          });
+        } else if (item.studentExamStatus === 'end') {
+          navigate('Review', {
+            id: item.studentExamRecordId,
+            isImage: false,
+            type: 'all',
+          });
+        }
+      }
+    }
+  }
+
+  return (
+    <Container isHome title={"Activities"}
+      HomeView={() => (
         <View style={styles.headerTop}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TouchableOpacity
@@ -182,31 +289,15 @@ const Programs = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
-          <FastImage
-            style={{
-              width: widthPercentageToDP(25),
-              height: widthPercentageToDP(25),
-              marginTop: heightPercentageToDP(2),
-              marginRight: widthPercentageToDP(2),
-            }}
-            source={require('../../Images/logo2.png')}
-            resizeMode={FastImage.resizeMode.contain}
-          />
           <Text
-            style={[
-              styles.headerText,
-              {
-                position: 'absolute',
-                left: '33%',
-                //right: '0%',
-                top: '30%',
-                //bottom:
-              },
-            ]}>
+            style={styles.headerText}>
             {!activityName ? '' : activityName.toUpperCase()}
           </Text>
         </View>
+      )}
+    >
 
+      <GestureHandlerRootView>
         <View style={styles.directoryView}>
           {!response || !response.length ? (
             <View />
@@ -216,7 +307,6 @@ const Programs = ({ navigation }) => {
               onEndReached={() => loadMoreData()}
               data={response}
               ref={listRef}
-              style={{ marginTop: heightPercentageToDP(3) }}
               keyExtractor={(item, index) => 'unique' + index}
               renderItem={({ item, index }) => {
                 return (
@@ -242,155 +332,90 @@ const Programs = ({ navigation }) => {
                     onSwipeableWillOpen={() => console.log("onSwipeableWillOpen")}
                     onSwipeableRightOpen={() => console.log('Swiped right')}
                     renderLeftActions={() => <LeftItem />}
-                    friction={ Platform.OS ==='ios'  ? 1: 2}
+                    friction={Platform.OS === 'ios' ? 1 : 2}
 
                     leftThreshold={30}
                   //onSwipeableOpen={closeRow(index)}
                   //leftThreshold={80}
 
                   >
-                    <Activities
+
+                    <SingleFolderView
+                      image={getImage(item?.type, item?.name)}
+                      onPress={() => onPressTab(item)}
+                      textStyle={{
+                        fontFamily: item?.studentExamStatus === 'end' ?
+                          fonts.elegance
+                          : item?.isCompleted === 'no' ?
+                            fonts.novaBold : fonts.novaRegular,
+                      }}
+                      title={
+                          item?.activityName !== "" ? item?.activityName
+                            : item?.title !== "" ? item?.title
+                              : item?.name !== "" ? item?.name : "" 
+                      }
+
+                    />
+                    {/* <Activities
                       type={item.type}
                       name={item.name}
                       title={item.title}
                       activityName={item.activityName}
                       isCompleted={item.isCompleted}
                       studentExamStatus={item.studentExamStatus}
-                      clickHandler={() => {
-                        if (item.type === 'pdf') {
-                          Orientation.unlockAllOrientations();
-                          updateCompleteActivites(login?.data?.id, item.activityId);
-                          setPage(1);
-                          navigate('PdfView', {
-                            url: item.file,
-                          });
-                        } else if (item.type === 'video') {
-                          if (item?.vimeolink == null) {
-                            Alert.alert('Enlace de vídeo no disponible')
-                          } else {
-                            Orientation.unlockAllOrientations();
-                            updateCompleteActivites(login?.data?.id, item.activityId);
-                            setPage(1);
-                            navigate('TestVideo', {
-                              url: 'https://neoestudio.net/' + item.material,
-                              vimeoLink: item?.vimeolink,
-                              id: login?.data?.id,
-                            });
-                          }
-                        } else if (item.type === 'audio') {
-                          Orientation.unlockAllOrientations();
-                          updateCompleteActivites(login?.data?.id, item.activityId);
-                          setPage(1);
-                          let data = [];
-                          data.push({
-                            artist: !item.name ? item.title : item.name,
-                            artwork: 'http://neoestudio.net/neostudio/Logo.png',
-                            id: 0,
-                            isActive: false,
-                            title: !item.name ? item.title : item.name,
-                            url: 'http://neoestudio.net/' + item.material,
-                          });
-                          navigate('AudioActivity', {
-                            data: data,
-                          });
-                        } else {
-                          Orientation.unlockAllOrientations();
-                          updateCompleteActivites(login?.data?.id, item.activityId);
-                          setPage(1);
-                          if (item.type === 'exam') {
-                            if (item.studentStatus === 'Habilitado') {
-                              navigate('Test', {
-                                examsId: item.id,
-                                totalTime: item.examDuration,
-                                isPsico: item.name.includes('Psico')
-                                  ? true
-                                  : false,
-                                type: 'all',
-                                isReshedule: 'no',
-                              });
-                            } else if (item.studentExamStatus === 'end') {
-                              navigate('Review', {
-                                id: item.studentExamRecordId,
-                                isImage: item.name.includes('Psico')
-                                  ? true
-                                  : false,
-                                type: 'all',
-                              });
-                            }
-                          } else if (item.type === 'review') {
-                            if (item.studentStatus === 'Habilitado') {
-                              navigate('Test', {
-                                examsId: item.id,
-                                totalTime: item.examDuration,
-                                isPsico: false,
-                                type: 'all',
-                                isReshedule: 'no',
-                              });
-                            } else if (item.studentExamStatus === 'end') {
-                              navigate('Review', {
-                                id: item.studentExamRecordId,
-                                isImage: false,
-                                type: 'all',
-                              });
-                            }
-                          }
-                        }
-                      }}
-                    />
+                    // clickHandler={onPressTab}
+                    /> */}
                   </Swipeable>
                 );
               }}
             />
           )}
         </View>
-        {isLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
-        {showToast && (
-          <Modal
-            visible={showToast}
-            animationType="slide"
-            transparent={true}
-            supportedOrientations={['portrait', 'landscape']}
-            onRequestClose={() => { }}>
-            <View style={{ flex: 1 }}>
-              <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={['#cacaca', '#e9e9e9']}
+        <LoaderModal visible={isLoading} />
+        <Modal
+          visible={showToast}
+          animationType="slide"
+          transparent={true}
+          supportedOrientations={['portrait', 'landscape']}
+          onRequestClose={() => { }}>
+          <View style={{ flex: 1 }}>
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={['#cacaca', '#e9e9e9']}
+              style={{
+                width: widthPercentageToDP(90),
+                height: heightPercentageToDP(7),
+                borderWidth: widthPercentageToDP(0.3),
+                borderColor: '#000',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'absolute',
+                bottom: '5%',
+                alignSelf: 'center',
+              }}>
+              <Text
                 style={{
-                  width: widthPercentageToDP(90),
-                  height: heightPercentageToDP(7),
-                  borderWidth: widthPercentageToDP(0.3),
-                  borderColor: '#000',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'absolute',
-                  bottom: '5%',
-                  alignSelf: 'center',
+                  fontFamily: fonts.novaBold,
+                  fontSize: widthPercentageToDP(4),
+                  color: '#000',
                 }}>
-                <Text
-                  style={{
-                    fontFamily: fonts.novaBold,
-                    fontSize: widthPercentageToDP(4),
-                    color: '#000',
-                  }}>
-                  {'¡Enhorabuena!'}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: fonts.elegance,
-                    fontSize: widthPercentageToDP(4),
-                    color: '#000',
-                  }}>
-                  {'Has completado y archivado esta tarea.'}
-                </Text>
-              </LinearGradient>
-            </View>
-          </Modal>
-        )}
+                {'¡Enhorabuena!'}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.elegance,
+                  fontSize: widthPercentageToDP(4),
+                  color: '#000',
+                }}>
+                {'Has completado y archivado esta tarea.'}
+              </Text>
+            </LinearGradient>
+          </View>
+        </Modal>
       </GestureHandlerRootView>
-    </View>
+    </Container>
+    
   );
 };
 

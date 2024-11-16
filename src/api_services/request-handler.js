@@ -26,7 +26,10 @@ const SERVICE_URLS = {
 
 
     // Exam Management
-    getAllExams: "getAllExamsOfFolderApp"
+    getAllExams: "getAllExamsOfFolderApp",
+
+    //Activity Management
+    getUserPrograms: "getAllPrograms",
 
 };
 
@@ -56,6 +59,10 @@ const getRepasoExams = data => post(SERVICE_URLS.getRepasoExams, data);
 const getAllExams = data => post(SERVICE_URLS.getAllExams, data);
 
 
+//Activity Management
+const getUserPrograms = data => post(SERVICE_URLS.getUserPrograms, data);
+
+
 
 const apiServices = {
 
@@ -80,7 +87,10 @@ const apiServices = {
     getRepasoExams,
 
     //Exam Management
-    getAllExams
+    getAllExams,
+
+    //Activity Management
+    getUserPrograms
 
 
 };

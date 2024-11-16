@@ -1,73 +1,25 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import {
   View,
   ScrollView,
-  ActivityIndicator,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
 import { styles } from './styles';
-import Header from '../../Component/Header';
 import FastImage from 'react-native-fast-image';
-import Orientation from 'react-native-orientation-locker';
-import { getUserPrograms, saveActivityId } from '../../Redux/action';
-import { useSelector, useDispatch } from 'react-redux';
 import Program from '../../Component/Programs';
-import { useFocusEffect } from '@react-navigation/native';
-import { goBack } from '../../navigation/navigation_service';
 import { Container, LoaderModal, SizedBox } from '../../Component';
 import { Text } from 'react-native-svg';
+import ActividadFunctional from "./index.function"
 
-const Actividad = props => {
-  const dispatch = useDispatch();
-  const login = useSelector(state => state.user.login);
-  const [isLoading, setLoading] = useState(false);
-  const [response, setResponse] = useState([]);
-  const [pageSelected, setPageSelected] = useState(0);
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    _fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (response) {
-      setCounter(response.length - 1);
-    }
-  }, [response]);
-  const _fetchData = async () => {
-    setLoading(true);
-    const result = await getUserPrograms(login.data.type);
-    await setResponse(result.data);
-    await setLoading(false);
-  };
-  const _buttonControl = type => {
-    const count = response.length - 1;
-    if (type === 'left') {
-      if (count == 0) {
-        return;
-      } else {
-        setPageSelected(pageSelected - 1);
-      }
-    } else {
-      if (count <= pageSelected) {
-        return;
-      } else {
-        setPageSelected(pageSelected + 1);
-      }
-    }
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      const locked = Orientation.isLocked();
-      if (!locked) {
-        Orientation.lockToPortrait();
-      } else {
-        Orientation.lockToPortrait();
-      }
-    }, [])
-  )
+const Actividad = () => {
+  const {
+    counter,
+    loading,
+    pageSelected,
+    user_programs,
+    buttonControl,
+    onPressButton
+  } = ActividadFunctional()
 
   return (
     <Container title="Actividades" >
@@ -77,7 +29,7 @@ const Actividad = props => {
       {pageSelected !== 0 && (
         <TouchableOpacity
           onPress={() => {
-            _buttonControl('left');
+            buttonControl('left');
           }}
           style={styles.leftBtn}>
           <FastImage
@@ -90,7 +42,7 @@ const Actividad = props => {
       {counter !== pageSelected && (
         <TouchableOpacity
           onPress={() => {
-            _buttonControl('right');
+            buttonControl('right');
           }}
           style={styles.rightBtn}>
           <FastImage
@@ -105,31 +57,20 @@ const Actividad = props => {
           contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}
           horizontal
           showsHorizontalScrollIndicator={false}>
-          {!response || !response.length ? (
+          {!user_programs || !user_programs?.length ? (
             <View />
           ) : (
             <Program
-              clickHandler={() => {
-                Orientation.unlockAllOrientations();
-                dispatch(
-                  saveActivityId(
-                    response[pageSelected].id,
-                    response[pageSelected].name,
-                  ),
-                );
-                props.navigation.navigate('Activity', {
-                  activityName: response[pageSelected].name,
-                });
-              }}
-              image={response[pageSelected].image}
-              description={response[pageSelected].desc}
+              clickHandler={onPressButton}
+              image={user_programs?.[pageSelected].image}
+              description={user_programs?.[pageSelected].desc}
             />
           )}
           <SizedBox />
         </ScrollView>
       </View>
 
-      <LoaderModal visible={isLoading} />
+      <LoaderModal visible={loading} />
     </Container>
   );
 };

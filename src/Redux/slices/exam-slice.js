@@ -22,6 +22,6 @@ export const examSlice = createSlice({
     },
 });
 
-export const { setLoading, setexamFolders, setExams } = examSlice.actions;
+export const { setLoading, setExams } = examSlice.actions;
 
 export default examSlice.reducer;
