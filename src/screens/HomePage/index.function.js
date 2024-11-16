@@ -214,7 +214,7 @@ export default () => {
         }
 
         if (type === 'descargas') {
-            navigate("Survey")
+            navigate("DownUpload")
         }
 
         if (type === 'entervista') {

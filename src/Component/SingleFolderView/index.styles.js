@@ -12,14 +12,18 @@ export const styles = StyleSheet.create({
     },
     row: {
         paddingHorizontal: SIZES.padding,
-        paddingVertical:SIZES.padding2,
+        paddingVertical: SIZES.padding2,
         flexDirection: "row",
         alignItems: "center",
         height: "100%"
     },
-    image: {
+    image_view: {
         height: SIZES.padding * 3,
         width: SIZES.padding * 3
+    },
+    image: {
+        height: "100%",
+        width: "100%"
     },
     title: {
         flex: 1,

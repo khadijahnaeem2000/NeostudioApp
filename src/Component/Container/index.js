@@ -5,7 +5,7 @@ import { images } from '../../constant'
 import FastImage from 'react-native-fast-image'
 import { SingleTopView } from '../../screens/Exams/components'
 
-const Container = ({ children, HomeView, isHome, isExam, title }) => {
+const Container = ({ children, HomeView, isHome, isExam, title, textStyle }) => {
     return (
         <SafeAreaView style={styles.main_view} >
             <StatusBar barStyle={"light-content"} backgroundColor={"rgba(0,0,0,0.9)"} />
@@ -31,7 +31,7 @@ const Container = ({ children, HomeView, isHome, isExam, title }) => {
                                     <Text style={styles.exam_heading} >{title}</Text>
                                 </>
                                 :
-                                <Text style={styles.heading} >{title}</Text>
+                                <Text style={[styles.heading, textStyle]} >{title}</Text>
                     }
                 </View>
 

@@ -28,12 +28,9 @@ export const styles = StyleSheet.create({
     },
     mainView:{
         flex:1,
-        marginTop:heightPercentageToDP(3),
-        alignItems:"center"
     },
     fileView:{
-        alignItems:"center",
-        marginTop:heightPercentageToDP(5)
+        marginTop:heightPercentageToDP(2)
     },
     loading: {
         position: 'absolute',

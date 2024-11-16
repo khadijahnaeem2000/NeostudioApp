@@ -1,12 +1,9 @@
 import React from 'react';
 import {
   View,
-  ImageBackground,
-  Image,
   TouchableOpacity,
   ActivityIndicator,
   PermissionsAndroid,
-  Alert,
   ScrollView,
   Platform,
 } from 'react-native';
@@ -22,7 +19,8 @@ import Files from './Files';
 import RNFetchBlob from 'react-native-blob-util';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
-import FileViewer from 'react-native-file-viewer';
+import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component';
+import { SIZES } from '../../constant';
 
 class FolderFiles extends React.Component {
   constructor(props) {
@@ -43,7 +41,7 @@ class FolderFiles extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
@@ -152,24 +150,10 @@ class FolderFiles extends React.Component {
   render() {
     const { downloadFiles, AuthLoading } = this.props.user;
     return (
-      <FastImage
-        source={require('../../Images/bg.png')}
-        resizeMode={FastImage.resizeMode.stretch}
-        style={styles.container}>
-        <FastImage
-          style={styles.logo}
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.contain}
-        />
-        <Header
-          iconName="left"
-          leftClick={() => this.props.navigation.goBack()}
-          title={'Descargas' + '\n' + 'Subidas'}
-        />
+      <Container title={"Descargas\nSubidas"}
+        textStyle={{ marginTop: SIZES.padding }}
+      >
+
         <View style={styles.upDownView}>
           <FastImage
             source={require('./assets/descargas.png')}
@@ -187,7 +171,7 @@ class FolderFiles extends React.Component {
         </View>
         <View style={styles.mainView}>
           <ScrollView
-            contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}
+            contentContainerStyle={{ flexGrow: 1 }}
             showsVerticalScrollIndicator={false}>
             {!downloadFiles ? (
               <View />
@@ -195,11 +179,12 @@ class FolderFiles extends React.Component {
               <View style={styles.fileView}>
                 {downloadFiles.files.map((item, index) => {
                   return (
-                    <Files
+                    <SingleFolderView
                       key={'unique' + index}
-                      text={item.title ? item.title : item.name}
-                      isActive={item.isActive}
-                      clickHandler={() => {
+                      count={"!"}
+                      isActive={item?.isActive}
+                      title={item.title || item?.name}
+                      onPress={() => {
                         if (Platform.OS === 'android') {
                           this.download(item.file);
                         } else {
@@ -207,19 +192,29 @@ class FolderFiles extends React.Component {
                         }
                       }}
                     />
+                    // <Files
+                    //   key={'unique' + index}
+                    //   text={item.title ? item.title : item.name}
+                    //   isActive={item.isActive}
+                    //   clickHandler={() => {
+                    //     if (Platform.OS === 'android') {
+                    //       this.download(item.file);
+                    //     } else {
+                    //       this.iosDownload(item.file);
+                    //     }
+                    //   }}
+                    // />
                   );
                 })}
               </View>
             )}
+
+            <SizedBox />
           </ScrollView>
         </View>
-        {this.state.isOpen && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
-        {AuthLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
-      </FastImage>
+
+        <LoaderModal visible={this.state.isOpen || AuthLoading} />
+      </Container>
     );
   }
 }
