@@ -1,61 +1,42 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   widthPercentageToDP,
   heightPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import { fonts } from '../../utils';
+import { COLORS, SIZES } from '../../constant';
 
 export const styles = StyleSheet.create({
-  root: {
-    position: 'absolute',
-    zIndex: 1000,
-    width: '100%',
-    height: '100%',
-  },
-  logo: {
-    position: 'absolute',
-    right: '0%',
-    top: Platform.OS === 'android' ? '0%' : '5%',
-    width: widthPercentageToDP(80),
-    height: heightPercentageToDP(9),
-  },
-  mainContainer:{
-    flex: 1,
-    width: widthPercentageToDP(90),
-    marginTop: heightPercentageToDP(5),
-    alignSelf:"center"
-    //backgroundColor:'red'
-  },
-  mainTitle:{
+  mainTitle: {
     fontSize: widthPercentageToDP(6),
-    color:'#000',
+    color: COLORS.white,
     fontFamily: fonts.novaBold,
-    textAlign:'center'
+    textAlign: 'center'
   },
-  rowView:{
+  rowView: {
     marginTop: heightPercentageToDP(4),
-    width: widthPercentageToDP(90),
     height: heightPercentageToDP(7),
+    paddingHorizontal: SIZES.padding,
     //alignSelf:"center",
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between"
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
     //backgroundColor:"red"
   },
-  itemTitle:{
+  itemTitle: {
     fontSize: widthPercentageToDP(4.5),
-    color:'#000',
+    color: COLORS.white,
     fontFamily: fonts.novaBold,
   },
-  btn:{
+  btn: {
     width: widthPercentageToDP(30),
     height: widthPercentageToDP(10)
   },
-  imgBtn:{
-    justifyContent:"center",
-    alignItems:"center",
-    width:"100%",
-    height:"100%"
+  imgBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%"
   },
   loading: {
     position: 'absolute',

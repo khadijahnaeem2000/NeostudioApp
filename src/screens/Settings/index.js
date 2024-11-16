@@ -28,6 +28,7 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import BaremoUpdate from '../../Component/BaremoModal';
 import { onLogoutUser } from '../../Redux/slices/user-slice';
 import RegisterModal from '../Home/registerModal';
+import { Container, LoaderModal } from '../../Component';
 
 const Settings = props => {
   const dispatch = useDispatch();
@@ -98,152 +99,120 @@ const Settings = props => {
   }
 
   return (
-    <FastImage
-      style={styles.root}
-      resizeMode={FastImage.resizeMode.stretch}
-      source={require('../Exames/assets/back3.png')}>
-      <FastImage
-        source={
-          Platform.OS === 'android'
-            ? require('../../Images/veoestudio.png')
-            : require('../../Images/ios_logo.png')
-        }
-        resizeMode={FastImage.resizeMode.contain}
-        style={styles.logo}
-      />
-      <Header
-        iconName="left"
-        leftClick={() => props.navigation.goBack()}
-        title={'Ajustes'}
-      />
-      <View style={styles.mainContainer}>
-        {/* reset exames */}
-        <View
-          style={[
-            styles.rowView,
-            { marginTop: 0, width: widthPercentageToDP(75) },
-          ]}>
-          <Text style={styles.itemTitle}>{'Puntos de baremo'}</Text>
-          <Text onPress={() => showBaremo(true)} style={styles.itemTitle}>
-            {login.data.baremo === "." ? 0 : login.data.baremo}
-          </Text>
-        </View>
-        {/* Notification Block */}
-        <View
-          style={[
-            styles.rowView,
-            { marginTop: 0, width: widthPercentageToDP(80) },
-          ]}>
-          <Text style={styles.itemTitle}>{'Notificaciones Push'}</Text>
-          <ToggleSwitch
-            isOn={toggle}
-            onColor="green"
-            offColor="red"
-            //label="Example label"
-            labelStyle={{ color: 'black', fontWeight: '900' }}
-            size="small"
-            onToggle={isOn => dispatch(notificationToggle(isOn))}
-          />
-        </View>
-        {/* reset exames */}
-        <View style={[styles.rowView, { marginTop: 0 }]}>
-          <Text style={styles.itemTitle}>{'Resetear Exámenes'}</Text>
-          <TouchableOpacity
-            onPress={() => dispatch(resetAllExams(login?.data?.id))}
-            style={styles.btn}>
-            <FastImage
-              source={require('../../Images/button.png')}
-              resizeMode={'contain'}
-              style={styles.imgBtn}>
-              <Text
-                style={[
-                  styles.itemTitle,
-                  { color: 'white', fontSize: widthPercentageToDP(3.5) },
-                ]}>
-                {'Reiniciar'}
-              </Text>
-            </FastImage>
-          </TouchableOpacity>
-        </View>
-        {/* reset actividades */}
-        <View style={[styles.rowView, { marginTop: 0 }]}>
-          <Text style={styles.itemTitle}>{'Resetear Actividades'}</Text>
-          <TouchableOpacity onPress={() => _resetActivity()} style={styles.btn}>
-            <FastImage
-              source={require('../../Images/button.png')}
-              resizeMode={'contain'}
-              style={styles.imgBtn}>
-              <Text
-                style={[
-                  styles.itemTitle,
-                  { color: 'white', fontSize: widthPercentageToDP(3.5) },
-                ]}>
-                {'Reiniciar'}
-              </Text>
-            </FastImage>
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.rowView, { marginTop: 0 }]}>
-          <Text style={styles.itemTitle}>{'Datos registro'}</Text>
-          <TouchableOpacity onPress={() => setShowModal(true)} style={styles.btn}>
-            <FastImage
-              source={require('../../Images/button.png')}
-              resizeMode={'contain'}
-              style={styles.imgBtn}>
-              <Text
-                style={[
-                  styles.itemTitle,
-                  { color: 'white', fontSize: widthPercentageToDP(3.5) },
-                ]}>
-                {'Modificar'}
-              </Text>
-            </FastImage>
-          </TouchableOpacity>
-        </View>
-        {/* <Text style={styles.mainTitle}>{'Gestiona tu cuenta'}</Text> */}
-        <View style={[styles.rowView, { marginTop: 0 }]}>
-          <Text style={styles.itemTitle}>{'Borrar usuario'}</Text>
-          <TouchableOpacity onPress={() => setpop(true)} style={styles.btn}>
-            <FastImage
-              source={require('../../Images/button.png')}
-              resizeMode={'contain'}
-              style={styles.imgBtn}>
-              <Text
-                style={[
-                  styles.itemTitle,
-                  { color: 'white', fontSize: widthPercentageToDP(3.5) },
-                ]}>
-                {'Confirmar'}
-              </Text>
-            </FastImage>
-          </TouchableOpacity>
-        </View>
+    <Container title={"Ajustes"} >
+      {/* reset exames */}
+      <View
+        style={[
+          styles.rowView,
+          { marginTop: 0, width: widthPercentageToDP(75) },
+        ]}>
+        <Text style={styles.itemTitle}>{'Puntos de baremo'}</Text>
+        <Text onPress={() => showBaremo(true)} style={styles.itemTitle}>
+          {login.data.baremo === "." ? 0 : login.data.baremo}
+        </Text>
       </View>
-      {isPopUp && (
-        <ModalBox
-          isOpen={isPopUp}
-          myText={
-            'Su cuenta se eliminará de forma permanente y, junto con todos los datos de clasificación, se eliminarán. ¿Estas seguro que deseas continuar?'
-          }
-          noClick={() => setpop(false)}
-          closeBox={() => setpop(false)}
-          yesClick={() => apiCall()}
+      {/* Notification Block */}
+      <View
+        style={[
+          styles.rowView,
+          { marginTop: 0, width: widthPercentageToDP(80) },
+        ]}>
+        <Text style={styles.itemTitle}>{'Notificaciones Push'}</Text>
+        <ToggleSwitch
+          isOn={toggle}
+          onColor="green"
+          offColor="red"
+          //label="Example label"
+          labelStyle={{ color: 'black', fontWeight: '900' }}
+          size="small"
+          onToggle={isOn => dispatch(notificationToggle(isOn))}
         />
-      )}
-      {isLoading && (
-        <ActivityIndicator
-          style={styles.loading}
-          size={'large'}
-          color={'black'}
-        />
-      )}
-      {AuthLoading && (
-        <ActivityIndicator
-          style={styles.loading}
-          size={'large'}
-          color={'black'}
-        />
-      )}
+      </View>
+      {/* reset exames */}
+      <View style={[styles.rowView, { marginTop: 0 }]}>
+        <Text style={styles.itemTitle}>{'Resetear Exámenes'}</Text>
+        <TouchableOpacity
+          onPress={() => dispatch(resetAllExams(login?.data?.id))}
+          style={styles.btn}>
+          <FastImage
+            source={require('../../Images/button.png')}
+            resizeMode={'contain'}
+            style={styles.imgBtn}>
+            <Text
+              style={[
+                styles.itemTitle,
+                { color: 'white', fontSize: widthPercentageToDP(3.5) },
+              ]}>
+              {'Reiniciar'}
+            </Text>
+          </FastImage>
+        </TouchableOpacity>
+      </View>
+      {/* reset actividades */}
+      <View style={[styles.rowView, { marginTop: 0 }]}>
+        <Text style={styles.itemTitle}>{'Resetear Actividades'}</Text>
+        <TouchableOpacity onPress={() => _resetActivity()} style={styles.btn}>
+          <FastImage
+            source={require('../../Images/button.png')}
+            resizeMode={'contain'}
+            style={styles.imgBtn}>
+            <Text
+              style={[
+                styles.itemTitle,
+                { color: 'white', fontSize: widthPercentageToDP(3.5) },
+              ]}>
+              {'Reiniciar'}
+            </Text>
+          </FastImage>
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.rowView, { marginTop: 0 }]}>
+        <Text style={styles.itemTitle}>{'Datos registro'}</Text>
+        <TouchableOpacity onPress={() => setShowModal(true)} style={styles.btn}>
+          <FastImage
+            source={require('../../Images/button.png')}
+            resizeMode={'contain'}
+            style={styles.imgBtn}>
+            <Text
+              style={[
+                styles.itemTitle,
+                { color: 'white', fontSize: widthPercentageToDP(3.5) },
+              ]}>
+              {'Modificar'}
+            </Text>
+          </FastImage>
+        </TouchableOpacity>
+      </View>
+      {/* <Text style={styles.mainTitle}>{'Gestiona tu cuenta'}</Text> */}
+      <View style={[styles.rowView, { marginTop: 0 }]}>
+        <Text style={styles.itemTitle}>{'Borrar usuario'}</Text>
+        <TouchableOpacity onPress={() => setpop(true)} style={styles.btn}>
+          <FastImage
+            source={require('../../Images/button.png')}
+            resizeMode={'contain'}
+            style={styles.imgBtn}>
+            <Text
+              style={[
+                styles.itemTitle,
+                { color: 'white', fontSize: widthPercentageToDP(3.5) },
+              ]}>
+              {'Confirmar'}
+            </Text>
+          </FastImage>
+        </TouchableOpacity>
+      </View>
+
+      <ModalBox
+        isOpen={isPopUp}
+        myText={
+          'Su cuenta se eliminará de forma permanente y, junto con todos los datos de clasificación, se eliminarán. ¿Estas seguro que deseas continuar?'
+        }
+        noClick={() => setpop(false)}
+        closeBox={() => setpop(false)}
+        yesClick={() => apiCall()}
+      />
+
+      <LoaderModal visible={AuthLoading || isLoading} />
       <BaremoUpdate
         isOpen={baremoModal}
         baremoText={text => setBaremo(text)}
@@ -269,7 +238,7 @@ const Settings = props => {
         onPressButton={val => onRegister(val)}
         data={registerPopupData}
       />
-    </FastImage>
+    </Container>
   );
 };
 
