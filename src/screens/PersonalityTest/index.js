@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import {
   View,
-  ActivityIndicator,
   FlatList,
-  Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { styles } from './styles';
-import Header from '../../Component/Header';
 import { getPersonalityTestList, clearStates } from '../../Redux/action';
 import Directory from './directory';
-import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
+import { Container, LoaderModal, SingleFolderView } from '../../Component';
+import { images, SIZES } from '../../constant';
+
 const URL = 'https://neoestudio.net/api/getAllPersonalityExams';
 
 class Personality extends Component {
@@ -123,7 +121,7 @@ class Personality extends Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
@@ -133,89 +131,68 @@ class Personality extends Component {
     const { AuthLoading } = this.props.user;
     const { testData } = this.state;
     return (
-      <FastImage
-        source={require('../../Images/bg.png')}
-        style={styles.container}
-        resizeMode={FastImage.resizeMode.stretch}>
-        <FastImage
-          style={styles.logo}
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.contain}
-        />
-        <Header
-          iconName="left"
-          leftClick={() => this.props.navigation.goBack()}
-          title={'Entrevista' + '\n' + 'personal'}
-        />
-        <View style={styles.directoryView}>
-          {!testData || !testData.length ? (
-            <View />
-          ) : (
-            <FlatList
-              data={testData}
-              keyExtractor={item => 'unique' + item.id + 1}
-              showsVerticalScrollIndicator={false}
-              onMomentumScrollBegin={() => {
-                this.onEndReachedCalledDuringMomentum = false;
-              }}
-              onEndReached={({ distanceFromEnd }) => {
-                if (!this.state.isMoving) {
-                  this.LoadMoreRandomData(); // LOAD MORE DATA
-                }
-              }}
-              onEndReachedThreshold={0.5}
-              contentContainerStyle={{ flexGrow: 1 }}
-              renderItem={({ item, index }) => {
-                return (
-                  <Directory
-                    key={'unique' + index}
-                    examStatus={item.studentExamStatus}
-                    img={
-                      item.studentStatus === 'Habilitado'
-                        ? require('../../Images/personality2.png')
-                        : require('../../Images/personality1.png')
+      <Container
+        textStyle={{ marginTop: SIZES.padding }}
+        title={'Entrevista' + '\n' + 'personal'} >
+
+        {!testData || !testData.length ? (
+          <View />
+        ) : (
+          <FlatList
+            data={testData}
+            keyExtractor={item => 'unique' + item.id + 1}
+            showsVerticalScrollIndicator={false}
+            onMomentumScrollBegin={() => {
+              this.onEndReachedCalledDuringMomentum = false;
+            }}
+            onEndReached={({ distanceFromEnd }) => {
+              if (!this.state.isMoving) {
+                this.LoadMoreRandomData(); // LOAD MORE DATA
+              }
+            }}
+            onEndReachedThreshold={0.5}
+            contentContainerStyle={{ flexGrow: 1 }}
+            renderItem={({ item, index }) => {
+              return (
+                <SingleFolderView
+                  key={'unique' + index}
+                  examStatus={item.studentExamStatus}
+                  img={
+                    item.studentStatus === 'Habilitado'
+                      ? images.complete_exam
+                      : images.incomplete_exam
+                  }
+                  title={item?.name}
+                  isActive={item?.isActive}
+                  status={item?.studentStatus}
+                  onPress={() => {
+                    Orientation.unlockAllOrientations();
+                    if (item.studentStatus === 'Habilitado') {
+                      this.setState({ isMoving: true }, () => {
+                        this.props.navigation.navigate('Test', {
+                          examsId: item.id,
+                          totalTime: item.examDuration,
+                          isPsico: false,
+                          type: 'personality',
+                        });
+                      });
+                    } else if (item.studentExamStatus === 'end') {
+                      this.setState({ isMoving: true }, () => {
+                        this.props.navigation.navigate('Review', {
+                          id: item.studentExamRecordId,
+                          isImage: false,
+                          type: 'personality',
+                        });
+                      });
                     }
-                    title={item.name}
-                    isActive={item.isActive}
-                    status={item.studentStatus}
-                    clickHandler={() => {
-                      Orientation.unlockAllOrientations();
-                      if (item.studentStatus === 'Habilitado') {
-                        this.setState({ isMoving: true }, () => {
-                          this.props.navigation.navigate('Test', {
-                            examsId: item.id,
-                            totalTime: item.examDuration,
-                            isPsico: false,
-                            type: 'personality',
-                          });
-                        });
-                      } else if (item.studentExamStatus === 'end') {
-                        this.setState({ isMoving: true }, () => {
-                          this.props.navigation.navigate('Review', {
-                            id: item.studentExamRecordId,
-                            isImage: false,
-                            type: 'personality',
-                          });
-                        });
-                      }
-                    }}
-                  />
-                );
-              }}
-            />
-          )}
-        </View>
-        {AuthLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
+                  }}
+                />
+              );
+            }}
+          />
         )}
-        {this.state.isLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
-      </FastImage>
+        <LoaderModal visible={AuthLoading || this.state.isLoading} />
+      </Container>
     );
   }
 }
