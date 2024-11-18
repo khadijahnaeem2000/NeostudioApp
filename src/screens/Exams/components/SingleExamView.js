@@ -19,7 +19,7 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                             <SingleExamText
                                 key={index?.toString()}
                                 onLongPress={() => onLongPress(val)}
-                                onPress={() => onPress(val, false)}
+                                onPress={() => onPress(val, false, false)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
                             />
@@ -32,7 +32,7 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                             <SingleExamText
                                 key={index?.toString()}
                                 onLongPress={() => onLongPress(val)}
-                                onPress={() => onPress(val, false)}
+                                onPress={() => onPress(val, false, true)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
                             />
@@ -46,7 +46,7 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                             <SingleExamText
                                 key={index?.toString()}
                                 onLongPress={() => onLongPress(val)}
-                                onPress={() => onPress(val, true)}
+                                onPress={() => onPress(val, true, false)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
                             />
@@ -59,7 +59,7 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                             <SingleExamText
                                 key={index?.toString()}
                                 onLongPress={() => onLongPress(val)}
-                                onPress={() => onPress(val, false)}
+                                onPress={() => onPress(val, false, true)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
                             />

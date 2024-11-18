@@ -100,8 +100,7 @@ class App extends React.Component {
   onSeeking = currentTime => this.setState({ currentTime });
 
   render() {
-    const url = this.props.route.params.url || "asdasdasd"
-
+    const url = this.props.route.params.url || ""
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Video

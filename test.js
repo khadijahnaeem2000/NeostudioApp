@@ -25,4 +25,3 @@ const getEncryptedTS = () => {
 
 // Usage
 const ts = getEncryptedTS();
-console.log(ts);

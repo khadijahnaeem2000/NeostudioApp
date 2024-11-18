@@ -61,6 +61,8 @@ import english_exam_image from "../assets/images/english_exam_image.png"
 import cono_exam_image from "../assets/images/cono_exam_image.png"
 import begin_btn_image from "../assets/images/begin_btn_image.png"
 import send_btn from "../assets/images/send_btn.png"
+import whatsapp_btn from "../assets/images/whatsapp_btn.png"
+import stripe_btn from "../assets/images/stripe_btn.png"
 
 
 export default {
@@ -126,5 +128,7 @@ export default {
     orto_exam_image,
     cono_exam_image,
     begin_btn_image,
-    send_btn
+    send_btn,
+    whatsapp_btn,
+    stripe_btn
 };

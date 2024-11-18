@@ -19,7 +19,8 @@ const Exams = () => {
         setShowModal,
         showModal,
         onPressBegin,
-        setIsPsicotechnics
+        setIsPsicotechnics,
+        setIsHtml
     } = ExamsFunctional()
 
     return (
@@ -38,7 +39,7 @@ const Exams = () => {
                             <SingleExamView
                                 item={item}
                                 key={index?.toString()}
-                                onPress={(val, isPsico) => (setSelcetedExam(val), setIsPsicotechnics(isPsico))}
+                                onPress={(val, isPsico, isHtml) => (setSelcetedExam(val), setIsPsicotechnics(isPsico), setIsHtml(isHtml))}
                                 selectedExam={selectedExam}
                                 onLongPress={val => {
                                     setSelcetedExam(val)

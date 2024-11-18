@@ -6,7 +6,6 @@ export const getAllExams = data => {
         try {
             dispatch(setLoading(true))
             const response = await apiServices.getAllExams(data)
-            console.log("srespoaonsdas", response?.data)
             dispatch(setLoading(false))
             if (response?.data?.status === 'Successfull') {
                 dispatch(setExams(response?.data?.data))

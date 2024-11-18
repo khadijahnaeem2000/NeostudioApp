@@ -20,6 +20,12 @@ import {
 
 const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
 
+  const nameRef = useRef(null)
+  const emailRef = useRef(null)
+  const phoneRef = useRef(null)
+  const baremoRef = useRef(null)
+  const usernameRef = useRef(null)
+  const passwordRef = useRef(null)
   const directionRef = useRef(null)
   const localidadRef = useRef(null)
   const postalRef = useRef(null)
@@ -27,6 +33,12 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
   const instagramRef = useRef(null)
 
 
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [baremo, setBaremo] = useState(null);
   const [direction, setDirection] = useState(null);
   const [localidad, setLocalidad] = useState(null);
   const [postal, setPostal] = useState(null);
@@ -38,14 +50,19 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
   const [showColors, setShowColors] = useState(false);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     if (data) {
+      setName(data?.name || null)
+      setEmail(data?.email || null)
+      setPhone(data?.telephone || null)
+      setBaremo(data?.baremo || null)
+      setUsername(data?.username || null)
+      setPassword(data?.password || null)
       setDirection(data?.domi || null)
       setLocalidad(data?.localidad || null)
       setPostal(data?.postal || null)
       setDni(data?.dni || null)
-      setInstagram(instagram || null)
+      setInstagram(data?.Instagram || null)
       setColor(data?.color || null)
       setShirtsize(data?.shirtsize || null)
     }
@@ -54,6 +71,30 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
 
 
   const onPressSubmit = () => {
+    if (!name || name?.trim()?.length < 1) {
+      setError("Name es requerido")
+      return
+    }
+    if (!email || email?.trim()?.length < 1) {
+      setError("Email es requerido")
+      return
+    }
+    if (!phone || phone?.trim()?.length < 1) {
+      setError("Telephone es requerido")
+      return
+    }
+    if (!baremo || baremo?.trim()?.length < 1) {
+      setError("Baremo es requerido")
+      return
+    }
+    if (!username || username?.trim()?.length < 1) {
+      setError("Username es requerido")
+      return
+    }
+    if (!password || password?.trim()?.length < 1) {
+      setError("Password es requerido")
+      return
+    }
     if (!direction || direction?.trim()?.length < 1) {
       setError("El Dirección es requerido")
       return
@@ -82,14 +123,20 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
 
 
     const apiData = {
-      shirtsize: shirtsize,
-      color: color,
-      dni: dni,
+      shirtsize,
+      color,
+      dni,
       domi: direction,
-      localidad: localidad,
-      postal: postal,
-      direction: direction,
-      instagram: instagram || '',
+      localidad,
+      postal,
+      direction,
+      name,
+      email,
+      telephono:phone,
+      baremo,
+      username,
+      password,
+      Instagram: instagram || '',
     };
 
     console.log('apiDtata', apiData);
@@ -127,6 +174,97 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
           <ScrollView
             keyboardShouldPersistTaps={"handled"}
             showsVerticalScrollIndicator={false}>
+            <TextInput
+              ref={nameRef}
+              placeholderTextColor={"#fff"}
+              value={name}
+              onChangeText={text => {
+                setError(null);
+                setName(text);
+              }}
+              style={styles.input}
+              placeholder="Name"
+              maxLength={255}
+              onSubmitEditing={() => emailRef.current.focus()}
+            />
+            <TextInput
+              ref={emailRef}
+              placeholderTextColor={"#fff"}
+              value={email}
+              onChangeText={text => {
+                setError(null);
+                setEmail(text);
+              }}
+              style={styles.input}
+              placeholder="Email"
+              maxLength={255}
+              onSubmitEditing={() => phoneRef.current.focus()}
+            />
+            <TextInput
+              ref={phoneRef}
+              placeholderTextColor={"#fff"}
+              value={phone}
+              onChangeText={text => {
+                setError(null);
+                setPhone(text);
+              }}
+              style={styles.input}
+              placeholder="Telephone"
+              maxLength={255}
+              onSubmitEditing={() => usernameRef.current.focus()}
+            />
+            <TextInput
+              ref={usernameRef}
+              placeholderTextColor={"#fff"}
+              value={username}
+              onChangeText={text => {
+                setError(null);
+                setUsername(text);
+              }}
+              style={styles.input}
+              placeholder="Username"
+              maxLength={255}
+              onSubmitEditing={() => passwordRef.current.focus()}
+            />
+            <TextInput
+              ref={passwordRef}
+              placeholderTextColor={"#fff"}
+              value={password}
+              onChangeText={text => {
+                setError(null);
+                setPassword(text);
+              }}
+              style={styles.input}
+              placeholder="Password"
+              maxLength={255}
+              onSubmitEditing={() => baremoRef.current.focus()}
+            />
+            <TextInput
+              ref={baremoRef}
+              placeholderTextColor={"#fff"}
+              value={baremo}
+              onChangeText={text => {
+                setError(null);
+                setBaremo(text);
+              }}
+              style={styles.input}
+              placeholder="Baremo"
+              maxLength={255}
+              onSubmitEditing={() => directionRef.current.focus()}
+            />
+            <TextInput
+              ref={directionRef}
+              placeholderTextColor={"#fff"}
+              value={direction}
+              onChangeText={text => {
+                setError(null);
+                setDirection(text);
+              }}
+              style={styles.input}
+              placeholder="Email"
+              maxLength={255}
+              onSubmitEditing={() => localidadRef.current.focus()}
+            />
             <TextInput
               ref={directionRef}
               placeholderTextColor={"#fff"}

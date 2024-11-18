@@ -196,7 +196,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
-              resetNavigationStack("HomeScreen", { isSubscribe: 'ok' })
+              resetNavigationStack("HomePage", { isSubscribe: 'ok' })
             }
           } else if (json.status === 'Unsucessfull') {
             dispatch(setErrorMessage(json?.message))
@@ -234,7 +234,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
-              navigate("HomeScreen", { isSubscribe: 'ok' })
+              navigate("HomePage", { isSubscribe: 'ok' })
             }
           } else if (json.status === 'Unsucessfull') {
             dispatch(setErrorMessage(json?.message))
@@ -276,7 +276,7 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             } else {
               dispatch(setLoginData({ login: json }))
               dispatch(getRankAvatarImages());
-              navigate('HomeScreen', {
+              navigate('HomePage', {
                 isSubscribe: 'done',
               });
             }
@@ -325,7 +325,7 @@ export const userAppleLogin = (firstname, email, appleid, onBlock) => {
           } else {
             dispatch(setLoginData({ login: json }))
             dispatch(getRankAvatarImages());
-            resetNavigationStack('HomeScreen', {
+            resetNavigationStack('HomePage', {
               isSubscribe: 'ok',
             });
           }
@@ -362,11 +362,10 @@ export const verifyMobileOTP = (userId, otp, data) => {
       .then(json => {
         dispatch(setAuthLoading(false));
         if (json.status == 200) {
-          console.log("dataa dataa", data)
           dispatch(setLoginData({ login: data }))
           dispatch(getCurrentUser(data?.data?.id))
           dispatch(getRankAvatarImages());
-          resetNavigationStack('HomeScreen', {
+          resetNavigationStack('HomePage', {
             isSubscribe: 'ok',
           });
         } else {
@@ -833,7 +832,7 @@ export const pauseExams = (id, pauseTime, stdID, type) => {
         if (json.status === 'Successfull') {
           dispatch(clearStates());
           dispatch(getExames(stdID, false, type));
-          navigate('HomeScreen');
+          navigate('HomePage');
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
@@ -1507,7 +1506,6 @@ export const getCurrentUser = (id, type) => {
         }
       })
       .catch(error => {
-        console.log("errorrrr", error)
         dispatch(setAuthLoading(false));
       });
   };
@@ -2782,7 +2780,7 @@ export const updateSubscription = async (
       .then(res => res.json())
       .then(json => {
         if (json.status === 'Successfull') {
-          navigate('HomeScreen');
+          navigate('HomePage');
         }
       })
       .catch(error => {
@@ -2900,7 +2898,7 @@ export const SocialLoginUser = async (givenName, familyName, email) => {
           } else {
             dispatch(setLoginData({ login: json }))
             dispatch(getRankAvatarImages());
-            navigate('HomeScreen', {
+            navigate('HomePage', {
               isSubscribe: 'ok',
             });
           }

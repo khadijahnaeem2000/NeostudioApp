@@ -33,6 +33,8 @@ export default class PaperLayout extends React.Component {
       isCorrect,
       description,
       allowdescription,
+      isHtml,
+      htmlQuestion
     } = this.props;
 
     return (
@@ -55,14 +57,63 @@ export default class PaperLayout extends React.Component {
               'rgba(255,255,255, 0.9)',
             ]}
             fadeSize={20}>
-            <Text style={{
-              marginTop: 20,
-              fontSize: widthPercentageToDP(2),
-              fontFamily: fonts.novaBold,
-              color: "#000",
-              marginLeft: 20,
-              marginRight: widthPercentageToDP(3),
-            }} >{question.replace(/&nbsp;/g, '')}</Text>
+            {
+              isHtml ?
+                <HTML
+                  contentWidth={Dimensions.get('screen').width}
+                  source={{ html: htmlQuestion?.replace(/&nbsp;/g, '') }}
+                  classesStyles={{
+                    regular: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaRegular,
+                      color: '#000',
+                    },
+                    bold: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.novaBold,
+                      fontWeight: 'normal',
+                      color: '#000',
+                    },
+                    round: {
+                      //fontSize: widthPercentageToDP(2),
+                      fontFamily: fonts.elegance,
+                      color: '#000',
+                    },
+                  }}
+                  tagsStyles={{
+                    a: {
+                      textDecorationLine: "none",
+                      fontFamily: fonts.novaBold
+                    },
+                    p: {
+                      padding: 6,
+                      fontFamily: fonts.novaBold
+                      //textAlign: "justify"
+                    },
+                    span: {
+                      //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
+                      flexDirection: 'row',
+                      fontFamily: fonts.novaBold
+                    },
+                    tap: {
+                      fontFamily: fonts.novaRegular,
+                      fontSize: DeviceInfo.isTablet()
+                        ? widthPercentageToDP(2)
+                        : widthPercentageToDP(1.5),
+                    },
+                  }}
+                />
+                :
+
+                <Text style={{
+                  marginTop: 20,
+                  fontSize: widthPercentageToDP(2),
+                  fontFamily: fonts.novaBold,
+                  color: "#000",
+                  marginLeft: 20,
+                  marginRight: widthPercentageToDP(3),
+                }} >{question.replace(/&nbsp;/g, '')}</Text>
+            }
 
 
             <TouchableOpacity
@@ -297,9 +348,9 @@ export default class PaperLayout extends React.Component {
             )}
             {allowdescription === 'True' && (
               <View style={{
-                  marginLeft: 20,
-                  marginRight: widthPercentageToDP(5),
-                  // marginTop: widthPercentageToDP(1),
+                marginLeft: 20,
+                marginRight: widthPercentageToDP(5),
+                // marginTop: widthPercentageToDP(1),
               }} >
 
                 <HTML
@@ -326,20 +377,20 @@ export default class PaperLayout extends React.Component {
                   tagsStyles={{
                     a: {
                       textDecorationLine: "none",
-                      fontFamily:fonts.novaBold
+                      fontFamily: fonts.novaBold
                     },
                     p: {
                       padding: 6,
-                      fontFamily:fonts.novaBold
+                      fontFamily: fonts.novaBold
                       //textAlign: "justify"
                     },
                     span: {
                       //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
                       flexDirection: 'row',
-                      fontFamily:fonts.novaBold
+                      fontFamily: fonts.novaBold
                     },
                     tap: {
-                      fontFamily:fonts.novaRegular,
+                      fontFamily: fonts.novaRegular,
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
                         : widthPercentageToDP(1.5),

@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { SIZES } from "../../constant";
+import { fonts } from "../../utils";
 
 export const styles = StyleSheet.create({
     top_row: {
@@ -20,5 +22,13 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         marginLeft: 10,
+    },
+    time_text: {
+        fontSize: SIZES.h14,
+        color: "red",
+        fontFamily: fonts.novaBold,
+        marginLeft: "30%",
+        top:SIZES.padding2 /3,
+        position:"absolute"
     }
 })

@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { isIOS } from "../../constant/theme"
 import { clearStates, getCurrentUser, getUserTikTokVideos, logout, saveUserRankPoint, saveUserToken, updateLoginTime, updateRank, updateUserProfile, updateUserRankPoint } from "../../Redux/action"
-import { getPurchaseHistory } from "react-native-iap"
+import { getPurchaseHistory, initConnection } from "react-native-iap"
 import { requestUserPermission } from "../../services/notification_service"
 import { useFocusEffect } from "@react-navigation/native"
 import InAppBrowser from "react-native-inappbrowser-reborn";
@@ -10,6 +10,7 @@ import { Alert, Linking } from "react-native"
 import { navigate } from "../../navigation/navigation_service"
 import Orientation from "react-native-orientation-locker"
 import { directo_url } from "../../config"
+import moment from "moment"
 
 export default () => {
     const dispatch = useDispatch()
@@ -52,7 +53,6 @@ export default () => {
                     .catch(() => { });
             });
     };
-
     const refreshAppData = async () => {
         const token = await requestUserPermission()
         if (login?.data?.type === 'Prueba') {
@@ -64,20 +64,38 @@ export default () => {
                     fetchReceipt();
                 }
                 dispatch(clearStates())
-
-                await Promise.all([
-                    updateRank(login?.data?.id),
-                    dispatch(updateLoginTime(login?.data?.id)),
-                    dispatch(updateUserProfile(login?.data?.id)),
-                    dispatch(saveUserToken(login?.data?.id, token)),
-                    dispatch(getCurrentUser(login?.data?.id, login.data.type)),
-                    saveUserRankPoint("Yes", "No", "normal_points", login?.data?.id),
-                ]);
+                updateRank(login?.data?.id)
+                dispatch(updateLoginTime(login?.data?.id))
+                dispatch(updateUserProfile(login?.data?.id))
+                dispatch(saveUserToken(login?.data?.id, token))
+                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+                saveUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
             } else {
                 this.props.logout();
             }
-        } catch (error) { }
+        } catch (error) {
+            console.error("error", error)
+        }
     };
+    const getTime = () => {
+
+        if (login?.data && login?.data?.expiry_date) {
+        const currentDate = moment(); // Current date and time
+        const targetDate = moment(login.data.expiry_date); // Target date parsed as a moment object
+
+        const differenceInMillis = targetDate.diff(currentDate); // Difference in milliseconds
+
+        if (differenceInMillis <= 0) {
+            return "00:00:00"
+        }
+
+        const duration = moment.duration(differenceInMillis); // Create a duration object
+        const hours = Math.floor(duration.asHours()); // Extract total hours
+        const minutes = duration.minutes(); // Extract minutes
+        const seconds = duration.seconds(); // Extract seconds
+        return `${hours || "00"}:${minutes || "00"}m:${seconds || "00"}s`
+        }
+    }
 
     useFocusEffect(
         useCallback(() => {
@@ -150,14 +168,8 @@ export default () => {
 
         if (type === 'exams') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
-            if (isIOS) {
-                navigate("Exams")
-            } else {
-                navigate("ExamFile", {
-                    isRefresh: "false",
-                })
+            navigate("Exams")
 
-            }
         }
 
         if (type === 'repaso') {
@@ -174,9 +186,11 @@ export default () => {
         }
 
         if (type === 'stripe_support') {
+            Linking.openURL(login?.data?.resolucion)
         }
 
         if (type === 'whatsapp_support') {
+            Linking.openURL(login?.data?.support)
         }
 
         if (type === 'audio') {
@@ -210,7 +224,7 @@ export default () => {
         }
 
         if (type === 'pagina') {
-            navigate("GlobalRanking")
+            Linking.openURL(login?.data?.paginaweb)
         }
 
         if (type === 'descargas') {
@@ -254,7 +268,8 @@ export default () => {
         setShowExamModal,
         isLoading,
         showPruebaModal,
-        setShowPruebaModal
+        setShowPruebaModal,
+        getTime
     }
 
 }

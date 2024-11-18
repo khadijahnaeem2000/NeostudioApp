@@ -47,7 +47,6 @@ export default SingleMessageView
 
 const styles = StyleSheet.create({
     main_view: {
-        paddingHorizontal: SIZES.padding,
         marginTop: SIZES.padding
     },
     user_message_view: {

@@ -8,8 +8,18 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "rgba(0,0,0,0.9)"
     },
+    image_view: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        height: "100%",
+        width: "100%"
+    },
     main_view: {
-        flex: 1
+        flex: 1,
+        paddingHorizontal:SIZES.padding2
     },
     top_icon_view: {
         height: SIZES.padding * 2.3,
@@ -17,17 +27,17 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "flex-end",
-        marginRight: SIZES.padding2,
     },
     bottom_view: {
         height: 60,
-        marginHorizontal: SIZES.padding,
         borderRadius: SIZES.padding * 2,
-        marginBottom: SIZES.padding,
         overflow: 'hidden',
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        width: SIZES.width /1.08,
+        marginBottom: SIZES.padding * 2,
+        alignSelf:"center"
     },
     input: {
         flex: 1,

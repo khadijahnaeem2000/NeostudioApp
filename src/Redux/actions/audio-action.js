@@ -20,7 +20,6 @@ export const getAudioFiles = data => {
         try {
             dispatch(setLoading(true))
             const response = await apiServices.getAudioFiles(data)
-            console.log("repsonseee" , response?.data)
             dispatch(setLoading(false))
             if (response?.data?.status === 'Successfull') {
                 dispatch(setAudioFiles(response?.data?.data))

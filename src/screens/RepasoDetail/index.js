@@ -1,9 +1,8 @@
-import { Text, FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { ConfirmationModal, Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
-import { styles } from './index.styles'
 import RepasoDetailFunctional from "./index.function"
-import { images, SIZES } from '../../constant'
+import { images } from '../../constant'
 import { isIOS } from 'react-native-elements/dist/helpers'
 
 const RepasoDetail = ({ route }) => {
@@ -22,9 +21,7 @@ const RepasoDetail = ({ route }) => {
     } = RepasoDetailFunctional({ id, name })
 
     return (
-        <Container>
-            <Text style={styles.heading} >REPASODETAIL</Text>
-
+        <Container title={'REPASO'} >
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -37,6 +34,7 @@ const RepasoDetail = ({ route }) => {
                     const isComplete = item.studentStatus === 'Habilitado'
                     return (
                         <SingleFolderView
+                        isActive={item?.isActive}
                             image={isComplete ? images?.complete_exam : images.incomplete_exam}
                             onPress={() => onPressTab(item)}
                             title={item?.name}

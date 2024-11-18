@@ -29,7 +29,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { fonts } from '../../utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { navigate } from '../../navigation/navigation_service';
-import {  images } from '../../constant';
+import { images } from '../../constant';
 import { Container, LoaderModal, SingleFolderView } from '../../Component';
 
 const Programs = () => {
@@ -139,8 +139,6 @@ const Programs = () => {
       </View>
     );
   };
-
-  console.log("isis scrrene meheh")
 
   const getImage = (type, name) => {
     let image;
@@ -312,25 +310,19 @@ const Programs = () => {
                 return (
                   <Swipeable
                     ref={ref => (refsArray.current[index] = ref)}
-                    onEnded={() => console.log("end ho gayyasdasd")}
-                    onSwipeableLeftOpen={() => {
-                      // deleteItem(item?.activityId, index)
-                      console.log("asdjbasdasdasd", activityId)
-                    }}
-                    onActivated={() => console.log("activitae ho gfaya")}
-                    onBegan={() => console.log("began hua")}
-                    onCancelled={() => console.log("canacleled hau")}
-                    onSwipeableOpen={(data) => {
-                      deleteItem(item?.activityId, index)
-                      console.log("onSwipeableOpen", data)
-                    }}
-                    onFailed={() => console.log("onFailed")}
-                    onSwipeableClose={() => console.log("onSwipeableClose")}
-                    onSwipeableCloseStartDrag={() => console.log("onSwipeableCloseStartDrag")}
-                    onSwipeableOpenStartDrag={() => console.log("onSwipeableOpenStartDrag")}
-                    onSwipeableWillClose={() => console.log("onSwipeableWillClose")}
-                    onSwipeableWillOpen={() => console.log("onSwipeableWillOpen")}
-                    onSwipeableRightOpen={() => console.log('Swiped right')}
+                    onEnded={() => { }}
+                    onSwipeableLeftOpen={() => { }}
+                    onActivated={() => { }}
+                    onBegan={() => { }}
+                    onCancelled={() => { }}
+                    onSwipeableOpen={(data) => deleteItem(item?.activityId, index)}
+                    onFailed={() => { }}
+                    onSwipeableClose={() => { }}
+                    onSwipeableCloseStartDrag={() => { }}
+                    onSwipeableOpenStartDrag={() => { }}
+                    onSwipeableWillClose={() => { }}
+                    onSwipeableWillOpen={() => { }}
+                    onSwipeableRightOpen={() => { }}
                     renderLeftActions={() => <LeftItem />}
                     friction={Platform.OS === 'ios' ? 1 : 2}
 
@@ -350,9 +342,9 @@ const Programs = () => {
                             fonts.novaBold : fonts.novaRegular,
                       }}
                       title={
-                          item?.activityName !== "" ? item?.activityName
-                            : item?.title !== "" ? item?.title
-                              : item?.name !== "" ? item?.name : "" 
+                        item?.activityName !== "" ? item?.activityName
+                          : item?.title !== "" ? item?.title
+                            : item?.name !== "" ? item?.name : ""
                       }
 
                     />
@@ -415,7 +407,7 @@ const Programs = () => {
         </Modal>
       </GestureHandlerRootView>
     </Container>
-    
+
   );
 };
 

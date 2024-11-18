@@ -6,7 +6,6 @@ import { styles } from './index.styles'
 import { Badge } from 'react-native-elements'
 
 const SingleFolderView = ({ title, onPress, image, onLongPress, textStyle, isActive, count }) => {
-    console.log("Asdasdsa", isActive, title)
     return (
         <FastImage resizeMode={FastImage.resizeMode.contain} style={styles.main_view} source={images.folder_background_image} >
             <TouchableOpacity onLongPress={onLongPress} style={styles.row} activeOpacity={0.6} onPress={onPress} >

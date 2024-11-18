@@ -15,9 +15,7 @@ const Repaso = () => {
     } = RepasoFunctional()
 
     return (
-        <Container>
-            <Text style={styles.heading} >REPASO</Text>
-
+        <Container  title={'REPASO'} >
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

@@ -1229,8 +1229,6 @@ class VideoPlayer extends Component {
    * Provide all of our options and render the whole component.
    */
   render() {
-
-    const url = this.props.route.params.url || "asdasdasd"
     const vimeoLink = this.props.route.params.vimeoLink
 
     return (

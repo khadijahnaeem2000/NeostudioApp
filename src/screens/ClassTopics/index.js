@@ -1,9 +1,8 @@
-import { Text, FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component'
-import { styles } from './index.styles'
 import ClassTopicsFunctional from "./index.function"
-import { SIZES } from '../../constant'
+import { images, SIZES } from '../../constant'
 import { navigate } from '../../navigation/navigation_service'
 import Orientation from 'react-native-orientation-locker'
 
@@ -18,9 +17,7 @@ const ClassTopics = ({ route }) => {
     } = ClassTopicsFunctional({ topicId })
 
     return (
-        <Container>
-            <Text style={styles.heading} >CLASES</Text>
-
+        <Container title={"CLASES"} >
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -32,6 +29,7 @@ const ClassTopics = ({ route }) => {
                 ListFooterComponent={<SizedBox height={SIZES.padding * 2} />}
                 renderItem={({ item }) => (
                     <SingleFolderView
+                    image={images.video_icon_image}
                         onPress={() => {
                             Orientation.unlockAllOrientations()
                             navigate("TestVideo", {

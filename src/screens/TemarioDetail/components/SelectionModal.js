@@ -12,7 +12,7 @@ const SelectionModal = ({ visible, onPressClose, onPressHorizontal, onPressVerti
             transparent={true}
             visible={visible}
             animationType="slide"
-            supportedOrientations={['portrait', 'landscape']}
+            // supportedOrientations={['portrait', 'landscape']}
             onRequestClose={onPressClose}>
             <TouchableOpacity
                 style={styles.main_view}

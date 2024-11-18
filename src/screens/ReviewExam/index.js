@@ -70,7 +70,6 @@ class Review extends Component {
 
   getData = async () => {
     const examsID = this.props.route.params.id || '1'
-    console.log("examsID", examsID)
     this.props.reviewAllExams(examsID, DeviceInfo.isTablet() ? 'yes' : null);
     this.props.getRejectReason();
   };
@@ -134,16 +133,14 @@ class Review extends Component {
     const examsID = this.props.route.params.id || "1"
     const type = this.props.route.params.type || 'exam'
 
-    console.log("typetypetype", type)
-
     this.props.endReviewExam(examsID);
     if (type === 'exam') {
       this.test(),
-        this.props.navigation.navigate('HomeScreen', {
+        this.props.navigation.navigate('HomePage', {
           isRefresh: 'true',
         });
     } else if (type === 'reviewExam') {
-      this.test(), this.props.navigation.navigate('ReviewTest');
+      this.test(), this.props.navigation.navigate('Repaso');
     } else if (type === 'personality') {
       this.test(), this.props.navigation.navigate('Personality');
     } else if (type === 'all') {
@@ -182,8 +179,6 @@ class Review extends Component {
     const isPsico = this.props.route.params.isImage || 'false'
     const type = this.props.route.params.type || 'exam'
     const isRepasoImage = this.props.route.params.isRepasoImage || false
-
-    console.log("Review screeen me heehhehehehhe", type)
 
     const { myOption } = this.state;
     return (

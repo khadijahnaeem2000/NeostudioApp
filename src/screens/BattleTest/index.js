@@ -158,7 +158,7 @@ class Test extends Component {
         if (sound3)
           sound3.stop(() => {
           });
-        resetNavigationStack('HomeScreen')
+        resetNavigationStack('HomePage')
       }
     });
   };
@@ -256,7 +256,7 @@ class Test extends Component {
     this.setState({ isLoading: false });
     if (result?.status === 'Successfull') {
       this.test();
-      navigate('HomeScreen');
+      navigate('HomePage');
     }
   };
   test = () => {

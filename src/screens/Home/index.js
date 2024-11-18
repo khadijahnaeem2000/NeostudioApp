@@ -99,7 +99,6 @@ class Home extends Component {
   refreshAppData = async () => {
     const { login, } = this.props.user;
     const token = await requestUserPermission()
-    console.log("login?.data?.type", login?.data?.type)
     if (login?.data?.type === 'Prueba') {
       this.setState({ showPruebaModal: true })
     }

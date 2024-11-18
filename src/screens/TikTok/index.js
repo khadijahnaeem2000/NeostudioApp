@@ -121,8 +121,6 @@ const Home = ({ navigation, route }) => {
         setLoading(false);
         //shareImage(base64Data)
         shareLink(id, base64Data, title);
-        //console.log("Image converted to base64");
-        console.log(base64Data);
         // remove the file from storage
         return fs.unlink(Path);
       });
@@ -210,7 +208,6 @@ const Home = ({ navigation, route }) => {
         disptach(tiktokDownloadCount(login?.data?.id));
       })
       .catch(error => {
-        console.log(error);
       });
   };
   const extention = filename => {

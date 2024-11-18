@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, BackHandler, ActivityIndicator, Platform} from 'react-native';
-import {connect} from 'react-redux';
-import {styles} from './styles';
+import { View, BackHandler, ActivityIndicator, Platform } from 'react-native';
+import { connect } from 'react-redux';
+import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import Webview from 'react-native-webview';
+import { Container } from '../../Component';
 const URL = 'https://neoestudio.net/googleChart?studentId=';
 
 class GlobalRanking extends React.Component {
@@ -39,18 +40,9 @@ class GlobalRanking extends React.Component {
 
   render() {
     const scalesPageToFit = Platform.OS === 'android';
-    const {login} = this.props.user;
+    const { login } = this.props.user;
     return (
-      <View style={{flex: 1}}>
-        <FastImage
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.contain}
-          style={styles.logo}
-        />
+      <Container title={'GLOBAL RANKING'} >
         <Webview
           style={styles.WebViewStyle}
           source={{
@@ -69,8 +61,11 @@ class GlobalRanking extends React.Component {
           startInLoadingState={true}
           scalesPageToFit={scalesPageToFit}
           bounces={false}
-          scrollEnabled={false}></Webview>
-      </View>
+          scrollEnabled={false}>
+
+        </Webview>
+      </Container>
+
     );
   }
 }

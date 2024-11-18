@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 export default () => {
+    const listRef = useRef()
 
     const msgsarray = [
         {
@@ -17,9 +18,14 @@ export default () => {
 
 
     const [messages, setMessages] = useState(msgsarray)
+    const [message, setMessage] = useState(null)
 
     return {
-        messages
+        messages,
+        setMessages,
+        message,
+        setMessage,
+        listRef
     }
 
 

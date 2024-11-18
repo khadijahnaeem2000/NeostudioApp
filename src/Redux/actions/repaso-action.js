@@ -6,7 +6,6 @@ export const getRepasoFolders = data => {
         try {
             dispatch(setLoading(true))
             const response = await apiServices.getRepasoFolders(data)
-            console.log("srespoaonsdas", response?.data)
             dispatch(setLoading(false))
             if (response?.data?.status === 'Successfull') {
                 dispatch(setRepasoFolders(response?.data?.data))
@@ -21,7 +20,6 @@ export const getRepasoExams = data => {
         try {
             dispatch(setLoading(true))
             const response = await apiServices.getRepasoExams(data)
-            console.log("srespoaonsdas", response?.data)
             dispatch(setLoading(false))
             if (response?.data?.status === 'Successfull') {
                 dispatch(setRepasoExams(response?.data?.data))

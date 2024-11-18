@@ -14,6 +14,7 @@ export default () => {
     const [selectedExam, setSelcetedExam] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [isPsicotechnics, setIsPsicotechnics] = useState(false)
+    const [isHtml, setIsHtml] = useState(false)
 
     const getAllExamsData = (isRestart, examId) => {
         const apiData = {
@@ -44,6 +45,7 @@ export default () => {
                     id: selectedExam?.studentExamRecordId,
                     isImage: isPsicotechnics,
                     type: 'exam',
+                    isHtml
                 })
             } else {
 
@@ -52,6 +54,7 @@ export default () => {
                     totalTime: selectedExam?.examDuration,
                     isPsico: isPsicotechnics,
                     type: 'exam',
+                    isHtml,
                     isReshedule: selectedExam?.isReshedule,
                 })
             }
@@ -70,7 +73,8 @@ export default () => {
         getAllExamsData,
         exams,
         onPressBegin,
-        setIsPsicotechnics
+        setIsPsicotechnics,
+        setIsHtml
     }
 
 }
