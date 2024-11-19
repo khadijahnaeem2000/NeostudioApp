@@ -323,9 +323,8 @@ const Programs = () => {
                     onSwipeableWillClose={() => { }}
                     onSwipeableWillOpen={() => { }}
                     onSwipeableRightOpen={() => { }}
-                    renderLeftActions={() => <LeftItem />}
                     friction={Platform.OS === 'ios' ? 1 : 2}
-
+                    rightThreshold={30}
                     leftThreshold={30}
                   //onSwipeableOpen={closeRow(index)}
                   //leftThreshold={80}

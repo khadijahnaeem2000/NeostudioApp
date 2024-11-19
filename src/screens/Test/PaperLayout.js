@@ -359,7 +359,7 @@ export default class PaperLayout extends React.Component {
                   classesStyles={{
                     regular: {
                       //fontSize: widthPercentageToDP(2),
-                      fontFamily: fonts.novaRegular,
+                      fontFamily: fonts.novaBold,
                       color: '#000',
                     },
                     bold: {
@@ -370,7 +370,7 @@ export default class PaperLayout extends React.Component {
                     },
                     round: {
                       //fontSize: widthPercentageToDP(2),
-                      fontFamily: fonts.elegance,
+                      fontFamily: fonts.novaBold,
                       color: '#000',
                     },
                   }}
@@ -390,7 +390,7 @@ export default class PaperLayout extends React.Component {
                       fontFamily: fonts.novaBold
                     },
                     tap: {
-                      fontFamily: fonts.novaRegular,
+                      fontFamily: fonts.novaBold,
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
                         : widthPercentageToDP(1.5),

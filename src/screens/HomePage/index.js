@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { images } from '../../constant';
 import { styles } from './index.styles';
@@ -24,8 +24,6 @@ const HomePage = () => {
         setShowPruebaModal,
         getTime
     } = HomePageFunctional();
-
-    console.log("ASdasdasdas", getTime())
 
     return (
         <Container

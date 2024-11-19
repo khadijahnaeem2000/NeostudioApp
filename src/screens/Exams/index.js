@@ -24,7 +24,7 @@ const Exams = () => {
     } = ExamsFunctional()
 
     return (
-        <Container title={'EXAMENES'} isExam >
+        <Container title={'EXÁMENES'} isExam >
             <View style={styles.sub_view} >
 
                 <FlatList
