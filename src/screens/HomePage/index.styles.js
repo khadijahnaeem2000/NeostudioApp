@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     user_image_view: {
-        width: "27%",
-        height: "80%",
+        width: SIZES.width > SIZES.height ? "20%" : "27%",
+        height: SIZES.width > SIZES.height ? "100%" : "80%",
         marginBottom: 12
     },
     user_image: {
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         color: "red",
         fontFamily: fonts.novaBold,
         marginLeft: "30%",
-        top:SIZES.padding2 /3,
-        position:"absolute"
+        top: SIZES.padding2 / 3,
+        position: "absolute"
     }
 })

@@ -4,8 +4,8 @@ import FastImage from 'react-native-fast-image';
 import { images } from '../../constant';
 import { styles } from './index.styles';
 import { home_array, IMAGE_URL } from '../../config';
-import { SingleHomeView, EmailModal, ExamModal, HomeSliderModal, TopImageView, PruebaModal } from './components';
-import { Container } from '../../Component';
+import { SingleHomeView, EmailModal, ExamModal, HomeSliderModal, TopImageView, PruebaModal, AvatarModal, SelectImageModal } from './components';
+import { Container, LoaderModal } from '../../Component';
 import HomePageFunctional from './index.function';
 
 const HomePage = () => {
@@ -22,7 +22,20 @@ const HomePage = () => {
         onPressTab,
         showPruebaModal,
         setShowPruebaModal,
-        getTime
+        getTime,
+        isLandScape,
+        listRef,
+        isLoading,
+        setShowAvatarModal,
+        setShowImageModal,
+        setShowRatingModal,
+        setShowVersionModal,
+        showAvatarModal,
+        showImageModal,
+        showRatingModal,
+        showVersionModal,
+        onPressGallery,
+        handlePostImage
     } = HomePageFunctional();
 
     return (
@@ -34,8 +47,14 @@ const HomePage = () => {
                         login.data.expiry_date &&
                         <Text style={styles.time_text} >{"Prueba " + getTime()}</Text>
                     }
-                    <View style={styles.top_row}>
-                        <TouchableOpacity style={styles.user_image_view}>
+                    <View style={[styles.top_row]}>
+                        <TouchableOpacity
+                            activeOpacity={0.6}
+                            onPress={() => setShowAvatarModal(true)}
+                            style={[styles.user_image_view, {
+                                width: isLandScape ? "18%" : "27%",
+                                height: isLandScape ? "100%" : "80%",
+                            }]}>
                             <FastImage
                                 source={login?.data?.photo ? { uri: IMAGE_URL + login?.data?.photo } : images.avatar}
                                 resizeMode={FastImage.resizeMode.stretch}
@@ -74,10 +93,17 @@ const HomePage = () => {
             )}
         >
             <FlatList
+                ref={listRef}
                 data={home_array}
                 showsVerticalScrollIndicator={false}
+                onScrollToIndexFailed={(info) => {
+                    listRef.current?.scrollToOffset({
+                        offset: info?.averageItemLength * info?.index,
+                        animated: true,
+                    });
+                }}
                 keyExtractor={(item) => item?.id?.toString()}
-                renderItem={({ item }) => (
+                renderItem={({ item, index }) => (
                     <SingleHomeView
                         array={item?.array}
                         image={item?.image}
@@ -86,6 +112,13 @@ const HomePage = () => {
                                 setSelectedId(null);
                             } else {
                                 setSelectedId(item?.id);
+                            }
+                        }}
+                        onPressList={() => {
+                            if (item?.array?.length > 0 && index > home_array?.length - 4) {
+                                setTimeout(() => {
+                                    listRef.current?.scrollToEnd({ animated: true });
+                                }, 500); // Ensure the list is rendered before scrolling
                             }
                         }}
                         isOpen={selectedId === item?.id}
@@ -111,6 +144,29 @@ const HomePage = () => {
                 onPressClose={() => setShowPruebaModal(false)}
                 visible={showPruebaModal}
             />
+
+            <SelectImageModal
+                onPress={(type, val) => {
+                    setShowImageModal(false)
+                    handlePostImage(type, val)
+                }}
+                onPressClose={() => setShowImageModal(false)}
+                visible={showImageModal}
+            />
+
+            <AvatarModal
+                visible={showAvatarModal}
+                onPressGallery={() => onPressGallery("gallery")}
+                onPressAvatar={() => {
+                    setShowAvatarModal(false)
+                    setTimeout(() => {
+                        setShowImageModal(true)
+                    }, 500);
+                }}
+                onPressClose={() => setShowAvatarModal(false)}
+            />
+
+            <LoaderModal visible={isLoading} />
         </Container>
     );
 };

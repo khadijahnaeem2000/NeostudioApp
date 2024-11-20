@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image'
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive'
 import { fonts } from 'react-native-elements/dist/config'
 import { COLORS } from '../../../constant'
-import { isIOS } from '../../../constant/theme'
+import { isIOS, SIZES } from '../../../constant/theme'
 
 const TopImageView = ({ image, title, title2 }) => {
     return (
@@ -13,11 +13,11 @@ const TopImageView = ({ image, title, title2 }) => {
                 source={image}
                 resizeMode={FastImage.resizeMode.contain}
                 style={{
-                    height: heightPercentageToDP(8),
-                    width: widthPercentageToDP(10),
+                    height: "55%",
+                    width: "75%",
                 }}
             />
-            <Text style={styles.smallTxt}  numberOfLines={1} >{title}</Text>
+            <Text style={styles.smallTxt} numberOfLines={1} >{title}</Text>
             {
                 title2 &&
                 <Text style={styles.smallTxt2} >{title2}</Text>
@@ -33,18 +33,18 @@ const styles = StyleSheet.create({
         height: "100%",
         marginRight: 3,
         alignItems: "center",
-        width: widthPercentageToDP(13),
+        width: "18.5%",
     },
     smallTxt: {
-        marginTop: heightPercentageToDP(-1),
+        marginTop: -SIZES.padding2,
         color: COLORS.white,
-        fontSize: heightPercentageToDP(1.1),
+        fontSize: SIZES.h7,
         fontFamily: fonts.novaBold,
     },
     smallTxt2: {
-        marginTop: heightPercentageToDP(0.5),
+        marginTop: SIZES.padding2 / 3,
         color: COLORS.white,
-        fontSize: widthPercentageToDP(2),
+        fontSize: SIZES.h7,
         fontFamily: fonts.novaRegular,
     },
 })

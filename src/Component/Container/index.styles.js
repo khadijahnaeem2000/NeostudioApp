@@ -43,6 +43,6 @@ export const styles = StyleSheet.create({
         marginTop: SIZES.padding
     },
     top_view: {
-        height: heightPercentageToDP(15)
+        height: SIZES.width > SIZES.height ? "22%" : "17%",
     }
 })

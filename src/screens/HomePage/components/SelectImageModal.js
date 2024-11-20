@@ -3,6 +3,7 @@ import React from 'react'
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
+import { COLORS } from '../../../constant';
 
 const SelectImageModal = ({ visible, onPressClose, onPress }) => {
     const { RV_Images } = useSelector(state => state.user)
@@ -27,6 +28,7 @@ const SelectImageModal = ({ visible, onPressClose, onPress }) => {
                         {
                             textAlign: "center",
                             width: "100%",
+                            color:COLORS.text_black_color
                         },
                     ]}
                 >
@@ -57,7 +59,13 @@ const SelectImageModal = ({ visible, onPressClose, onPress }) => {
                                         shadowRadius: 2,
                                         elevation: 5,
                                     }}
-                                    onPress={onPress}
+                                    onPress={() => onPress('avatar', "https://neoestudio.net/" + item.material)}
+                                // this.setState({ selectImage: false }, () => {
+                                //     this._handlePostImage(
+                                //       "avatar",
+                                //       "https://neoestudio.net/" + item.material
+                                //     );
+                                //   })
                                 >
                                     <FastImage
                                         style={{

@@ -1,19 +1,24 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { isIOS } from "../../constant/theme"
-import { clearStates, getCurrentUser, getUserTikTokVideos, logout, saveUserRankPoint, saveUserToken, updateLoginTime, updateRank, updateUserProfile, updateUserRankPoint } from "../../Redux/action"
+import { clearStates, getCurrentUser, getUserTikTokVideos, logout, saveUserRankPoint, saveUserToken, storeAvatarImage, storeGalleryImage, updateLoginTime, updateRank, updateUserProfile, updateUserRankPoint } from "../../Redux/action"
 import { getPurchaseHistory, initConnection } from "react-native-iap"
 import { requestUserPermission } from "../../services/notification_service"
 import { useFocusEffect } from "@react-navigation/native"
 import InAppBrowser from "react-native-inappbrowser-reborn";
-import { Alert, Linking } from "react-native"
+import { Alert, Dimensions, Linking } from "react-native"
 import { navigate } from "../../navigation/navigation_service"
 import Orientation from "react-native-orientation-locker"
 import { directo_url } from "../../config"
 import moment from "moment"
+import { checkMeetingStatus } from "../../Redux/actions/classes-action"
+import ImagePicker from "react-native-image-crop-picker";
 
 export default () => {
+    const listRef = useRef(null);
     const dispatch = useDispatch()
+
+
     const { login, activityId } = useSelector(state => state.user)
 
     const [selectedId, setSelectedId] = useState(null)
@@ -26,7 +31,19 @@ export default () => {
     const [showEmailModal, setShowEmailModal] = useState(false)
     const [showExamModal, setShowExamModal] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const [isLandScape, setIsLandScape] = useState(false)
 
+    const isPortrait = () => {
+        const dim = Dimensions.get('screen');
+        return dim.height >= dim.width;
+    };
+
+    useEffect(() => {
+        Dimensions.addEventListener('change', () => {
+            setIsLandScape(isPortrait() ? false : true)
+        });
+
+    }, [Dimensions])
 
     const validate = async (receipt) => {
         await checkPackageExpired(
@@ -80,26 +97,27 @@ export default () => {
     const getTime = () => {
 
         if (login?.data && login?.data?.expiry_date) {
-        const currentDate = moment(); // Current date and time
-        const targetDate = moment(login.data.expiry_date); // Target date parsed as a moment object
+            const currentDate = moment(); // Current date and time
+            const targetDate = moment(login.data.expiry_date); // Target date parsed as a moment object
 
-        const differenceInMillis = targetDate.diff(currentDate); // Difference in milliseconds
+            const differenceInMillis = targetDate.diff(currentDate); // Difference in milliseconds
 
-        if (differenceInMillis <= 0) {
-            return "00:00:00"
-        }
+            if (differenceInMillis <= 0) {
+                return "00:00:00"
+            }
 
-        const duration = moment.duration(differenceInMillis); // Create a duration object
-        const hours = Math.floor(duration.asHours()); // Extract total hours
-        const minutes = duration.minutes(); // Extract minutes
-        const seconds = duration.seconds(); // Extract seconds
-        return `${hours || "00"}:${minutes || "00"}m:${seconds || "00"}s`
+            const duration = moment.duration(differenceInMillis); // Create a duration object
+            const hours = Math.floor(duration.asHours()); // Extract total hours
+            const minutes = duration.minutes(); // Extract minutes
+            const seconds = duration.seconds(); // Extract seconds
+            return `${hours || "00"}:${minutes || "00"}m:${seconds || "00"}s`
         }
     }
 
     useFocusEffect(
         useCallback(() => {
             refreshAppData()
+            dispatch(checkMeetingStatus())
         }, [],))
 
     const openLink = async () => {
@@ -245,6 +263,49 @@ export default () => {
     };
 
 
+    
+    const handlePostImage = async (type, image) => {
+        console.log("image" ,image )
+        // setTimeout(() => {
+        //     setIsLoading(true)
+        // }, 1000);
+        try {
+            if (type === "gallery") {
+                await storeGalleryImage(login?.data?.id, image);
+                setIsLoading(false)
+                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+            } else {
+                await storeAvatarImage(login?.data?.id, image);
+                setIsLoading(false)
+                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+            }
+
+        } catch (error) {
+            console.log("Catch erororrr", error)
+            setIsLoading(false)
+        }
+    };
+    const onPressGallery = (type) => {
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true,
+        })
+            .then((image) => {
+                setShowAvatarModal(false)
+                let data = "";
+                data = {
+                    uri: image.path,
+                    type: image.mime,
+                    name: Date.now() + "_Wine.png",
+                };
+
+                handlePostImage(type, data);
+            })
+            .catch((error) => { });
+    };
+
+
 
 
     return {
@@ -269,7 +330,11 @@ export default () => {
         isLoading,
         showPruebaModal,
         setShowPruebaModal,
-        getTime
+        getTime,
+        isLandScape,
+        listRef,
+        onPressGallery,
+        handlePostImage
     }
 
 }

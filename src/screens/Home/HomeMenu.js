@@ -210,9 +210,9 @@ const HomeMenu = ({
                       style={[
                         {
                           position: 'absolute',
-                          width: widthPercentageToDP(24),
-                          height: widthPercentageToDP(24),
-                          borderRadius: widthPercentageToDP(34),
+                          width: 100,
+                          height: 100,
+                          borderRadius: 100,
                           justifyContent: 'center',
                           alignItems: 'center',
                           left: 20,

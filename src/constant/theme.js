@@ -1,5 +1,5 @@
 import { Dimensions, Platform } from 'react-native';
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const isIOS = Platform.OS === 'ios';
@@ -20,6 +20,7 @@ export const SIZES = {
   padding2: 12,
 
   // font sizes
+  h7: RFValue(7),
   h8: RFValue(8),
   h9: RFValue(9),
   h10: RFValue(10),
@@ -35,6 +36,7 @@ export const SIZES = {
   h20: RFValue(20),
   h22: RFValue(22),
   h28: RFValue(28),
+  h38: RFValue(38),
 
   // app dimensions
   width,

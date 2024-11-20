@@ -29,7 +29,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { fonts } from '../../utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { navigate } from '../../navigation/navigation_service';
-import { images } from '../../constant';
+import { COLORS, images } from '../../constant';
 import { Container, LoaderModal, SingleFolderView } from '../../Component';
 
 const Programs = () => {
@@ -133,12 +133,7 @@ const Programs = () => {
   };
 
 
-  const LeftItem = () => {
-    return (
-      <View style={styles.leftItem}>
-      </View>
-    );
-  };
+
 
   const getImage = (type, name) => {
     let image;
@@ -251,6 +246,22 @@ const Programs = () => {
     }
   }
 
+  const renderLeftActions = (progress, dragX) => {
+    return (
+      <View >
+        <Text style={{color:COLORS.transparent}}>Helloo</Text>
+      </View>
+    );
+  };
+
+  const renderRightActions = (progress, dragX) => {
+    return (
+      <View >
+        <Text style={{color:COLORS.transparent}}>Helloo</Text>
+      </View>
+    );
+  };
+
   return (
     <Container isHome title={"Activities"}
       HomeView={() => (
@@ -311,24 +322,26 @@ const Programs = () => {
                   <Swipeable
                     ref={ref => (refsArray.current[index] = ref)}
                     onEnded={() => { }}
-                    onSwipeableLeftOpen={() => { }}
+                    // onSwipeableLeftOpen={() => { deleteItem(item?.activityId, index)}}
+                    // onSwipeableRightOpen={() => { deleteItem(item?.activityId, index)}}
                     onActivated={() => { }}
                     onBegan={() => { }}
                     onCancelled={() => { }}
-                    onSwipeableOpen={(data) => deleteItem(item?.activityId, index)}
+                    onSwipeableOpen={(data) => {deleteItem(item?.activityId, index)}}
                     onFailed={() => { }}
+                    
+                    renderLeftActions={renderLeftActions} // Render left actions
+                    renderRightActions={renderRightActions} // Render right actions
                     onSwipeableClose={() => { }}
                     onSwipeableCloseStartDrag={() => { }}
                     onSwipeableOpenStartDrag={() => { }}
                     onSwipeableWillClose={() => { }}
                     onSwipeableWillOpen={() => { }}
-                    onSwipeableRightOpen={() => { }}
                     friction={Platform.OS === 'ios' ? 1 : 2}
-                    rightThreshold={30}
-                    leftThreshold={30}
+                    rightThreshold={50}
+                    leftThreshold={50}
                   //onSwipeableOpen={closeRow(index)}
                   //leftThreshold={80}
-
                   >
 
                     <SingleFolderView

@@ -5,6 +5,7 @@ const SERVICE_URLS = {
     // Classes Management
     getClasses: "getClassTopics",
     getTopics: "getClassTopicsMaterial",
+    checkMeetingStatus: "Checkmeetingstatus",
 
     //Temario Management
     getPdfFolders: 'getDownloadPdfFolders',
@@ -36,6 +37,7 @@ const SERVICE_URLS = {
 //Classes Management
 const getClasses = data => post(SERVICE_URLS.getClasses, data);
 const getTopics = data => post(SERVICE_URLS.getTopics, data);
+const checkMeetingStatus = () => get(SERVICE_URLS.checkMeetingStatus, {});
 
 //Teamrio Management
 const getPdfFolders = data => post(SERVICE_URLS.getPdfFolders, data);
@@ -69,6 +71,7 @@ const apiServices = {
     //Classes Management
     getClasses,
     getTopics,
+    checkMeetingStatus,
 
     //Temario Managment
     getPdfFolders,

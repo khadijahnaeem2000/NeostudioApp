@@ -1,5 +1,5 @@
 import apiServices from "../../api_services/request-handler";
-import { setClasses, setLoading, setTopics } from "../slices/classes-slice";
+import { setClasses, setLoading, setTopics, setMeetingStatus } from "../slices/classes-slice";
 
 export const getClasses = data => {
     return async dispatch => {
@@ -26,6 +26,16 @@ export const getTopics = data => {
             }
         } catch (error) {
             dispatch(setLoading(false))
+        }
+    };
+};
+export const checkMeetingStatus = () => {
+    return async dispatch => {
+        try {
+            const response = await apiServices.checkMeetingStatus()
+            dispatch(setMeetingStatus(response?.data))
+        } catch (error) {
+            dispatch(setMeetingStatus(error?.data))
         }
     };
 };
