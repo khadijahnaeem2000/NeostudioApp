@@ -1,7 +1,7 @@
 import { View, SafeAreaView, Image, StatusBar, Text, Dimensions, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './index.styles'
-import { images, SIZES } from '../../constant'
+import { images } from '../../constant'
 import FastImage from 'react-native-fast-image'
 import { SingleTopView } from '../../screens/Exams/components'
 

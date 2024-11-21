@@ -43,6 +43,7 @@ import {
 } from '../../Component/MakeMeResponsive';
 import DeviceInfo from 'react-native-device-info';
 import { resetNavigationStack } from '../../navigation/navigation_service';
+import { COLORS } from '../../constant';
 
 class Test extends Component {
   constructor(props) {
@@ -75,6 +76,8 @@ class Test extends Component {
     const type = this.props.route.params.type || 'test'
     const examsID = this.props.route.params.examsId || '1'
     const isReshedule = this.props.route.params.isReshedule || 'no'
+
+    console.log("examsID ,examsID" ,examsID)
     const { login } = this.props.user;
     if (type === 'exam') {
       saveUserRankPoint('Yes', 'Yes', 'examine', login?.data?.id);
@@ -185,13 +188,13 @@ class Test extends Component {
     const { correctOption, pageSelected } = this.state;
     const { examStartData, AuthLoading, login } = this.props.user;
 
-    const { totalTime, isPsico, type, isHtml, isReshedule, examsID, isRepasoImage } = this.props.route.params
+    const { totalTime, isPsico, type, isHtml, isReshedule, examsId, isRepasoImage } = this.props.route.params
 
 
 
     return (
       <View
-        style={{ flex: 1 }}
+        style={{ flex: 1 , backgroundColor:COLORS.white }}
         onLayout={e => {
           this._onLayout(e);
         }}>
@@ -249,7 +252,7 @@ class Test extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.getStartExamData(
-                  examsID,
+                  examsId,
                   login?.data?.id,
                   null,
                   null,

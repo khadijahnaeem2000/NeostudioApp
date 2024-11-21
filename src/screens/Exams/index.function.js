@@ -27,7 +27,8 @@ export default () => {
     }
 
 
-    useEffect(() => { getAllExamsData('no', null) }, [])
+    useFocusEffect(useCallback(() => { getAllExamsData('no', null) }, []))
+
 
     const onRefresh = async () => {
         setRefreshing(true)
@@ -48,7 +49,6 @@ export default () => {
                     isHtml
                 })
             } else {
-
                 navigate('Test', {
                     examsId: selectedExam?.id,
                     totalTime: selectedExam?.examDuration,

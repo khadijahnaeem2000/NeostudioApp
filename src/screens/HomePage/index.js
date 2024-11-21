@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text, Linking } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { images } from '../../constant';
 import { styles } from './index.styles';
 import { home_array, IMAGE_URL } from '../../config';
-import { SingleHomeView, EmailModal, ExamModal, HomeSliderModal, TopImageView, PruebaModal, AvatarModal, SelectImageModal } from './components';
+import { SingleHomeView, EmailModal, ExamModal, HomeSliderModal, TopImageView, PruebaModal, AvatarModal, SelectImageModal, VersionPopup } from './components';
 import { Container, LoaderModal } from '../../Component';
 import HomePageFunctional from './index.function';
+import { isIOS } from '../../constant/theme';
 
 const HomePage = () => {
     const {
@@ -164,6 +165,18 @@ const HomePage = () => {
                     }, 500);
                 }}
                 onPressClose={() => setShowAvatarModal(false)}
+            />
+            <VersionPopup
+                visible={showVersionModal}
+                onPressClose={() => setShowVersionModal(false)}
+                onPress={() => {
+                    setShowVersionModal(false)
+                    if (isIOS) {
+                        Linking.openURL("https://apps.apple.com/us/app/neoestudio-guardia-civil-2023/id1531939360");
+                    } else {
+                        Linking.openURL("https://play.google.com/store/apps/details?id=com.neostudio");
+                    }
+                }}
             />
 
             <LoaderModal visible={isLoading} />

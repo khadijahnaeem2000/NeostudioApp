@@ -18,14 +18,14 @@ export const styles = StyleSheet.create({
         width: "100%"
     },
     heading: {
-        fontSize: widthPercentageToDP(9),
+        fontSize: SIZES.h32,
         fontFamily: fonts.novaBold,
         color: COLORS.white,
         textAlign: "center",
         marginTop: heightPercentageToDP(5)
     },
     exam_heading: {
-        fontSize: widthPercentageToDP(9),
+        fontSize: SIZES.h32,
         fontFamily: fonts.novaBold,
         color: COLORS.white,
         textAlign: "center",

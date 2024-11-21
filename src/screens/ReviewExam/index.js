@@ -702,19 +702,23 @@ class Review extends Component {
                 end={{ x: 1, y: 0 }}
                 colors={['#006176', '#00a7cb']}
                 style={styles.rejectBottom}>
-                <Text
-                  style={[
-                    styles.rejectBtn,
-                    { marginRight: heightPercentageToDP(2) },
-                  ]}
-                  onPress={() => this.setState({ modalVisible: '' })}>
-                  {'Cancelar'}
-                </Text>
-                <Text
-                  style={[
-                    styles.rejectBtn,
-                    { marginLeft: heightPercentageToDP(2) },
-                  ]}
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => this.setState({ modalVisible: '' })}
+                  style={{ height: "100%", width: "50%", justifyContent: "center", alignItems: "center" }} >
+
+                  <Text
+                    style={[
+                      styles.rejectBtn,
+                      { marginRight: heightPercentageToDP(2) },
+                    ]}
+                  >
+                    {'Cancelar'}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ height: "100%", width: "50%", justifyContent: "center", alignItems: "center" }}
+                  activeOpacity={0.6}
                   onPress={() => {
                     if (this.state.myOption == 0) {
                       Alert.alert('', 'Seleccione cualquier motivo');
@@ -734,9 +738,17 @@ class Review extends Component {
                         );
                       });
                     }
-                  }}>
-                  {'Entregar'}
-                </Text>
+                  }}
+                >
+                  <Text
+                    style={[
+                      styles.rejectBtn,
+                      { marginLeft: heightPercentageToDP(2) },
+                    ]}
+                  >
+                    {'Entregar'}
+                  </Text>
+                </TouchableOpacity>
               </LinearGradient>
             </View>
           </View>

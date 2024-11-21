@@ -70,8 +70,16 @@ export default () => {
                     .catch(() => { });
             });
     };
+    const checkAppVersion = () => {
+        if (!isIOS && login.data.androidVersion !== version) {
+            setShowVersionModal(true)
+        } else if (isIOS && login.data.iosVersion !== iosVerion) {
+            setShowVersionModal(true)
+        }
+    }
     const refreshAppData = async () => {
         const token = await requestUserPermission()
+        checkAppVersion()
         if (login?.data?.type === 'Prueba') {
             setShowPruebaModal(true)
         }
@@ -113,6 +121,8 @@ export default () => {
             return `${hours || "00"}:${minutes || "00"}m:${seconds || "00"}s`
         }
     }
+
+
 
     useFocusEffect(
         useCallback(() => {
@@ -263,9 +273,9 @@ export default () => {
     };
 
 
-    
+
     const handlePostImage = async (type, image) => {
-        console.log("image" ,image )
+        console.log("image", image)
         // setTimeout(() => {
         //     setIsLoading(true)
         // }, 1000);

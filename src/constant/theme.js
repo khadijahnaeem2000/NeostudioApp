@@ -36,6 +36,7 @@ export const SIZES = {
   h20: RFValue(20),
   h22: RFValue(22),
   h28: RFValue(28),
+  h32: RFValue(32),
   h38: RFValue(38),
 
   // app dimensions
