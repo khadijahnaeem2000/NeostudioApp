@@ -138,21 +138,6 @@ class DownUpload extends React.Component {
     return (
       <Container title={"Descargas"}
       >
-        {/* <View style={styles.upDownView}>
-          <FastImage
-            source={require('./assets/descargas.png')}
-            style={styles.download}
-            resizeMode={FastImage.resizeMode.stretch}
-          />
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Upload')}>
-            <FastImage
-              source={require('../../Images/no_upload.png')}
-              style={styles.download}
-              resizeMode={FastImage.resizeMode.stretch}
-            />
-          </TouchableOpacity>
-        </View> */}
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           showsVerticalScrollIndicator={false}>
@@ -174,24 +159,12 @@ class DownUpload extends React.Component {
                         })
                       }}
                     />
-                    // <Folder
-                    //   text={item.name}
-                    //   isActive={item.isActive}
-                    //   count={item.count}
-                    //   clickHandler={() => (
-                    //     Orientation.unlockAllOrientations(),
-                    //     this.props.navigation.navigate('FolderFiles', {
-                    //       id: item.id,
-                    //     })
-                    //   )}
-                    // />
                   );
                 })}
               </View>
               <View style={styles.fileView}>
                 {download.files.map((item, index) => {
                   return (
-
                     <SingleFolderView
                       key={'unique' + index}
                       isActive={item.isActive}
@@ -205,18 +178,6 @@ class DownUpload extends React.Component {
                         }
                       }}
                     />
-                    // <Files
-                    //   key={'unique' + index}
-                    //   text={item.title ? item.title : item.name}
-                    //   isActive={item.isActive}
-                    //   clickHandler={() => {
-                    //     if (Platform.OS === 'android') {
-                    //       this.download(item.file);
-                    //     } else {
-                    //       this.iosDownload(item.file);
-                    //     }
-                    //   }}
-                    // />
                   );
                 })}
               </View>

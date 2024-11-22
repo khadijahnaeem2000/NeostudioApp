@@ -12,9 +12,7 @@ const DialogBox = (props) => {
             visible={props.isDialogOpen}
             animationType="fade"
             supportedOrientations={['portrait', 'landscape']}
-            onRequestClose={() => {
-                console.log('alert close')
-            }}
+            onRequestClose={props.closeBox}
         >
             <TouchableOpacity
                 style={styles.modalMain2}

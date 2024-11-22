@@ -54,7 +54,6 @@ class Objectives extends React.Component {
   render() {
     const { objectiveRanking, login, AuthLoading, objectiveState } =
       this.props.user;
-    //console.log("my objective", objectiveRanking)
     return (
       <FastImage
         style={styles.container}

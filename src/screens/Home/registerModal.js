@@ -139,7 +139,6 @@ const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
       Instagram: instagram || '',
     };
 
-    console.log('apiDtata', apiData);
     onPressButton(apiData);
   };
 

@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getPersonalityTestList, clearStates } from '../../Redux/action';
-import Directory from './directory';
 import Orientation from 'react-native-orientation-locker';
 import { Container, LoaderModal, SingleFolderView } from '../../Component';
 import { images, SIZES } from '../../constant';
@@ -114,16 +113,10 @@ class Personality extends Component {
     );
   };
 
-
   componentDidMount() {
     this.getExamApi(1);
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      const locked = Orientation.isLocked();
-      if (!locked) {
-        Orientation.lockToPortrait();
-      } else {
-        Orientation.lockToPortrait();
-      }
+      Orientation.lockToPortrait();
     });
   }
 

@@ -77,7 +77,6 @@ class Test extends Component {
     const examsID = this.props.route.params.examsId || '1'
     const isReshedule = this.props.route.params.isReshedule || 'no'
 
-    console.log("examsID ,examsID" ,examsID)
     const { login } = this.props.user;
     if (type === 'exam') {
       saveUserRankPoint('Yes', 'Yes', 'examine', login?.data?.id);

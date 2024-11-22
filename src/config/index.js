@@ -140,7 +140,7 @@ export const home_array = [
     },
     {
         id: 7,
-        image: images.repaso_image,
+        image: images.ranking_main_image,
         title: "Estadísticas",
         array: [
             {

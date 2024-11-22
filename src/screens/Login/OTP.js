@@ -153,7 +153,6 @@ const OTP = ({ navigation, route }) => {
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled={num => {
-            console.log('===>', num);
           }}
           selectionColor='white'
         />

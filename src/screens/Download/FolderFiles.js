@@ -20,7 +20,7 @@ import RNFetchBlob from 'react-native-blob-util';
 import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component';
-import { SIZES } from '../../constant';
+import { images, SIZES } from '../../constant';
 
 class FolderFiles extends React.Component {
   constructor(props) {
@@ -150,11 +150,11 @@ class FolderFiles extends React.Component {
   render() {
     const { downloadFiles, AuthLoading } = this.props.user;
     return (
-      <Container title={"Descargas\nSubidas"}
-        textStyle={{ marginTop: SIZES.padding }}
+      <Container title={"Descargas"}
+        // textStyle={{ marginTop: SIZES.padding }}
       >
 
-        <View style={styles.upDownView}>
+        {/* <View style={styles.upDownView}>
           <FastImage
             source={require('./assets/descargas.png')}
             style={styles.download}
@@ -168,7 +168,7 @@ class FolderFiles extends React.Component {
               resizeMode={FastImage.resizeMode.stretch}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View style={styles.mainView}>
           <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
@@ -182,6 +182,7 @@ class FolderFiles extends React.Component {
                     <SingleFolderView
                       key={'unique' + index}
                       count={"!"}
+                      image={images.pdf_image}
                       isActive={item?.isActive}
                       title={item.title || item?.name}
                       onPress={() => {

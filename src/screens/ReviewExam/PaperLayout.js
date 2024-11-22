@@ -240,9 +240,9 @@ export default class PaperLayout extends React.Component {
                     },
                     bold: {
                       //fontSize: widthPercentageToDP(2.5),
-                      fontFamily: fonts.novaBold,
-                      fontWeight: 'normal',
                       color: '#000',
+                      fontWeight:"800",
+                      fontFamily: fonts.novaBold,
                     },
                     round: {
                       //fontSize: widthPercentageToDP(2.5),
@@ -252,15 +252,18 @@ export default class PaperLayout extends React.Component {
                   }}
                   tagsStyles={{
                     a: {
-                      textDecorationLine: "none"
+                      textDecorationLine: "none",
+                      fontFamily: fonts.novaBold,
                     },
                     p: {
                       padding: 10,
                       textAlign: 'justify',
+                      fontFamily: fonts.novaBold,
                     },
                     span: {
                       //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
                       flexDirection: 'row',
+                      fontFamily: fonts.novaBold,
                     },
                     tap: {
                       fontSize: DeviceInfo.isTablet()

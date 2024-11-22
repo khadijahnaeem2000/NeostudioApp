@@ -122,8 +122,6 @@ export default () => {
             return `${hours || "00"}:${minutes || "00"}m:${seconds || "00"}s`
         }
     }
-
-
     useFocusEffect(
         useCallback(() => {
             Orientation.lockToPortrait();
@@ -273,10 +271,7 @@ export default () => {
         }
     };
 
-
-
     const handlePostImage = async (type, image) => {
-        console.log("image", image)
         // setTimeout(() => {
         //     setIsLoading(true)
         // }, 1000);
@@ -292,7 +287,6 @@ export default () => {
             }
 
         } catch (error) {
-            console.log("Catch erororrr", error)
             setIsLoading(false)
         }
     };

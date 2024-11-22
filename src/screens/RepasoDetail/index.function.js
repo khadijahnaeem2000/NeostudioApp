@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getRepasoExams } from "../../Redux/actions/repaso-action"
 import { navigate } from "../../navigation/navigation_service"
 import { useFocusEffect } from "@react-navigation/native"
+import Orientation from "react-native-orientation-locker"
 
 export default ({ id, name }) => {
     const dispatch = useDispatch()
@@ -25,8 +26,10 @@ export default ({ id, name }) => {
         dispatch(getRepasoExams(apiData))
     }
 
-    useFocusEffect(useCallback(() => { getRepasoExamsData('no', null) }, []))
-
+    useFocusEffect(useCallback(() => {
+        getRepasoExamsData('no', null)
+        Orientation.lockToPortrait()
+    }, []))
 
     const onRefresh = async () => {
         setRefreshing(true)

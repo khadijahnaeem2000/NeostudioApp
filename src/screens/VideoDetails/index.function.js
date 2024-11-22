@@ -12,8 +12,6 @@ export default ({ id }) => {
     const { login } = useSelector(state => state.user)
     const { loading, video_files } = useSelector(state => state.video)
 
-    console.log("videos", video_files)
-
     const [refreshing, setRefreshing] = useState(false)
 
     const getVideoData = () => {

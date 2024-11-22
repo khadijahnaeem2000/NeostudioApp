@@ -30,8 +30,6 @@ const Audios = () => {
                     />
                 )}
             />
-
-
             <LoaderModal visible={loading} />
         </Container>
     )

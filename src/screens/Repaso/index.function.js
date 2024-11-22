@@ -1,8 +1,8 @@
 import { useFocusEffect } from "@react-navigation/native"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getPdfFolder } from "../../Redux/action"
 import { getRepasoFolders } from "../../Redux/actions/repaso-action"
+import Orientation from "react-native-orientation-locker"
 
 export default () => {
     const dispatch = useDispatch()
@@ -19,6 +19,8 @@ export default () => {
         }
         dispatch(getRepasoFolders(apiData))
     }
+    
+    useFocusEffect(useCallback(() => { Orientation.lockToPortrait() }, []))
 
 
     useEffect(() => { getRepasoFoldersData() }, [])

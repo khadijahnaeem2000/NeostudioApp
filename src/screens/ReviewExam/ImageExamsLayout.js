@@ -96,7 +96,7 @@ export default class PaperLayout extends React.Component {
             <HTML
               contentWidth={Dimensions.get('screen').width}
               source={{ html: question }}
-              
+
               classesStyles={{
                 regular: {
                   //fontSize: widthPercentageToDP(2.5),
@@ -222,13 +222,13 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                     contentWidth={Dimensions.get('screen').width}
-                     source={{ html: option1 }}
-                     tagsStyles={{
+                    contentWidth={Dimensions.get('screen').width}
+                    source={{ html: option1 }}
+                    tagsStyles={{
                       a: {
                         textDecorationLine: "none"
                       },
-                     }}
+                    }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),
@@ -289,13 +289,13 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                   contentWidth={Dimensions.get('screen').width}
-                   source={{ html: option2 }}
-                   tagsStyles={{
-                    a: {
-                      textDecorationLine: "none"
-                    },
-                   }}
+                    contentWidth={Dimensions.get('screen').width}
+                    source={{ html: option2 }}
+                    tagsStyles={{
+                      a: {
+                        textDecorationLine: "none"
+                      },
+                    }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),
@@ -356,13 +356,13 @@ export default class PaperLayout extends React.Component {
                     marginLeft: widthPercentageToDP(0.5),
                   }}>
                   <HTML
-                     contentWidth={Dimensions.get('screen').width}
-                     source={{ html: option3 }}
-                     tagsStyles={{
+                    contentWidth={Dimensions.get('screen').width}
+                    source={{ html: option3 }}
+                    tagsStyles={{
                       a: {
                         textDecorationLine: "none"
                       },
-                     }}
+                    }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),
@@ -460,8 +460,8 @@ export default class PaperLayout extends React.Component {
                 // marginBottom: widthPercentageToDP(10),
               }}>
               <HTML
-                 contentWidth={Dimensions.get('screen').width}
-                 source={{ html: description }}
+                contentWidth={Dimensions.get('screen').width}
+                source={{ html: description }}
                 classesStyles={{
                   regular: {
                     //fontSize: widthPercentageToDP(2.5),
@@ -470,9 +470,9 @@ export default class PaperLayout extends React.Component {
                   },
                   bold: {
                     //fontSize: widthPercentageToDP(2.5),
-                    fontFamily: fonts.novaBold,
-                    fontWeight: 'normal',
                     color: '#000',
+                    fontWeight: "800",
+                    fontFamily: fonts.novaBold,
                   },
                   round: {
                     //fontSize: widthPercentageToDP(2.5),
@@ -499,7 +499,7 @@ export default class PaperLayout extends React.Component {
                 }}
               />
 
-              <View  style={{height:100}} /> 
+              <View style={{ height: 100 }} />
             </View>
           </ScrollView2>
         </View>

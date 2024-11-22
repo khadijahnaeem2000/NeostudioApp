@@ -66,6 +66,7 @@ import stripe_btn from "../assets/images/stripe_btn.png"
 import modal_background_image from "../assets/images/modal_background_image.png"
 import btn_background_image from "../assets/images/btn_background_image.png"
 import repaso_small_image from "../assets/images/repaso_small_image.png"
+import ranking_main_image from "../assets/images/ranking_main_image.png"
 
 
 export default {
@@ -136,5 +137,6 @@ export default {
     stripe_btn,
     modal_background_image,
     btn_background_image,
-    repaso_small_image
+    repaso_small_image,
+    ranking_main_image
 };

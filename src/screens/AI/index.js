@@ -61,7 +61,6 @@ const AI = () => {
                         value={message}
                         onChangeText={setMessage}
                         onScrollToIndexFailed={() => { 
-                            console.log("fail ho gayayyayay")
                             listRef.current.scrollToIndex({ animated: true , index:messages?.length })
                         }}
                         onSubmitEditing={() => {

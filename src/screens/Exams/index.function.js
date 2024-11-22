@@ -18,6 +18,7 @@ export default () => {
     const [isHtml, setIsHtml] = useState(false)
 
     const getAllExamsData = (isRestart, examId) => {
+        setSelcetedExam(null)
         const apiData = {
             studentId: login?.data?.id,
             studentType: login?.data?.type,

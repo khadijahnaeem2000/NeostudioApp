@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
 import FastImage from 'react-native-fast-image';
-import { COLORS, images } from '../../../constant';
+import { COLORS, images, SIZES } from '../../../constant';
 
 
 const DialogBox = ({ visible, onPressClose, onPress }) => {
@@ -20,8 +20,8 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
                 style={styles.modalMain2}
                 onPress={onPressClose}
             >
-                <FastImage  style={styles.quesBox}
-                source={images.modal_background_image}
+                <FastImage style={styles.quesBox}
+                    source={images.modal_background_image}
                 >
 
                     <View style={styles.toptile}>
@@ -35,7 +35,7 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
                         colors={["#03330e", "#415947"]}
                         style={styles.bottomView}>
                         <TouchableOpacity
-                            onPress={onPressClose}
+                            onPress={onPress}
                             style={{
                                 width: "50%",
                                 height: "100%",
@@ -48,7 +48,7 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={onPress}
+                            onPress={onPressClose}
                             style={{
                                 width: "50%",
                                 height: "100%",
@@ -73,7 +73,6 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
 const styles = StyleSheet.create({
     modalMain2: {
         flex: 1,
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "rgba(0,0,0,0.6)"
@@ -115,10 +114,10 @@ const styles = StyleSheet.create({
     },
     toptile: {
         width: "100%",
-        height: "35%",
         justifyContent: "center",
         borderBottomWidth: widthPercentageToDP(0.1),
-        borderBottomColor: COLORS.white
+        borderBottomColor: COLORS.white,
+        paddingBottom: SIZES.padding2
     },
     toptext: {
         color: COLORS.white,

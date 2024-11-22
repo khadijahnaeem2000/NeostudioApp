@@ -1971,16 +1971,13 @@ export const storeGalleryImage = async (user_id, image) => {
       body: body,
     })
       .then(res => {
-      console.log("ressss" , res)
       })
       // .then(json => {
       //   return json;
       // })
       .catch(error => {
-        console.log("first errorrr" , error)
       });
   } catch (error) {
-    console.log("sceniaosdsda" , error)
   }
   return api;
 };
