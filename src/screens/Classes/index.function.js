@@ -14,7 +14,7 @@ export default () => {
 
     const getClassesData = () => {
         const apiData = {
-            studentType: login.data.type,
+            studentType: login?.data?.type,
             studentId: login?.data?.id,
         }
         dispatch(getClasses(apiData))

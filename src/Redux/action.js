@@ -2,6 +2,7 @@ import { Alert } from 'react-native';
 import { onClearState, onLogoutUser, setActivityId, setAllChats, setAllExams, setAllNotifications, setAudioFile, setAuthLoading, setBattleQuestions, setCalendarDates, setChatCount, setDownloadFiles, setDownloadFolder, setExamStart, setLoginData, setNewsCount, setNewsItems, setNotiToggle, setObjective, setObjectiveRanking, setOrientationCheck, setPdfFile, setPdfFolder, setPersonalityExam, setRankAvatar, setRejectReason, setReviewDrawer, setReviewExam, setReviewExamList, setReviewRanking, setSurveyList, setToast, setToken, setTopics, setUploadFile, setUploadFolder, setVerticalRanking, setVideoFile } from './slices/user-slice';
 import { setAuthDialog, setErrorMessage } from './slices/dialog-slice';
 import { navigate, resetNavigationStack } from '../navigation/navigation_service';
+import Orientation from 'react-native-orientation-locker';
 
 
 export var baseUrl = 'https://neoestudio.net/api/';
@@ -864,6 +865,7 @@ export const endAllExams = (id, endTime, isPsico, type, isRepasoImage) => {
       .then(json => {
         dispatch(setAuthLoading(false));
         if (json.status === 'Successfull') {
+          Orientation.unlockAllOrientations()
           navigate('Result', {
             data: json,
             examID: id,

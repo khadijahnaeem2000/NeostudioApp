@@ -1,20 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
-  Platform,
-  TouchableOpacity,
-  ActivityIndicator,
   Alert,
 } from 'react-native';
 import { styles } from './styles';
-import FastImage from 'react-native-fast-image';
-import Header from '../../Component/Header';
 import { widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import ModalBox from '../../Component/Modal';
 import {
   deleteMyUser,
-  logout,
   resetAllActivities,
   resetAllExams,
   updateUserBaremo,
@@ -28,22 +22,20 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import BaremoUpdate from '../../Component/BaremoModal';
 import { onLogoutUser } from '../../Redux/slices/user-slice';
 import RegisterModal from '../Home/registerModal';
-import { Container, LoaderModal } from '../../Component';
+import { Button, Container, LoaderModal } from '../../Component';
 import { useFocusEffect } from '@react-navigation/native';
 
-const Settings = props => {
+const Settings = () => {
+
   const dispatch = useDispatch();
   const [isPopUp, setpop] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const [isNoti, setNoti] = useState(false);
   const [baremoTxt, setBaremo] = useState(0);
   const [baremoModal, showBaremo] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [registerPopupData, setRegisterPopupData] = useState(null);
 
-  const login = useSelector(state => state.user.login);
-  const AuthLoading = useSelector(state => state.user.AuthLoading);
-  const toggle = useSelector(state => state.user.toggle);
+  const { login, AuthLoading, toggle } = useSelector(state => state.user);
   const text = 'User has been deleted !';
 
   const getRegisterPopupData = async () => {
@@ -99,7 +91,6 @@ const Settings = props => {
 
   return (
     <Container title={"Ajustes"} >
-      {/* reset exames */}
       <View
         style={[
           styles.rowView,
@@ -107,10 +98,9 @@ const Settings = props => {
         ]}>
         <Text style={styles.itemTitle}>{'Puntos de baremo'}</Text>
         <Text onPress={() => showBaremo(true)} style={styles.itemTitle}>
-          {login.data.baremo === "." ? 0 : login.data.baremo}
+          {login?.data?.baremo === "." ? 0 : login?.data?.baremo}
         </Text>
       </View>
-      {/* Notification Block */}
       <View
         style={[
           styles.rowView,
@@ -121,93 +111,56 @@ const Settings = props => {
           isOn={toggle}
           onColor="green"
           offColor="red"
-          //label="Example label"
           labelStyle={{ color: 'black', fontWeight: '900' }}
           size="small"
           onToggle={isOn => dispatch(notificationToggle(isOn))}
         />
       </View>
-      {/* reset exames */}
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Resetear Exámenes'}</Text>
-        <TouchableOpacity
+        <Button
+          title={'Reiniciar'}
+          style={styles.btn}
+            textStyle={styles.btn_text}
           onPress={() => dispatch(resetAllExams(login?.data?.id))}
-          style={styles.btn}>
-          <FastImage
-            source={require('../../Images/button.png')}
-            resizeMode={'contain'}
-            style={styles.imgBtn}>
-            <Text
-              style={[
-                styles.itemTitle,
-                { color: 'white', fontSize: widthPercentageToDP(3.5) },
-              ]}>
-              {'Reiniciar'}
-            </Text>
-          </FastImage>
-        </TouchableOpacity>
+        />
       </View>
-      {/* reset actividades */}
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Resetear Actividades'}</Text>
-        <TouchableOpacity onPress={() => _resetActivity()} style={styles.btn}>
-          <FastImage
-            source={require('../../Images/button.png')}
-            resizeMode={'contain'}
-            style={styles.imgBtn}>
-            <Text
-              style={[
-                styles.itemTitle,
-                { color: 'white', fontSize: widthPercentageToDP(3.5) },
-              ]}>
-              {'Reiniciar'}
-            </Text>
-          </FastImage>
-        </TouchableOpacity>
+        <Button
+          title={'Reiniciar'}
+          style={styles.btn}
+          textStyle={styles.btn_text}
+          onPress={() => _resetActivity()}
+        />
+
       </View>
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Datos registro'}</Text>
-        <TouchableOpacity onPress={() => {
-          getRegisterPopupData()
-          setShowModal(true)
-        }} style={styles.btn}>
-          <FastImage
-            source={require('../../Images/button.png')}
-            resizeMode={'contain'}
-            style={styles.imgBtn}>
-            <Text
-              style={[
-                styles.itemTitle,
-                { color: 'white', fontSize: widthPercentageToDP(3.5) },
-              ]}>
-              {'Modificar'}
-            </Text>
-          </FastImage>
-        </TouchableOpacity>
+        <Button
+          title={'Modificar'}
+          style={styles.btn}
+            textStyle={styles.btn_text}
+          onPress={() => {
+            getRegisterPopupData()
+            setShowModal(true)
+          }}
+        />
       </View>
-      {/* <Text style={styles.mainTitle}>{'Gestiona tu cuenta'}</Text> */}
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Borrar usuario'}</Text>
-        <TouchableOpacity onPress={() => setpop(true)} style={styles.btn}>
-          <FastImage
-            source={require('../../Images/button.png')}
-            resizeMode={'contain'}
-            style={styles.imgBtn}>
-            <Text
-              style={[
-                styles.itemTitle,
-                { color: 'white', fontSize: widthPercentageToDP(3.5) },
-              ]}>
-              {'Confirmar'}
-            </Text>
-          </FastImage>
-        </TouchableOpacity>
+        <Button
+          title={'Confirmar'}
+          style={styles.btn}
+            textStyle={styles.btn_text}
+          onPress={() => setpop(true)}
+        />
       </View>
 
       <ModalBox
         isOpen={isPopUp}
         myText={
-          'Su cuenta se eliminará de forma permanente y, junto con todos los datos de clasificación, se eliminarán. ¿Estas seguro que deseas continuar?'
+          'Tu cuenta y tus datos personales han sido borrados.?'
         }
         noClick={() => setpop(false)}
         closeBox={() => setpop(false)}
@@ -234,9 +187,7 @@ const Settings = props => {
 
       <RegisterModal
         visible={showModal}
-        onPressClose={() => {
-          setShowModal(false)
-        }}
+        onPressClose={() => setShowModal(false)}
         onPressButton={val => onRegister(val)}
         data={registerPopupData}
       />

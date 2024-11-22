@@ -14,7 +14,7 @@ export default () => {
 
     const getAudioData = () => {
         const apiData = {
-            studentType: login.data.type,
+            studentType: login?.data?.type,
             studentId: login?.data?.id,
             type: 'audio',
         }

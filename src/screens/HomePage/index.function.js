@@ -13,6 +13,7 @@ import { directo_url } from "../../config"
 import moment from "moment"
 import { checkMeetingStatus } from "../../Redux/actions/classes-action"
 import ImagePicker from "react-native-image-crop-picker";
+import { version, iosVerion } from "../../../package.json";
 
 export default () => {
     const listRef = useRef(null);
@@ -71,9 +72,9 @@ export default () => {
             });
     };
     const checkAppVersion = () => {
-        if (!isIOS && login.data.androidVersion !== version) {
+        if (!isIOS && login?.data?.androidVersion !== version) {
             setShowVersionModal(true)
-        } else if (isIOS && login.data.iosVersion !== iosVerion) {
+        } else if (isIOS && login?.data?.iosVersion !== iosVerion) {
             setShowVersionModal(true)
         }
     }
@@ -84,7 +85,7 @@ export default () => {
             setShowPruebaModal(true)
         }
         try {
-            if (login.data.IsBlocked === "False" || !login?.data?.IsBlocked) {
+            if (login?.data?.IsBlocked === "False" || !login?.data?.IsBlocked) {
                 if (isIOS) {
                     fetchReceipt();
                 }
@@ -93,7 +94,7 @@ export default () => {
                 dispatch(updateLoginTime(login?.data?.id))
                 dispatch(updateUserProfile(login?.data?.id))
                 dispatch(saveUserToken(login?.data?.id, token))
-                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+                dispatch(getCurrentUser(login?.data?.id, login?.data?.type))
                 saveUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
             } else {
                 this.props.logout();
@@ -106,7 +107,7 @@ export default () => {
 
         if (login?.data && login?.data?.expiry_date) {
             const currentDate = moment(); // Current date and time
-            const targetDate = moment(login.data.expiry_date); // Target date parsed as a moment object
+            const targetDate = moment(login?.data?.expiry_date); // Target date parsed as a moment object
 
             const differenceInMillis = targetDate.diff(currentDate); // Difference in milliseconds
 
@@ -123,9 +124,9 @@ export default () => {
     }
 
 
-
     useFocusEffect(
         useCallback(() => {
+            Orientation.lockToPortrait();
             refreshAppData()
             dispatch(checkMeetingStatus())
         }, [],))
@@ -181,7 +182,7 @@ export default () => {
 
         if (type === 'classes') {
             if (!login.package) navigate("Classes")
-            else if (login.data.type === "Alumno" && login.package.course === "Gold") setShowEmailModal(true)
+            else if (login?.data?.type === "Alumno" && login.package.course === "Gold") setShowEmailModal(true)
         }
 
         if (type === 'directo') {
@@ -223,19 +224,19 @@ export default () => {
 
         if (type === 'audio') {
             if (!login.package) navigate("Audios")
-            else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
+            else if (login?.data?.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
             else navigate("Audios")
         }
 
         if (type === 'video') {
             if (!login.package) navigate("Videos")
-            else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
+            else if (login?.data?.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
             else navigate("Videos")
         }
 
         if (type === 'pdf') {
             if (!login.package) navigate("Temario")
-            else if (login.data.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
+            else if (login?.data?.type === "Alumno" && login.package.course === "Silver") setShowEmailModal(true)
             else navigate("Temario")
         }
 
@@ -283,11 +284,11 @@ export default () => {
             if (type === "gallery") {
                 await storeGalleryImage(login?.data?.id, image);
                 setIsLoading(false)
-                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+                dispatch(getCurrentUser(login?.data?.id, login?.data?.type))
             } else {
                 await storeAvatarImage(login?.data?.id, image);
                 setIsLoading(false)
-                dispatch(getCurrentUser(login?.data?.id, login.data.type))
+                dispatch(getCurrentUser(login?.data?.id, login?.data?.type))
             }
 
         } catch (error) {

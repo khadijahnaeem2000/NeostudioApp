@@ -6,6 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { widthPercentageToDP } from '../../../Component/MakeMeResponsive';
+import FastImage from 'react-native-fast-image';
 
 const SingleHomeView = ({ image, title, array, isOpen, setIsOpen, onPress, onPressList }) => {
 
@@ -62,6 +63,7 @@ const SingleHomeView = ({ image, title, array, isOpen, setIsOpen, onPress, onPre
                     keyExtractor={(item) => item?.id?.toString()}
 
                     renderItem={({ item }) => {
+
                         return (
 
 
@@ -104,8 +106,9 @@ const SingleHomeView = ({ image, title, array, isOpen, setIsOpen, onPress, onPre
                                         </LinearGradient>
                                     </Animated.View>
                                 }
-                                <View style={styles.sub_image_view}>
-                                    <Image source={item?.image} style={styles.sub_image} />
+                                <View style={[styles.sub_image_view, item?.type === 'repaso' && styles.repaso_image_view]}>
+                                    <FastImage
+                                        source={item?.image} style={styles.sub_image} />
                                 </View>
                                 <View style={styles.sub_text_view}>
                                     <Text style={styles.sub_title}>{item?.title}</Text>
@@ -170,6 +173,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.48,
         shadowRadius: 11.95,
         elevation: 18,
+    },
+    repaso_image_view: {
+        height: 100,
     },
     sub_image: {
         height: '100%',

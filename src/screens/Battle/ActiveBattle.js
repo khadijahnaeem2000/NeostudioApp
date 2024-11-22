@@ -32,7 +32,7 @@ const Battle = props => {
 
   const apiCall = async () => {
     setLoading(true);
-    const result = await getAllActiveBattle(login?.data?.id, login.data.type);
+    const result = await getAllActiveBattle(login?.data?.id, login?.data?.type);
     setLoading(false);
     if (result.status === 'Successfull') {
       setResponse(result?.data);
@@ -74,7 +74,7 @@ const Battle = props => {
                   dispatch(
                     joinMyBattle(
                       login?.data?.id,
-                      login.data.type,
+                      login?.data?.type,
                       item.id,
                       null,
                       null,

@@ -29,7 +29,7 @@ class Survey extends React.Component {
 
   getData = () => {
     const {login} = this.props.user;
-    this.props.getSurveyList(login.data.type, login?.data?.id);
+    this.props.getSurveyList(login?.data?.type, login?.data?.id);
   };
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('focus', () => {

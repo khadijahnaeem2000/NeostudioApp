@@ -29,14 +29,11 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.novaBold,
   },
   btn: {
-    width: widthPercentageToDP(30),
-    height: widthPercentageToDP(10)
+    width: "33%",
+    height: SIZES.padding * 1.5,
   },
-  imgBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "100%"
+  btn_text: {
+    fontSize: widthPercentageToDP(3.5)
   },
   loading: {
     position: 'absolute',

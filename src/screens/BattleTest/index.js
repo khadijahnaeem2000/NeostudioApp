@@ -123,7 +123,7 @@ class Test extends Component {
     // this.interval2 = setInterval(() => {
     //   this.props.joinMyBattle(
     //     login?.data?.id,
-    //     login.data.type,
+    //     login?.data?.type,
     //     battle_id,
     //     null,
     //     null,
@@ -250,7 +250,7 @@ class Test extends Component {
     const battle_id = this.props.route.params.battle_id || 123 
     const result = await leaveCurrentBattle(
       login?.data?.id,
-      login.data.type,
+      login?.data?.type,
       battle_id,
     );
     this.setState({ isLoading: false });
@@ -332,7 +332,7 @@ class Test extends Component {
               this.setState({ timeInterval: 30000 }, () => {
                 this.props.joinMyBattle(
                   login?.data?.id,
-                  login.data.type,
+                  login?.data?.type,
                   battle_id,
                   null,
                   null,
@@ -394,7 +394,7 @@ class Test extends Component {
                         ? this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer1',
@@ -414,7 +414,7 @@ class Test extends Component {
                         ? this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer2',
@@ -434,7 +434,7 @@ class Test extends Component {
                         ? this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer3',
@@ -454,7 +454,7 @@ class Test extends Component {
                         ? this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer4',
@@ -499,7 +499,7 @@ class Test extends Component {
                         ? this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer1',
@@ -521,7 +521,7 @@ class Test extends Component {
                         this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer2',
@@ -542,7 +542,7 @@ class Test extends Component {
                         this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer3',
@@ -563,7 +563,7 @@ class Test extends Component {
                         this.setState({ timeInterval: 60000 }, () => {
                           this.props.joinMyBattle(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                             battle_id,
                             item.id,
                             'answer4',

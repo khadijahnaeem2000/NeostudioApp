@@ -4,14 +4,18 @@ import { TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive'
 import { fonts } from '../../../utils'
-import { images } from '../../../constant'
+import { COLORS, images, SIZES } from '../../../constant'
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { ImageBackground } from 'react-native'
 
 const PruebaModal = ({ visible, onPressClose, login }) => {
     return (
         <Modal transparent visible={visible}  >
-            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", }} >
-                <View style={{ backgroundColor: "white", borderRadius: 20, width: "90%", alignSelf: "center", overflow: "hidden" }} >
+            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: "center", paddingHorizontal: SIZES.padding }} >
+                <FastImage
+                    source={images.modal_background_image}
+                    resizeMode={FastImage.resizeMode.cover}
+                    style={{ backgroundColor: 'rgba(0,0,0,0.9)', borderRadius: 20, width: "100%", alignSelf: "center", overflow: "hidden" }} >
 
                     <TouchableOpacity
                         activeOpacity={0.6}
@@ -26,10 +30,10 @@ const PruebaModal = ({ visible, onPressClose, login }) => {
                             right: 12,
                             position: "absolute",
                         }}>
-                        <AntDesign name="close" color={'black'} size={30} />
+                        <AntDesign name="close" color={COLORS.white} size={30} />
                     </TouchableOpacity>
                     <Text style={{
-                        color: 'black',
+                        color: COLORS.white,
                         fontFamily: fonts.novaRegular,
                         fontSize: widthPercentageToDP(5),
                         textAlign: "center",
@@ -63,7 +67,7 @@ const PruebaModal = ({ visible, onPressClose, login }) => {
 
 
                     <View style={{ height: 20 }} />
-                </View>
+                </FastImage>
             </View>
         </Modal>
     )

@@ -22,7 +22,7 @@ class VideoClass extends PureComponent {
 
   getAllTopics = () => {
     const {login} = this.props.user;
-    this.props.getTopics(login.data.type, login?.data?.id, 'video');
+    this.props.getTopics(login?.data?.type, login?.data?.id, 'video');
   };
 
   componentDidMount() {

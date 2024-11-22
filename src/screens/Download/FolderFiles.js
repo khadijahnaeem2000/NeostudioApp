@@ -34,7 +34,7 @@ class FolderFiles extends React.Component {
   getData = () => {
     const { login } = this.props.user;
     const id = this.props.route.params.id || 1
-    this.props.getDownloadFile(id, login.data.type, login?.data?.id);
+    this.props.getDownloadFile(id, login?.data?.type, login?.data?.id);
   };
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('focus', () => {

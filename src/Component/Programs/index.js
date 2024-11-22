@@ -3,13 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import FastImage from 'react-native-fast-image'
 import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import { fonts } from '../../utils'
+import { Button, SizedBox } from '../index'
 
 const Programs = (props) => {
 
     return (
         <View style={styles.container}>
             <ScrollView
-                contentContainerStyle={{ flexGrow: 1, alignItems:"center" }}
+                contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
                 showsVerticalScrollIndicator={false}
             >
                 <FastImage
@@ -20,20 +21,13 @@ const Programs = (props) => {
                 {/* <Text style={styles.descript}>
                     {props.description}
                 </Text> */}
-                <TouchableOpacity
+
+                <Button
                     onPress={props.clickHandler}
-                    style={styles.btn}
-                >
-                    <FastImage
-                        source={require('../../Images/button.png')}
-                        resizeMode={FastImage.resizeMode.contain}
-                        style={styles.imgBtn}
-                    >
-                        <Text style={styles.btnText}>
-                            {"Seleccionar"}
-                        </Text>
-                    </FastImage>
-                </TouchableOpacity>
+                    title={"Seleccionar"}
+                />
+
+                <SizedBox />
             </ScrollView>
         </View >
     )
@@ -42,7 +36,7 @@ const Programs = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 0,
-        alignItems:"center",
+        alignItems: "center",
     },
     img: {
         width: widthPercentageToDP(95),

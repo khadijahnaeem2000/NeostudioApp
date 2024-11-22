@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllExams } from "../../Redux/actions/exam-action"
 import { navigate } from "../../navigation/navigation_service"
+import Orientation from "react-native-orientation-locker"
 
 export default () => {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ export default () => {
     const getAllExamsData = (isRestart, examId) => {
         const apiData = {
             studentId: login?.data?.id,
-            studentType: login.data.type,
+            studentType: login?.data?.type,
             examId: examId,
             isRestart: isRestart,
         }
@@ -27,7 +28,10 @@ export default () => {
     }
 
 
-    useFocusEffect(useCallback(() => { getAllExamsData('no', null) }, []))
+    useFocusEffect(useCallback(() => {
+        Orientation.lockToPortrait()
+        getAllExamsData('no', null)
+    }, []))
 
 
     const onRefresh = async () => {

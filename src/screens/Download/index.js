@@ -27,7 +27,7 @@ class DownUpload extends React.Component {
       isOpen: false,
     };
     const { login } = this.props.user;
-    this.props.getDownload(login.data.type, login?.data?.id);
+    this.props.getDownload(login?.data?.type, login?.data?.id);
   }
 
   componentDidMount() {
@@ -136,10 +136,9 @@ class DownUpload extends React.Component {
   render() {
     const { download, AuthLoading } = this.props.user;
     return (
-      <Container title={"Descargas\nSubidas"}
-        textStyle={{ marginTop: SIZES.padding }}
+      <Container title={"Descargas"}
       >
-        <View style={styles.upDownView}>
+        {/* <View style={styles.upDownView}>
           <FastImage
             source={require('./assets/descargas.png')}
             style={styles.download}
@@ -153,7 +152,7 @@ class DownUpload extends React.Component {
               resizeMode={FastImage.resizeMode.stretch}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           showsVerticalScrollIndicator={false}>

@@ -104,7 +104,7 @@ class Home extends Component {
     }
 
     try {
-      if (login.data.IsBlocked === "False" || !login?.data?.IsBlocked) {
+      if (login?.data?.IsBlocked === "False" || !login?.data?.IsBlocked) {
         if (Platform.OS === "ios") {
           this.fetchReceipt();
         }
@@ -114,7 +114,7 @@ class Home extends Component {
             this.props.updateLoginTime(login?.data?.id),
             this.props.updateUserProfile(login?.data?.id),
             this.props.saveUserToken(login?.data?.id, token),
-            this.props.getCurrentUser(login?.data?.id, login.data.type),
+            this.props.getCurrentUser(login?.data?.id, login?.data?.type),
             saveUserRankPoint("Yes", "No", "normal_points", login?.data?.id),
           ]);
       } else {
@@ -128,14 +128,14 @@ class Home extends Component {
   UNSAFE_componentWillMount() {
     const { login } = this.props.user;
     this.setState({
-      isOpen: login.data.emailSubscription === null ? true : false,
+      isOpen: login?.data?.emailSubscription === null ? true : false,
     });
     if (Platform.OS === "android") {
-      if (login.data.androidVersion !== version) {
+      if (login?.data?.androidVersion !== version) {
         this.setState({ verSionPopUp: true });
       }
     } else {
-      if (login.data.iosVersion !== iosVerion) {
+      if (login?.data?.iosVersion !== iosVerion) {
         this.setState({ verSionPopUp: true });
       }
     }
@@ -275,7 +275,7 @@ class Home extends Component {
             ? !activityId
               ? (this.test(), this.props.navigation.navigate("Actividad"))
               : (this.test(), this.props.navigation.navigate("Activity"))
-            : login.data.type === "Alumno" && login.package.course === "Gold"
+            : login?.data?.type === "Alumno" && login.package.course === "Gold"
               ? this.setState({ popUp: true })
               : !activityId
                 ? (this.test(), this.props.navigation.navigate("Actividad"))
@@ -307,7 +307,7 @@ class Home extends Component {
         return (
           AuthLoading
             ? false
-            : //: this.props.getExames(login?.data?.id, true, login.data.type)
+            : //: this.props.getExames(login?.data?.id, true, login?.data?.type)
             this.test(),
           updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id),
           this.props.navigation.navigate("ExamFile", {
@@ -319,7 +319,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.navigation.navigate("PDF"))
-            : login.data.type === "Alumno" && login.package.course === "Silver"
+            : login?.data?.type === "Alumno" && login.package.course === "Silver"
               ? this.setState({ popUp: true })
               : //this.props.navigation.navigate('PDF')
               (this.test(), this.props.navigation.navigate("PDF"));
@@ -328,7 +328,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.navigation.navigate("AudioClass"))
-            : login.data.type === "Alumno" && login.package.course === "Silver"
+            : login?.data?.type === "Alumno" && login.package.course === "Silver"
               ? this.setState({ popUp: true })
               : (this.test(), this.props.navigation.navigate("AudioClass"));
       case 10:
@@ -336,7 +336,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.navigation.navigate("VideoClass"))
-            : login.data.type === "Alumno" && login.package.course === "Silver"
+            : login?.data?.type === "Alumno" && login.package.course === "Silver"
               ? this.setState({ popUp: true })
               : (this.test(), this.props.navigation.navigate("VideoClass"));
       case 11:
@@ -344,7 +344,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.navigation.navigate("Clases"))
-            : login.data.type === "Alumno" && login.package.course === "Gold"
+            : login?.data?.type === "Alumno" && login.package.course === "Gold"
               ? this.setState({ popUp: true })
               : (this.test(), this.props.navigation.navigate("Clases"));
       case 12:
@@ -359,7 +359,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.navigation.navigate("FAQ"))
-            : login.data.type === "Alumno" && login.package.course === "Silver"
+            : login?.data?.type === "Alumno" && login.package.course === "Silver"
               ? this.setState({ popUp: true })
               : (this.test(), this.props.navigation.navigate("FAQ"));
       case 15:
@@ -381,7 +381,7 @@ class Home extends Component {
           ? false
           : !login.package
             ? (this.test(), this.props.getAllChats(true, login?.data?.id))
-            : login.data.type === "Alumno" && login.package.course === "Gold"
+            : login?.data?.type === "Alumno" && login.package.course === "Gold"
               ? this.setState({ popUp: true })
               : (this.test(), this.props.getAllChats(true, login?.data?.id));
       case 19:
@@ -459,13 +459,13 @@ class Home extends Component {
       this.setState({ isLoading: true });
       await storeGalleryImage(login?.data?.id, image);
       await this.setState({ isLoading: false }, () => {
-        this.props.getCurrentUser(login?.data?.id, login.data.type);
+        this.props.getCurrentUser(login?.data?.id, login?.data?.type);
       });
     } else {
       this.setState({ isLoading: true });
       await storeAvatarImage(login?.data?.id, image);
       await this.setState({ isLoading: false }, () => {
-        this.props.getCurrentUser(login?.data?.id, login.data.type);
+        this.props.getCurrentUser(login?.data?.id, login?.data?.type);
       });
     }
   };
@@ -559,7 +559,7 @@ class Home extends Component {
               resizeMode={FastImage.resizeMode.cover}
             />
           </View>
-          {!login.data.expiry_date ? (
+          {!login?.data?.expiry_date ? (
             <View />
           ) : (
             <View style={styles.timerView}>
@@ -643,16 +643,16 @@ class Home extends Component {
                       this.props.navigation.navigate("Profile");
                     }
                   }}
-                  username={login.data.userName}
-                  name={login.data.name}
+                  username={login?.data?.userName}
+                  name={login?.data?.name}
                   isDirecto={item?.text === 'Directo'}
                   experience={parseFloat(login?.time).toFixed(2)}
-                  aptos={login.data.aptos}
-                  puntos={login.data.points}
-                  percentage={login.data.percentage}
-                  userPhoto={login.data.photo}
-                  rankPhoto={login.data.rank_image}
-                  rankName={login.data.rank_name}
+                  aptos={login?.data?.aptos}
+                  puntos={login?.data?.points}
+                  percentage={login?.data?.percentage}
+                  userPhoto={login?.data?.photo}
+                  rankPhoto={login?.data?.rank_image}
+                  rankName={login?.data?.rank_name}
                   newItems={item.newItems}
                   newsCount={!newsCount ? 0 : newsCount.data}
                   chatCount={!chatCount ? 0 : chatCount.count}
@@ -769,7 +769,7 @@ class Home extends Component {
               <View style={styles.topModal}>
                 <Text style={styles.topTitle}>
                   {!reviewRanking.username
-                    ? login.data.email
+                    ? login?.data?.email
                     : reviewRanking.username}
                 </Text>
                 <View style={styles.navigationHeader}>
@@ -810,10 +810,10 @@ class Home extends Component {
                   </View>
                   <View style={styles.modalTitleDetail}>
                     <Text style={styles.ModalTitleText3}>
-                      {login.data.studentCode}
+                      {login?.data?.studentCode}
                     </Text>
                     <Text style={styles.ModalTitleText3}>
-                      {login.data.baremo}
+                      {login.data?.baremo}
                     </Text>
                     <Text style={styles.ModalTitleText3}>
                       {reviewRanking.numberOfStudents}

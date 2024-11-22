@@ -45,7 +45,7 @@ const HomePage = () => {
             HomeView={() => (
                 <>
                     {
-                        login.data.expiry_date &&
+                        login?.data?.expiry_date &&
                         <Text style={styles.time_text} >{"Prueba " + getTime()}</Text>
                     }
                     <View style={[styles.top_row]}>

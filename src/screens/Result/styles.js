@@ -1,14 +1,16 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import { fonts } from '../../utils';
+import { SIZES } from '../../constant';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingHorizontal: SIZES.padding2
   },
   loading: {
     position: 'absolute',
@@ -19,171 +21,68 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  topView: {
-    width: '100%',
-    height: '15%',
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-  },
-  centerView: {
-    flexDirection: 'row',
-    width: '100%',
-    height: '67%',
-  },
-  bottomView: {
-    width: '100%',
-    height: '23%',
-    marginTop: widthPercentageToDP(1),
-  },
-  logoView: {
-    flexDirection: 'row-reverse',
-  },
   logo: {
-    width: heightPercentageToDP(55),
-    height: widthPercentageToDP(12),
+    width: "30%",
+    height: SIZES.padding * 2,
+    alignSelf: "flex-end",
   },
   title: {
-    fontSize: heightPercentageToDP(5),
+    fontSize: SIZES.h16,
     fontFamily: fonts.elegance,
     color: '#000',
     textAlign: 'center',
   },
-  centerLeftView: {
-    width: '30%',
-    height: '100%',
-  },
-  centerRightView: {
-    width: '30%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pointView: {
+  centerView: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginLeft: widthPercentageToDP(3),
-    marginRight: widthPercentageToDP(3),
-  },
-  pointViewMiddlle: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginLeft: widthPercentageToDP(3.1),
-    marginRight: widthPercentageToDP(3),
-    marginTop: widthPercentageToDP(3),
-  },
-  pointViewMiddlle2: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginLeft: widthPercentageToDP(3),
-    marginRight: widthPercentageToDP(-3),
-    marginTop: widthPercentageToDP(3),
-  },
-  pointViewBottom: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    position: 'absolute',
-    bottom: '23%',
-    alignItems: 'center',
-    marginLeft: widthPercentageToDP(3),
-    marginRight: widthPercentageToDP(3),
-  },
-  passFailView: {
-    position: 'absolute',
-    bottom: '2%',
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
+  },
+  centerLeftView: {
+    flex: 1,
+    height: '100%',
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: SIZES.padding2 * 1.5,
   },
   textUnBold: {
-    fontSize: heightPercentageToDP(4),
+    fontSize: SIZES.h14,
     fontFamily: fonts.elegance,
     color: '#000',
-  },
-  textBold: {
-    fontSize: heightPercentageToDP(3.5),
-    fontFamily: fonts.novaBold,
-    color: '#000',
-    marginLeft: heightPercentageToDP(8),
-    marginTop: widthPercentageToDP(0.5),
-  },
-  textBold1: {
-    fontSize: heightPercentageToDP(3),
-    fontFamily: fonts.novaBold,
-    color: '#000',
-    marginLeft: widthPercentageToDP(9),
-  },
-  textBold2: {
-    fontSize: heightPercentageToDP(3.5),
-    fontFamily: fonts.novaBold,
-    color: '#000',
-    marginLeft: heightPercentageToDP(12),
-    marginTop: widthPercentageToDP(0.5),
-  },
-  textBold3: {
-    fontSize: heightPercentageToDP(5),
-    fontFamily: fonts.novaBold,
-    color: '#000',
-    marginLeft: widthPercentageToDP(7),
-  },
-  textUnBold3: {
-    fontSize: heightPercentageToDP(5),
-    fontFamily: fonts.novaBold,
-    color: '#000',
-    marginTop: widthPercentageToDP(1),
+    textAlign: "left",
+    width: "40%"
   },
   smallText: {
-    fontSize: heightPercentageToDP(2.5),
+    fontSize: SIZES.h8,
     fontFamily: fonts.elegance,
     color: '#000',
-    marginTop: widthPercentageToDP(1),
   },
-  buttonView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonImage: {
-    width: heightPercentageToDP(60),
-    height: widthPercentageToDP(15),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonImage2: {
-    width: heightPercentageToDP(60),
-    height: widthPercentageToDP(15),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: heightPercentageToDP(5),
-  },
-  passFailImage: {
-    width: heightPercentageToDP(30),
-    height: heightPercentageToDP(10),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btn: {
-    marginTop: heightPercentageToDP(10),
-  },
-  btnText: {
-    fontSize: heightPercentageToDP(6),
+  textUnBold3: {
+    fontSize: SIZES.h17,
     fontFamily: fonts.novaBold,
-    color: '#fff',
+    color: '#000',
+    width: "40%"
   },
-  btnText2: {
-    fontSize: heightPercentageToDP(6),
+  textBold: {
+    fontSize: SIZES.h12,
+    fontFamily: fonts.novaBold,
+    color: '#000',
+    textAlign: "left"
+  },
+  textBold3: {
+    fontSize: SIZES.h15,
     fontFamily: fonts.novaBold,
     color: '#000',
   },
   centerMainView: {
-    width: '40%',
-    height: '100%',
-    //backgroundColor: "yellow",
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   graphMain: {
-    width: '25%',
+    width: SIZES.padding * 3.5,
     height: '100%',
-    //backgroundColor: "orange",
   },
   graphView: {
     width: '100%',
@@ -191,7 +90,7 @@ export const styles = StyleSheet.create({
     bottom: '0%',
   },
   graphText: {
-    fontSize: heightPercentageToDP(3.5),
+    fontSize: SIZES.h13,
     fontFamily: fonts.novaBold,
     color: '#000',
     position: 'absolute',
@@ -213,12 +112,45 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   graphImage: {
-    width: heightPercentageToDP(6),
-    height: heightPercentageToDP(6),
+    width: SIZES.padding,
+    height: SIZES.padding,
+  },
+
+  centerRightView: {
+    height: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  revisar_btn: {
+    width: SIZES.padding * 9,
+    height: SIZES.padding * 3,
+  },
+  salir_btn: {
+    width: SIZES.padding * 9,
+    height: SIZES.padding * 3,
+  },
+  bottomView: {
+    marginBottom: SIZES.padding2 /2,
+    marginTop: SIZES.padding2,
+  },
+  passFailView: {
+    position: 'absolute',
+    bottom: '2%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  btnText2: {
+    fontSize: heightPercentageToDP(6),
+    fontFamily: fonts.novaBold,
+    color: '#000',
   },
   nullText: {
     fontSize: heightPercentageToDP(4),
     fontFamily: fonts.novaBold,
     color: '#000',
   },
+
+
 });

@@ -63,6 +63,9 @@ import begin_btn_image from "../assets/images/begin_btn_image.png"
 import send_btn from "../assets/images/send_btn.png"
 import whatsapp_btn from "../assets/images/whatsapp_btn.png"
 import stripe_btn from "../assets/images/stripe_btn.png"
+import modal_background_image from "../assets/images/modal_background_image.png"
+import btn_background_image from "../assets/images/btn_background_image.png"
+import repaso_small_image from "../assets/images/repaso_small_image.png"
 
 
 export default {
@@ -130,5 +133,8 @@ export default {
     begin_btn_image,
     send_btn,
     whatsapp_btn,
-    stripe_btn
+    stripe_btn,
+    modal_background_image,
+    btn_background_image,
+    repaso_small_image
 };

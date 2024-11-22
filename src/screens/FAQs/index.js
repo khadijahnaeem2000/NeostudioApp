@@ -40,7 +40,7 @@ class FAQS extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         queryString: string,
         tab: DeviceInfo.isTablet() ? 'yes' : null,
       }),
@@ -75,7 +75,7 @@ class FAQS extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         queryString: this.state.text,
         tab: DeviceInfo.isTablet() ? 'yes' : null,
       }),

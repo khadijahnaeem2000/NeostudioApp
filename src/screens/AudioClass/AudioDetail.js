@@ -76,12 +76,12 @@ class AudioDetail extends React.Component {
   getData = () => {
     const { login } = this.props.user;
     const id = this.props.route.params.position || '1'
-    this.props.getAudioFiles(id, login.data.id);
+    this.props.getAudioFiles(id, login?.data?.id);
   };
 
   endAudio = () => {
     const { login } = this.props.user;
-    this.props.postAudioState(login.data.id, 'end');
+    this.props.postAudioState(login?.data?.id, 'end');
   };
 
   handleBackButton = () => {
@@ -92,7 +92,7 @@ class AudioDetail extends React.Component {
     const { login } = this.props.user;
     this.setState({ appState: nextAppState }, () => {
       if (nextAppState === 'background') {
-        this.props.postAudioState(login.data.id, 'kill');
+        this.props.postAudioState(login?.data?.id, 'kill');
       }
     });
   };
@@ -148,19 +148,19 @@ class AudioDetail extends React.Component {
       await TrackPlayer.seekTo(0);
       await TrackPlayer.pause();
       this.setState({ is_playing: false }, () => {
-        this.props.postAudioState(login.data.id, 'end');
+        this.props.postAudioState(login?.data?.id, 'end');
       });
     });
     TrackPlayer.addEventListener('remote-play', async () => {
       await TrackPlayer.play();
       this.setState({ is_playing: true }, () => {
-        this.props.postAudioState(login.data.id, 'start');
+        this.props.postAudioState(login?.data?.id, 'start');
       });
     });
     TrackPlayer.addEventListener('remote-pause', async () => {
       await TrackPlayer.pause();
       this.setState({ is_playing: false }, () => {
-        this.props.postAudioState(login.data.id, 'end');
+        this.props.postAudioState(login?.data?.id, 'end');
       });
     });
     // TrackPlayer.addEventListener('remote-jump-forward', () => {
@@ -176,10 +176,10 @@ class AudioDetail extends React.Component {
     const { login } = this.props.user;
     if (this.state.is_playing) {
       await TrackPlayer.pause();
-      this.props.postAudioState(login.data.id, 'pause');
+      this.props.postAudioState(login?.data?.id, 'pause');
     } else {
       await TrackPlayer.play();
-      this.props.postAudioState(login.data.id, 'start');
+      this.props.postAudioState(login?.data?.id, 'start');
     }
     this.setState({ is_playing: !this.state.is_playing });
   };
@@ -231,7 +231,7 @@ class AudioDetail extends React.Component {
           iconName="left"
           leftClick={() => {
             this.props.navigation.goBack();
-            this.props.postAudioState(login.data.id, 'kill');
+            this.props.postAudioState(login?.data?.id, 'kill');
           }}
           title="Audiolibro"
         />
@@ -261,7 +261,7 @@ class AudioDetail extends React.Component {
                           },
                           () => {
                             TrackPlayer.getPlayWhenReady();
-                            this.props.postAudioState(login.data.id, 'start');
+                            this.props.postAudioState(login?.data?.id, 'start');
                           },
                         );
                       }}

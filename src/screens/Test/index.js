@@ -209,7 +209,7 @@ class Test extends Component {
                       examStartData.studentExamRecordId,
                       this.state.timer,
                       login?.data?.id,
-                      login.data.type,
+                      login?.data?.type,
                     ))
                   : Alert.alert(
                     'Connection Failed',

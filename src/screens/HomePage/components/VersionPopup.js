@@ -3,6 +3,8 @@ import { View, Modal, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
+import FastImage from 'react-native-fast-image';
+import { COLORS, images } from '../../../constant';
 
 
 const DialogBox = ({ visible, onPressClose, onPress }) => {
@@ -18,7 +20,10 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
                 style={styles.modalMain2}
                 onPress={onPressClose}
             >
-                <View style={styles.quesBox}>
+                <FastImage  style={styles.quesBox}
+                source={images.modal_background_image}
+                >
+
                     <View style={styles.toptile}>
                         <Text style={styles.toptext}>
                             {'Hay una nueva versión de la aplicación disponible. ¿Quieres actualizarla ahora?'}
@@ -57,7 +62,7 @@ const DialogBox = ({ visible, onPressClose, onPress }) => {
                         </TouchableOpacity>
 
                     </LinearGradient>
-                </View>
+                </FastImage>
             </TouchableOpacity>
         </Modal>
     )
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5
     },
     btnText: {
-        color: "#ffff",
+        color: COLORS.white,
         fontSize: widthPercentageToDP(4),
         fontFamily: fonts.elegance,
         textAlign: "center"
@@ -113,10 +118,10 @@ const styles = StyleSheet.create({
         height: "35%",
         justifyContent: "center",
         borderBottomWidth: widthPercentageToDP(0.1),
-        borderBottomColor: "#000"
+        borderBottomColor: COLORS.white
     },
     toptext: {
-        color: "#000",
+        color: COLORS.white,
         fontSize: widthPercentageToDP(4.5),
         fontFamily: fonts.novaBold,
         paddingLeft: widthPercentageToDP(3),

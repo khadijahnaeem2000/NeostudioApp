@@ -32,7 +32,7 @@ class PDFFolder extends React.Component {
       pdfFile: '',
     };
     const { login } = this.props.user;
-    this.props.getPdfFolder(login.data.type, login?.data?.id);
+    this.props.getPdfFolder(login?.data?.type, login?.data?.id);
   }
 
   componentDidMount() {

@@ -72,7 +72,7 @@ class ExamScreen extends React.Component {
       },
       body: JSON.stringify({
         studentId: login?.data?.id,
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         examId: examId,
         isRestart: isRestart,
       }),
@@ -101,7 +101,7 @@ class ExamScreen extends React.Component {
       },
       body: JSON.stringify({
         studentId: login?.data?.id,
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         offset: 1,
       }),
     })

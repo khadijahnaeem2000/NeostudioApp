@@ -44,7 +44,7 @@ class ReviewTest extends PureComponent {
       },
       body: JSON.stringify({
         studentId: login?.data?.id,
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         folderId: position,
         examId: examId,
         isRestart: isRestart,
@@ -73,7 +73,7 @@ class ReviewTest extends PureComponent {
       },
       body: JSON.stringify({
         studentId: login?.data?.id,
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         folderId: position,
         examId: examId,
         isRestart: 'yes',

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getRepasoExams } from "../../Redux/actions/repaso-action"
 import { navigate } from "../../navigation/navigation_service"
+import { useFocusEffect } from "@react-navigation/native"
 
 export default ({ id, name }) => {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export default ({ id, name }) => {
 
     const getRepasoExamsData = (isRestart, examId) => {
         const apiData = {
-            studentType: login.data.type,
+            studentType: login?.data?.type,
             studentId: login?.data?.id,
             folderId: id,
             examId: examId,
@@ -24,7 +25,8 @@ export default ({ id, name }) => {
         dispatch(getRepasoExams(apiData))
     }
 
-    useEffect(() => { getRepasoExamsData('no', null) }, [])
+    useFocusEffect(useCallback(() => { getRepasoExamsData('no', null) }, []))
+
 
     const onRefresh = async () => {
         setRefreshing(true)

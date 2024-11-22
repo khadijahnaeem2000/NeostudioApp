@@ -25,7 +25,7 @@ class AudioClass extends React.Component {
 
   getAllTopics = () => {
     const { login } = this.props.user;
-    this.props.getTopics(login.data.type, login?.data?.id, 'audio');
+    this.props.getTopics(login?.data?.type, login?.data?.id, 'audio');
   };
 
   componentDidMount() {

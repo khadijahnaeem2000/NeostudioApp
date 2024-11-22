@@ -29,7 +29,7 @@ class Upload extends React.Component {
       fileName: '',
     };
     const {login} = this.props.user;
-    this.props.getUploadFolder(login.data.type, login?.data?.id);
+    this.props.getUploadFolder(login?.data?.type, login?.data?.id);
   }
 
   filePicker = async folderId => {
@@ -142,7 +142,7 @@ class Upload extends React.Component {
                 : this.props.uploadFiles(
                     this.state.folderID,
                     login?.data?.id,
-                    login.data.type,
+                    login?.data?.type,
                     fileData,
                   );
             }}>

@@ -80,7 +80,7 @@ const MainApp = () => {
 
   const checkIfRegistered = async () => {
     if (login?.data?.id) {
-      const response = await checkRegistration(login.data.id);
+      const response = await checkRegistration(login?.data?.id);
       if (response?.data?.IsRegistered?.toLowerCase() === 'no') {
         setShowModal(true);
       }
@@ -91,7 +91,7 @@ const MainApp = () => {
 
   const onRegister = async (data) => {
     if (login?.data?.id) {
-      const response = await addRegister({ ...data, id: login.data.id });
+      const response = await addRegister({ ...data, id: login?.data?.id });
       if (response?.status === 'Successful') {
         setShowModal(false);
       }
@@ -101,11 +101,11 @@ const MainApp = () => {
   const _handleAppStateChange = (nextAppState) => {
     if (login) {
       if (nextAppState === 'background') {
-        dispatch(updateLogoutTime(login.data.id));
-        updateUserRankPoint('Yes', 'No', 'normal_points', login.data.id);
+        dispatch(updateLogoutTime(login?.data?.id));
+        updateUserRankPoint('Yes', 'No', 'normal_points', login?.data?.id);
       } else if (nextAppState === 'active') {
-        saveUserRankPoint('Yes', 'No', 'normal_points', login.data.id);
-        dispatch(updateLoginTime(login.data.id));
+        saveUserRankPoint('Yes', 'No', 'normal_points', login?.data?.id);
+        dispatch(updateLoginTime(login?.data?.id));
       }
     }
     setAppState(nextAppState);

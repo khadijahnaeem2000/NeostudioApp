@@ -259,7 +259,7 @@ class Objectives extends React.Component {
                   <View style={styles.topModal}>
                     <Text style={styles.topTitle}>
                       {!objectiveRanking.username
-                        ? login.data.email
+                        ? login?.data?.email
                         : objectiveRanking.username}
                     </Text>
                     <View style={styles.navigationHeader}>
@@ -268,7 +268,7 @@ class Objectives extends React.Component {
                         onPress={() =>
                           this.props.getObjectiveRanking(
                             login?.data?.id,
-                            login.data.type,
+                            login?.data?.type,
                           )
                         }>
                         <FastImage
@@ -300,10 +300,10 @@ class Objectives extends React.Component {
                       </View>
                       <View style={styles.modalTitleDetail}>
                         <Text style={styles.ModalTitleText3}>
-                          {login.data.studentCode}
+                          {login?.data?.studentCode}
                         </Text>
                         <Text style={styles.ModalTitleText3}>
-                          {login.data.baremo}
+                          {login?.data?.baremo}
                         </Text>
                         <Text style={styles.ModalTitleText3}>
                           {objectiveRanking.numberOfStudents}

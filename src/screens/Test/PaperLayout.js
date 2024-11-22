@@ -359,38 +359,38 @@ export default class PaperLayout extends React.Component {
                   classesStyles={{
                     regular: {
                       //fontSize: widthPercentageToDP(2),
-                      fontFamily: fonts.novaBold,
+                      // fontFamily: fonts.novaBold,
                       color: '#000',
                     },
                     bold: {
                       //fontSize: widthPercentageToDP(2),
-                      fontFamily: fonts.novaBold,
+                      // fontFamily: fonts.novaBold,
                       fontWeight: 'normal',
                       color: '#000',
                     },
                     round: {
                       //fontSize: widthPercentageToDP(2),
-                      fontFamily: fonts.novaBold,
+                      // fontFamily: fonts.novaBold,
                       color: '#000',
                     },
                   }}
                   tagsStyles={{
                     a: {
                       textDecorationLine: "none",
-                      fontFamily: fonts.novaBold
+                      // fontFamily: fonts.novaBold
                     },
                     p: {
                       padding: 6,
-                      fontFamily: fonts.novaBold
+                      // fontFamily: fonts.novaBold
                       //textAlign: "justify"
                     },
                     span: {
                       //fontSize: Platform.isPad ? widthPercentageToDP(2.5) : widthPercentageToDP(4),
                       flexDirection: 'row',
-                      fontFamily: fonts.novaBold
+                      // fontFamily: fonts.novaBold
                     },
                     tap: {
-                      fontFamily: fonts.novaBold,
+                      // fontFamily: fonts.novaBold,
                       fontSize: DeviceInfo.isTablet()
                         ? widthPercentageToDP(2)
                         : widthPercentageToDP(1.5),

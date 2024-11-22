@@ -11,11 +11,11 @@ export default () => {
     const [refreshing, setRefreshing] = useState(false)
 
 
-    useEffect(() => { dispatch(getPdfFolder(login.data.type, login?.data?.id)) }, [])
+    useEffect(() => { dispatch(getPdfFolder(login?.data?.type, login?.data?.id)) }, [])
 
     const onRefresh = async () => {
         setRefreshing(true)
-        await dispatch(getPdfFolder(login.data.type, login?.data?.id))
+        await dispatch(getPdfFolder(login?.data?.type, login?.data?.id))
         setRefreshing(false)
     }
 

@@ -17,7 +17,7 @@ export default () => {
 
     const getVideoData = () => {
         const apiData = {
-            studentType: login.data.type,
+            studentType: login?.data?.type,
             studentId: login?.data?.id,
             type: 'video',
         }

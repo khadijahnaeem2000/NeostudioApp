@@ -38,7 +38,7 @@ class Personality extends Component {
         },
         body: JSON.stringify({
           studentId: login?.data?.id,
-          studentType: login.data.type,
+          studentType: login?.data?.type,
           offset: 1,
         }),
       })
@@ -68,7 +68,7 @@ class Personality extends Component {
       },
       body: JSON.stringify({
         studentId: login?.data?.id,
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         offset: page,
       }),
     })

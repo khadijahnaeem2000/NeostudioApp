@@ -52,7 +52,7 @@ export default ({ id }) => {
     };
 
     const endAudio = () => {
-        dispatch(postAudioState(login.data.id, 'end'))
+        dispatch(postAudioState(login?.data?.id, 'end'))
     };
 
     const handleBackButton = () => {
@@ -62,7 +62,7 @@ export default ({ id }) => {
 
     const handleAppStateChange = (nextAppState) => {
         if (nextAppState === 'background') {
-            dispatch(postAudioState(login.data.id, 'kill'))
+            dispatch(postAudioState(login?.data?.id, 'kill'))
         }
         appState.current = nextAppState;
     };
@@ -93,10 +93,10 @@ export default ({ id }) => {
     const onPlayButton = async () => {
         if (isPlaying) {
             await TrackPlayer.pause();
-            dispatch(postAudioState(login.data.id, 'pause'))
+            dispatch(postAudioState(login?.data?.id, 'pause'))
         } else {
             await TrackPlayer.play();
-            dispatch(postAudioState(login.data.id, 'start'))
+            dispatch(postAudioState(login?.data?.id, 'start'))
         }
         setIsPlaying(!isPlaying);
     };
@@ -136,19 +136,19 @@ export default ({ id }) => {
             await TrackPlayer.seekTo(0);
             await TrackPlayer.pause();
             setIsPlaying(false);
-            dispatch(postAudioState(login.data.id, 'end'))
+            dispatch(postAudioState(login?.data?.id, 'end'))
         });
 
         TrackPlayer.addEventListener('remote-play', async () => {
             await TrackPlayer.play();
             setIsPlaying(true);
-            dispatch(postAudioState(login.data.id, 'start'))
+            dispatch(postAudioState(login?.data?.id, 'start'))
         });
 
         TrackPlayer.addEventListener('remote-pause', async () => {
             await TrackPlayer.pause();
             setIsPlaying(false);
-            dispatch(postAudioState(login.data.id, 'end'))
+            dispatch(postAudioState(login?.data?.id, 'end'))
         });
     };
 
@@ -163,7 +163,7 @@ export default ({ id }) => {
         setCurrentIndex(index)
         setIsPlaying(true)
         TrackPlayer.getPlayWhenReady();
-        dispatch(postAudioState(login.data.id, 'start'))
+        dispatch(postAudioState(login?.data?.id, 'start'))
     }
 
 

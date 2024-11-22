@@ -28,7 +28,7 @@ class VideoClass extends PureComponent {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        studentType: login.data.type,
+        studentType: login?.data?.type,
         studentId: login?.data?.id,
       }),
     })

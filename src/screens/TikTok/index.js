@@ -271,8 +271,8 @@ const Home = ({ navigation, route }) => {
       login?.data?.id,
       itemId,
       myComment,
-      login.data.photo
-        ? IMAGE_URL + login.data.photo
+      login?.data?.photo
+        ? IMAGE_URL + login?.data?.photo
         : 'https://neoestudio.net/gamification/1643410651.png',
     );
     await setLoading(false);
