@@ -4,7 +4,7 @@ import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
 import { IMAGE_URL } from '../../config'
-import { COLORS } from '../../constant'
+import { COLORS, images } from '../../constant'
 
 
 const NewBattle = (props) => {
@@ -13,7 +13,8 @@ const NewBattle = (props) => {
             <View style={styles.profileView}>
                 {!props.userImage ?
                     <FastImage
-                        source={require('../../screens/Home/assets/Photo_or_avatar.png')}
+                        // source={require('../../screens/Home/assets/Photo_or_avatar.png')}
+                        source={images.activities_image}
                         style={styles.profleImg}
                         resizeMode={FastImage.resizeMode.cover}
                     />

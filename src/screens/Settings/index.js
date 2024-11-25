@@ -21,9 +21,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import ToggleSwitch from 'toggle-switch-react-native';
 import BaremoUpdate from '../../Component/BaremoModal';
 import { onLogoutUser } from '../../Redux/slices/user-slice';
-import RegisterModal from '../Home/registerModal';
 import { Button, Container, LoaderModal } from '../../Component';
 import { useFocusEffect } from '@react-navigation/native';
+import { RegisterModal } from '../HomePage/components';
 
 const Settings = () => {
 

@@ -21,6 +21,7 @@ import Orientation from 'react-native-orientation-locker';
 import {
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
+import { images } from '../../constant';
 
 
 class PDFFolder extends React.Component {
@@ -128,7 +129,7 @@ class PDFFolder extends React.Component {
               onPressOut={() => this.setState({ isOpen: false })}>
               <TouchableWithoutFeedback>
                 <FastImage
-                  source={require('../Home/assets/email_box.png')}
+                  source={images.email_box}
                   resizeMode={FastImage.resizeMode.stretch}
                   style={[
                     styles.quesBox,

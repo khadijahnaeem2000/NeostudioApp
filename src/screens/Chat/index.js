@@ -62,7 +62,7 @@ class Chat extends React.Component {
       album: 'while(1<2)',
       genre: 'Progressive House, Electro House',
       date: '2014-05-20T07:00:00+00:00', // RFC 3339
-      artwork: require('../Home/assets/novedades.png'),
+      // artwork: require('../Home/assets/novedades.png'),
     });
     TrackPlayer.stop();
     TrackPlayer.play();

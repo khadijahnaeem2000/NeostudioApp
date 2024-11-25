@@ -3,6 +3,7 @@ import { View, Modal, TouchableOpacity, Text } from 'react-native'
 import { styles } from './styles';
 import FastImage from 'react-native-fast-image'
 import { connect } from 'react-redux';
+import { images } from '../../constant';
 // import { dispatchFunc } from '../../Redux/action'
 
 class DialogBox extends Component {
@@ -19,7 +20,7 @@ class DialogBox extends Component {
             >
                 <View style={styles.modalMain2}>
                     <FastImage
-                        source={require('../../screens/Home/assets/email_box.png')}
+                        source={images.email_box}
                         resizeMode={FastImage.resizeMode.contain}
                         style={styles.quesBox}>
                         <Text style={styles.text2}>

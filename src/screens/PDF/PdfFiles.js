@@ -24,6 +24,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
+import { images } from '../../constant';
 
 class VideoDetail extends React.Component {
   constructor(props) {
@@ -167,7 +168,7 @@ class VideoDetail extends React.Component {
               onPressOut={() => this.setState({ isOpen: false })}>
               <TouchableWithoutFeedback>
                 <ImageBackground
-                  source={require('../Home/assets/email_box.png')}
+                  source={images.email_box}
                   resizeMode={"stretch"}
                   style={[
                     styles.quesBox,

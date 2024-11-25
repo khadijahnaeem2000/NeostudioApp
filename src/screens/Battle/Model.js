@@ -15,6 +15,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import DeviceInfo from 'react-native-device-info';
 import { fonts } from '../../utils';
+import { images } from '../../constant';
 
 class ModalBox extends React.Component {
   render() {
@@ -33,7 +34,7 @@ class ModalBox extends React.Component {
           onPressOut={closeBox}>
           <TouchableWithoutFeedback>
             <ImageBackground
-              source={require('../../screens/Home/assets/email_box.png')}
+              source={images.email_box}
               resizeMode={FastImage.resizeMode.stretch}
               style={[
                 styles.quesBox,

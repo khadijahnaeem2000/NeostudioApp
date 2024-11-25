@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, AppState, Linking } from 'react-native';
+import { AppState } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   dispatchFunc,
@@ -8,19 +8,17 @@ import {
   updateUserRankPoint,
   updateLoginTime,
   updateLogoutTime,
-  getUserVideos,
   checkRegistration,
   addRegister,
 } from './src/Redux/action';
 import Dialog from './src/Component/DailogBox';
 import messaging from '@react-native-firebase/messaging';
-import Orientation from 'react-native-orientation-locker';
-import RegisterModal from './src/screens/Home/registerModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { notificationListener } from './src/services/notification_service';
 import { navigationRef } from './src/navigation/navigation_service';
 import { AuthNavigation, MainNavigation } from './src/navigation';
+import { RegisterModal } from './src/screens/HomePage/components';
 
 const MainApp = () => {
   const [appState, setAppState] = useState(AppState.currentState);
@@ -32,9 +30,6 @@ const MainApp = () => {
   const { login } = user || {};
 
 
-  const test = () => {
-    Orientation.unlockAllOrientations();
-  };
   const getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
     if (fcmToken) {
