@@ -184,8 +184,6 @@ class Test extends Component {
 
     const { totalTime, isPsico, type, isHtml, isReshedule, examsId, isRepasoImage } = this.props.route.params
 
-
-
     return (
       <View
         style={{ flex: 1, backgroundColor: COLORS.white }}
@@ -238,7 +236,7 @@ class Test extends Component {
                   );
               }}>
               <FastImage
-                source={require('../../Images/stop.png')}
+                source={images.stop_image}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={styles.btnImage}
               />
@@ -257,7 +255,7 @@ class Test extends Component {
                 );
               }}>
               <FastImage
-                source={require('../../Images/correct1.png')}
+                source={images.correct_one_image}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={styles.btnImage}
               />
@@ -307,11 +305,7 @@ class Test extends Component {
           <FastImage
             style={styles.logo}
             resizeMode={FastImage.resizeMode.contain}
-            source={
-              Platform.OS === 'android'
-                ? require('../../Images/veoestudio2.png')
-                : require('../../Images/ios_logo.png')
-            }
+            source={images.logo}
           />
         </View>
         <PagerView

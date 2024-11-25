@@ -35,11 +35,11 @@ export default class BottomLayout extends React.Component {
                         }}
                         resizeMode={FastImage.resizeMode.stretch}
                         source={status === 'wrong' ?
-                            require('../../Images/red.png')
-                            : status === 'notAttempted' ?
-                                require('../../Images/transparent.png')
-                                : require('../../Images/green.png')
-                        }
+                        images.red_image
+                        : status === 'notAttempted' ?
+                            images.transparent_image
+                            : images.green_image
+                    }
                     >
                         <Text
                             style={{

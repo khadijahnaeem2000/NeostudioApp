@@ -1,13 +1,14 @@
 import { ActivityIndicator, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image';
-import { images } from '../../../constant';
+import { images, SIZES } from '../../../constant';
 import { getVerticalRanking } from '../../../Redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Ranking from "../../../Component/Ranking";
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
+import { LoaderModal, SizedBox } from '../../../Component';
 
 const ExamModal = ({ visible, onPressClose }) => {
     const dispatch = useDispatch()
@@ -42,7 +43,7 @@ const ExamModal = ({ visible, onPressClose }) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <View style={styles.mainModalVie}>
+                        <View style={styles.mainModalView}>
                             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                                 {!verticalRanking ? (
                                     <View />
@@ -125,19 +126,13 @@ const ExamModal = ({ visible, onPressClose }) => {
                                         );
                                     })
                                 )}
-                                <View style={styles.jump} />
+                                <SizedBox />
                             </ScrollView>
                         </View>
                     </FastImage>
                 </View>
             </View>
-            {AuthLoading && (
-                <ActivityIndicator
-                    size="large"
-                    color="#000"
-                    style={styles.loading}
-                />
-            )}
+            <LoaderModal  visible={AuthLoading} />
         </Modal>
     )
 }
@@ -145,69 +140,52 @@ const ExamModal = ({ visible, onPressClose }) => {
 export default ExamModal
 
 const styles = StyleSheet.create({
-
     modalMain: {
         flex: 1,
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      innerModal: {
+    },
+    innerModal: {
         width: "100%",
         height: "100%",
-        marginBottom: widthPercentageToDP(10),
-        marginLeft: widthPercentageToDP(5),
-        marginRight: widthPercentageToDP(5)
-      },
-      navigation: {
-        width: widthPercentageToDP(100),
-        height: heightPercentageToDP(100)
-      },
-      topModal: {
+        marginBottom: SIZES.padding * 2,
+        marginLeft: SIZES.padding,
+        marginRight: SIZES.padding
+    },
+    navigation: {
+        width: "100%",
+        height: "100%"
+    },
+    topModal: {
         flexDirection: "row-reverse",
-        marginTop: heightPercentageToDP(5),
-        marginRight: Platform.OS === 'android' ? widthPercentageToDP(10) : heightPercentageToDP(10)
-      },
-      navigationHeader: {
+        marginTop: SIZES.padding * 2.5,
+        marginRight: SIZES.padding * 2
+    },
+    navigationHeader: {
         flexDirection: "row",
-        flexWrap: "wrap",
         alignItems: "center",
-        marginRight: widthPercentageToDP(5),
-        marginTop: Platform.OS === 'android' ? 0 : heightPercentageToDP(3),
-        //backgroundColor:"red"
-        // position: "absolute",
-        // right: "4%",
-        // top: "4%"
-      },
-      loaderStyle: {
-        width: widthPercentageToDP(8),
-        height: widthPercentageToDP(8),
-        marginRight: widthPercentageToDP(3)
-      },
-      mainModalView: {
+        marginRight: SIZES.padding,
+        marginTop: Platform.OS === 'android' ? 0 : SIZES.padding * 1.5,
+    },
+    loaderStyle: {
+        width: SIZES.padding * 1.8,
+        height: SIZES.padding * 1.8,
+        marginRight: SIZES.padding2
+    },
+    mainModalView: {
         flex: 1,
-        marginTop: heightPercentageToDP(2)
-      },
-      titleText: {
-        fontSize: widthPercentageToDP(6),
+    },
+    titleText: {
+        fontSize: SIZES.h18,
         fontFamily: fonts.elegance,
         color: "#ffff",
         textAlign: "center",
-        marginTop: heightPercentageToDP(1),
-        marginBottom: widthPercentageToDP(4)
-      },
-      jump: { marginBottom: heightPercentageToDP(30) },
-      viewHeight: {
-        marginTop: heightPercentageToDP(4)
-      },
-      courseItem:{
-         width:widthPercentageToDP(100),
-         alignItems: "center", 
-         flexDirection:"row",
-         marginLeft:widthPercentageToDP(2) 
-        },
-        topHeight:{
-          marginTop:heightPercentageToDP(37),
-          //backgroundColor:"red"
-        }
+        marginTop: SIZES.padding2 * 0.8,
+        marginBottom: SIZES.padding * 0.95
+    },
+    courseItem: {
+        alignItems: "center",
+        flexDirection: "row",
+        marginLeft: SIZES.padding
+    },
 })

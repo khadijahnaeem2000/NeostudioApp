@@ -46,7 +46,7 @@ const NewBattle = (props) => {
                                     }]}>
                                     {props.isActive &&
                                         <FastImage
-                                            source={require('../../Images/Check.png')}
+                                            source={images.check_image}
                                             style={styles.vectorIcon}
                                         />
                                     }
@@ -71,7 +71,7 @@ const NewBattle = (props) => {
                                                     }]}>
                                                     {props.isActive &&
                                                         <FastImage
-                                                            source={require('../../Images/Check.png')}
+                                                            source={images.check_image}
                                                             style={styles.vectorIcon}
                                                         />
                                                     }

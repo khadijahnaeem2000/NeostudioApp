@@ -1,10 +1,9 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image'
-import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive'
 import { fonts } from 'react-native-elements/dist/config'
 import { COLORS } from '../../../constant'
-import { isIOS, SIZES } from '../../../constant/theme'
+import { SIZES } from '../../../constant/theme'
 
 const TopImageView = ({ image, title, title2 }) => {
     return (

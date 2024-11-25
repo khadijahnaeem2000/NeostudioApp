@@ -1,24 +1,11 @@
-import { View, SafeAreaView, Image, StatusBar, Text, Dimensions, Platform } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, SafeAreaView, Image, StatusBar, Text } from 'react-native'
+import React from 'react'
 import { styles } from './index.styles'
 import { images } from '../../constant'
 import FastImage from 'react-native-fast-image'
 import { SingleTopView } from '../../screens/Exams/components'
 
 const Container = ({ children, HomeView, isHome, isExam, title, textStyle }) => {
-    const [isLandScape, setIsLandScape] = useState(false)
-
-    const isPortrait = () => {
-        const dim = Dimensions.get('screen');
-        return dim.height >= dim.width;
-    };
-
-    useEffect(() => {
-        Dimensions.addEventListener('change', () => {
-            setIsLandScape(isPortrait() ? false : true)
-        });
-
-    }, [Dimensions])
 
     return (
         <SafeAreaView style={styles.main_view} >
@@ -30,7 +17,7 @@ const Container = ({ children, HomeView, isHome, isExam, title, textStyle }) => 
                     <Image resizeMode='contain' source={images.logo} style={styles.logo} />
                 </View>
                 <View style={{
-                    height: isLandScape ? "23%" : "17%",
+                    height:  "17%",
                 }} >
                     {
                         isHome ?

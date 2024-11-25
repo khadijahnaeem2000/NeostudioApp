@@ -24,7 +24,6 @@ const HomePage = () => {
         showPruebaModal,
         setShowPruebaModal,
         getTime,
-        isLandScape,
         listRef,
         isLoading,
         setShowAvatarModal,
@@ -52,10 +51,7 @@ const HomePage = () => {
                         <TouchableOpacity
                             activeOpacity={0.6}
                             onPress={() => setShowAvatarModal(true)}
-                            style={[styles.user_image_view, {
-                                width: isLandScape ? "18%" : "27%",
-                                height: isLandScape ? "100%" : "80%",
-                            }]}>
+                            style={[styles.user_image_view]}>
                             <FastImage
                                 source={login?.data?.photo ? { uri: IMAGE_URL + login?.data?.photo } : images.avatar}
                                 resizeMode={FastImage.resizeMode.stretch}

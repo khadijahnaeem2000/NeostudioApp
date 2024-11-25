@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         textAlign: "left",
         marginLeft: SIZES.padding2,
         fontFamily: fonts.novaBold,
-        fontSize: widthPercentageToDP(4),
+        fontSize: SIZES.h13,
         color: COLORS.white,
     }
 })

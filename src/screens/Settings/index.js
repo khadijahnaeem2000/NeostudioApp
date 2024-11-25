@@ -94,34 +94,38 @@ const Settings = () => {
       <View
         style={[
           styles.rowView,
-          { marginTop: 0, width: widthPercentageToDP(75) },
+          { marginTop: 0 },
         ]}>
         <Text style={styles.itemTitle}>{'Puntos de baremo'}</Text>
-        <Text onPress={() => showBaremo(true)} style={styles.itemTitle}>
-          {login?.data?.baremo === "." ? 0 : login?.data?.baremo}
-        </Text>
+
+        <View style={{ alignItems: "center", width: "33%" }} >
+          <Text onPress={() => showBaremo(true)} style={styles.itemTitle2}>
+            {login?.data?.baremo === "." ? 0 : login?.data?.baremo}
+          </Text>
+        </View>
       </View>
       <View
         style={[
           styles.rowView,
-          { marginTop: 0, width: widthPercentageToDP(80) },
+          { marginTop: 0, },
         ]}>
         <Text style={styles.itemTitle}>{'Notificaciones Push'}</Text>
-        <ToggleSwitch
-          isOn={toggle}
-          onColor="green"
-          offColor="red"
-          labelStyle={{ color: 'black', fontWeight: '900' }}
-          size="small"
-          onToggle={isOn => dispatch(notificationToggle(isOn))}
-        />
+        <View style={{ alignItems: "center", width: "33%" }} >
+          <ToggleSwitch
+            isOn={toggle}
+            onColor="green"
+            offColor="red"
+            size="small"
+            onToggle={isOn => dispatch(notificationToggle(isOn))}
+          />
+        </View>
       </View>
       <View style={[styles.rowView, { marginTop: 0 }]}>
         <Text style={styles.itemTitle}>{'Resetear Exámenes'}</Text>
         <Button
           title={'Reiniciar'}
           style={styles.btn}
-            textStyle={styles.btn_text}
+          textStyle={styles.btn_text}
           onPress={() => dispatch(resetAllExams(login?.data?.id))}
         />
       </View>
@@ -140,7 +144,7 @@ const Settings = () => {
         <Button
           title={'Modificar'}
           style={styles.btn}
-            textStyle={styles.btn_text}
+          textStyle={styles.btn_text}
           onPress={() => {
             getRegisterPopupData()
             setShowModal(true)
@@ -152,10 +156,13 @@ const Settings = () => {
         <Button
           title={'Confirmar'}
           style={styles.btn}
-            textStyle={styles.btn_text}
+          textStyle={styles.btn_text}
           onPress={() => setpop(true)}
         />
       </View>
+
+
+
 
       <ModalBox
         isOpen={isPopUp}

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   StatusBar,
-  ActivityIndicator,
   BackHandler,
   AppState,
 } from 'react-native';
@@ -10,12 +9,12 @@ import PDF from 'react-native-pdf';
 import { connect } from 'react-redux';
 import { pdfState } from '../../Redux/action';
 import Orientation from 'react-native-orientation-locker';
-import { styles } from './styles';
 import {
   widthPercentageToDP,
   heightPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import Header from '../../Component/Header';
+import { LoaderModal } from '../../Component';
 
 class PdfView extends React.Component {
   constructor(props) {
@@ -50,7 +49,7 @@ class PdfView extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
@@ -96,9 +95,8 @@ class PdfView extends React.Component {
             horizontal={false}
           />
         </View>
-        {AuthLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
-        )}
+
+        <LoaderModal visible={AuthLoading} />
       </View>
     );
   }

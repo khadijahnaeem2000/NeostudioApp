@@ -24,6 +24,7 @@ import DeviceInfo from 'react-native-device-info';
 import ScrollView2 from 'rn-faded-scrollview';
 import { styles } from './styles';
 import { fonts } from '../../utils';
+import { images } from '../../constant';
 
 const { width } = Dimensions.get('window');
 
@@ -199,7 +200,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer1' ? (
                   <Image
@@ -208,7 +209,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -267,7 +268,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer2' ? (
                   <Image
@@ -276,7 +277,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -334,7 +335,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer3' ? (
                   <Image
@@ -343,7 +344,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -401,7 +402,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer4' ? (
                   <Image
@@ -410,7 +411,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View

@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
-import { COLORS } from '../../constant'
+import { COLORS, images } from '../../constant'
 
 
 const NewBattle = (props) => {
@@ -20,7 +20,7 @@ const NewBattle = (props) => {
                     }]}>
                     {props.isActive === "True" &&
                         <FastImage
-                            source={require('../../Images/Check.png')}
+                            source={images.check_image}
                             style={styles.vectorIcon}
                         />
                     }

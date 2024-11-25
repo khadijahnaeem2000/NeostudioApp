@@ -1,65 +1,31 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
-  BackHandler,
   TouchableOpacity,
 } from 'react-native';
-import {styles} from './styles';
-import Header from '../../Component/Header';
+import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
-import {useSelector, useDispatch} from 'react-redux';
-import Orientation from 'react-native-orientation-locker';
-import { useFocusEffect } from '@react-navigation/native';
+import { images } from '../../constant';
+import { Container } from '../../Component';
+import { navigate } from '../../navigation/navigation_service';
 
-const Battle = props => {
-  const dispatch = useDispatch();
-  const login = useSelector(state => state.user.login);
-  const [isLoading, setLoading] = useState(false);
+const Battle = () => {
 
   const activeBattles = () => {
-    Orientation.unlockAllOrientations();
-    props.navigation.navigate('ActiveBattle');
+    navigate('ActiveBattle');
   };
 
   const createBattles = () => {
-    Orientation.unlockAllOrientations();
-    props.navigation.navigate('CreateBatlle');
+    navigate('CreateBatlle');
   };
 
-  const finishBattles = () => {};
-
-  useFocusEffect(
-    useCallback(() => {
-      const locked = Orientation.isLocked();
-      if (!locked) {
-        Orientation.lockToPortrait();
-      }  else {
-        Orientation.lockToPortrait();
-      }
-    }, []))
-
   return (
-    <FastImage
-      source={require('../../Images/bg.png')}
-      resizeMode={FastImage.resizeMode.stretch}
-      style={styles.container}>
-      <FastImage
-        style={styles.logo}
-        source={require('../../Images/veoestudio.png')}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Header
-        iconName="left"
-        leftClick={() => this.props.navigation.goBack()}
-        title="Tests a la carta"
-      />
-
+    <Container title={'Tests a la carta'} >
       <View style={styles.directoryView}>
         <TouchableOpacity onPress={() => activeBattles()} style={styles.btn}>
           <FastImage
-            source={require('../../Images/button.png')}
+            source={images.btn_background_image}
             style={{
               width: '100%',
               height: '100%',
@@ -71,7 +37,7 @@ const Battle = props => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => createBattles()} style={styles.btn}>
           <FastImage
-            source={require('../../Images/button.png')}
+            source={images.btn_background_image}
             style={{
               width: '100%',
               height: '100%',
@@ -83,7 +49,7 @@ const Battle = props => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => finishBattles()} style={styles.btn}>
           <FastImage
-            source={require('../../Images/button.png')}
+            source={images.btn_background_image}
             style={{
               width: '100%',
               height: '100%',
@@ -94,10 +60,8 @@ const Battle = props => {
           </FastImage>
         </TouchableOpacity>
       </View>
-      {isLoading && (
-        <ActivityIndicator size="large" color="#000" style={styles.loading} />
-      )}
-    </FastImage>
+
+    </Container>
   );
 };
 

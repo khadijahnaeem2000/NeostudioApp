@@ -213,11 +213,7 @@ class Review extends Component {
           <FastImage
             style={styles.logo}
             resizeMode={FastImage.resizeMode.contain}
-            source={
-              Platform.OS === 'android'
-                ? require('../../Images/veoestudio2.png')
-                : require('../../Images/ios_logo.png')
-            }
+            source={images.logo}
           />
         </View>
         <PagerView
@@ -600,7 +596,7 @@ class Review extends Component {
                               height: widthPercentageToDP(3),
                             }}
                             resizeMode="stretch"
-                            source={require('../../Images/arrow.png')}
+                            source={images.arrow_image}
                           />
                         ) : (
                           <View
@@ -624,7 +620,7 @@ class Review extends Component {
                               height: widthPercentageToDP(3),
                             }}
                             resizeMode="stretch"
-                            source={require('../../Images/arrow.png')}
+                            source={images.arrow_image}
                           />
                         ) : (
                           <View
@@ -648,7 +644,7 @@ class Review extends Component {
                               height: widthPercentageToDP(3),
                             }}
                             resizeMode="stretch"
-                            source={require('../../Images/arrow.png')}
+                            source={images.arrow_image}
                           />
                         ) : (
                           <View
@@ -672,7 +668,7 @@ class Review extends Component {
                                 height: widthPercentageToDP(3),
                               }}
                               resizeMode="stretch"
-                              source={require('../../Images/arrow.png')}
+                              source={images.arrow_image}
                             />
                           ) : (
                             <View

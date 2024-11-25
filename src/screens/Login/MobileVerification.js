@@ -18,6 +18,7 @@ import PhoneInput from 'react-native-phone-number-input';
 import BackgroundVideo from '../../Component/VideoBackhround';
 import { getOTPMobile } from '../../Redux/action';
 import { navigate } from '../../navigation/navigation_service';
+import { images } from '../../constant';
 
 
 const MobileVerification = ({ navigation, route }) => {
@@ -105,7 +106,7 @@ const MobileVerification = ({ navigation, route }) => {
 
         <FastImage
           style={styles.loginSection2}
-          source={require('../../Images/txt_box.png')}
+          source={images.text_box_image}
           resizeMode={FastImage.resizeMode.stretch}>
 
           <PhoneInput

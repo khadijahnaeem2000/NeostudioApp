@@ -39,6 +39,7 @@ import {
 import Sound from 'react-native-sound';
 import { navigate, resetNavigationStack } from '../../navigation/navigation_service';
 import { IMAGE_URL } from '../../config';
+import { images } from '../../constant';
 
 let sound1, sound2, sound3;
 class Test extends Component {
@@ -341,7 +342,7 @@ class Test extends Component {
               });
             }}>
             <FastImage
-              source={require('../../Images/nextQues.png')}
+              source={images.next_image}
               resizeMode={FastImage.resizeMode.stretch}
               style={styles.btnImage}
             />
@@ -360,7 +361,7 @@ class Test extends Component {
               this.finishBattle();
             }}>
             <FastImage
-              source={require('../../Images/stop.png')}
+              source={images.stop_image}
               resizeMode={FastImage.resizeMode.stretch}
               style={styles.btnImage}
             />

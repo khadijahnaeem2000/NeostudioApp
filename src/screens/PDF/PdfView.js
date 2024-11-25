@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   StatusBar,
-  Dimensions,
-  ActivityIndicator,
   BackHandler,
   AppState,
 } from 'react-native';
@@ -12,9 +10,7 @@ import PDF from 'react-native-pdf';
 import { connect } from 'react-redux';
 import { pdfState } from '../../Redux/action';
 import Orientation from 'react-native-orientation-locker';
-import { styles } from './styles';
 import {
-  widthPercentageToDP,
   heightPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 

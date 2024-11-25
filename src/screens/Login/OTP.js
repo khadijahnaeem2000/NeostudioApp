@@ -3,35 +3,27 @@ import {
   View,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Keyboard,
   Platform,
-  ScrollView,
 } from 'react-native';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
-
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { useDispatch, useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
-import Header from '../../Component/Header';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import { getOTPMobile, verifyMobileOTP } from '../../Redux/action';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RNOtpVerify from 'react-native-otp-verify';
-import SmsRetriever from 'react-native-sms-retriever';
 import { fonts } from '../../utils';
 import BackgroundVideo from '../../Component/VideoBackhround';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { SvgXml } from 'react-native-svg';
 import back_icon from '../../Images/icons/back_icon';
 import { goBack } from '../../navigation/navigation_service';
+import { images } from '../../constant';
 
-const OTP = ({ navigation, route }) => {
+const OTP = ({ route }) => {
   const dispatch = useDispatch();
   const { data } = route.params
 
@@ -163,7 +155,7 @@ const OTP = ({ navigation, route }) => {
               dispatch(verifyMobileOTP(data?.data?.id, code, data));
             }}>
             <FastImage
-              source={require('../../Images/button.png')}
+              source={images.btn_background_image}
               resizeMode={FastImage.resizeMode.contain}
               style={styles.button}>
               <Text style={styles.btnText2}>{'Ingresar'}</Text>

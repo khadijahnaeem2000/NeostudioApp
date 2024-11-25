@@ -15,6 +15,7 @@ import DeviceInfo from 'react-native-device-info';
 import ScrollView2 from 'rn-faded-scrollview';
 import { fonts } from '../../utils';
 import HTML from 'react-native-render-html';
+import { images, SIZES } from '../../constant';
 
 export default class PaperLayout extends React.Component {
   render() {
@@ -72,6 +73,7 @@ export default class PaperLayout extends React.Component {
                       //fontSize: widthPercentageToDP(2),
                       fontFamily: fonts.novaBold,
                       color: '#000',
+                      fontWeight:"700"
                     },
                     round: {
                       //fontSize: widthPercentageToDP(2),
@@ -126,7 +128,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3.5),
                   }}
                   resizeMode="stretch"
-                  source={require('../../Images/arrow.png')}
+                  source={images.arrow_image}
                 />
               ) : allowdescription === 'True' ? (
                 isCorrect === 'a' || isCorrect === 'a y b' ? (
@@ -136,7 +138,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : allowdescription === 'True' && isOption1 === 'answer1' ? (
                   <Image
@@ -145,7 +147,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -166,7 +168,7 @@ export default class PaperLayout extends React.Component {
               )}
               <Text style={{
                 fontFamily: fonts.novaRegular,
-                fontSize: widthPercentageToDP(1.7),
+                fontSize: SIZES.h14,
                 color: "#000",
                 marginRight: widthPercentageToDP(5),
               }}  >{option1.replace(/&nbsp;/g, '')}</Text>
@@ -183,7 +185,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3.5),
                   }}
                   resizeMode="stretch"
-                  source={require('../../Images/arrow.png')}
+                  source={images.arrow_image}
                 />
               ) : allowdescription === 'True' ? (
                 isCorrect === 'b' || isCorrect === 'a y b' ? (
@@ -193,7 +195,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : allowdescription === 'True' && isOption1 === 'answer2' ? (
                   <Image
@@ -202,7 +204,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -221,7 +223,7 @@ export default class PaperLayout extends React.Component {
 
               <Text style={{
                 fontFamily: fonts.novaRegular,
-                fontSize: widthPercentageToDP(1.7),
+                fontSize: SIZES.h14,
                 color: "#000",
                 marginRight: widthPercentageToDP(5),
               }} >{option2.replace(/&nbsp;/g, '')}</Text>
@@ -239,7 +241,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3.5),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'c' || isCorrect === 'c y d' ? (
@@ -249,7 +251,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer3' ? (
                     <Image
@@ -258,7 +260,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View
@@ -279,7 +281,7 @@ export default class PaperLayout extends React.Component {
 
                 <Text style={{
                   fontFamily: fonts.novaRegular,
-                  fontSize: widthPercentageToDP(1.7),
+                  fontSize: SIZES.h14,
                   color: "#000",
                   marginRight: widthPercentageToDP(5),
                 }}  >{option3.replace(/&nbsp;/g, '')}</Text>
@@ -298,7 +300,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3.5),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'd' || isCorrect === 'c y d' ? (
@@ -308,7 +310,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer4' ? (
                     <Image
@@ -317,7 +319,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View
@@ -338,7 +340,7 @@ export default class PaperLayout extends React.Component {
 
                 <Text style={{
                   fontFamily: fonts.novaRegular,
-                  fontSize: widthPercentageToDP(1.7),
+                  fontSize: SIZES.h14,
                   color: "#000",
                   marginRight: widthPercentageToDP(5),
                 }}    >{option4.replace(/&nbsp;/g, '')}</Text>
@@ -364,7 +366,7 @@ export default class PaperLayout extends React.Component {
                     bold: {
                       //fontSize: widthPercentageToDP(2),
                       color: '#000',
-                      fontWeight:"800",
+                      fontWeight: "800",
                       fontFamily: fonts.novaBold,
                     },
                     round: {
@@ -437,7 +439,7 @@ const styles = StyleSheet.create({
   },
   answer: {
     fontFamily: fonts.novaRegular,
-    fontSize: widthPercentageToDP(1.7),
+    fontSize: SIZES.h14,
     color: "#000",
     marginRight: widthPercentageToDP(5),
   },

@@ -5,6 +5,7 @@ import FastImage from 'react-native-fast-image'
 import { Badge } from 'react-native-elements'
 import DeviceInfo from 'react-native-device-info'
 import { fonts } from '../../utils'
+import { images } from '../../constant'
 
 export default class Download extends React.Component {
 
@@ -24,7 +25,7 @@ export default class Download extends React.Component {
                 {isActive ?
                     <View>
                         <FastImage
-                            source={require('../../Images/directory.png')}
+                            source={images.folder_image}
                             style={{
                                 width: widthPercentageToDP(18),
                                 height: widthPercentageToDP(18)
@@ -42,7 +43,7 @@ export default class Download extends React.Component {
                         />
                     </View>
                     : <FastImage
-                        source={require('../../Images/directory.png')}
+                        source={images.folder_image}
                         style={{
                             width: widthPercentageToDP(18),
                             height: widthPercentageToDP(18)

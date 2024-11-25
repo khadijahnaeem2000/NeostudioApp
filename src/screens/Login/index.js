@@ -29,6 +29,7 @@ import BackgroudVideo from '../../Component/VideoBackhround';
 import { fonts } from '../../utils';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import appleAuth from "@invertase/react-native-apple-authentication";
+import { images } from '../../constant';
 
 
 class Login extends React.Component {
@@ -425,7 +426,7 @@ class Login extends React.Component {
                       }}>
                       <FastImage
                         style={styles.loginSection}
-                        source={require('../../Images/txt_box.png')}
+                        source={images.text_box_image}
                         resizeMode={FastImage.resizeMode.stretch}>
                         <FastImage
                           source={require('./assets/user.png')}
@@ -453,7 +454,7 @@ class Login extends React.Component {
                           styles.loginSection,
                           { marginTop: heightPercentageToDP(-1) },
                         ]}
-                        source={require('../../Images/txt_box.png')}
+                        source={images.text_box_image}
                         resizeMode={FastImage.resizeMode.stretch}>
                         <FastImage
                           source={require('./assets/password.png')}

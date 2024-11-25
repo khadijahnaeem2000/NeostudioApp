@@ -69,6 +69,25 @@ import repaso_small_image from "../assets/images/repaso_small_image.png"
 import ranking_main_image from "../assets/images/ranking_main_image.png"
 import novedades_image from "../assets/images/novedades_image.png"
 import register_modal_background_image from "../assets/images/register_modal_background_image.jpeg"
+import cross_image from "../assets/images/cross_image.png"
+import check_image from "../assets/images/check_image.png"
+import correct_one_image from "../assets/images/correct_one_image.png"
+import correct_image from "../assets/images/correct_image.png"
+import search_background_image from "../assets/images/search_background_image.png"
+import search_icon_image from "../assets/images/search_icon_image.png"
+import arrow_image from "../assets/images/arrow_image.png"
+import green_image from "../assets/images/green_image.png"
+import red_image from "../assets/images/red_image.png"
+import option_image from "../assets/images/option_image.png"
+import transparent_image from "../assets/images/transparent_image.png"
+import silver_star_image from "../assets/images/silver_star_image.png"
+import gold_star_image from "../assets/images/gold_star_image.png"
+import golden_image from "../assets/images/golden_image.png"
+import stop_image from "../assets/images/stop_image.png"
+import plus_image from "../assets/images/plus_image.png"
+import minus_image from "../assets/images/minus_image.png"
+import next_image from "../assets/images/next_image.png"
+import text_box_image from "../assets/images/text_box_image.png"
 
 
 export default {
@@ -142,5 +161,25 @@ export default {
     repaso_small_image,
     ranking_main_image,
     novedades_image,
-    register_modal_background_image
+    register_modal_background_image,
+    cross_image,
+    check_image,
+    correct_one_image,
+    correct_image,
+    search_background_image,
+    search_icon_image,
+    arrow_image,
+    green_image,
+    red_image,
+    transparent_image,
+    option_image,
+    gold_star_image,
+    silver_star_image,
+    golden_image,
+    stop_image,
+    plus_image,
+    minus_image,
+    next_image,
+    text_box_image
+
 };

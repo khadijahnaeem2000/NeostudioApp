@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     user_image_view: {
-        width: SIZES.width > SIZES.height ? "20%" : "27%",
-        height: SIZES.width > SIZES.height ? "100%" : "80%",
+        width: "27%",
+        height: "80%",
         marginBottom: 12
     },
     user_image: {

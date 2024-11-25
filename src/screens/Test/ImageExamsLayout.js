@@ -26,6 +26,7 @@ import ScrollView2 from 'rn-faded-scrollview';
 import { fonts } from '../../utils';
 import { HtmlTextView } from "react-native-html-text-view";
 import { StyleSheet } from 'react-native';
+import { images } from '../../constant';
 
 const { width } = Dimensions.get('window');
 
@@ -207,7 +208,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'a' || isCorrect === 'a y b' ? (
@@ -217,7 +218,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3.5),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer1' ? (
                     <Image
@@ -226,7 +227,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View style={{
@@ -263,7 +264,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3.5),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'b' || isCorrect === 'a y b' ? (
@@ -273,7 +274,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer2' ? (
                     <Image
@@ -282,7 +283,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View style={{
@@ -319,7 +320,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3.5),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'c' || isCorrect === 'c y d' ? (
@@ -329,7 +330,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer3' ? (
                     <Image
@@ -338,7 +339,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View style={{
@@ -374,7 +375,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3.5),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/arrow.png')}
+                    source={images.arrow_image}
                   />
                 ) : allowdescription === 'True' ? (
                   isCorrect === 'd' || isCorrect === 'c y d' ? (
@@ -384,7 +385,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/correct.png')}
+                      source={images.correct_image}
                     />
                   ) : allowdescription === 'True' && isOption1 === 'answer4' ? (
                     <Image
@@ -393,7 +394,7 @@ export default class PaperLayout extends React.Component {
                         height: widthPercentageToDP(3),
                       }}
                       resizeMode="stretch"
-                      source={require('../../Images/cross.png')}
+                      source={images.cross_image}
                     />
                   ) : (
                     <View style={{

@@ -23,9 +23,9 @@ import Orientation from 'react-native-orientation-locker';
 import { widthPercentageToDP } from '../../Component/MakeMeResponsive';
 import { useFocusEffect } from '@react-navigation/native';
 import { Container, LoaderModal } from '../../Component';
-import { COLORS } from '../../constant';
+import { COLORS, images } from '../../constant';
 
-const CreateBattle = props => {
+const CreateBattle = () => {
   const dispatch = useDispatch();
   const login = useSelector(state => state.user.login);
   const [isLoading, setLoading] = useState(false);
@@ -246,7 +246,7 @@ const CreateBattle = props => {
           }}>
           <TouchableOpacity onPress={() => minusFunc()} style={styles.box2}>
             <FastImage
-              source={require('../../Images/minus.png')}
+              source={images.minus_image}
               resizeMode={FastImage.resizeMode.contain}
               style={{
                 width: '100%',
@@ -266,7 +266,7 @@ const CreateBattle = props => {
           </View>
           <TouchableOpacity onPress={() => plusFunc()} style={styles.box2}>
             <FastImage
-              source={require('../../Images/plus.png')}
+              source={images.plus_image}
               resizeMode={FastImage.resizeMode.contain}
               style={{
                 width: '100%',
@@ -294,7 +294,7 @@ const CreateBattle = props => {
             ]}>
             {myArray1.length > 0 && (
               <FastImage
-                source={require('../../Images/Check.png')}
+                source={images.check_image}
                 style={styles.vectorIcon}
               />
             )}
@@ -330,7 +330,7 @@ const CreateBattle = props => {
             ]}>
             {myArray5.length > 0 && (
               <FastImage
-                source={require('../../Images/Check.png')}
+                source={images.check_image}
                 style={styles.vectorIcon}
               />
             )}
@@ -368,7 +368,7 @@ const CreateBattle = props => {
               ]}>
               {myArray2.length > 0 && (
                 <FastImage
-                  source={require('../../Images/Check.png')}
+                  source={images.check_image}
                   style={styles.vectorIcon}
                 />
               )}
@@ -403,7 +403,7 @@ const CreateBattle = props => {
               ]}>
               {myArray3.length > 0 && (
                 <FastImage
-                  source={require('../../Images/Check.png')}
+                  source={images.check_image}
                   style={styles.vectorIcon}
                 />
               )}
@@ -438,7 +438,7 @@ const CreateBattle = props => {
               ]}>
               {myArray4.length > 0 && (
                 <FastImage
-                  source={require('../../Images/Check.png')}
+                  source={images.check_image}
                   style={styles.vectorIcon}
                 />
               )}

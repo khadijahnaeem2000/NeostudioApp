@@ -4,8 +4,7 @@ import FastImage from 'react-native-fast-image';
 import { useSelector } from 'react-redux';
 import Ranking from "../../../Component/Ranking";
 import { version, iosVerion } from "../../../../package.json";
-import { images } from '../../../constant';
-import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
+import { COLORS, images, SIZES } from '../../../constant';
 import { fonts } from '../../../utils';
 import Icon2 from "react-native-vector-icons/dist/AntDesign";
 
@@ -39,30 +38,28 @@ const HomeSliderModal = ({ visible, onPressClose, onPressConfirm }) => {
                                 ? login?.data?.email
                                 : reviewRanking?.username}
                         </Text>
-                        <View style={styles.navigationHeader}>
-                            <TouchableOpacity
-                                activeOpacity={0.6}
-                                onPress={onPressConfirm}
-                            >
-                                <FastImage
-                                    style={styles.loaderStyle}
-                                    resizeMode={FastImage.resizeMode.contain}
-                                    source={images.loader}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                activeOpacity={0.6}
-                                onPress={onPressClose}
-                            >
-                                <Icon2 name="close" color="#ffff" size={30} />
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity
+                            activeOpacity={0.6}
+                            onPress={onPressConfirm}
+                        >
+                            <FastImage
+                                style={styles.loaderStyle}
+                                resizeMode={FastImage.resizeMode.contain}
+                                source={images.loader}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ marginRight: SIZES.padding }}
+                            activeOpacity={0.6}
+                            onPress={onPressClose}
+                        >
+                            <Icon2 name="close" color="#ffff" size={30} />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.modalTitle}>
                         <View
                             style={{
                                 flexDirection: "row",
-                                flexWrap: "wrap",
                                 alignItems: "center",
                             }}
                         >
@@ -155,78 +152,62 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: widthPercentageToDP(100),
-        height: heightPercentageToDP(100),
+        width: "100%",
     },
     navigation: {
         position: "absolute",
         top: 0,
         bottom: 0,
         left: 0,
-        width: widthPercentageToDP(100),
-        height: heightPercentageToDP(100),
+        width: "100%",
+        height: "100%",
     },
     topModal: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        width: widthPercentageToDP(100),
-        marginTop: Platform.OS === 'android' ? heightPercentageToDP(5) : heightPercentageToDP(10),
-        marginLeft: widthPercentageToDP(3),
+        marginTop: Platform.OS === 'android' ? SIZES.padding * 3 : SIZES.padding * 5,
+        paddingHorizontal: SIZES.padding2
     },
     topTitle: {
-        fontSize: widthPercentageToDP(5),
+        fontSize: SIZES.h16,
         fontFamily: fonts.novaBold,
-        color: '#ffff',
-        width: "75%",
-        textAlign: "left"
-    },
-    navigationHeader: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        position: 'absolute',
-        right: '5%',
-        zIndex: 3
+        color: COLORS.white,
+        textAlign: "left",
+        flex: 1,
     },
     loaderStyle: {
-        width: widthPercentageToDP(8),
-        height: widthPercentageToDP(8),
-        marginRight: widthPercentageToDP(3),
+        width: SIZES.padding * 1.8,
+        height: SIZES.padding * 1.8,
+        marginRight: SIZES.padding2,
     },
     modalTitle: {
-        width: widthPercentageToDP(100),
-        // position: "absolute",
-        // left: "4%",
-        // top: '4%'
-        marginLeft: widthPercentageToDP(3),
+        marginLeft: SIZES.padding2,
     },
     modalTileView: {
-        width: widthPercentageToDP(40),
+        width: "40%"
     },
     modalTitleDetail: {
-        width: widthPercentageToDP(60),
+        width: "60%"
     },
     ModalTitleText3: {
-        fontSize: widthPercentageToDP(4.3),
+        fontSize: SIZES.h14,
         fontFamily: fonts.novaBold,
         color: '#ffff',
-        marginLeft: widthPercentageToDP(3),
+        marginLeft: SIZES.padding2,
     },
     ModalTitleText: {
-        fontSize: widthPercentageToDP(4),
+        fontSize: SIZES.h12,
         fontFamily: fonts.elegance,
         color: '#ffff',
     },
     mainModalView: {
         flex: 1,
-        //marginTop: heightPercentageToDP(10)
     },
     versionText: {
         position: 'absolute',
         bottom: '1%',
         right: '7%',
-        fontSize: widthPercentageToDP(3.5),
+        fontSize: SIZES.h11,
         fontFamily: fonts.elegance,
         color: '#ffff',
-        marginTop: heightPercentageToDP(10),
     },
 })

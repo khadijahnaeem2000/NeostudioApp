@@ -19,6 +19,7 @@ import { IMAGE_URL } from '../../config';
 import { Button } from '../../Component';
 import { useFocusEffect } from '@react-navigation/native';
 import { goBack, navigate } from '../../navigation/navigation_service';
+import { images } from '../../constant';
 
 const ResultClass = ({ route, navigation }) => {
   const {
@@ -39,11 +40,7 @@ const ResultClass = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <FastImage
-        source={
-          Platform.OS === 'android'
-            ? require('../../Images/veoestudio2.png')
-            : require('../../Images/ios_logo.png')
-        }
+        source={images.logo }
         style={styles.logo}
         resizeMode={FastImage.resizeMode.contain}
       />
@@ -108,7 +105,7 @@ const ResultClass = ({ route, navigation }) => {
               style={styles.graphBottom}
               colors={['#DDE0E3', '#FEFEFF']}>
               <Image
-                source={require('../../Images/correct.png')}
+                source={images.correct_image}
                 resizeMode="stretch"
                 style={styles.graphImage}
               />
@@ -136,7 +133,7 @@ const ResultClass = ({ route, navigation }) => {
               style={styles.graphBottom}
               colors={['#DDE0E3', '#FEFEFF']}>
               <Image
-                source={require('../../Images/cross.png')}
+                source={images.cross_image}
                 resizeMode="stretch"
                 style={styles.graphImage}
               />

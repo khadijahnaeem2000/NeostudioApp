@@ -6,6 +6,7 @@ import {
 } from '../../Component/MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
+import { images } from '../../constant'
 
 export default class BottomLayout extends React.Component {
 
@@ -40,7 +41,7 @@ export default class BottomLayout extends React.Component {
                                 //opacity: 0.2
                             }}
                             resizeMode={FastImage.resizeMode.stretch}
-                            source={require('../../Images/golden.png')}
+                            source={images.golden_image}
                         >
                             <Text
                                 style={{
@@ -63,10 +64,10 @@ export default class BottomLayout extends React.Component {
                             }}
                             resizeMode={FastImage.resizeMode.stretch}
                             source={isAttempt === 'wrong' ?
-                                require('../../Images/red.png')
+                                images.red_image
                                 : isAttempt === 'notAttempted' ?
-                                    require('../../Images/transparent.png')
-                                    : require('../../Images/green.png')
+                                    images.transparent_image
+                                    : images.green_image
                             }
                         >
                             <Text

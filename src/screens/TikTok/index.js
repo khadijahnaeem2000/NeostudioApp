@@ -10,26 +10,20 @@ import {
   Modal,
   Platform,
   TouchableOpacity,
-  Image,
   Text,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import Share from 'react-native-share';
 import Video from 'react-native-video';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-  faPlus,
   faHeart,
   faCommentDots,
   faPlay,
-  faThumbsUp,
-  faThumbsDown,
   faShare,
   faArrowLeft,
   faDownload,
 } from '@fortawesome/free-solid-svg-icons';
-import { showHUD, hideHUD } from '../../Component/Loader';
 import RNFetchBlob from 'react-native-blob-util';
 import {
   tiktokLikeCount,
@@ -67,12 +61,11 @@ import FastImage from 'react-native-fast-image';
 import { goBack } from '../../navigation/navigation_service';
 import { IMAGE_URL } from '../../config';
 
-const Home = ({ navigation, route }) => {
+const Home = ({ route }) => {
   const disptach = useDispatch();
   const result = route.params.data || '123'
 
   const login = useSelector(state => state.user.login);
-  const AuthLoading = useSelector(state => state.user.AuthLoading);
   const videoPlayer = useRef(null);
   const inputref = useRef(null);
   const [paused, setPaused] = useState(false);
@@ -91,9 +84,7 @@ const Home = ({ navigation, route }) => {
   const [commentId, setCommentId] = useState(null);
   const [commentCount, setCommentCount] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState(0);
-  const [selectedTitle, setSelectedTitle] = useState(null);
 
   useEffect(() => {
     if (iscomment) {
@@ -339,9 +330,6 @@ const Home = ({ navigation, route }) => {
       <NewsByFollowing>
         <NewsByFollowingText>
           {''}
-          {/* <NewsByFollowingTextBold>
-                        For You
-                    </NewsByFollowingTextBold> */}
         </NewsByFollowingText>
       </NewsByFollowing>
 
@@ -379,7 +367,7 @@ const Home = ({ navigation, route }) => {
                     />
 
                   </View>
-                  <Image
+                  <FastImage
                   />
                   <Text
                     numberOfLines={2}
@@ -390,45 +378,6 @@ const Home = ({ navigation, route }) => {
               )
             })
           }
-          {/* <TouchableOpacity
-            onPress={() => {
-              setSelectedTitle("English")
-              setShowModal(true)
-            }}
-            activeOpacity={0.6}
-            style={mainStyles.directory_view}
-          >
-            <Image
-              style={mainStyles.directory_image}
-              source={require("../../Images/directory.png")} />
-            <Text style={mainStyles.directory_text} >English</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setSelectedTitle("Urdu")
-              setShowModal(true)
-            }}
-            activeOpacity={0.6}
-            style={mainStyles.directory_view}
-          >
-            <Image
-              style={mainStyles.directory_image}
-              source={require("../../Images/directory.png")} />
-            <Text style={mainStyles.directory_text} >Urdu</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setSelectedTitle("Physics")
-              setShowModal(true)
-            }}
-            activeOpacity={0.6}
-            style={mainStyles.directory_view}
-          >
-            <Image
-              style={mainStyles.directory_image}
-              source={require("../../Images/directory.png")} />
-            <Text style={mainStyles.directory_text} >Physics</Text>
-          </TouchableOpacity> */}
         </ScrollView>
       </View>
       <FlatList
@@ -742,94 +691,7 @@ const Home = ({ navigation, route }) => {
           </View>
         </Modal>
       )}
-      <Modal transparent visible={showModal} onRequestClose={() => setShowModal(false)}  >
-        <TouchableOpacity
-          activeOpacity={1}
-          onPressOut={() => setShowModal(false)}
-          style={{
-            flex: 1,
-            paddingHorizontal: 20,
-            backgroundColor: "rgba(0,0,0,0,5)",
-            paddingTop: Platform.OS === 'ios' ? 80 : 30
-          }} >
-          <View style={{
-            backgroundColor: "white",
-            borderRadius: 5,
-            padding: 12,
-            height: "35%",
-            width: "60%",
-            alignSelf: "flex-end",
-            marginRight: 55,
 
-          }}
-          >
-            <Text style={mainStyles.modal_title} >{selectedTitle}</Text>
-            <ScrollView showsVerticalScrollIndicator={false} >
-              <TouchableOpacity
-                onPress={() => {
-                  setShowModal(false)
-                }}
-                activeOpacity={0.6}
-                style={mainStyles.list_directory_view}
-              >
-                <Image
-                  style={mainStyles.list_directory_image}
-                  source={require("../../Images/directory.png")} />
-                <Text style={mainStyles.list_directory_text} >{selectedTitle}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setShowModal(false)
-                }}
-                activeOpacity={0.6}
-                style={mainStyles.list_directory_view}
-              >
-                <Image
-                  style={mainStyles.list_directory_image}
-                  source={require("../../Images/directory.png")} />
-                <Text style={mainStyles.list_directory_text} >{selectedTitle}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setShowModal(false)
-                }}
-                activeOpacity={0.6}
-                style={mainStyles.list_directory_view}
-              >
-                <Image
-                  style={mainStyles.list_directory_image}
-                  source={require("../../Images/directory.png")} />
-                <Text style={mainStyles.list_directory_text} >{selectedTitle}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setShowModal(false)
-                }}
-                activeOpacity={0.6}
-                style={mainStyles.list_directory_view}
-              >
-                <Image
-                  style={mainStyles.list_directory_image}
-                  source={require("../../Images/directory.png")} />
-                <Text style={mainStyles.list_directory_text} >{selectedTitle}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setShowModal(false)
-                }}
-                activeOpacity={0.6}
-                style={mainStyles.list_directory_view}
-              >
-                <Image
-                  style={mainStyles.list_directory_image}
-                  source={require("../../Images/directory.png")} />
-                <Text style={mainStyles.list_directory_text} >{selectedTitle}</Text>
-              </TouchableOpacity>
-            </ScrollView>
-
-          </View>
-        </TouchableOpacity>
-      </Modal>
     </View>
   );
 };

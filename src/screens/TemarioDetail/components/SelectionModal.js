@@ -1,9 +1,9 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image'
-import { images } from '../../../constant'
+import { COLORS, images, SIZES } from '../../../constant'
 import DeviceInfo from 'react-native-device-info';
-import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
+import { widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
 
 const SelectionModal = ({ visible, onPressClose, onPressHorizontal, onPressVertical }) => {
@@ -12,55 +12,56 @@ const SelectionModal = ({ visible, onPressClose, onPressHorizontal, onPressVerti
             transparent={true}
             visible={visible}
             animationType="slide"
-            // supportedOrientations={['portrait', 'landscape']}
             onRequestClose={onPressClose}>
             <TouchableOpacity
                 style={styles.main_view}
                 activeOpacity={1}
                 onPressOut={onPressClose}>
-                <TouchableWithoutFeedback>
-                    <FastImage
-                        source={images.email_box}
-                        resizeMode={FastImage.resizeMode.stretch}
-                        style={[
-                            styles.quesBox,
-                            {
-                                height: DeviceInfo.isTablet()
-                                    ? widthPercentageToDP(45)
-                                    : widthPercentageToDP(40),
-                            },
-                        ]}>
-                        <Text style={styles.text1}>
-                            {'Elige cómo quieres leer el documento.'}
-                        </Text>
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                width: '80%',
-                                justifyContent: 'space-around',
-                            }}>
-                            <TouchableOpacity
-                                style={styles.confirmBtn}
-                                onPress={onPressHorizontal}>
-                                <FastImage
-                                    source={images.horizontal_btn_image}
-                                    style={styles.btnImage}
-                                    resizeMode={FastImage.resizeMode.contain}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.confirmBtn}
-                                onPress={onPressVertical}>
-                                <FastImage
-                                    source={images.vertical_btn_image}
-                                    style={styles.btnImage}
-                                    resizeMode={FastImage.resizeMode.contain}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </FastImage>
-                </TouchableWithoutFeedback>
+                <FastImage
+                    source={images.modal_background_image}
+                    resizeMode={FastImage.resizeMode.stretch}
+                    style={[
+                        styles.quesBox,
+                        {
+                            height: DeviceInfo.isTablet()
+                                ? widthPercentageToDP(45)
+                                : widthPercentageToDP(40),
+                        },
+                    ]}>
+                    <Text style={styles.text1}>
+                        {'Elige cómo quieres leer el documento.'}
+                    </Text>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '80%',
+                            justifyContent: 'space-around',
+                        }}>
+                        <TouchableOpacity
+                            style={styles.btn}
+                            onPress={onPressHorizontal}>
+                            <FastImage
+                                source={images.btn_background_image}
+                                style={styles.btnImage}
+                                resizeMode={FastImage.resizeMode.contain}
+                            >
+                                <Text style={styles.btn_text} >Horizontal</Text>
+                            </FastImage>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.btn}
+                            onPress={onPressVertical}>
+                            <FastImage
+                                source={images.btn_background_image}
+                                style={styles.btnImage}
+                                resizeMode={FastImage.resizeMode.contain}
+                            >
+                                <Text style={styles.btn_text} >Vertical</Text>
+                            </FastImage>
+                        </TouchableOpacity>
+                    </View>
+                </FastImage>
             </TouchableOpacity>
         </Modal>
     )
@@ -73,47 +74,36 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    innerModal: {
-        width: widthPercentageToDP(95),
-        height: widthPercentageToDP(40),
-        marginLeft: widthPercentageToDP(4),
+        backgroundColor: "rgba(0,0,0,0.5)"
     },
     quesBox: {
         width: widthPercentageToDP(95),
         alignItems: 'center',
-        //justifyContent: "center"
     },
     text1: {
         marginTop: widthPercentageToDP(7),
-        color: '#252525',
+        color: COLORS.white,
         fontFamily: fonts.novaBold,
-        marginLeft: widthPercentageToDP(-4),
-        fontSize: widthPercentageToDP(5),
-        width: widthPercentageToDP(70),
-        padding: widthPercentageToDP(2),
-        textAlign: 'justify',
+        fontSize: SIZES.h15,
+        textAlign: "center"
     },
-    btnText: {
+    btn: {
+        width: "48%",
+        height: SIZES.padding * 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: SIZES.padding * 2
+    },
+    btnImage: {
+        height: "100%",
+        width: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btn_text: {
         color: '#ffff',
         fontFamily: fonts.novaBold,
         textAlign: 'justify',
         fontSize: widthPercentageToDP(3),
-    },
-    btnImage: {
-        width: widthPercentageToDP(43),
-        height: heightPercentageToDP(20),
-        //marginTop:heightPercentageToDP(2),
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    confirmBtn: {
-        width: widthPercentageToDP(25),
-        height: heightPercentageToDP(5),
-        marginTop: heightPercentageToDP(0),
-        marginBottom: widthPercentageToDP(1.5),
-        justifyContent: 'center',
-        alignItems: 'center',
-        //backgroundColor:"red"
     },
 })

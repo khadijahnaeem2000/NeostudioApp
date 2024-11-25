@@ -1,24 +1,19 @@
 import React from 'react';
 import {
   View,
-  StatusBar,
   Image,
-  Text,
   TouchableOpacity,
-  ScrollView,
-  useWindowDimensions,
   Dimensions,
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import {
-  heightPercentageToDP,
   widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
 import ScrollView2 from 'rn-faded-scrollview';
 import DeviceInfo from 'react-native-device-info';
-import WebView from 'react-native-webview';
 import { fonts } from '../../utils';
+import { images } from '../../constant';
 
 export default class PaperLayout extends React.Component {
   render() {
@@ -49,7 +44,7 @@ export default class PaperLayout extends React.Component {
             flex: 1,
           }}>
           <ScrollView2
-            contentContainerStyle={{flexGrow: 1}}
+            contentContainerStyle={{ flexGrow: 1 }}
             allowStartFade={true}
             fadeColors={[
               'rgba(255,255,255, 0.18)',
@@ -121,7 +116,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3),
                   }}
                   resizeMode={FastImage.resizeMode.stretch}
-                  source={require('../../Images/correct.png')}
+                  source={images.correct_image}
                 />
               ) : isOption1 === 'answer1' ? (
                 <FastImage
@@ -130,7 +125,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3),
                   }}
                   resizeMode={FastImage.resizeMode.stretch}
-                  source={require('../../Images/cross.png')}
+                  source={images.cross_image}
                 />
               ) : (
                 <View
@@ -146,8 +141,8 @@ export default class PaperLayout extends React.Component {
                   marginRight: widthPercentageToDP(5),
                 }}>
                 <HTML
-                   contentWidth={Dimensions.get('screen').width}
-                   source={{ html: option1 }}
+                  contentWidth={Dimensions.get('screen').width}
+                  source={{ html: option1 }}
                   classesStyles={{
                     regular: {
                       //fontSize: widthPercentageToDP(2.5),
@@ -205,7 +200,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3),
                   }}
                   resizeMode={FastImage.resizeMode.stretch}
-                  source={require('../../Images/correct.png')}
+                  source={images.correct_image}
                 />
               ) : isOption1 === 'answer2' ? (
                 <FastImage
@@ -214,7 +209,7 @@ export default class PaperLayout extends React.Component {
                     height: widthPercentageToDP(3),
                   }}
                   resizeMode={FastImage.resizeMode.stretch}
-                  source={require('../../Images/cross.png')}
+                  source={images.cross_image}
                 />
               ) : (
                 <View
@@ -230,8 +225,8 @@ export default class PaperLayout extends React.Component {
                   marginRight: widthPercentageToDP(5),
                 }}>
                 <HTML
-                   contentWidth={Dimensions.get('screen').width}
-                   source={{ html: option2 }}
+                  contentWidth={Dimensions.get('screen').width}
+                  source={{ html: option2 }}
                   classesStyles={{
                     regular: {
                       //fontSize: widthPercentageToDP(2.5),
@@ -241,7 +236,7 @@ export default class PaperLayout extends React.Component {
                     bold: {
                       //fontSize: widthPercentageToDP(2.5),
                       color: '#000',
-                      fontWeight:"800",
+                      fontWeight: "800",
                       fontFamily: fonts.novaBold,
                     },
                     round: {
@@ -292,7 +287,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode={FastImage.resizeMode.stretch}
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer3' ? (
                   <FastImage
@@ -301,7 +296,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode={FastImage.resizeMode.stretch}
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -317,8 +312,8 @@ export default class PaperLayout extends React.Component {
                     marginRight: widthPercentageToDP(5),
                   }}>
                   <HTML
-                     contentWidth={Dimensions.get('screen').width}
-                     source={{ html: option3 }}
+                    contentWidth={Dimensions.get('screen').width}
+                    source={{ html: option3 }}
                     classesStyles={{
                       regular: {
                         //fontSize: widthPercentageToDP(2.5),
@@ -378,7 +373,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/correct.png')}
+                    source={images.correct_image}
                   />
                 ) : isOption1 === 'answer4' ? (
                   <Image
@@ -387,7 +382,7 @@ export default class PaperLayout extends React.Component {
                       height: widthPercentageToDP(3),
                     }}
                     resizeMode="stretch"
-                    source={require('../../Images/cross.png')}
+                    source={images.cross_image}
                   />
                 ) : (
                   <View
@@ -461,8 +456,8 @@ export default class PaperLayout extends React.Component {
                                 // opaque={false}
                             /> */}
               <HTML
-                 contentWidth={Dimensions.get('screen').width}
-                 source={{ html: description }}
+                contentWidth={Dimensions.get('screen').width}
+                source={{ html: description }}
                 classesStyles={{
                   regular: {
                     //fontSize: widthPercentageToDP(2),

@@ -12,6 +12,7 @@ import {heightPercentageToDP, widthPercentageToDP} from '../MakeMeResponsive';
 import FastImage from 'react-native-fast-image';
 import DeviceInfo from 'react-native-device-info';
 import {fonts} from '../../utils';
+import { COLORS, images } from '../../constant';
 
 const BaremoUpdate = ({isOpen, yesClick, noClick, myText, baremoText}) => {
   return (
@@ -23,7 +24,8 @@ const BaremoUpdate = ({isOpen, yesClick, noClick, myText, baremoText}) => {
       onRequestClose={() => {
       }}>
       <View style={styles.modalMain}>
-        <View
+        <FastImage
+        source={images.modal_background_image}
           style={[
             styles.quesBox,
             {
@@ -39,22 +41,22 @@ const BaremoUpdate = ({isOpen, yesClick, noClick, myText, baremoText}) => {
             keyboardType="numeric"
             onChangeText={baremoText}
             placeholder="Ejemplo: 4.6"
-            placeholderTextColor={'black'}
+            placeholderTextColor={COLORS.white}
             style={{
               width: widthPercentageToDP(80),
               height: heightPercentageToDP(6),
               fontFamily: fonts.novaRegular,
-              color: 'black',
+              color: COLORS.white,
               paddingLeft: widthPercentageToDP(5),
               borderWidth: widthPercentageToDP(0.2),
-              borderColor: 'black',
+              borderColor: COLORS.white,
               borderRadius: widthPercentageToDP(4),
             }}
           />
           <View style={styles.bottomView}>
             <TouchableOpacity style={styles.confirmBtn} onPress={noClick}>
               <FastImage
-                source={require('../../Images/button.png')}
+                source={images.btn_background_image}
                 style={styles.btnImage}
                 resizeMode={FastImage.resizeMode.contain}>
                 <Text style={styles.btnTxt}>{'Atrás'}</Text>
@@ -62,14 +64,14 @@ const BaremoUpdate = ({isOpen, yesClick, noClick, myText, baremoText}) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.confirmBtn} onPress={yesClick}>
               <FastImage
-                source={require('../../Images/button.png')}
+                source={images.btn_background_image}
                 style={styles.btnImage}
                 resizeMode={FastImage.resizeMode.contain}>
                 <Text style={styles.btnTxt}>{'Enviar'}</Text>
               </FastImage>
             </TouchableOpacity>
           </View>
-        </View>
+        </FastImage>
       </View>
     </Modal>
   );
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     marginTop: widthPercentageToDP(7),
-    color: '#252525',
+    color: COLORS.white,
     fontFamily: fonts.novaBold,
     //marginLeft: widthPercentageToDP(-4),
     fontSize: widthPercentageToDP(4),

@@ -17,13 +17,17 @@ export const styles = StyleSheet.create({
     marginTop: heightPercentageToDP(4),
     height: heightPercentageToDP(7),
     paddingHorizontal: SIZES.padding,
-    //alignSelf:"center",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
-    //backgroundColor:"red"
   },
   itemTitle: {
+    flex: 1,
+    fontSize: widthPercentageToDP(4.5),
+    color: COLORS.white,
+    fontFamily: fonts.novaBold,
+  },
+  itemTitle2: {
     fontSize: widthPercentageToDP(4.5),
     color: COLORS.white,
     fontFamily: fonts.novaBold,
