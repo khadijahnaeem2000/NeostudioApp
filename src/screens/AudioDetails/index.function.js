@@ -1,10 +1,7 @@
-import { useFocusEffect } from "@react-navigation/native"
-import { useCallback, useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAudioFiles } from "../../Redux/actions/audio-action"
-import Orientation from "react-native-orientation-locker"
-import { Alert, AppState, BackHandler } from "react-native"
-import { navigate } from "../../navigation/navigation_service"
+import { AppState, BackHandler } from "react-native"
 import TrackPlayer, { AppKilledPlaybackBehavior, Capability } from "react-native-track-player"
 import { postAudioState } from "../../Redux/action"
 
@@ -74,8 +71,6 @@ export default ({ id }) => {
         }
         dispatch(getAudioFiles(apiData))
     }
-
-    useFocusEffect(useCallback(() => { Orientation.lockToPortrait() }, []))
 
     useEffect(() => {
         setupAudio()

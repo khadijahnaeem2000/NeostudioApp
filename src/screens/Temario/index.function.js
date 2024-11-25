@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPdfFolders } from "../../Redux/actions/temario-action"
-import { useFocusEffect } from "@react-navigation/native"
-import Orientation from "react-native-orientation-locker"
 
 export default () => {
     const dispatch = useDispatch()
@@ -19,8 +17,6 @@ export default () => {
         }
         dispatch(getPdfFolders(apiData))
     }
-
-    useFocusEffect(useCallback(() => { Orientation.lockToPortrait() }, []))
 
     useEffect(() => { getPdfData() }, [])
 

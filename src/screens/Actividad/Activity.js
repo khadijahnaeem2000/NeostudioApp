@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
-import Orientation from 'react-native-orientation-locker';
 import {
   getUserProgramsActivites,
   updateCompleteActivites,
@@ -28,7 +27,7 @@ import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { fonts } from '../../utils';
 import { useFocusEffect } from '@react-navigation/native';
-import { navigate } from '../../navigation/navigation_service';
+import { goBack, navigate } from '../../navigation/navigation_service';
 import { COLORS, images } from '../../constant';
 import { Container, LoaderModal, SingleFolderView } from '../../Component';
 
@@ -48,7 +47,7 @@ const Programs = () => {
   const [page, setPage] = useState(1);
 
 
-  const _fetchData = async () => {
+  const fetchData = async () => {
     setLoading(true);
     const result = await getUserProgramsActivites(
       login?.data?.id,
@@ -58,6 +57,7 @@ const Programs = () => {
     await setResponse(result);
     await setLoading(false);
   };
+
   const _fetchData2 = async () => {
     setLoading(true);
     const result = await getUserProgramsActivites(
@@ -71,7 +71,7 @@ const Programs = () => {
 
   useFocusEffect(
     useCallback(() => {
-      _fetchData();
+      fetchData();
     }, [])
   )
 
@@ -88,22 +88,11 @@ const Programs = () => {
       }, 1000);
   }, [showToast]);
 
-  useFocusEffect(
-    useCallback(
-      () => {
-        const locked = Orientation.isLocked();
-        if (!locked) {
-          Orientation.lockToPortrait();
-        }
-
-      }, []))
 
   const deleteItem = async (id, index) => {
 
     await deleteApi(id);
     const newData = [...response];
-    // const prevIndex = response.findIndex(item => item.activityId === id);
-    // newData.splice(prevIndex, 1);
     setResponse(newData?.filter(item => item.activityId !== id));
     refsArray.current[index].close();
     setLoading(false)
@@ -123,16 +112,14 @@ const Programs = () => {
   const loadMoreData = () => {
     setPage(page + 1);
   };
-  const _resetPrograms = async () => {
+  const resetPrograms = async () => {
     setLoading(true);
     const result = await resetAllPrograms(login?.data?.id, activityId);
     setLoading(false);
     if (result?.status === 'Successfull') {
-      _fetchData();
+      fetchData();
     }
   };
-
-
 
 
   const getImage = (type, name) => {
@@ -158,16 +145,11 @@ const Programs = () => {
               : type === 'personality' ?
                 image = images?.complete_exam
                 : image = images?.complete_exam
-
-
     return image
-
-
   }
 
   const onPressTab = (item) => {
     if (item.type === 'pdf') {
-      Orientation.unlockAllOrientations();
       updateCompleteActivites(login?.data?.id, item.activityId);
       setPage(1);
       navigate('PdfView', {
@@ -177,17 +159,15 @@ const Programs = () => {
       if (item?.vimeolink == null) {
         Alert.alert('Enlace de vídeo no disponible')
       } else {
-        Orientation.unlockAllOrientations();
         updateCompleteActivites(login?.data?.id, item.activityId);
         setPage(1);
-        navigate('TestVideo', {
+        navigate('VideoPlayer', {
           url: 'https://neoestudio.net/' + item.material,
           vimeoLink: item?.vimeolink,
           id: login?.data?.id,
         });
       }
     } else if (item.type === 'audio') {
-      Orientation.unlockAllOrientations();
       updateCompleteActivites(login?.data?.id, item.activityId);
       setPage(1);
       let data = [];
@@ -203,7 +183,6 @@ const Programs = () => {
         data: data,
       });
     } else {
-      Orientation.unlockAllOrientations();
       updateCompleteActivites(login?.data?.id, item.activityId);
       setPage(1);
       if (item.type === 'exam') {
@@ -249,7 +228,7 @@ const Programs = () => {
   const renderLeftActions = (progress, dragX) => {
     return (
       <View >
-        <Text style={{color:COLORS.transparent}}>Helloo</Text>
+        <Text style={{ color: COLORS.transparent }}>Helloo</Text>
       </View>
     );
   };
@@ -257,7 +236,7 @@ const Programs = () => {
   const renderRightActions = (progress, dragX) => {
     return (
       <View >
-        <Text style={{color:COLORS.transparent}}>Helloo</Text>
+        <Text style={{ color: COLORS.transparent }}>Helloo</Text>
       </View>
     );
   };
@@ -271,7 +250,7 @@ const Programs = () => {
               style={{ marginLeft: widthPercentageToDP(5) }}
               onPress={() => {
                 dispatch(saveActivityId(''));
-                navigate('Actividad');
+                goBack()
               }}>
               <FastImage
                 style={{
@@ -284,9 +263,7 @@ const Programs = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.headerBtn}
-              onPress={() => {
-                _resetPrograms();
-              }}>
+              onPress={() => resetPrograms()}>
               <FastImage
                 style={{
                   width: widthPercentageToDP(10),
@@ -327,9 +304,9 @@ const Programs = () => {
                     onActivated={() => { }}
                     onBegan={() => { }}
                     onCancelled={() => { }}
-                    onSwipeableOpen={(data) => {deleteItem(item?.activityId, index)}}
+                    onSwipeableOpen={(data) => { deleteItem(item?.activityId, index) }}
                     onFailed={() => { }}
-                    
+
                     renderLeftActions={renderLeftActions} // Render left actions
                     renderRightActions={renderRightActions} // Render right actions
                     onSwipeableClose={() => { }}
@@ -343,7 +320,6 @@ const Programs = () => {
                   //onSwipeableOpen={closeRow(index)}
                   //leftThreshold={80}
                   >
-
                     <SingleFolderView
                       image={getImage(item?.type, item?.name)}
                       onPress={() => onPressTab(item)}

@@ -1,9 +1,8 @@
 import { useFocusEffect } from "@react-navigation/native"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllExams } from "../../Redux/actions/exam-action"
 import { navigate } from "../../navigation/navigation_service"
-import Orientation from "react-native-orientation-locker"
 
 export default () => {
     const dispatch = useDispatch()
@@ -30,7 +29,6 @@ export default () => {
 
 
     useFocusEffect(useCallback(() => {
-        Orientation.lockToPortrait()
         getAllExamsData('no', null)
     }, []))
 
@@ -47,7 +45,6 @@ export default () => {
             dispatch(dispatchFuncOn())
         } else {
             if (selectedExam?.studentExamStatus === 'end') {
-                Orientation.unlockAllOrientations()
                 navigate('Review', {
                     id: selectedExam?.studentExamRecordId,
                     isImage: isPsicotechnics,

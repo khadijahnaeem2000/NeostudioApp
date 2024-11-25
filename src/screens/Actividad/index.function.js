@@ -1,6 +1,4 @@
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback, useEffect, useState } from "react";
-import Orientation from "react-native-orientation-locker";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserPrograms } from "../../Redux/actions/activity-action";
 import { saveActivityId } from "../../Redux/action";
@@ -14,14 +12,11 @@ export default () => {
     const [pageSelected, setPageSelected] = useState(0);
     const [counter, setCounter] = useState(0);
 
-    useFocusEffect(useCallback(() => { Orientation.lockToPortrait() }, []))
-
     const getUserProgramsData = () => {
         const apiData = {
             studentType: login?.data?.type,
         }
         dispatch(getUserPrograms(apiData))
-
     }
 
     useEffect(() => {
@@ -34,8 +29,6 @@ export default () => {
             setCounter(user_programs?.length - 1);
         }
     }, [user_programs]);
-
-
 
     const buttonControl = type => {
         const count = user_programs?.length - 1;
@@ -55,7 +48,6 @@ export default () => {
     };
 
     const onPressButton = () => {
-        Orientation.unlockAllOrientations();
         dispatch(
             saveActivityId(
                 user_programs?.[pageSelected]?.id,

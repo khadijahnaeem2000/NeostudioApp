@@ -14,8 +14,6 @@ const VideoDetails = ({ route }) => {
         onPressTab
     } = VideoDetailsFunctional({ id })
 
-    console.log("video_files", video_files?.[0])
-
     return (
         <Container title="VÍDEOS">
 

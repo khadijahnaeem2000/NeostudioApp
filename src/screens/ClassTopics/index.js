@@ -29,10 +29,10 @@ const ClassTopics = ({ route }) => {
                 ListFooterComponent={<SizedBox height={SIZES.padding * 2} />}
                 renderItem={({ item }) => (
                     <SingleFolderView
-                    image={images.video_icon_image}
+                        image={images.video_icon_image}
                         onPress={() => {
                             Orientation.unlockAllOrientations()
-                            navigate("TestVideo", {
+                            navigate("VideoPlayer", {
                                 url: item?.material,
                                 vimeoLink: item?.vimeolink,
                                 id: login?.data?.id,

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   View,
-  TouchableOpacity,
-  ActivityIndicator,
   PermissionsAndroid,
   ScrollView,
   Platform,
@@ -13,14 +11,11 @@ import {
   dispatchText,
 } from '../../Redux/action';
 import { connect } from 'react-redux';
-import Header from '../../Component/Header';
 import { styles } from './styles';
-import Files from './Files';
 import RNFetchBlob from 'react-native-blob-util';
-import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component';
-import { images, SIZES } from '../../constant';
+import { images } from '../../constant';
 
 class FolderFiles extends React.Component {
   constructor(props) {
