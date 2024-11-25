@@ -179,9 +179,9 @@ const Programs = () => {
         title: !item.name ? item.title : item.name,
         url: 'http://neoestudio.net/' + item.material,
       });
-      navigate('AudioActivity', {
-        data: data,
-      });
+      // navigate('AudioActivity', {
+      //   data: data,
+      // });
     } else {
       updateCompleteActivites(login?.data?.id, item.activityId);
       setPage(1);

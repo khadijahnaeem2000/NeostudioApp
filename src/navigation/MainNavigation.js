@@ -1,4 +1,3 @@
-import Home from '../screens/Home';
 import Login from '../screens/Login';
 import OTP from '../screens/Login/OTP';
 import DownUpload from '../screens/Download';
@@ -25,7 +24,6 @@ import ActiveBattle from '../screens/Battle/ActiveBattle';
 import Actividad from '../screens/Actividad';
 import Activity from '../screens/Actividad/Activity';
 import BattleTest from '../screens/BattleTest';
-import AudioActivity from '../screens/Actividad/AudioActivity';
 import Settings from '../screens/Settings';
 import MobileVerification from '../screens/Login/MobileVerification';
 import React from "react";
@@ -41,7 +39,6 @@ const MainNavigation = () => {
       initialRouteName="HomePage"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="AI" component={AI} />
       <Stack.Screen options={{ orientation: "portrait" }} name="Temario" component={Temario} />
@@ -59,7 +56,6 @@ const MainNavigation = () => {
       <Stack.Screen options={{ orientation: "portrait" }} name="Exams" component={Exams} />
       <Stack.Screen options={{ orientation: "portrait" }} name="Actividad" component={Actividad} />
       <Stack.Screen options={{ orientation: "portrait" }} name="Activity" component={Activity} />
-      <Stack.Screen name="AudioActivity" component={AudioActivity} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="OTP" component={OTP} />
       <Stack.Screen name="MobileVerification" component={MobileVerification} />

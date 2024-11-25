@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -17,7 +17,8 @@ import RNFetchBlob from 'react-native-blob-util';
 //import AudioProgress from './audprogress'
 //import TrackPlayer, { STATE_PLAYING } from 'react-native-track-player';
 import FastImage from 'react-native-fast-image';
-import {fonts} from '../../utils';
+import { fonts } from '../../utils';
+import { images } from '../../constant';
 
 class ChatItems extends Component {
   async iosDownload(fileUrl) {
@@ -43,7 +44,7 @@ class ChatItems extends Component {
         RNFetchBlob.fs.writeFile(dirs, res.data, 'base64');
         RNFetchBlob.ios.previewDocument(dirs);
       })
-      .catch(error => {});
+      .catch(error => { });
   }
 
   download(fileUrl) {
@@ -51,7 +52,7 @@ class ChatItems extends Component {
     var url = fileUrl;
     var ext = this.extention(url);
     ext = '.' + ext[0];
-    const {config, fs} = RNFetchBlob;
+    const { config, fs } = RNFetchBlob;
     let DownloadDir = fs.dirs.DownloadDir;
     let options = {
       fileCache: true,
@@ -115,7 +116,7 @@ class ChatItems extends Component {
 
     if (type === 'student') {
       return (
-        <View style={{flex: 0, alignItems: 'center'}}>
+        <View style={{ flex: 0, alignItems: 'center' }}>
           {isClose === 'opened' && (
             <View
               style={{
@@ -162,8 +163,8 @@ class ChatItems extends Component {
               marginRight: widthPercentageToDP(1),
               borderRadius: widthPercentageToDP(1.5),
             }}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
             colors={['#659ece', '#80b6dc']}>
             {message ? (
               <Text
@@ -216,8 +217,8 @@ class ChatItems extends Component {
                 <FastImage
                   source={
                     play
-                      ? require('../AudioClass/assets/pause.png')
-                      : require('../AudioClass/assets/play.png')
+                      ? images.audio_pause_image
+                      : images.audio_play_image
                   }
                   style={{
                     width: widthPercentageToDP(10),
@@ -269,7 +270,7 @@ class ChatItems extends Component {
       );
     } else if (type === 'teacher') {
       return (
-        <View style={{flex: 0, alignItems: 'center'}}>
+        <View style={{ flex: 0, alignItems: 'center' }}>
           {isClose === 'opened' && (
             <View
               style={{
@@ -315,8 +316,8 @@ class ChatItems extends Component {
               marginBottom: widthPercentageToDP(3),
               borderRadius: widthPercentageToDP(1.5),
             }}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
             colors={['#cacaca', '#e9e9e9']}>
             {message ? (
               <Text
@@ -369,8 +370,8 @@ class ChatItems extends Component {
                 <FastImage
                   source={
                     play
-                      ? require('../AudioClass/assets/pause.png')
-                      : require('../AudioClass/assets/play.png')
+                      ? images.audio_pause_image
+                      : images.audio_play_image
                   }
                   style={{
                     width: widthPercentageToDP(10),

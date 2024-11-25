@@ -13,8 +13,7 @@ const NewBattle = (props) => {
             <View style={styles.profileView}>
                 {!props.userImage ?
                     <FastImage
-                        // source={require('../../screens/Home/assets/Photo_or_avatar.png')}
-                        source={images.activities_image}
+                        source={images.avatar}
                         style={styles.profleImg}
                         resizeMode={FastImage.resizeMode.cover}
                     />

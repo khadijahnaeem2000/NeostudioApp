@@ -67,6 +67,7 @@ import modal_background_image from "../assets/images/modal_background_image.png"
 import btn_background_image from "../assets/images/btn_background_image.png"
 import repaso_small_image from "../assets/images/repaso_small_image.png"
 import ranking_main_image from "../assets/images/ranking_main_image.png"
+import novedades_image from "../assets/images/novedades_image.png"
 
 
 export default {
@@ -138,5 +139,6 @@ export default {
     modal_background_image,
     btn_background_image,
     repaso_small_image,
-    ranking_main_image
+    ranking_main_image,
+    novedades_image
 };

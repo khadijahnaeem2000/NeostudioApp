@@ -14,6 +14,7 @@ import {
   import AntDesign from 'react-native-vector-icons/AntDesign';
 import { heightPercentageToDP, widthPercentageToDP } from '../../../Component/MakeMeResponsive';
 import { fonts } from '../../../utils';
+import { images } from '../../../constant';
 
   
   const RegisterModal = ({ visible, onPressClose, onPressButton, data }) => {
@@ -110,7 +111,7 @@ import { fonts } from '../../../utils';
             <Image
               style={{ height: 50, width: '60%', alignSelf: 'center' }}
               resizeMode="contain"
-              source={require('../../Images/veoestudio.png')}
+              source={images.logo}
             />
             <Text
               style={{

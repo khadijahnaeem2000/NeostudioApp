@@ -43,7 +43,7 @@ import {
 } from '../../Component/MakeMeResponsive';
 import DeviceInfo from 'react-native-device-info';
 import { resetNavigationStack } from '../../navigation/navigation_service';
-import { COLORS } from '../../constant';
+import { COLORS, images } from '../../constant';
 
 class Test extends Component {
   constructor(props) {
@@ -211,7 +211,7 @@ class Test extends Component {
                   );
               }}>
               <FastImage
-                source={require('../AudioClass/assets/pause.png')}
+                source={images.audio_pause_image}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={[
                   styles.btnImage,

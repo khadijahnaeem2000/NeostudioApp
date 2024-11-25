@@ -21,6 +21,7 @@ import SurveyItems from './SurveyItem';
 import {data} from './data';
 import Orientation from 'react-native-orientation-locker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { images } from '../../constant';
 
 class SurveyQuestion extends React.Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class SurveyQuestion extends React.Component {
     return (
       <FastImage
         style={styles.container}
-        source={require('../Exames/assets/back3.png')}
+        source={images.audio_back_image}
         resizeMode={FastImage.resizeMode.stretch}>
         <FastImage
           style={styles.logo}

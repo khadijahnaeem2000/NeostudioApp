@@ -27,6 +27,7 @@ import TrackPlayer, { STATE_PLAYING } from 'react-native-track-player';
 import Constants from './Constants';
 //import {AudioPlayer, AudioRecorder} from 'react-native-audio-player-recorder';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
+import { images } from '../../constant';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class Chat extends React.Component {
       album: 'while(1<2)',
       genre: 'Progressive House, Electro House',
       date: '2014-05-20T07:00:00+00:00', // RFC 3339
-      // artwork: require('../Home/assets/novedades.png'),
+      artwork: images.novedades_image,
     });
     TrackPlayer.stop();
     TrackPlayer.play();
@@ -186,7 +187,7 @@ class Chat extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });

@@ -1,25 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   FlatList,
   ActivityIndicator,
-  TextInput,
   Platform,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {styles} from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
 import Header from '../../Component/Header';
-import ProfileBox from '../../Component/ProfileBox';
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
 } from '../../Component/MakeMeResponsive';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import LinearGradient from 'react-native-linear-gradient';
-import {fonts} from '../../utils';
 
 const Profile = props => {
   const dispatch = useDispatch();
@@ -147,18 +140,10 @@ const Profile = props => {
               onEndReachedThreshold={0.2}
               onEndReached={() => loadMoreData()}
               showsVerticalScrollIndicator={false}
-              renderItem={({item, index}) => {
+              renderItem={({ item, index }) => {
                 return (
-                  <ProfileBox
-                    profileImage={item.photo}
-                    username={item.userName}
-                    experience={parseFloat(item?.time).toFixed(2)}
-                    aptos={item.aptos}
-                    puntos={item.points}
-                    percentage={item.percentage}
-                    rankImage={item.rank_image}
-                    rankName={item.rank_name}
-                  />
+                  <Text   >Hello</Text>
+                  
                 );
               }}
             />
@@ -178,18 +163,9 @@ const Profile = props => {
               data={searchData}
               keyExtractor={(item, index) => 'unique' + index}
               showsVerticalScrollIndicator={false}
-              renderItem={({item, index}) => {
+              renderItem={({ item, index }) => {
                 return (
-                  <ProfileBox
-                    profileImage={item.photo}
-                    username={item.userName}
-                    experience={item.experience}
-                    aptos={item.aptos}
-                    puntos={item.points}
-                    percentage={item.percentage}
-                    rankImage={item.rank_image}
-                    rankName={item.rank_name}
-                  />
+                  <Text   >Hello</Text>
                 );
               }}
             />
