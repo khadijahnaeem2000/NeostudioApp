@@ -101,7 +101,7 @@ import { images } from '../../../constant';
           <ImageBackground
             style={styles.sub_view}
             imageStyle={{ height: '100%', width: '100%' }}
-            source={require('./assets/registerPopupBack.jpeg')}>
+            source={images.register_modal_background_image}>
             <TouchableOpacity
               activeOpacity={0.6}
               onPress={onPressClose}

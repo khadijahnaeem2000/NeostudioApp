@@ -1,110 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
-  ImageBackground,
   ScrollView,
-  ActivityIndicator,
-  Platform,
+  FlatList,
 } from 'react-native';
-import {connect} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getSurveyList,
   getSurveyListQuestions,
-  dispatchFunc,
 } from '../../Redux/action';
-import {styles} from './styles';
-import FastImage from 'react-native-fast-image';
-import Header from '../../Component/Header';
-import Directory from '../../Component/Directory';
-import Orientation from 'react-native-orientation-locker';
-import DialogBox from '../../Component/DailogBox';
+import { styles } from './styles';
+import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component';
+import { images } from '../../constant';
 
-class Survey extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+const Survey = () => {
+  const dispatch = useDispatch()
 
-    this.getData();
-  }
+  const { login, surveyItems, AuthLoading } = useSelector(state => state.user)
 
-  getData = () => {
-    const {login} = this.props.user;
-    this.props.getSurveyList(login?.data?.type, login?.data?.id);
-  };
-  componentDidMount() {
-    this.focusListener = this.props.navigation.addListener('focus', () => {
-      const locked = Orientation.isLocked();
-      if (!locked) {
-        Orientation.lockToPortrait();
-      }  else {
-        Orientation.lockToPortrait();
-      }
-    });
-  }
+  useEffect(() => {
+    dispatch(getSurveyList(login?.data?.type, login?.data?.id))
+  }, [])
 
-  render() {
-    const {surveyItems, AuthLoading, login} = this.props.user;
-    const {isDialogOpen, errorMessage} = this.props.dialog;
-    return (
-      <FastImage
-        style={styles.container}
-        source={require('../../Images/bg.png')}
-        resizeMode={FastImage.resizeMode.stretch}>
-        <FastImage
-          style={styles.logo}
-          source={
-            Platform.OS === 'android'
-              ? require('../../Images/veoestudio.png')
-              : require('../../Images/ios_logo.png')
-          }
-          resizeMode={FastImage.resizeMode.contain}
-        />
-        <Header
-          iconName="left"
-          leftClick={() => this.props.navigation.goBack()}
-          title={'Encuestas'}
-        />
-        <View style={styles.directoryView}>
-          <ScrollView contentContainerStyle={{flexGrow: 1}}>
-            {!surveyItems ? (
-              <View />
-            ) : (
-              surveyItems.data.map((item, index) => {
-                return (
-                  <Directory
-                    key={'unique' + index}
-                    img={require('../../Images/personality2.png')}
-                    title={item.name}
-                    isActive={item.isActive}
-                    status="Habilitado"
-                    clickHandler={() => (
-                      Orientation.unlockAllOrientations(),
-                      this.props.getSurveyListQuestions(
-                        item.id,
-                        true,
-                        login?.data?.id,
-                      )
-                    )}
-                  />
-                );
-              })
+  return (
+    <Container title={"Encuestas"} >
+      <FlatList
+        ListFooterComponent={<SizedBox />}
+        data={surveyItems}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, index }) => (
+          <SingleFolderView
+            key={'unique' + index}
+            image={images.complete_exam}
+            title={item?.name}
+            isActive={item?.isActive}
+            status="Habilitado"
+            onPress={() => (
+              dispatch(getSurveyListQuestions(
+                item.id,
+                true,
+                login?.data?.id,
+              ))
             )}
-          </ScrollView>
-        </View>
-        {AuthLoading && (
-          <ActivityIndicator size="large" color="#000" style={styles.loading} />
+          />
         )}
-      </FastImage>
-    );
-  }
+      />
+
+      <LoaderModal visible={AuthLoading} />
+    </Container>
+  );
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-  dialog: state.dialog,
-});
-export default connect(mapStateToProps, {
-  getSurveyList,
-  getSurveyListQuestions,
-  dispatchFunc,
-})(Survey);
+export default Survey

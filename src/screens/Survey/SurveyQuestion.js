@@ -2,10 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  ScrollView,
   ActivityIndicator,
   TouchableOpacity,
-  KeyboardAvoidingView,
   Platform,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -18,7 +16,6 @@ import {styles} from './styles';
 import FastImage from 'react-native-fast-image';
 import Header from '../../Component/Header';
 import SurveyItems from './SurveyItem';
-import {data} from './data';
 import Orientation from 'react-native-orientation-locker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { images } from '../../constant';
@@ -36,7 +33,6 @@ class SurveyQuestion extends React.Component {
   getData = () => {
     const {login} = this.props.user;
     const id = this.props.route.params.id ||  '1'  
-    console.log('survey_id', id);
     this.props.getSurveyListQuestions(id, false, login?.data?.id);
   };
 

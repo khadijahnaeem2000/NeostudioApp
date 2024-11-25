@@ -3,20 +3,19 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  ScrollView,
   FlatList,
   ActivityIndicator,
   Platform,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {styles} from './styles';
+import { connect } from 'react-redux';
+import { styles } from './styles';
 import FastImage from 'react-native-fast-image';
 import Header from '../../Component/Header';
-import Directory from '../../Component/Directory';
 import Orientation from 'react-native-orientation-locker';
 import QuesAnswer from './AnswerQuestion';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DeviceInfo from 'react-native-device-info';
+import { SingleFolderView } from '../../Component';
 
 class FAQS extends React.Component {
   constructor(props) {
@@ -31,8 +30,8 @@ class FAQS extends React.Component {
   }
 
   getData = string => {
-    const {login} = this.props.user;
-    this.setState({isLoading: true});
+    const { login } = this.props.user;
+    this.setState({ isLoading: true });
     fetch('https://neoestudio.net/api/getFaqFolders', {
       method: 'POST',
       headers: {
@@ -63,11 +62,11 @@ class FAQS extends React.Component {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
-      }  else {
+      } else {
         Orientation.lockToPortrait();
       }
     });
-    const {login} = this.props.user;
+    const { login } = this.props.user;
     return fetch('https://neoestudio.net/api/getFaqFolders', {
       method: 'POST',
       headers: {
@@ -115,7 +114,7 @@ class FAQS extends React.Component {
   }
 
   render() {
-    const {faqFolders, AuthLoading} = this.props.user;
+    const { faqFolders, AuthLoading } = this.props.user;
     return (
       <FastImage
         style={styles.container}
@@ -149,14 +148,14 @@ class FAQS extends React.Component {
               autoCapitalize="none"
               keyboardType="email-address"
               value={this.state.text}
-              onChangeText={text => this.setState({text: text})}
+              onChangeText={text => this.setState({ text: text })}
             />
 
             {this.state.text !== '' ? (
               <TouchableOpacity
                 style={styles.clearBtn}
                 onPress={() => {
-                  this.setState({text: ''});
+                  this.setState({ text: '' });
                   this.getData('');
                 }}>
                 <Icon name="clear" size={25} color="#000" />
@@ -182,14 +181,13 @@ class FAQS extends React.Component {
               <FlatList
                 data={this.state.dataSource}
                 enableEmptySections={true}
-                contentContainerStyle={{flexGrow: 1}}
+                contentContainerStyle={{ flexGrow: 1 }}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => (
-                  <Directory
-                    img={require('../../Images/directory.png')}
-                    title={item.name}
+                renderItem={({ item }) => (
+                  <SingleFolderView
+                    title={item?.name}
                     status="Habilitado"
-                    clickHandler={() => {
+                    onPress={() => {
                       this.props.navigation.navigate('FAQSDetail', {
                         id: item.id,
                       });
@@ -202,7 +200,7 @@ class FAQS extends React.Component {
                 data={this.state.dataSource}
                 enableEmptySections={true}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                   <QuesAnswer
                     img={require('../../Images/directory.png')}
                     question={item.question1}

@@ -1097,7 +1097,6 @@ export const getSurveyListQuestions = (id, isFirst, stdId) => {
         if (json.status === 'Successfull') {
           if (isFirst) {
             dispatch(setSurveyList({ surveyQuestion: json }))
-
             navigate('SurveyQuestion', {
               id: id,
             });
