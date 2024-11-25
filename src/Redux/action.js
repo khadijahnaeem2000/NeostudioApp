@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
 import { onClearState, onLogoutUser, setActivityId, setAllChats, setAllExams, setAllNotifications, setAudioFile, setAuthLoading, setBattleQuestions, setCalendarDates, setChatCount, setDownloadFiles, setDownloadFolder, setExamStart, setLoginData, setNewsCount, setNewsItems, setNotiToggle, setObjective, setObjectiveRanking, setOrientationCheck, setPdfFile, setPdfFolder, setPersonalityExam, setRankAvatar, setRejectReason, setReviewDrawer, setReviewExam, setReviewExamList, setReviewRanking, setSurveyList, setToast, setToken, setTopics, setUploadFile, setUploadFolder, setVerticalRanking, setVideoFile } from './slices/user-slice';
 import { setAuthDialog, setErrorMessage } from './slices/dialog-slice';
-import { navigate, resetNavigationStack } from '../navigation/navigation_service';
+import { goBack, navigate, resetNavigationStack } from '../navigation/navigation_service';
 import Orientation from 'react-native-orientation-locker';
 
 
@@ -830,10 +830,11 @@ export const pauseExams = (id, pauseTime, stdID, type) => {
       .then(res => res.json())
       .then(json => {
         dispatch(setAuthLoading(false));
+        console.log("jsonjson", json)
         if (json.status === 'Successfull') {
-          dispatch(clearStates());
+          goBack()
+          dispatch(onClearState());
           dispatch(getExames(stdID, false, type));
-          navigate('HomePage');
         } else {
           dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
           dispatch(setAuthDialog(true))
@@ -841,6 +842,7 @@ export const pauseExams = (id, pauseTime, stdID, type) => {
         }
       })
       .catch(error => {
+        console.log("Errorrrrr", error)
         dispatch(setAuthLoading(false));
         dispatch(setErrorMessage("Algo salió mal. Por favor, vuelva a intentarlo.!"))
         dispatch(setAuthDialog(true))

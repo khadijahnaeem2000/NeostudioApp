@@ -194,15 +194,14 @@ const ResultClass = ({ route, navigation }) => {
               if (type === 'exam') {
                 goBack();
                 goBack();
-                Orientation.lockToPortrait();
               } else if (type === 'reviewExam') {
-                Orientation.unlockAllOrientations(), navigate('Repaso');
+                navigate('Repaso');
               } else if (type === 'personality') {
-                Orientation.unlockAllOrientations(), navigate('Personality');
+                navigate('Personality');
               } else if (type === 'all') {
-                Orientation.unlockAllOrientations(), navigate('Activity');
+                navigate('Activity');
               } else {
-                Orientation.unlockAllOrientations(), navigation.popToTop();
+                navigation.popToTop();
               }
             }}
           />

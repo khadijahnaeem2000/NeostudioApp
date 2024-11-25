@@ -117,7 +117,10 @@ class FolderFiles extends React.Component {
         this.setState({ isOpen: false });
         this.props.dispatchText();
         this.props.dispatchFuncOn();
-      });
+      }).catch(err => {
+        console.log("esajhdbnasdsad", err)
+        this.setState({ isOpen: false });
+      })
   }
 
   extention(filename) {
@@ -143,6 +146,7 @@ class FolderFiles extends React.Component {
       } else {
       }
     } catch (err) {
+
       //console.warn(err);
     }
   };
@@ -151,7 +155,7 @@ class FolderFiles extends React.Component {
     const { downloadFiles, AuthLoading } = this.props.user;
     return (
       <Container title={"Descargas"}
-        // textStyle={{ marginTop: SIZES.padding }}
+      // textStyle={{ marginTop: SIZES.padding }}
       >
 
         {/* <View style={styles.upDownView}>

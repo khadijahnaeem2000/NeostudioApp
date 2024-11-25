@@ -47,6 +47,7 @@ export default () => {
             dispatch(dispatchFuncOn())
         } else {
             if (selectedExam?.studentExamStatus === 'end') {
+                Orientation.unlockAllOrientations()
                 navigate('Review', {
                     id: selectedExam?.studentExamRecordId,
                     isImage: isPsicotechnics,

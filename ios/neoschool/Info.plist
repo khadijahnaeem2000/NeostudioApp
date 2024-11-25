@@ -80,6 +80,12 @@
 		<string>RoundedElegance-Regular.ttf</string>
 		<string>ProximaNova-Regular.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -90,19 +96,14 @@
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscape</string>
+		<string>UIInterfaceOrientationUpsideDown</string>
+		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
-	
 </dict>
 </plist>

@@ -1,23 +1,16 @@
 import React from 'react';
 import {
   View,
-  TouchableOpacity,
-  ActivityIndicator,
   ScrollView,
   PermissionsAndroid,
   Platform,
 } from 'react-native';
 import { getDownload, dispatchFuncOn, dispatchText } from '../../Redux/action';
 import { connect } from 'react-redux';
-import Header from '../../Component/Header';
 import { styles } from './styles';
-import Folder from './Folders';
-import Files from './Files';
 import RNFetchBlob from 'react-native-blob-util';
-import FastImage from 'react-native-fast-image';
 import Orientation from 'react-native-orientation-locker';
 import { Container, LoaderModal, SingleFolderView, SizedBox } from '../../Component';
-import { SIZES } from '../../constant';
 import { navigate } from '../../navigation/navigation_service';
 
 class DownUpload extends React.Component {

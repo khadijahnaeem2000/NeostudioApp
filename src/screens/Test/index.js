@@ -128,13 +128,8 @@ class Test extends Component {
       this._handleAppStateChange,
     );
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      const locked = Orientation.isLocked();
-      console.log("lockeddd", locked)
-      if (!locked) {
+      Orientation.unlockAllOrientations();
         Orientation.lockToLandscape();
-      } else {
-        Orientation.lockToLandscape();
-      }
     });
   }
   componentWillUnmount() {
@@ -179,7 +174,7 @@ class Test extends Component {
     }).start();
   };
   test = () => {
-    Orientation.unlockAllOrientations();
+  
   };
 
 
@@ -193,7 +188,7 @@ class Test extends Component {
 
     return (
       <View
-        style={{ flex: 1 , backgroundColor:COLORS.white }}
+        style={{ flex: 1, backgroundColor: COLORS.white }}
         onLayout={e => {
           this._onLayout(e);
         }}>
@@ -203,13 +198,13 @@ class Test extends Component {
               disabled={examStartData.canPause === 'yes' ? false : true}
               onPress={() => {
                 this.state.netConnected
-                  ? (this.test(),
-                    this.props.pauseExams(
-                      examStartData.studentExamRecordId,
-                      this.state.timer,
-                      login?.data?.id,
-                      login?.data?.type,
-                    ))
+                  ?
+                  this.props.pauseExams(
+                    examStartData.studentExamRecordId,
+                    this.state.timer,
+                    login?.data?.id,
+                    login?.data?.type,
+                  )
                   : Alert.alert(
                     'Connection Failed',
                     'Check your internet connection and try again',

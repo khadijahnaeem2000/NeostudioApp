@@ -5,12 +5,13 @@ import {
 } from '../../Component/MakeMeResponsive';
 import { fonts } from '../../utils';
 import { SIZES } from '../../constant';
+import { isIOS } from '../../constant/theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingHorizontal: SIZES.padding2
+    paddingHorizontal: isIOS ? SIZES.padding * 2 : SIZES.padding
   },
   loading: {
     position: 'absolute',
@@ -130,7 +131,7 @@ export const styles = StyleSheet.create({
     height: SIZES.padding * 3,
   },
   bottomView: {
-    marginBottom: SIZES.padding2 /2,
+    marginBottom: SIZES.padding2 / 2,
     marginTop: SIZES.padding2,
   },
   passFailView: {

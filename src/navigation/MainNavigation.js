@@ -91,9 +91,21 @@ const MainNavigation = () => {
       <Stack.Screen name="FolderFiles" component={FolderFiles} />
       <Stack.Screen name="Upload" component={Upload} />
       <Stack.Screen name="ExamScreen" component={ExamScreen} />
-      <Stack.Screen name="Test" component={Test} />
-      <Stack.Screen name="Result" component={Result} />
-      <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="Test" component={Test}
+        options={{
+          orientation: "landscape"
+        }}
+      />
+      <Stack.Screen name="Result" component={Result}
+        options={{
+          orientation: "landscape",
+        }}
+      />
+      <Stack.Screen name="Review"
+        options={{
+          orientation: "landscape",
+        }}
+        component={Review} />
       <Stack.Screen name="FAQ" component={FAQ} />
       <Stack.Screen name="FAQSDetail" component={FAQSDetail} />
       <Stack.Screen name="Personality" component={Personality} />

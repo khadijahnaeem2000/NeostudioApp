@@ -45,7 +45,7 @@ const ModalBox = ({
           <View style={styles.bottomView}>
             <Button
               style={styles.btnImage}
-              title={'Si'}
+              title={'Sí'}
               onPress={yesClick}
             />
             <Button

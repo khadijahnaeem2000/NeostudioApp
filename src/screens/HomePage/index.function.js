@@ -79,12 +79,12 @@ export default () => {
         }
     }
     const refreshAppData = async () => {
-        const token = await requestUserPermission()
-        checkAppVersion()
-        if (login?.data?.type === 'Prueba') {
-            setShowPruebaModal(true)
-        }
         try {
+            const token = await requestUserPermission()
+            checkAppVersion()
+            if (login?.data?.type === 'Prueba') {
+                setShowPruebaModal(true)
+            }
             if (login?.data?.IsBlocked === "False" || !login?.data?.IsBlocked) {
                 if (isIOS) {
                     fetchReceipt();
@@ -196,7 +196,6 @@ export default () => {
         if (type === 'exams') {
             updateUserRankPoint("Yes", "No", "normal_points", login?.data?.id)
             navigate("Exams")
-
         }
 
         if (type === 'repaso') {
@@ -272,9 +271,6 @@ export default () => {
     };
 
     const handlePostImage = async (type, image) => {
-        // setTimeout(() => {
-        //     setIsLoading(true)
-        // }, 1000);
         try {
             if (type === "gallery") {
                 await storeGalleryImage(login?.data?.id, image);
@@ -309,9 +305,6 @@ export default () => {
             })
             .catch((error) => { });
     };
-
-
-
 
     return {
         showVersionModal,

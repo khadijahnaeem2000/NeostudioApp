@@ -50,7 +50,6 @@ const MainApp = () => {
   };
 
   useEffect(() => {
-    test()
     getFcmToken()
     notificationListener(dispatch);
     startTimer(); // Start the timer on mount
