@@ -565,16 +565,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = neoschool/neoschool.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8M5Z6K4LRG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = neoschool/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Neostudio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 29.3.1;
+				MARKETING_VERSION = 29.3.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -598,15 +599,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = neoschool/neoschool.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8M5Z6K4LRG;
 				INFOPLIST_FILE = neoschool/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Neostudio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 29.3.1;
+				MARKETING_VERSION = 29.3.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

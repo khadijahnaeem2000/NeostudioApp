@@ -258,7 +258,7 @@ const CreateBattle = () => {
             style={[
               styles.box,
               {
-                backgroundColor: 'white',
+                backgroundColor: 'black',
                 //marginRight: widthPercentageToDP(2),
               },
             ]}>

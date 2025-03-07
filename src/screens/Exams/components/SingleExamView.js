@@ -1,11 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import DeviceInfo from 'react-native-device-info'
 import { COLORS, SIZES } from '../../../constant'
 import { widthPercentageToDP } from '../../../Component/MakeMeResponsive'
 import { fonts } from '../../../utils'
 import { SingleExamText } from './index'
 
 const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
+    const isTablet = DeviceInfo.isTablet();
     return (
         <View style={styles.main_view} >
             <Text style={styles.heading} >{item?.folderName}</Text>
@@ -22,6 +24,11 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                                 onPress={() => onPress(val, false, false)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
+                                lineHeight={isTablet ? 0 : 25}
+                                fontSize={
+                                    isTablet ?  widthPercentageToDP(3) : 
+                                    widthPercentageToDP(4.5)
+                                }
                             />
                         ))
                     }
@@ -35,6 +42,11 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                                 onPress={() => onPress(val, false, true)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
+                                lineHeight={isTablet ? 0 : 25}
+                                fontSize={
+                                    isTablet ?  widthPercentageToDP(3) : 
+                                    widthPercentageToDP(4.5)
+                                }
                             />
                         ))
                     }
@@ -49,6 +61,11 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                                 onPress={() => onPress(val, true, false)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
+                                lineHeight={isTablet ? 0 : 25}
+                                fontSize={
+                                    isTablet ?  widthPercentageToDP(3) : 
+                                    widthPercentageToDP(4.5)
+                                }
                             />
                         ))
                     }
@@ -62,6 +79,11 @@ const SingleExamView = ({ item, onLongPress, onPress, selectedExam }) => {
                                 onPress={() => onPress(val, false, true)}
                                 item={val}
                                 isActive={val?.id === selectedExam?.id}
+                                lineHeight={isTablet ? 0 : 25}
+                                fontSize={
+                                    isTablet ?  widthPercentageToDP(3) : 
+                                    widthPercentageToDP(4.5)
+                                }
                             />
                         ))
                     }

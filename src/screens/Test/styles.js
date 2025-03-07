@@ -78,6 +78,11 @@ export const styles = StyleSheet.create({
     height: widthPercentageToDP(10),
     marginLeft: widthPercentageToDP(1),
   },
+  btnTimerPlayer: {
+    width: widthPercentageToDP(8),
+    height: widthPercentageToDP(8),
+    marginLeft: widthPercentageToDP(1),
+  },
   btnImage2: {
     width: widthPercentageToDP(9),
     height: widthPercentageToDP(9),

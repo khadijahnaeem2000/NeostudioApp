@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   StatusBar,
@@ -13,32 +13,32 @@ import {
   Modal,
   Image,
   TextInput,
-} from 'react-native';
-import { connect } from 'react-redux';
+} from "react-native";
+import { connect } from "react-redux";
 import {
   reviewAllExams,
   getReviewRanking,
   endReviewExam,
   getRejectReason,
   updateRejectReason,
-} from '../../Redux/action';
-import Orientation from 'react-native-orientation-locker';
-import { styles } from './styles';
-import ExamLayout from './PaperLayout';
-import BottomLayout from './BottomLayout';
-import PagerView from 'react-native-pager-view';
-import NetInfo from '@react-native-community/netinfo';
-import ImageExam from './ImageExamsLayout';
-import FastImage from 'react-native-fast-image';
-import Icon1 from 'react-native-vector-icons/Feather';
-import Icon2 from 'react-native-vector-icons/AntDesign';
+} from "../../Redux/action";
+import Orientation from "react-native-orientation-locker";
+import { styles } from "./styles";
+import ExamLayout from "./PaperLayout";
+import BottomLayout from "./BottomLayout";
+import PagerView from "react-native-pager-view";
+import NetInfo from "@react-native-community/netinfo";
+import ImageExam from "./ImageExamsLayout";
+import FastImage from "react-native-fast-image";
+import Icon1 from "react-native-vector-icons/Feather";
+import Icon2 from "react-native-vector-icons/AntDesign";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
-} from '../../Component/MakeMeResponsive';
-import DeviceInfo from 'react-native-device-info';
-import LinearGradient from 'react-native-linear-gradient';
-import { images } from '../../constant';
+} from "../../Component/MakeMeResponsive";
+import DeviceInfo from "react-native-device-info";
+import LinearGradient from "react-native-linear-gradient";
+import { COLORS, images } from "../../constant";
 
 class Review extends Component {
   constructor(props) {
@@ -51,14 +51,14 @@ class Review extends Component {
       animationsAreEnabled: true,
       page: 0,
       appState: AppState.currentState,
-      timer: '0',
+      timer: "0",
       netConnected: true,
       pageSelected: 0,
-      currentImage: '',
-      modalVisible: '',
+      currentImage: "",
+      modalVisible: "",
       isRejected: false,
       myOption: 0,
-      reason: '',
+      reason: "",
     };
     this.getData();
     this.viewPager = React.createRef();
@@ -69,11 +69,11 @@ class Review extends Component {
   };
 
   getData = async () => {
-    const examsID = this.props.route.params.id || '1'
-    this.props.reviewAllExams(examsID, DeviceInfo.isTablet() ? 'yes' : null);
+    const examsID = this.props.route.params.id || "1";
+    this.props.reviewAllExams(examsID, DeviceInfo.isTablet() ? "yes" : null);
     this.props.getRejectReason();
   };
-  _onLayout = e => {
+  _onLayout = (e) => {
     let width = e.nativeEvent.layout.width;
     let height = e.nativeEvent.layout.height;
     this.setState({
@@ -88,73 +88,72 @@ class Review extends Component {
     this.unsubscribeNetInfo = NetInfo.addEventListener(
       ({ isConnected, isInternetReachable, type }) => {
         this.setState({ netConnected: isConnected });
-      },
+      }
     );
     StatusBar.setHidden(true);
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this.appStateSubscription = AppState.addEventListener(
-      'change',
-      this._handleAppStateChange,
+      "change",
+      this._handleAppStateChange
     );
-    this.focusListener = this.props.navigation.addListener('focus', () => {
+    this.focusListener = this.props.navigation.addListener("focus", () => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToLandscape();
       } else {
-        Orientation.lockToLandscape()
+        Orientation.lockToLandscape();
       }
     });
   }
   componentWillUnmount() {
-    this.test()
+    this.test();
     this.unsubscribeNetInfo();
     StatusBar.setHidden(false);
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     this.appStateSubscription.remove();
   }
   test = () => {
     Orientation.unlockAllOrientations();
   };
-  _handleAppStateChange = nextAppState => {
-    const examsID = this.props.route.params.id || '1'
+  _handleAppStateChange = (nextAppState) => {
+    const examsID = this.props.route.params.id || "1";
     this.setState({ appState: nextAppState }, () => {
-      if (nextAppState === 'background') {
+      if (nextAppState === "background") {
         this.props.endReviewExam(examsID);
       } else {
         this.props.reviewAllExams(
           examsID,
-          DeviceInfo.isTablet() ? 'yes' : null,
+          DeviceInfo.isTablet() ? "yes" : null
         );
       }
     });
   };
   handleBackButton = () => {
-
-    const examsID = this.props.route.params.id || "1"
-    const type = this.props.route.params.type || 'exam'
+    const examsID = this.props.route.params.id || "1";
+    const type = this.props.route.params.type || "exam";
 
     this.props.endReviewExam(examsID);
-    if (type === 'exam') {
+    if (type === "exam") {
       this.test(),
-        this.props.navigation.navigate('HomePage', {
-          isRefresh: 'true',
+        this.props.navigation.navigate("HomePage", {
+          isRefresh: "true",
         });
-    } else if (type === 'reviewExam') {
-      this.test(), this.props.navigation.navigate('Repaso');
-    } else if (type === 'personality') {
-      this.test(), this.props.navigation.navigate('Personality');
-    } else if (type === 'all') {
-      this.test(), this.props.navigation.navigate('Activity');
+    } else if (type === "reviewExam") {
+      this.test(), this.props.navigation.navigate("Repaso");
+    } else if (type === "personality") {
+      this.test(), this.props.navigation.navigate("Personality");
+    } else if (type === "all") {
+      this.test(), this.props.navigation.navigate("Activity");
     } else {
       this.test(), this.props.navigation.popToTop();
     }
     return true;
   };
-  move = number => {
+  move = (number) => {
     const page = this.state.page + number;
     this.go(page);
   };
-  go = number => {
+  go = (number) => {
     if (this.state.animationsAreEnabled) {
       /* $FlowFixMe we need to update flow to support React.Ref and createRef() */
       this.viewPager.current.setPage(number);
@@ -165,46 +164,40 @@ class Review extends Component {
   };
 
   render() {
-    const {
-      reviewAll,
-      AuthLoading,
-      login,
-      reviewDrawer,
-      rejectReason,
-    } = this.props.user;
-    const {
-      errorMessage
-    } = this.props.dialog;
-
-    const isPsico = this.props.route.params.isImage || 'false'
-    const type = this.props.route.params.type || 'exam'
-    const isRepasoImage = this.props.route.params.isRepasoImage || false
+    const { reviewAll, AuthLoading, login, reviewDrawer, rejectReason } =
+      this.props.user;
+    const { errorMessage } = this.props.dialog;
+    const isTablet = DeviceInfo.isTablet();
+    const isPsico = this.props.route.params.isImage || "false";
+    const type = this.props.route.params.type || "exam";
+    const isRepasoImage = this.props.route.params.isRepasoImage || false;
 
     const { myOption } = this.state;
     return (
-      <View
-        style={styles.container}  >
+      <View style={styles.container}>
         <View style={styles.topView}>
           <View style={[styles.playPauseView]}>
             <TouchableOpacity
               style={[
                 {
                   width: 40,
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  justifyContent: "center",
+                  alignItems: "center",
                 },
               ]}
               onPress={() => {
-                this.setState({ modalVisible: 'modalVisible' });
-              }}>
+                this.setState({ modalVisible: "modalVisible" });
+              }}
+            >
               <Icon1 name="menu" color="#000" size={25} />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                this.setState({ modalVisible: 'isRejected' });
-              }}>
+                this.setState({ modalVisible: "isRejected" });
+              }}
+            >
               <FastImage
-                source={require('../../Images/block.png')}
+                source={require("../../Images/block.png")}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={styles.btnImage}
               />
@@ -220,234 +213,235 @@ class Review extends Component {
           style={styles.middleView}
           initialPage={0}
           setPage={this.state.currentPage}
-          onPageSelected={e =>
+          onPageSelected={(e) =>
             this.setState({ pageSelected: e.nativeEvent.position })
           }
-          ref={this.viewPager}>
-          {
-            reviewAll?.data?.length > 0 ?
-              reviewAll.data.map((item, index) => (
-                <>
-                  {
-                    isPsico === true ?
-                      <ImageExam
-                        key={'unique' + index}
-                        isAttempt={item.studentAnswered === null ? false : true}
-                        isOption1={item.studentAnswered}
-                        imgURL={item.image}
-                        option1={item.answer1}
-                        option2={item.answer2}
-                        option3={item.answer3}
-                        option4={item.answer4}
-                        question={item.question}
-                        correct={item.correct}
-                        description={item.description}
-                        clickHandler1={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              null,
-                              item.id,
-                              'answer1',
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler2={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              null,
-                              item.id,
-                              'answer2',
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler3={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              null,
-                              item.id,
-                              'answer3',
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler4={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              null,
-                              item.id,
-                              'answer4',
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        ModalClick={() =>
-                          this.setState({ currentImage: item.image }, () =>
-                            this.setState({ isOpen: true }),
+          ref={this.viewPager}
+        >
+          {reviewAll?.data?.length > 0 ? (
+            reviewAll.data.map((item, index) => (
+              <>
+                {isPsico === true ? (
+                  <ImageExam
+                    key={"unique" + index}
+                    isAttempt={item.studentAnswered === null ? false : true}
+                    isOption1={item.studentAnswered}
+                    imgURL={item.image}
+                    option1={item.answer1}
+                    option2={item.answer2}
+                    option3={item.answer3}
+                    option4={item.answer4}
+                    question={item.question}
+                    correct={item.correct}
+                    description={item.description}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer1"
                           )
-                        }
-                      /> :
-                      type === 'reviewExam' && isRepasoImage ?
-                        <ImageExam
-                          key={'unique' + index}
-                          isAttempt={item.studentAnswered === null ? false : true}
-                          isOption1={item.studentAnswered}
-                          imgURL={item.image}
-                          option1={item.answer1}
-                          option2={item.answer2}
-                          option3={item.answer3}
-                          option4={item.answer4}
-                          question={item.question}
-                          correct={item.correct}
-                          description={item.description}
-                          clickHandler1={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer1',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler2={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer2',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler3={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer3',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler4={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer4',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          ModalClick={() =>
-                            this.setState({ currentImage: item.image }, () =>
-                              this.setState({ isOpen: true }),
-                            )
-                          }
-                        />
-                        :
-                        <ExamLayout
-                          key={'unique' + index}
-                          isAttempt={item.studentAnswered === null ? false : true}
-                          isOption1={item.studentAnswered}
-                          option1={item.answer1}
-                          option2={item.answer2}
-                          option3={item.answer3}
-                          option4={item.answer4}
-                          question={item.question}
-                          correct={item.correct}
-                          description={item.description}
-                          clickHandler1={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer1',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler2={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer2',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler3={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer3',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler4={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                null,
-                                item.id,
-                                'answer4',
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                        />
-                  }
-                </>
-              ))
-              :
-              <View style={{
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer2"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer3"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer4"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    ModalClick={() =>
+                      this.setState({ currentImage: item.image }, () =>
+                        this.setState({ isOpen: true })
+                      )
+                    }
+                  />
+                ) : type === "reviewExam" && isRepasoImage ? (
+                  <ImageExam
+                    key={"unique" + index}
+                    isAttempt={item.studentAnswered === null ? false : true}
+                    isOption1={item.studentAnswered}
+                    imgURL={item.image}
+                    option1={item.answer1}
+                    option2={item.answer2}
+                    option3={item.answer3}
+                    option4={item.answer4}
+                    question={item.question}
+                    correct={item.correct}
+                    description={item.description}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer1"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer2"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer3"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer4"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    ModalClick={() =>
+                      this.setState({ currentImage: item.image }, () =>
+                        this.setState({ isOpen: true })
+                      )
+                    }
+                  />
+                ) : (
+                  <ExamLayout
+                    key={"unique" + index}
+                    isAttempt={item.studentAnswered === null ? false : true}
+                    isOption1={item.studentAnswered}
+                    option1={item.answer1}
+                    option2={item.answer2}
+                    option3={item.answer3}
+                    option4={item.answer4}
+                    question={item.question}
+                    correct={item.correct}
+                    description={item.description}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer1"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer2"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer3"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            null,
+                            item.id,
+                            "answer4"
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                  />
+                )}
+              </>
+            ))
+          ) : (
+            <View
+              style={{
                 flex: 1,
                 justifyContent: "center",
-                alignItems: "center"
-              }}  >
-                <Text style={{ marginTop: -50 }} >{errorMessage}</Text>
-              </View>
-          }
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ marginTop: -50 }}>{errorMessage}</Text>
+            </View>
+          )}
         </PagerView>
         <View style={styles.bottomView}>
           <ScrollView horizontal contentContainerStyle={{ flexGrow: 0 }}>
@@ -457,7 +451,7 @@ class Review extends Component {
               reviewAll?.data.map((item, index) => {
                 return (
                   <BottomLayout
-                    key={'unique' + index}
+                    key={"unique" + index}
                     text={index + 1}
                     isSelected={
                       this.state.pageSelected === index ? true : false
@@ -471,49 +465,49 @@ class Review extends Component {
             )}
           </ScrollView>
         </View>
-        {(AuthLoading || (!reviewAll?.data?.length && errorMessage?.length < 1)) && (
+        {(AuthLoading ||
+          (!reviewAll?.data?.length && errorMessage?.length < 1)) && (
           <ActivityIndicator size="large" color="#000" style={styles.loading} />
         )}
         <Modal
           transparent={true}
-          visible={this.state.modalVisible === 'modalVisible'}
-          supportedOrientations={['portrait', 'landscape']}
-          onRequestClose={() => {
-          }}>
+          visible={this.state.modalVisible === "modalVisible"}
+          supportedOrientations={["portrait", "landscape"]}
+          onRequestClose={() => {}}
+        >
           <View style={styles.modalMain2}>
             <View style={styles.innerModal2}>
               <FastImage
                 source={images.navigation_slider}
                 resizeMode={FastImage.resizeMode.cover}
-                style={styles.navigation}>
+                style={styles.navigation}
+              >
                 <TouchableOpacity
                   style={styles.navigationHeader}
-                  onPress={() => this.setState({ modalVisible: '' })}>
+                  onPress={() => this.setState({ modalVisible: "" })}
+                >
                   <Icon2 name="close" color="#ffff" size={30} />
                 </TouchableOpacity>
                 {!reviewDrawer ? (
                   <View />
                 ) : (
                   <View style={styles.mainModalView}>
-                    <ScrollView showsVerticalScrollIndicator={false} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
                       <View style={styles.timeView}>
-                        <Text style={styles.timeText}>{'Tiempo:'}</Text>
-                        <Text
-                          style={styles.timeValue}>
+                        <Text style={styles.timeText}>{"Tiempo:"}</Text>
+                        <Text style={styles.timeValue}>
                           {reviewDrawer.time}
                         </Text>
-                        <Text style={styles.mnTime}>{'min'}</Text>
+                        <Text style={styles.mnTime}>{"min"}</Text>
                       </View>
-                      <View
-                        style={[styles.timeView, { marginTop: 20 }]}>
-                        <Text style={styles.timeText}>{'Nº Preguntas:'}</Text>
-                        <Text
-                          style={styles.timeValue}>
+                      <View style={[styles.timeView, { marginTop: 20 }]}>
+                        <Text style={styles.timeText}>{"Nº Preguntas:"}</Text>
+                        <Text style={styles.timeValue}>
                           {reviewDrawer.totalQuestions}
                         </Text>
                       </View>
                       <View style={styles.timeView}>
-                        <Text style={styles.timeText}>{'Aciertos:'}</Text>
+                        <Text style={styles.timeText}>{"Aciertos:"}</Text>
                         <View style={styles.midView}>
                           <Text style={styles.timeValue}>
                             {reviewDrawer.correctCount}
@@ -521,11 +515,13 @@ class Review extends Component {
                           <Text style={styles.timeValue2}>
                             {reviewDrawer.correctScore}
                           </Text>
-                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>
+                            {"pts"}
+                          </Text>
                         </View>
                       </View>
                       <View style={styles.timeView}>
-                        <Text style={styles.timeText}>{'Fallos:'}</Text>
+                        <Text style={styles.timeText}>{"Fallos:"}</Text>
                         <View style={styles.midView}>
                           <Text style={styles.timeValue}>
                             {reviewDrawer.wrongCount}
@@ -533,11 +529,13 @@ class Review extends Component {
                           <Text style={styles.timeValue2}>
                             {reviewDrawer.wrongScore}
                           </Text>
-                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>
+                            {"pts"}
+                          </Text>
                         </View>
                       </View>
                       <View style={styles.timeView}>
-                        <Text style={styles.timeText}>{'Nulos:'}</Text>
+                        <Text style={styles.timeText}>{"Nulos:"}</Text>
                         <View style={styles.midView}>
                           <Text style={styles.timeValue}>
                             {reviewDrawer.nonAttemptedCount}
@@ -545,19 +543,18 @@ class Review extends Component {
                           <Text style={styles.timeValue2}>
                             {reviewDrawer.nonAttemptedScore}
                           </Text>
-                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>{'pts'}</Text>
+                          <Text style={[styles.mnTime, { marginLeft: 50 }]}>
+                            {"pts"}
+                          </Text>
                         </View>
                       </View>
-                      <View
-                        style={[styles.timeView, { marginTop: 20 }]}>
-                        <Text style={styles.timeText}>{'Puntuación:'}</Text>
-                        <Text
-                          style={styles.timeValue}>
+                      <View style={[styles.timeView, { marginTop: 20 }]}>
+                        <Text style={styles.timeText}>{"Puntuación:"}</Text>
+                        <Text style={styles.timeValue}>
                           {reviewDrawer.score}
                         </Text>
-                        <Text style={styles.mnTime}>{'pts'}</Text>
+                        <Text style={styles.mnTime}>{"pts"}</Text>
                       </View>
-
 
                       <View style={{ height: 20 }} />
                     </ScrollView>
@@ -569,99 +566,49 @@ class Review extends Component {
         </Modal>
         <Modal
           transparent={true}
-          visible={this.state.modalVisible === 'isRejected'}
-          supportedOrientations={['portrait', 'landscape']}
-          onRequestClose={() => {
-          }}>
+          visible={this.state.modalVisible === "isRejected"}
+          supportedOrientations={["portrait", "landscape"]}
+          onRequestClose={() => {}}
+        >
           <View style={styles.rejectView}>
-            <View style={styles.rejectContainer}>
-              {!rejectReason || !rejectReason.length ? (
-                <View />
-              ) : (
-                <>
-                  <Text style={styles.rejectDescription}>
-                    {rejectReason[0].Description}
-                  </Text>
-                  <View style={styles.listOptions}>
-                    <ScrollView
-                      keyboardShouldPersistTaps={"handled"}
-                      showsVerticalScrollIndicator={false}>
-                      <TouchableOpacity
-                        onPress={() => this.setState({ myOption: 1 })}
-                        style={styles.optionsStyle}>
-                        {myOption == 1 ? (
-                          <Image
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                            resizeMode="stretch"
-                            source={images.arrow_image}
-                          />
-                        ) : (
-                          <View
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                          />
-                        )}
-                        <Text style={styles.rejectItems}>
-                          {rejectReason[0].Option1}
-                        </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.setState({ myOption: 2 })}
-                        style={styles.optionsStyle}>
-                        {myOption == 2 ? (
-                          <Image
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                            resizeMode="stretch"
-                            source={images.arrow_image}
-                          />
-                        ) : (
-                          <View
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                          />
-                        )}
-                        <Text style={styles.rejectItems}>
-                          {rejectReason[0].Option2}
-                        </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.setState({ myOption: 3 })}
-                        style={styles.optionsStyle}>
-                        {myOption == 3 ? (
-                          <Image
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                            resizeMode="stretch"
-                            source={images.arrow_image}
-                          />
-                        ) : (
-                          <View
-                            style={{
-                              width: widthPercentageToDP(5),
-                              height: widthPercentageToDP(3),
-                            }}
-                          />
-                        )}
-                        <Text style={styles.rejectItems}>
-                          {rejectReason[0].Option3}
-                        </Text>
-                      </TouchableOpacity>
-                      {/* <TouchableOpacity
-                          onPress={() => this.setState({myOption: 4})}
-                          style={styles.optionsStyle}>
-                          {myOption == 4 ? (
+            <View
+              style={[
+                styles.rejectContainer,
+                {
+                  height: isTablet ? "55%" : "90%",
+                },
+              ]}
+            >
+              <FastImage
+                source={images.modal_background_image}
+                resizeMode={FastImage.resizeMode.stretch}
+                style={[
+                  styles.quesBox,
+                  {
+                    height: DeviceInfo.isTablet()
+                      ? widthPercentageToDP(45)
+                      : widthPercentageToDP(40),
+                    padding: DeviceInfo.isTablet() ? 15 : 0,
+                  },
+                ]}
+              >
+                {!rejectReason || !rejectReason.length ? (
+                  <View />
+                ) : (
+                  <>
+                    <Text style={styles.rejectDescription}>
+                      {rejectReason[0].Description}
+                    </Text>
+                    <View style={styles.listOptions}>
+                      <ScrollView
+                        keyboardShouldPersistTaps={"handled"}
+                        showsVerticalScrollIndicator={false}
+                      >
+                        <TouchableOpacity
+                          onPress={() => this.setState({ myOption: 1 })}
+                          style={styles.optionsStyle}
+                        >
+                          {myOption == 1 ? (
                             <Image
                               style={{
                                 width: widthPercentageToDP(5),
@@ -679,73 +626,239 @@ class Review extends Component {
                             />
                           )}
                           <Text style={styles.rejectItems}>
-                            {rejectReason[0].Option4}
+                            {rejectReason[0].Option1}
                           </Text>
-                        </TouchableOpacity> */}
-                      <TextInput
-                        placeholder="Explica con detalle qué es lo que se debe corregir"
-                        placeholderTextColor={'#000'}
-                        style={styles.inputStyle}
-                        multiline={true}
-                        onChangeText={text => this.setState({ reason: text })}
-                      />
-                    </ScrollView>
-                  </View>
-                </>
-              )}
-              <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={['#006176', '#00a7cb']}
-                style={styles.rejectBottom}>
-                <TouchableOpacity
-                  activeOpacity={0.6}
-                  onPress={() => this.setState({ modalVisible: '' })}
-                  style={{ height: "100%", width: "50%", justifyContent: "center", alignItems: "center" }} >
-
-                  <Text
-                    style={[
-                      styles.rejectBtn,
-                      { marginRight: heightPercentageToDP(2) },
-                    ]}
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() => this.setState({ myOption: 2 })}
+                          style={styles.optionsStyle}
+                        >
+                          {myOption == 2 ? (
+                            <Image
+                              style={{
+                                width: widthPercentageToDP(5),
+                                height: widthPercentageToDP(3),
+                              }}
+                              resizeMode="stretch"
+                              source={images.arrow_image}
+                            />
+                          ) : (
+                            <View
+                              style={{
+                                width: widthPercentageToDP(5),
+                                height: widthPercentageToDP(3),
+                              }}
+                            />
+                          )}
+                          <Text style={styles.rejectItems}>
+                            {rejectReason[0].Option2}
+                          </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() => this.setState({ myOption: 3 })}
+                          style={styles.optionsStyle}
+                        >
+                          {myOption == 3 ? (
+                            <Image
+                              style={{
+                                width: widthPercentageToDP(5),
+                                height: widthPercentageToDP(3),
+                              }}
+                              resizeMode="stretch"
+                              source={images.arrow_image}
+                            />
+                          ) : (
+                            <View
+                              style={{
+                                width: widthPercentageToDP(5),
+                                height: widthPercentageToDP(3),
+                              }}
+                            />
+                          )}
+                          <Text style={styles.rejectItems}>
+                            {rejectReason[0].Option3}
+                          </Text>
+                        </TouchableOpacity>
+                        {/* <TouchableOpacity
+                            onPress={() => this.setState({myOption: 4})}
+                            style={styles.optionsStyle}>
+                            {myOption == 4 ? (
+                              <Image
+                                style={{
+                                  width: widthPercentageToDP(5),
+                                  height: widthPercentageToDP(3),
+                                }}
+                                resizeMode="stretch"
+                                source={images.arrow_image}
+                              />
+                            ) : (
+                              <View
+                                style={{
+                                  width: widthPercentageToDP(5),
+                                  height: widthPercentageToDP(3),
+                                }}
+                              />
+                            )}
+                            <Text style={styles.rejectItems}>
+                              {rejectReason[0].Option4}
+                            </Text>
+                          </TouchableOpacity> */}
+                        <TextInput
+                          placeholder="Explica con detalle qué es lo que se debe corregir"
+                          placeholderTextColor={COLORS.white}
+                          style={styles.inputStyle}
+                          textAlignVertical="top"
+                          multiline={true}
+                          onChangeText={(text) =>
+                            this.setState({ reason: text })
+                          }
+                        />
+                      </ScrollView>
+                    </View>
+                  </>
+                )}
+                {/* <LinearGradient
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  colors={["#006176", "#00a7cb"]}
+                  style={styles.rejectBottom}
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.6}
+                    onPress={() => this.setState({ modalVisible: "" })}
+                    style={{
+                      height: "100%",
+                      width: "50%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                   >
-                    {'Cancelar'}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{ height: "100%", width: "50%", justifyContent: "center", alignItems: "center" }}
-                  activeOpacity={0.6}
-                  onPress={() => {
-                    if (this.state.myOption == 0) {
-                      Alert.alert('', 'Seleccione cualquier motivo');
-                    } else {
-                      this.setState({ modalVisible: '' }, () => {
-                        updateRejectReason(
-                          this.state?.reason,
-                          login?.data?.id,
-                          reviewAll.data?.[this?.state?.pageSelected]?.qaId,
-                          this.state.myOption == 1
-                            ? 'option1'
-                            : this.state.myOption == 2
-                              ? 'option2'
+                    <Text
+                      style={[
+                        styles.rejectBtn,
+                        { marginRight: heightPercentageToDP(2) },
+                      ]}
+                    >
+                      {"Cancelar"}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      height: "100%",
+                      width: "50%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    activeOpacity={0.6}
+                    onPress={() => {
+                      if (this.state.myOption == 0) {
+                        Alert.alert("", "Seleccione cualquier motivo");
+                      } else {
+                        this.setState({ modalVisible: "" }, () => {
+                          updateRejectReason(
+                            this.state?.reason,
+                            login?.data?.id,
+                            reviewAll.data?.[this?.state?.pageSelected]?.qaId,
+                            this.state.myOption == 1
+                              ? "option1"
+                              : this.state.myOption == 2
+                              ? "option2"
                               : this.state.myOption == 3
-                                ? 'option3'
-                                : '',
-                        );
-                      });
-                    }
+                              ? "option3"
+                              : ""
+                          );
+                        });
+                      }
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.rejectBtn,
+                        { marginLeft: heightPercentageToDP(2) },
+                      ]}
+                    >
+                      {"Entregar"}
+                    </Text>
+                  </TouchableOpacity>
+                </LinearGradient> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "80%",
+                    justifyContent: "space-around",
+                    marginHorizontal: 20,
                   }}
                 >
-                  <Text
-                    style={[
-                      styles.rejectBtn,
-                      { marginLeft: heightPercentageToDP(2) },
-                    ]}
+                  <TouchableOpacity
+                    style={styles.btn}
+                    activeOpacity={0.6}
+                    onPress={() => this.setState({ modalVisible: "" })}
                   >
-                    {'Entregar'}
-                  </Text>
-                </TouchableOpacity>
-              </LinearGradient>
+                    <FastImage
+                      source={images.btn_background_image}
+                      style={styles.btn_image}
+                      resizeMode={FastImage.resizeMode.contain}
+                    >
+                      <Text
+                        style={[
+                          styles.btn_text,
+                          {
+                            fontSize: isTablet
+                              ? widthPercentageToDP(2.5)
+                              : widthPercentageToDP(3),
+                          },
+                        ]}
+                      >
+                        Cancelar
+                      </Text>
+                    </FastImage>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.btn}
+                    activeOpacity={0.6}
+                    onPress={() => {
+                      if (this.state.myOption == 0) {
+                        Alert.alert("", "Seleccione cualquier motivo");
+                      } else {
+                        this.setState({ modalVisible: "" }, () => {
+                          updateRejectReason(
+                            this.state?.reason,
+                            login?.data?.id,
+                            reviewAll.data?.[this?.state?.pageSelected]?.qaId,
+                            this.state.myOption == 1
+                              ? "option1"
+                              : this.state.myOption == 2
+                              ? "option2"
+                              : this.state.myOption == 3
+                              ? "option3"
+                              : ""
+                          );
+                        });
+                      }
+                    }}
+                  >
+                    <FastImage
+                      source={images.btn_background_image}
+                      style={styles.btn_image}
+                      resizeMode={FastImage.resizeMode.contain}
+                    >
+                      <Text
+                        style={[
+                          styles.btn_text,
+                          {
+                            fontSize: isTablet
+                              ? widthPercentageToDP(2.5)
+                              : widthPercentageToDP(3),
+                          },
+                        ]}
+                      >
+                        Entregar
+                      </Text>
+                    </FastImage>
+                  </TouchableOpacity>
+                </View>
+              </FastImage>
             </View>
           </View>
         </Modal>
@@ -754,7 +867,7 @@ class Review extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   dialog: state.dialog,
 });

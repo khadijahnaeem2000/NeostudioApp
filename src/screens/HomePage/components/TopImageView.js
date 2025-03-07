@@ -5,7 +5,7 @@ import { fonts } from 'react-native-elements/dist/config'
 import { COLORS } from '../../../constant'
 import { SIZES } from '../../../constant/theme'
 
-const TopImageView = ({ image, title, title2 }) => {
+const TopImageView = ({ image, title, title2, imageStyle, titleStyle }) => {
     return (
         <View style={styles.main_view} >
             <FastImage
@@ -14,9 +14,10 @@ const TopImageView = ({ image, title, title2 }) => {
                 style={{
                     height: "55%",
                     width: "75%",
+                    ...imageStyle
                 }}
             />
-            <Text style={styles.smallTxt} numberOfLines={1} >{title}</Text>
+            <Text style={[styles.smallTxt, titleStyle ]} numberOfLines={1} >{title}</Text>
             {
                 title2 &&
                 <Text style={styles.smallTxt2} >{title2}</Text>

@@ -1469,7 +1469,7 @@ PODS:
     - React-Core
   - react-native-otp-verify (1.1.8):
     - React-Core
-  - react-native-pager-view (6.4.1):
+  - react-native-pager-view (6.5.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1494,15 +1494,15 @@ PODS:
     - React-Core
   - react-native-progress-bar-android (1.0.5):
     - React
-  - react-native-progress-view (1.4.2):
+  - react-native-progress-view (1.5.0):
     - React-Core
   - react-native-render-html (6.3.4):
     - React-Core
   - react-native-restart (0.0.27):
     - React-Core
-  - react-native-safe-area-context (4.11.0):
+  - react-native-safe-area-context (4.14.0):
     - React-Core
-  - react-native-slider (4.5.3):
+  - react-native-slider (4.5.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1533,7 +1533,7 @@ PODS:
     - react-native-video/Video (= 5.2.1)
   - react-native-video/Video (5.2.1):
     - React-Core
-  - react-native-webview (13.12.2):
+  - react-native-webview (13.12.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1818,13 +1818,13 @@ PODS:
     - React-Core
   - RNAudio (4.3.0):
     - React
-  - RNCAsyncStorage (2.0.0):
+  - RNCAsyncStorage (2.1.0):
     - React-Core
-  - RNCClipboard (1.14.2):
+  - RNCClipboard (1.15.0):
     - React-Core
   - RNCMaskedView (0.1.11):
     - React
-  - RNCPicker (2.8.1):
+  - RNCPicker (2.10.0):
     - React-Core
   - RNCPushNotificationIOS (1.11.0):
     - React-Core
@@ -1851,7 +1851,7 @@ PODS:
     - React-Core
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.19.0):
+  - RNGestureHandler (2.21.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1875,20 +1875,20 @@ PODS:
   - RNGoogleSignin (12.2.1):
     - GoogleSignIn (~> 7.1)
     - React-Core
-  - RNIap (12.15.3):
+  - RNIap (12.15.7):
     - React-Core
-  - RNImageCropPicker (0.41.2):
+  - RNImageCropPicker (0.41.6):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.41.2)
+    - RNImageCropPicker/QBImagePickerController (= 0.41.6)
     - TOCropViewController (~> 2.7.4)
-  - RNImageCropPicker/QBImagePickerController (0.41.2):
+  - RNImageCropPicker/QBImagePickerController (0.41.6):
     - React-Core
     - React-RCTImage
     - TOCropViewController (~> 2.7.4)
   - RNInAppBrowser (3.7.0):
     - React-Core
-  - RNReanimated (3.15.3):
+  - RNReanimated (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1908,10 +1908,32 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.15.3)
-    - RNReanimated/worklets (= 3.15.3)
+    - RNReanimated/reanimated (= 3.16.3)
+    - RNReanimated/worklets (= 3.16.3)
     - Yoga
-  - RNReanimated/reanimated (3.15.3):
+  - RNReanimated/reanimated (3.16.3):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNReanimated/reanimated/apple (= 3.16.3)
+    - Yoga
+  - RNReanimated/reanimated/apple (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1932,7 +1954,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (3.15.3):
+  - RNReanimated/worklets (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1953,7 +1975,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.34.0):
+  - RNScreens (3.35.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1982,7 +2004,7 @@ PODS:
     - RNSound/Core (= 0.11.2)
   - RNSound/Core (0.11.2):
     - React-Core
-  - RNSVG (15.7.1):
+  - RNSVG (15.9.0):
     - React-Core
   - RNVectorIcons (10.2.0):
     - DoubleConversion
@@ -2461,18 +2483,18 @@ SPEC CHECKSUMS:
   react-native-network-info: d1290ffc0bd0709e11436f5b8d7f605dcc5c4530
   react-native-orientation-locker: 5819fd23ca89cbac0d736fb4314745f62716d517
   react-native-otp-verify: b524a7f44b691644bea08376d6a4782a2df57e09
-  react-native-pager-view: c476f76d54f946df5147645e902d3d7173688187
+  react-native-pager-view: 12284823fff3b85b4dd16456b04def6ba9422677
   react-native-pdf: 103940c90d62adfd259f63cca99c7c0c306b514c
   react-native-progress-bar-android: 092e6a794f158642692f25c8839d9aa8eb779afb
-  react-native-progress-view: fda23a769e325dd94f08439f6cfca5867fca32c0
+  react-native-progress-view: 1f56a2bc2c31918f41159c6eaf12be6cf784f714
   react-native-render-html: 984dfe2294163d04bf5fe25d7c9f122e60e05ebe
   react-native-restart: 7595693413fe3ca15893702f2c8306c62a708162
-  react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
-  react-native-slider: e610b253698a56fb51c9303035d74c71651eb26b
+  react-native-safe-area-context: 4532f1a0c5d34a46b9324ccaaedcb5582a302b7d
+  react-native-slider: 4a0f3386a38fc3d2d955efc515aef7096f7d1ee4
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-track-player: 97d76dbbd35f27cc709e5f04540615e54264b3f9
   react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
-  react-native-webview: 7aaf4bb5b2ec08901c821aceb4b55908ad012b04
+  react-native-webview: db71683cdc313a490afaee486a6efeb9d5a15b59
   React-nativeconfig: 57781b79e11d5af7573e6f77cbf1143b71802a6d
   React-NativeModulesApple: 7ff2e2cfb2e5fa5bdedcecf28ce37e696c6ef1e1
   React-perflogger: 8a360ccf603de6ddbe9ff8f54383146d26e6c936
@@ -2501,10 +2523,10 @@ SPEC CHECKSUMS:
   ReactCommon: 6ef348087d250257c44c0204461c03f036650e9b
   RNAppleAuthentication: e00c76acb03351f5544373c78fa7f359bef6d5d3
   RNAudio: cae2991f2dccb75163f260b60da8051717b959fa
-  RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6
-  RNCClipboard: 5e503962f0719ace8f7fdfe9c60282b526305c85
+  RNCAsyncStorage: cc6479c4acd84cc7004946946c8afe30b018184d
+  RNCClipboard: 69ab8e51324d5b351f6ba72bbdb72478087a2c64
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNCPicker: 0b6860a6b208d4046227d2f626ad0722f99a969c
+  RNCPicker: 7bb3925b31000a93dc167b1dbf0672cf6b773698
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
   RNDeviceInfo: 1e3f62b9ec32f7754fac60bd06b8f8a27124e7f0
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
@@ -2513,16 +2535,16 @@ SPEC CHECKSUMS:
   RNFBMessaging: 3fa1114c0868dd21f20dfe186adf42297ea316b1
   RNFileViewer: ce7ca3ac370e18554d35d6355cffd7c30437c592
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 3b6fa2bfa341c413d3d08444b838515b58e48ee7
+  RNGestureHandler: aa9690789023c9be8f06aa90e10ce637ea788f4d
   RNGoogleSignin: 08dc4ba7eac2096c7fecfe109f0950fa4683c803
-  RNIap: 76bb8783a92a6e6bd2ad7a1e91a8b2e75930db36
-  RNImageCropPicker: 771e2ca319d2cf92e04ebf334ece892ee9a6728f
+  RNIap: f3ca6e7597afccb2c1631de97d88f2e33b10dafd
+  RNImageCropPicker: 8e39c01f205e00d739c31e682f068aac315587bf
   RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
-  RNReanimated: c543567b3482ea54dec3216811d2360e581d35d0
-  RNScreens: 19719a9c326e925498ac3b2d35c4e50fe87afc06
+  RNReanimated: 83a2baa5f4dc44ace7b5296ea1f3533d998dfb69
+  RNScreens: c7ceced6a8384cb9be5e7a5e88e9e714401fd958
   RNShare: 0fad69ae2d71de9d1f7b9a43acf876886a6cb99c
   RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
-  RNSVG: 4590aa95758149fa27c5c83e54a6a466349a1688
+  RNSVG: 3d2bdcaef51c8071880a9c0072fe324f4423a3ba
   RNVectorIcons: 6382277afab3c54658e9d555ee0faa7a37827136
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
@@ -2534,4 +2556,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a7b5a1cda2d067fa1616e3502bc8b37e2954f718
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.15.2

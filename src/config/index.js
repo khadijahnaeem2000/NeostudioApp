@@ -2,6 +2,7 @@ import { images } from "../constant";
 
 export const API_URL = 'https://neoestudio.net/api/'
 export const IMAGE_URL = 'https://neoestudio.net/public/userImage/'
+export const COMMON_IMAGE_URL = 'https://neoestudio.net/public/'
 
 export const playstore_url = "https://play.google.com/store/apps/details?id=com.neostudio"
 export const appstore_url = "https://apps.apple.com/us/app/neoestudio-guardia-civil-2023/id1531939360"

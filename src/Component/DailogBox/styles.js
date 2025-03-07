@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import DeviceInfo from 'react-native-device-info'
 import { widthPercentageToDP, heightPercentageToDP } from '../MakeMeResponsive'
 import { fonts } from '../../utils'
 export const styles = StyleSheet.create({
@@ -25,7 +26,7 @@ export const styles = StyleSheet.create({
         textAlign: "justify",
         paddingLeft: widthPercentageToDP(5),
         paddingRight: widthPercentageToDP(6),
-        paddingTop: heightPercentageToDP(2.5)
+        paddingTop: DeviceInfo.isTablet() ? heightPercentageToDP(10) : heightPercentageToDP(2.5)
         //paddingLeft: widthPercentageToDP(1),
         //marginTop: widthPercentageToDP(7)
 

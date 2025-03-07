@@ -138,10 +138,10 @@ class Login extends React.Component {
       )
       if (credentialState === appleAuth.State.AUTHORIZED) {
         const data = appleAuthRequestResponse
-        // const apiData = {
-        //     uid: user,
-        //     provider: "apple"
-        // }
+        const apiData = {
+            uid: user,
+            provider: "apple"
+        }
         this.setState({ isLoading: false })
         this.props.userAppleLogin(
           data?.fullName?.givenName,

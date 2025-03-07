@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   StatusBar,
@@ -15,35 +15,35 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Dimensions,
-} from 'react-native';
-import { connect } from 'react-redux';
+} from "react-native";
+import { connect } from "react-redux";
 import {
   getExames,
   getStartExamData,
   pauseExams,
   endAllExams,
   saveUserRankPoint,
-} from '../../Redux/action';
-import Orientation from 'react-native-orientation-locker';
-import { styles } from './styles';
-import ExamLayout from './PaperLayout';
-import BottomLayout from './BottomLayout';
-import PagerView from 'react-native-pager-view';
-import CountDown from 'react-native-countdown-component';
-import NetInfo from '@react-native-community/netinfo';
-import ImageExam from './ImageExamsLayout';
-import FastImage from 'react-native-fast-image';
-import ImageZoom from 'react-native-image-pan-zoom';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Slider from '@react-native-community/slider';
-import KeepAwake from 'react-native-keep-awake';
+} from "../../Redux/action";
+import Orientation from "react-native-orientation-locker";
+import { styles } from "./styles";
+import ExamLayout from "./PaperLayout";
+import BottomLayout from "./BottomLayout";
+import PagerView from "react-native-pager-view";
+import CountDown from "react-native-countdown-component";
+import NetInfo from "@react-native-community/netinfo";
+import ImageExam from "./ImageExamsLayout";
+import FastImage from "react-native-fast-image";
+import ImageZoom from "react-native-image-pan-zoom";
+import Icon from "react-native-vector-icons/AntDesign";
+import Slider from "@react-native-community/slider";
+import KeepAwake from "react-native-keep-awake";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
-} from '../../Component/MakeMeResponsive';
-import DeviceInfo from 'react-native-device-info';
-import { resetNavigationStack } from '../../navigation/navigation_service';
-import { COLORS, images } from '../../constant';
+} from "../../Component/MakeMeResponsive";
+import DeviceInfo from "react-native-device-info";
+import { resetNavigationStack } from "../../navigation/navigation_service";
+import { COLORS, images } from "../../constant";
 
 class Test extends Component {
   constructor(props) {
@@ -58,14 +58,15 @@ class Test extends Component {
       height: 0,
       page: 0,
       appState: AppState.currentState,
-      timer: '0',
+      timer: "0",
       netConnected: true,
       pageSelected: 0,
       progressStatus: 0,
-      currentImage: '',
+      currentImage: "",
       bottomTimer: 0,
-      correctOption: '',
+      correctOption: "",
       isLoading: false,
+      isCountDownRunning: false,
     };
     this.getData();
     this.viewPager = React.createRef();
@@ -73,27 +74,27 @@ class Test extends Component {
   anim = new Animated.Value(0);
 
   getData = () => {
-    const type = this.props.route.params.type || 'test'
-    const examsID = this.props.route.params.examsId || '1'
-    const isReshedule = this.props.route.params.isReshedule || 'no'
+    const type = this.props.route.params.type || "test";
+    const examsID = this.props.route.params.examsId || "1";
+    const isReshedule = this.props.route.params.isReshedule || "no";
 
     const { login } = this.props.user;
-    if (type === 'exam') {
-      saveUserRankPoint('Yes', 'Yes', 'examine', login?.data?.id);
-    } else if (type === 'reviewExam') {
-      saveUserRankPoint('Yes', 'Yes', 'review', login?.data?.id);
+    if (type === "exam") {
+      saveUserRankPoint("Yes", "Yes", "examine", login?.data?.id);
+    } else if (type === "reviewExam") {
+      saveUserRankPoint("Yes", "Yes", "review", login?.data?.id);
     }
     this.props.getStartExamData(
       examsID,
       login?.data?.id,
       null,
       null,
-      DeviceInfo.isTablet() ? 'yes' : null,
-      isReshedule,
+      DeviceInfo.isTablet() ? "yes" : null,
+      isReshedule
     );
   };
 
-  changeKeepAwake = shouldBeAwake => {
+  changeKeepAwake = (shouldBeAwake) => {
     if (shouldBeAwake) {
       KeepAwake.activate();
     } else {
@@ -101,7 +102,7 @@ class Test extends Component {
     }
   };
 
-  _onLayout = e => {
+  _onLayout = (e) => {
     let width = e.nativeEvent.layout.width;
     let height = e.nativeEvent.layout.height;
     this.setState({
@@ -117,31 +118,31 @@ class Test extends Component {
     this.unsubscribeNetInfo = NetInfo.addEventListener(
       ({ isConnected, isInternetReachable, type }) => {
         this.setState({ netConnected: isConnected });
-      },
+      }
     );
     //this.onAnimate();
     this.changeKeepAwake(true);
     StatusBar.setHidden(true);
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this.appStateSubscription = AppState.addEventListener(
-      'change',
-      this._handleAppStateChange,
+      "change",
+      this._handleAppStateChange
     );
-    this.focusListener = this.props.navigation.addListener('focus', () => {
+    this.focusListener = this.props.navigation.addListener("focus", () => {
       Orientation.unlockAllOrientations();
-        Orientation.lockToLandscape();
+      Orientation.lockToLandscape();
     });
   }
   componentWillUnmount() {
     this.unsubscribeNetInfo();
     StatusBar.setHidden(false);
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     this.appStateSubscription.remove();
   }
-  _handleAppStateChange = nextAppState => {
+  _handleAppStateChange = (nextAppState) => {
     this.setState({ appState: nextAppState }, () => {
-      if (nextAppState === 'background') {
-        resetNavigationStack("HomePage")
+      if (nextAppState === "background") {
+        resetNavigationStack("HomePage");
       }
     });
   };
@@ -149,11 +150,11 @@ class Test extends Component {
     //ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
     return true;
   }
-  move = number => {
+  move = (number) => {
     const page = this.state.page + number;
     this.go(page);
   };
-  go = number => {
+  go = (number) => {
     if (this.state.animationsAreEnabled) {
       /* $FlowFixMe we need to update flow to support React.Ref and createRef() */
       this.viewPager.current.setPage(number);
@@ -163,7 +164,7 @@ class Test extends Component {
     }
   };
   onAnimate = () => {
-    const totalTime = this.props.route.params.totalTime || '1234'
+    const totalTime = this.props.route.params.totalTime || "1234";
     this.anim.addListener(({ value }) => {
       this.setState({ progressStatus: parseInt(value, 5) });
     });
@@ -173,48 +174,54 @@ class Test extends Component {
       useNativeDriver: false,
     }).start();
   };
-  test = () => {
-  
-  };
-
+  test = () => {};
 
   render() {
-    const { correctOption, pageSelected } = this.state;
+    const { correctOption, pageSelected, isCountDownRunning } = this.state;
     const { examStartData, AuthLoading, login } = this.props.user;
 
-    const { totalTime, isPsico, type, isHtml, isReshedule, examsId, isRepasoImage } = this.props.route.params
+    const {
+      totalTime,
+      isPsico,
+      type,
+      isHtml,
+      isReshedule,
+      examsId,
+      isRepasoImage,
+    } = this.props.route.params;
 
     return (
       <View
         style={{ flex: 1, backgroundColor: COLORS.white }}
-        onLayout={e => {
+        onLayout={(e) => {
           this._onLayout(e);
-        }}>
+        }}
+      >
         <View style={styles.topView}>
           <View style={styles.playPauseView}>
             <TouchableOpacity
-              disabled={examStartData.canPause === 'yes' ? false : true}
+              disabled={examStartData.canPause === "yes" ? false : true}
               onPress={() => {
                 this.state.netConnected
-                  ?
-                  this.props.pauseExams(
-                    examStartData.studentExamRecordId,
-                    this.state.timer,
-                    login?.data?.id,
-                    login?.data?.type,
-                  )
+                  ? this.props.pauseExams(
+                      examStartData.studentExamRecordId,
+                      this.state.timer,
+                      login?.data?.id,
+                      login?.data?.type
+                    )
                   : Alert.alert(
-                    'Connection Failed',
-                    'Check your internet connection and try again',
-                  );
-              }}>
+                      "Connection Failed",
+                      "Check your internet connection and try again"
+                    );
+              }}
+            >
               <FastImage
                 source={images.audio_pause_image}
                 resizeMode={FastImage.resizeMode.stretch}
                 style={[
                   styles.btnImage,
                   {
-                    opacity: examStartData.canPause === 'yes' ? 1 : 0.5,
+                    opacity: examStartData.canPause === "yes" ? 1 : 0.5,
                   },
                 ]}
               />
@@ -223,18 +230,19 @@ class Test extends Component {
               onPress={() => {
                 this.state.netConnected
                   ? //Orientation.unlockAllOrientations(),
-                  this.props.endAllExams(
-                    examStartData.studentExamRecordId,
-                    this.state.timer,
-                    isPsico,
-                    type,
-                    isRepasoImage,
-                  )
+                    this.props.endAllExams(
+                      examStartData.studentExamRecordId,
+                      this.state.timer,
+                      isPsico,
+                      type,
+                      isRepasoImage
+                    )
                   : Alert.alert(
-                    'Connection Failed',
-                    'Check your internet connection and try again',
-                  );
-              }}>
+                      "Connection Failed",
+                      "Check your internet connection and try again"
+                    );
+              }}
+            >
               <FastImage
                 source={images.stop_image}
                 resizeMode={FastImage.resizeMode.stretch}
@@ -248,12 +256,13 @@ class Test extends Component {
                   login?.data?.id,
                   null,
                   null,
-                  DeviceInfo.isTablet() ? 'yes' : null,
+                  DeviceInfo.isTablet() ? "yes" : null,
                   isReshedule,
-                  'True',
-                  examStartData.data[pageSelected].id,
+                  "True",
+                  examStartData.data[pageSelected].id
                 );
-              }}>
+              }}
+            >
               <FastImage
                 source={images.correct_one_image}
                 resizeMode={FastImage.resizeMode.stretch}
@@ -262,7 +271,7 @@ class Test extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.timerView}>
-            <Text style={styles.timerText}>{'Tiempo '}</Text>
+            <Text style={styles.timerText}>{"Tiempo "}</Text>
             <CountDown
               until={parseInt(totalTime)}
               //until={1234}
@@ -271,36 +280,55 @@ class Test extends Component {
               onFinish={() => {
                 this.state.netConnected
                   ? this.props.endAllExams(
-                    examStartData.studentExamRecordId,
-                    null,
-                  )
+                      examStartData.studentExamRecordId,
+                      null
+                    )
                   : Alert.alert(
-                    'Connection Failed',
-                    'Check your internet connection and finish the Exam',
-                  );
+                      "Connection Failed",
+                      "Check your internet connection and finish the Exam"
+                    );
               }}
-              digitStyle={{ backgroundColor: 'transparent' }}
+              digitStyle={{ backgroundColor: "transparent" }}
               digitTxtStyle={{
-                color: '#0a52cb',
+                color: "#0a52cb",
                 marginBottom: 5,
                 fontSize: heightPercentageToDP(3.5),
               }}
-              onChange={time =>
+              onChange={(time) =>
                 this.setState({
                   timer: time,
                   bottomTimer: this.state.bottomTimer + 1,
                 })
               }
-              timeToShow={['M', 'S']}
+              timeToShow={["M", "S"]}
               timeLabels={{ m: null, s: null }}
               separatorStyle={{
                 marginBottom: 7,
-                color: '#000',
+                color: "#000",
                 fontSize: heightPercentageToDP(3.5),
               }}
               showSeparator
-              running={AuthLoading ? false : true}
+              running={AuthLoading ? false : isCountDownRunning ? false : true}
             />
+            <TouchableOpacity
+              // disabled={examStartData.canPause === 'yes' ? false : true}
+              onPress={() => {
+                this.setState((previousState) => ({
+                  isCountDownRunning: !previousState?.isCountDownRunning,
+                }));
+              }}
+              activeOpacity={0.9}
+            >
+              <FastImage
+                source={
+                  isCountDownRunning ? images.audio_play_image :
+                  images.audio_pause_image}
+                resizeMode={FastImage.resizeMode.stretch}
+                style={[
+                  styles.btnTimerPlayer,
+                ]}
+              />
+            </TouchableOpacity>
           </View>
           <FastImage
             style={styles.logo}
@@ -311,259 +339,258 @@ class Test extends Component {
         <PagerView
           style={styles.middleView}
           initialPage={0}
-          onPageSelected={e =>
+          onPageSelected={(e) =>
             this.setState({ pageSelected: e.nativeEvent.position })
           }
           setPage={this.state.currentPage}
-          ref={this.viewPager}>
-          {
-            examStartData?.data?.length > 0 ?
-              examStartData?.data?.map((item, index) => (
-                <>
-                  {
-                    isPsico === true ?
-                      <ImageExam
-                        key={'unique' + index}
-                        isAttempt={item?.studentAnswered === null ? false : true}
-                        isOption1={item?.studentAnswered}
-                        imgURL={item?.image}
-                        option1={item?.answer1}
-                        option2={item?.answer2}
-                        option3={item?.answer3}
-                        option4={item?.answer4}
-                        question={item?.question}
-                        description={item?.description}
-                        allowdescription={item?.Allowdescription}
-                        isCorrect={item?.correct}
-                        clickHandler1={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              login?.data?.id,
-                              item?.id,
-                              'answer1',
-                              DeviceInfo.isTablet() ? 'yes' : null,
-                              isReshedule,
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler2={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              login?.data?.id,
-                              item?.id,
-                              'answer2',
-                              DeviceInfo.isTablet() ? 'yes' : null,
-                              isReshedule,
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler3={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              login?.data?.id,
-                              item?.id,
-                              'answer3',
-                              DeviceInfo.isTablet() ? 'yes' : null,
-                              isReshedule,
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        clickHandler4={() => {
-                          this.state.netConnected
-                            ? this.props.getStartExamData(
-                              null,
-                              login?.data?.id,
-                              item?.id,
-                              'answer4',
-                              DeviceInfo.isTablet() ? 'yes' : null,
-                              isReshedule,
-                            )
-                            : Alert.alert(
-                              'Connection Failed',
-                              'Check your internet connection and try again',
-                            );
-                        }}
-                        ModalClick={() => {
-                          // this.setState({currentImage: item?.image}, () =>
-                          //   this.setState({isOpen: true}),
-                          // );
-                        }}
-                      />
-                      : type === 'reviewExam' && isRepasoImage ?
-                        <ImageExam
-                          key={'unique' + index}
-                          isAttempt={item?.studentAnswered === null ? false : true}
-                          isOption1={item?.studentAnswered}
-                          imgURL={item?.image}
-                          option1={item?.answer1}
-                          option2={item?.answer2}
-                          option3={item?.answer3}
-                          option4={item?.answer4}
-                          question={item?.question}
-                          description={item?.description}
-                          allowdescription={item?.Allowdescription}
-                          isCorrect={item?.correct}
-                          clickHandler1={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer1',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler2={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer2',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler3={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer3',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler4={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer4',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          ModalClick={() => {
-                            // this.setState({currentImage: item?.image}, () =>
-                            //   this.setState({isOpen: true}),
-                            // );
-                          }}
-                        />
-                        :
-                        <ExamLayout
-                          key={'unique' + index}
-                          isAttempt={item?.studentAnswered === null ? false : true}
-                          isOption1={item?.studentAnswered}
-                          option1={item?.answer1}
-                          isHtml={isHtml}
-                          option2={item?.answer2}
-                          option3={item?.answer3}
-                          option4={item?.answer4}
-                          description={item?.description}
-                          allowdescription={item?.Allowdescription}
-                          isTablet={this.state.isTable}
-                          question={item?.question}
-                          htmlQuestion={item?.questionWithHTML}
-                          isCorrect={item?.correct}
-                          clickHandler1={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer1',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler2={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer2',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler3={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer3',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                          clickHandler4={() => {
-                            this.state.netConnected
-                              ? this.props.getStartExamData(
-                                null,
-                                login?.data?.id,
-                                item?.id,
-                                'answer4',
-                                DeviceInfo.isTablet() ? 'yes' : null,
-                                isReshedule,
-                              )
-                              : Alert.alert(
-                                'Connection Failed',
-                                'Check your internet connection and try again',
-                              );
-                          }}
-                        />
-                  }
-                </>
-              ))
-              :
-              <View />
-          }
+          ref={this.viewPager}
+        >
+          {examStartData?.data?.length > 0 ? (
+            examStartData?.data?.map((item, index) => (
+              <>
+                {isPsico === true ? (
+                  <ImageExam
+                    key={"unique" + index}
+                    isAttempt={item?.studentAnswered === null ? false : true}
+                    isOption1={item?.studentAnswered}
+                    imgURL={item?.image}
+                    option1={item?.answer1}
+                    option2={item?.answer2}
+                    option3={item?.answer3}
+                    option4={item?.answer4}
+                    question={item?.question}
+                    description={item?.description}
+                    allowdescription={item?.Allowdescription}
+                    isCorrect={item?.correct}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer1",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer2",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer3",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer4",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    ModalClick={() => {
+                      // this.setState({currentImage: item?.image}, () =>
+                      //   this.setState({isOpen: true}),
+                      // );
+                    }}
+                  />
+                ) : type === "reviewExam" && isRepasoImage ? (
+                  <ImageExam
+                    key={"unique" + index}
+                    isAttempt={item?.studentAnswered === null ? false : true}
+                    isOption1={item?.studentAnswered}
+                    imgURL={item?.image}
+                    option1={item?.answer1}
+                    option2={item?.answer2}
+                    option3={item?.answer3}
+                    option4={item?.answer4}
+                    question={item?.question}
+                    description={item?.description}
+                    allowdescription={item?.Allowdescription}
+                    isCorrect={item?.correct}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer1",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer2",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer3",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer4",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    ModalClick={() => {
+                      // this.setState({currentImage: item?.image}, () =>
+                      //   this.setState({isOpen: true}),
+                      // );
+                    }}
+                  />
+                ) : (
+                  <ExamLayout
+                    key={"unique" + index}
+                    isAttempt={item?.studentAnswered === null ? false : true}
+                    isOption1={item?.studentAnswered}
+                    option1={item?.answer1}
+                    isHtml={isHtml}
+                    option2={item?.answer2}
+                    option3={item?.answer3}
+                    option4={item?.answer4}
+                    description={item?.description}
+                    allowdescription={item?.Allowdescription}
+                    isTablet={this.state.isTable}
+                    question={item?.question}
+                    htmlQuestion={item?.questionWithHTML}
+                    isCorrect={item?.correct}
+                    clickHandler1={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer1",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler2={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer2",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler3={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer3",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                    clickHandler4={() => {
+                      this.state.netConnected
+                        ? this.props.getStartExamData(
+                            null,
+                            login?.data?.id,
+                            item?.id,
+                            "answer4",
+                            DeviceInfo.isTablet() ? "yes" : null,
+                            isReshedule
+                          )
+                        : Alert.alert(
+                            "Connection Failed",
+                            "Check your internet connection and try again"
+                          );
+                    }}
+                  />
+                )}
+              </>
+            ))
+          ) : (
+            <View />
+          )}
         </PagerView>
         <View style={styles.bottomView}>
           <ScrollView horizontal contentContainerStyle={{ flexGrow: 0 }}>
@@ -573,7 +600,7 @@ class Test extends Component {
               examStartData.data.map((item, index) => {
                 return (
                   <BottomLayout
-                    key={'unique' + index}
+                    key={"unique" + index}
                     text={index + 1}
                     isSelected={
                       this.state.pageSelected === index ? true : false
@@ -594,14 +621,15 @@ class Test extends Component {
                 /> */}
         <View
           style={{
-            width: '100%',
-            height: '4%',
+            width: "100%",
+            height: "4%",
             //backgroundColor: "green",
-            position: 'absolute',
-            bottom: '0%',
+            position: "absolute",
+            bottom: "0%",
             //marginTop:heightPercentageToDP(1)
             //left:"1%"
-          }}>
+          }}
+        >
           <Slider
             value={this.state.bottomTimer}
             minimumValue={1}
@@ -614,7 +642,7 @@ class Test extends Component {
             thumbImage={() => null}
             thumbTintColor="transparent"
             thumbStyle={{
-              backgroundColor: 'red',
+              backgroundColor: "red",
             }}
           />
         </View>
@@ -629,31 +657,33 @@ class Test extends Component {
           <Modal
             transparent={true}
             visible={this.state.modalVisible}
-            supportedOrientations={['portrait', 'landscape']}
-            onRequestClose={() => {
-            }}>
+            supportedOrientations={["portrait", "landscape"]}
+            onRequestClose={() => {}}
+          >
             <TouchableOpacity
               style={styles.modalMain}
               activeOpacity={1}
-            //onPressOut={() => this.setState({ isOpen: false })}
+              //onPressOut={() => this.setState({ isOpen: false })}
             >
               <View style={styles.innerModal}>
                 <TouchableWithoutFeedback>
                   <View>
                     <TouchableOpacity
                       style={styles.crossBtn}
-                      onPress={() => this.setState({ isOpen: false })}>
+                      onPress={() => this.setState({ isOpen: false })}
+                    >
                       <Icon name="close" />
                     </TouchableOpacity>
                     <ImageZoom
-                      cropWidth={Dimensions.get('window').width}
-                      cropHeight={Dimensions.get('window').height}
-                      imageWidth={Dimensions.get('window').width}
-                      imageHeight={Dimensions.get('window').height}>
+                      cropWidth={Dimensions.get("window").width}
+                      cropHeight={Dimensions.get("window").height}
+                      imageWidth={Dimensions.get("window").width}
+                      imageHeight={Dimensions.get("window").height}
+                    >
                       <FastImage
                         style={{
-                          width: '100%',
-                          height: '100%',
+                          width: "100%",
+                          height: "100%",
                         }}
                         source={{
                           uri: this.state.currentImage,
@@ -673,7 +703,7 @@ class Test extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 export default connect(mapStateToProps, {

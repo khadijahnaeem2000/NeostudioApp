@@ -99,7 +99,8 @@ var login = 'loginStudent',
   checkregistration = 'TelephoneVerification?userid=',
   registerwith30days = 'Registerwith30days',
   registerData = 'Registerdata',
-  meetingStatus = 'Checkmeetingstatus'
+  meetingStatus = 'Checkmeetingstatus',
+  trackTimeStatus = 'track-time'
 
 export const saveActivityId = (value, name) => {
   return dispatch => {
@@ -275,11 +276,11 @@ export const userLogin = (type, param1, param2, reason, onBlock) => {
             if (json?.data?.IsBlocked === 'True') {
               onBlock(json)
             } else {
-              dispatch(setLoginData({ login: json }))
-              dispatch(getRankAvatarImages());
-              navigate('HomePage', {
-                isSubscribe: 'done',
-              });
+            dispatch(setLoginData({ login: json }))
+            dispatch(getRankAvatarImages());
+            navigate('HomePage', {
+              isSubscribe: 'done',
+            });
             }
           } else if (json.status === 'Unsucessfull') {
             dispatch(setErrorMessage(json?.message))
@@ -1467,6 +1468,8 @@ export const getReviewDrawer = id => {
   };
 };
 export const getCurrentUser = (id, type) => {
+  console.log('id',id)
+  console.log('type',type)
   return dispatch => {
     dispatch(setAuthLoading(true))
     fetch(baseUrl + user, {
@@ -1476,7 +1479,7 @@ export const getCurrentUser = (id, type) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: id,
+        id: Number(id),
       }),
     })
       .then(res => res.json())
@@ -3032,6 +3035,28 @@ export const checkMeetingStatus = async () => {
       })
       .catch(error => {
         Alert.alert(error);
+      });
+  } catch (error) {
+  }
+  return api;
+};
+export const trackStudentTime = async data => {
+  let api;
+  try {
+    api = await fetch(baseUrl + trackTimeStatus, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        // Alert.alert(error);
       });
   } catch (error) {
   }

@@ -1,53 +1,50 @@
+import { LocaleConfig, CalendarList } from "react-native-calendars";
 
-import { LocaleConfig, CalendarList } from 'react-native-calendars';
-
-
-LocaleConfig.locales['fr'] = {
+LocaleConfig.locales["fr"] = {
   monthNames: [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ],
   monthNamesShort: [
-    'Ene.',
-    'Feb.',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sept',
-    'Oct',
-    'Nov.',
-    'Dici',
+    "Ene.",
+    "Feb.",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sept",
+    "Oct",
+    "Nov.",
+    "Dici",
   ],
   dayNames: [
-    'lunes ',
-    'martes ',
-    'miércoles ',
-    'Mercredi',
-    'Jeudi',
-    'Vendredi',
-    'Samedi',
+    "lunes ",
+    "martes ",
+    "miércoles ",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
   ],
-  dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+  dayNamesShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
   //dayNamesShort: ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',],
   today: "Aujourd'hui",
 };
-LocaleConfig.defaultLocale = 'fr';
+LocaleConfig.defaultLocale = "fr";
 
-
-import React from 'react';
+import React, { memo } from "react";
 import {
   View,
   BackHandler,
@@ -57,24 +54,24 @@ import {
   Text,
   Image,
   Modal,
-} from 'react-native';
-import { connect } from 'react-redux';
-import { styles } from './styles';
-import Orientation from 'react-native-orientation-locker';
+  FlatList
+} from "react-native";
+import { connect } from "react-redux";
+import { styles } from "./styles";
+import Orientation from "react-native-orientation-locker";
+import { Agenda } from "react-native-calendars";
+import testIDs from "./testIDs";
+import { getSpecialDates } from "../../Redux/action";
 import {
-  Agenda,
-} from 'react-native-calendars';
-import testIDs from './testIDs';
-import { getSpecialDates } from '../../Redux/action';
-import { heightPercentageToDP, widthPercentageToDP } from '../../Component/MakeMeResponsive';
-import moment from 'moment/moment';
-import Entypo from 'react-native-vector-icons/Entypo'
-import { Container } from '../../Component';
-import { COLORS } from '../../constant';
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "../../Component/MakeMeResponsive";
+import moment from "moment/moment";
+import Entypo from "react-native-vector-icons/Entypo";
+import { Container } from "../../Component";
+import { COLORS } from "../../constant";
 
-
-const URL = 'https://webversion.neoestudio.net/calendario?id=';
-
+const URL = "https://webversion.neoestudio.net/calendario?id=";
 
 class Calender extends React.Component {
   // constructor(props) {
@@ -96,8 +93,8 @@ class Calender extends React.Component {
     newItems: {},
   };
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-    this.focusListener = this.props.navigation.addListener('focus', () => {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+    this.focusListener = this.props.navigation.addListener("focus", () => {
       const locked = Orientation.isLocked();
       if (!locked) {
         Orientation.lockToPortrait();
@@ -109,7 +106,7 @@ class Calender extends React.Component {
     // getAllDates()
   }
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   handleBackButton() {
@@ -132,16 +129,14 @@ class Calender extends React.Component {
   };
 
   render() {
-
     return (
-
-      <Container title={'CALENDARIO'} >
+      <Container title={"CALENDARIO"}>
         <Agenda
           testID={testIDs.agenda.CONTAINER}
           items={this.state.newItems}
           ListEmptyComponent={this.renderEmptyComponent}
           loadItemsForMonth={this.loadItems}
-          style={{backgroundColor:COLORS.transparent}}
+          style={{ backgroundColor: COLORS.transparent }}
           displayLoadingIndicator={false}
           renderItem={this.renderItem}
           dayLoading={false}
@@ -150,49 +145,55 @@ class Calender extends React.Component {
           showClosingKnob={true}
           firstDay={1}
           theme={{
-            selectedDayBackgroundColor: '#394EE3',
-            agendaTodayColor: '#394EE3',
+            selectedDayBackgroundColor: "#394EE3",
+            agendaTodayColor: "#394EE3",
           }}
           progressViewOffset={0}
+          scrollEventThrottle={1}
+          decelerationRate="normal" // or 'fast' for a bit quicker response
+          // pagingEnabled
         />
         <Modal
           onRequestClose={() => this.setState({ showmodal: false })}
           transparent
-          visible={this.state.showmodal}>
+          visible={this.state.showmodal}
+        >
           <View
             style={{
               flex: 1,
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              justifyContent: 'center',
-            }}>
+              backgroundColor: "rgba(0,0,0,0.5)",
+              justifyContent: "center",
+            }}
+          >
             <View
               style={{
-                backgroundColor: 'white',
+                backgroundColor: "white",
                 borderRadius: 12,
                 paddingVertical: 12,
                 paddingHorizontal: 20,
                 marginHorizontal: 20,
-              }}>
+              }}
+            >
               <TouchableOpacity
                 style={{
                   height: 40,
                   width: 40,
-                  alignSelf: 'flex-end',
-                  justifyContent: 'center',
-                  alignItems: 'flex-end',
+                  alignSelf: "flex-end",
+                  justifyContent: "center",
+                  alignItems: "flex-end",
                 }}
-                onPress={() => this.setState({ showmodal: false })}>
-                <Entypo name='cross' color={"black"}
-                  size={25}
-                />
+                onPress={() => this.setState({ showmodal: false })}
+              >
+                <Entypo name="cross" color={"black"} size={25} />
               </TouchableOpacity>
               <Text
                 style={{
                   fontSize: heightPercentageToDP(2),
-                  color: 'black',
-                  fontWeight: '800',
-                  textAlign: 'center',
-                }}>
+                  color: "black",
+                  fontWeight: "800",
+                  textAlign: "center",
+                }}
+              >
                 {this?.state?.selcetedData?.name}
               </Text>
               {this?.state?.selcetedData?.image && (
@@ -200,24 +201,21 @@ class Calender extends React.Component {
                   resizeMode="contain"
                   style={{
                     height: 200,
-                    width: '100%',
+                    width: "100%",
                     marginTop: 30,
                   }}
                   source={{
                     uri:
-                      'https://neoestudio.net/public/' +
+                      "https://neoestudio.net/public/" +
                       this?.state?.selcetedData?.image,
                   }}
                 />
               )}
 
               <View style={{ height: 12 }} />
-
-
             </View>
           </View>
         </Modal>
-
       </Container>
     );
   }
@@ -227,14 +225,14 @@ class Calender extends React.Component {
 
     setTimeout(() => {
       if (!this.state || !this.state.items) {
-        console.error('State or items are undefined. sure  ');
+        console.error("State or items are undefined. sure  ");
         return;
       }
 
       const data = Array.isArray(this.state.items) ? this.state.items : [];
       const items = {};
 
-      data.forEach(item => {
+      data.forEach((item) => {
         const { Date, Task, image } = item;
         const strTime = this.timeToString(Date);
 
@@ -250,7 +248,7 @@ class Calender extends React.Component {
       });
 
       const newItems = {};
-      Object.keys(items).forEach(key => {
+      Object.keys(items).forEach((key) => {
         newItems[key] = items[key];
       });
 
@@ -261,68 +259,86 @@ class Calender extends React.Component {
     }, 2000);
   };
 
-  renderEmptyComponent = day => {
-    return <Text style={stylesNew.customDay}>{'No Items'}</Text>;
+  renderEmptyComponent = (day) => {
+    return <Text style={stylesNew.customDay}>{"No Items"}</Text>;
   };
 
-  renderDay = day => {
+  renderDay = (day) => {
     if (day) {
       return <Text style={stylesNew.customDay}>{day.getDay()}</Text>;
     }
     return <View style={stylesNew.dayItem} />;
   };
 
-  renderItem = (reservation, isFirst) => {
+  renderItem = (data, isFirst) => {
     const fontSize = isFirst ? 16 : 14;
-    const color = isFirst ? 'black' : '#43515c';
+    const color = isFirst ? "black" : "#43515c";
 
     return (
-      <TouchableOpacity
-        testID={testIDs.agenda.ITEM}
-        style={[stylesNew.item, { height: reservation.height }]}
-        onPress={() => {
-          this.setState({ showmodal: true });
-          this.setState({
-            selcetedData: {
-              image: reservation?.image || null,
-              name: reservation.name,
-            },
-          });
-        }}>
-        {reservation?.image && (
-          <View style={{ height: 80, width: 80 }}>
-            <Image
-              source={{
-                uri: 'https://neoestudio.net/public/' + reservation?.image,
+      <FlatList
+        data={[data]}
+        keyExtractor={(item, index) => index} // Make sure your items have a unique key
+        renderItem={({ item }) => {
+          const reservation = item;
+          return (
+            <TouchableOpacity
+              testID={testIDs.agenda.ITEM}
+              style={[stylesNew.item, { height: reservation.height }]}
+              onPress={() => {
+                this.setState({ showmodal: true });
+                this.setState({
+                  selcetedData: {
+                    image: reservation?.image || null,
+                    name: reservation.name,
+                  },
+                });
               }}
-              resizeMode="contain"
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-            />
-          </View>
-        )}
-        <Text
-          style={{
-            fontSize,
-            color: '#394EE3',
-            marginLeft: 15,
-            width: widthPercentageToDP(55),
-          }}>
-          {reservation.name}
-        </Text>
-      </TouchableOpacity>
+            >
+              {reservation?.image && (
+                <View style={{ height: 80, width: 80 }}>
+                  <Image
+                    source={{
+                      uri:
+                        "https://neoestudio.net/public/" + reservation?.image,
+                    }}
+                    resizeMode="contain"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                </View>
+              )}
+              <Text
+                style={{
+                  fontSize,
+                  color: "#394EE3",
+                  marginLeft: 15,
+                  width: widthPercentageToDP(55),
+                }}
+              >
+                {reservation?.name}
+              </Text>
+            </TouchableOpacity>
+          );
+        }}
+        scrollEventThrottle={8}
+        decelerationRate={"normal"} // Adjust this for the desired smoothness
+      />
     );
   };
 
   renderEmptyDate = () => {
     return (
       <View style={stylesNew.emptyDate}>
-        <Text style={{
-          color: "black",
-          textAlign: "center"
-        }} >Hoy no tenemos clases ni eventos programados.</Text>
+        <Text
+          style={{
+            color: "black",
+            textAlign: "center",
+          }}
+        >
+          Hoy no tenemos clases ni eventos programados.
+        </Text>
       </View>
     );
   };
@@ -333,7 +349,7 @@ class Calender extends React.Component {
 
   timeToString(time) {
     const date = new Date(moment(time));
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   }
 }
 
@@ -345,10 +361,10 @@ const stylesNew = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     marginTop: 17,
-    flexDirection: 'row',
+    flexDirection: "row",
     // backgroundColor:'red',
     // justifyContent:'center',
-    alignItems: 'center',
+    alignItems: "center",
   },
   emptyDate: {
     height: 15,
@@ -358,14 +374,14 @@ const stylesNew = StyleSheet.create({
   customDay: {
     margin: 10,
     fontSize: 24,
-    color: 'green',
+    color: "green",
   },
   dayItem: {
     marginLeft: 34,
   },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 export default connect(mapStateToProps)(Calender);

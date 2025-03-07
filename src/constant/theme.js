@@ -18,6 +18,9 @@ export const SIZES = {
   // global sizes
   padding: 20,
   padding2: 12,
+  padding16: 16,
+  padding18: 18,
+  padding20: 20,
 
   // font sizes
   h7: RFValue(7),

@@ -3,6 +3,7 @@ import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllExams } from "../../Redux/actions/exam-action"
 import { navigate } from "../../navigation/navigation_service"
+import { dispatchExamText, dispatchFuncOn } from "../../Redux/action"
 
 export default () => {
     const dispatch = useDispatch()

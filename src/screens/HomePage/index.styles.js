@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         color: "red",
         fontFamily: fonts.novaBold,
         marginLeft: "30%",
-        top: SIZES.padding2 / 3,
+        top: SIZES.padding20 / 3,
         position: "absolute"
     }
 })

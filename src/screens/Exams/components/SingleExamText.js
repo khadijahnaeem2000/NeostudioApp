@@ -4,7 +4,7 @@ import { fonts } from '../../../utils'
 import { COLORS, SIZES } from '../../../constant'
 import { widthPercentageToDP } from '../../../Component/MakeMeResponsive'
 
-const SingleExamText = ({ item, onPress, onLongPress, isActive }) => {
+const SingleExamText = ({ item, onPress, onLongPress, isActive, lineHeight = 25, fontSize = widthPercentageToDP(4.5) }) => {
 
     const fontFamily = isActive
         ? fonts.novaBold
@@ -38,7 +38,7 @@ const SingleExamText = ({ item, onPress, onLongPress, isActive }) => {
             style={styles.main_view}
             onPress={onPress}
         >
-            <Text style={[styles.title, { color, fontFamily }]} >{item?.name}</Text>
+            <Text style={[styles.title, { color, fontFamily, lineHeight, fontSize }]} >{item?.name}</Text>
         </TouchableOpacity>
     )
 }
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
         marginTop: SIZES.padding2,
     },
     title: {
-        fontSize: widthPercentageToDP(4.5),
+        // fontSize: widthPercentageToDP(3),
         textAlign: "center",
-        lineHeight: 25
+        // lineHeight: 25
     }
 })

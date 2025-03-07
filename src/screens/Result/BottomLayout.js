@@ -6,6 +6,7 @@ import {
 } from '../../Component/MakeMeResponsive'
 import FastImage from 'react-native-fast-image'
 import { fonts } from '../../utils'
+import { images } from '../../constant'
 
 export default class BottomLayout extends React.Component {
 

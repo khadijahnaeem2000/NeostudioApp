@@ -10,6 +10,7 @@ import {
   updateLogoutTime,
   checkRegistration,
   addRegister,
+  trackStudentTime,
 } from './src/Redux/action';
 import Dialog from './src/Component/DailogBox';
 import messaging from '@react-native-firebase/messaging';
@@ -23,8 +24,10 @@ import { RegisterModal } from './src/screens/HomePage/components';
 const MainApp = () => {
   const [appState, setAppState] = useState(AppState.currentState);
   const [timer, setTimer] = useState(240);
+  const [trackStudentTimers, setTrackStudentTimers] = useState(180);
   const [showModal, setShowModal] = useState(false);
   const intervalRef = useRef(null);
+  const trackTimeIntervalRef = useRef(null);
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const { login } = user || {};
@@ -44,15 +47,26 @@ const MainApp = () => {
     }
   };
 
+  const clearTrackStudentTimer = () => {
+    if (trackTimeIntervalRef.current) {
+      clearTimeout(trackTimeIntervalRef.current);
+    }
+  }
+
   useEffect(() => {
     getFcmToken()
     notificationListener(dispatch);
     startTimer(); // Start the timer on mount
+    trackActiveUserStatus();
+    trackTimeIntervalRef.current = setTimeout(()=>{
+      trackActiveUserStatus();
+    }, 30000);
 
     const appStateListener = AppState.addEventListener('change', _handleAppStateChange);
 
     return () => {
       clearTimer(); // Clean up timer on unmount
+      clearTrackStudentTimer();
       appStateListener.remove(); // Clean up app state listener
     };
   }, []);
@@ -71,6 +85,19 @@ const MainApp = () => {
       });
     }, 1000);
   };
+
+  const trackStudentTimer = () => {
+    clearTrackStudentTimer();
+    trackTimeIntervalRef.current = setInterval(async () => {
+      setTrackStudentTimers(prevTimer => {
+        const newTimer = prevTimer - 1;
+        if (newTimer === 0) {
+          clearTrackStudentTimer();
+        }
+        return newTimer;
+      });
+    }, 30000);
+  }
 
   const checkIfRegistered = async () => {
     if (login?.data?.id) {
@@ -104,6 +131,16 @@ const MainApp = () => {
     }
     setAppState(nextAppState);
   };
+
+  const trackActiveUserStatus = async () => {
+    if (login?.data?.id) {
+      const response = await trackStudentTime({ session_id: login?.data?.id });
+      console.log('response',response);
+      // if (response?.status === 'Successful') {
+      //   setShowModal(false);
+      // }
+    }
+  }
 
   const Stack = createNativeStackNavigator();
 
